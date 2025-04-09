@@ -5,7 +5,7 @@
 <script setup>
 import { computed } from "vue";
 import { useRootStore } from "../../../stores/root";
-import { useNuxtApp, computed } from "#imports";
+import { useNuxtApp } from "#imports";
 
 const rootStore = useRootStore();
 const props = defineProps(["type", "items", "name"]);
