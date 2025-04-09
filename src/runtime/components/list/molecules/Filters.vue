@@ -35,6 +35,7 @@
 
 <script setup>
 import { useDisplay } from "vuetify";
+import { resolveComponent } from "vue";
 import { useRootStore } from "../../../stores/root";
 import { useNuxtApp, useI18n } from "#imports";
 

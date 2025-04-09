@@ -43,7 +43,7 @@
 </template>
 
 <script setup>
-import { mergeProps } from "vue";
+import { mergeProps, computed } from "vue";
 import { useDisplay } from "vuetify";
 import { useRootStore } from "../../../stores/root";
 import { useNuxtApp } from "#imports";

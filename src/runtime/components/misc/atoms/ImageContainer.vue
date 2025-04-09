@@ -1,10 +1,10 @@
 <template>
   <div>
-    <!--  TODO 
-  - add skeleton UI 
+    <!--  TODO
+  - add skeleton UI
   - test lazy-src
-  - validate requested quality 
-  - Add conditional overlays slots (top left/right, bottom left/right/center for date, caption, copyright)-->
+  - validate requested quality
+  - Add conditional overlays slots (top left/right, bottom left/right/center for date, caption, copyright) -->
 
     <v-skeleton-loader v-if="loading" height="100%" type="image" />
 
@@ -50,12 +50,14 @@
 </template>
 
 <script setup>
-const localePath = useLocalePath()
-const img = useImage()
+import { computed } from "vue";
+
+const localePath = useLocalePath();
+const img = useImage();
 
 const computedSrc = computed(() => {
-  return typeof props.src === "string" ? props.src : props.src.url
-})
+  return typeof props.src === "string" ? props.src : props.src.url;
+});
 const props = defineProps({
   src: {
     type: [Object, String],
@@ -77,7 +79,7 @@ const props = defineProps({
   slug: { type: String, default: "" },
   link: { type: String, default: "" },
   animate: { type: Boolean, default: true },
-})
+});
 const _srcset = computed(() => {
   return img.getSizes(
     typeof props.src === "string" ? props.src : props.src.url,
@@ -89,8 +91,8 @@ const _srcset = computed(() => {
         ...(props.width && { width: props.width }),
       },
     }
-  )
-})
+  );
+});
 </script>
 
 <style scoped>

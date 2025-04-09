@@ -66,6 +66,7 @@
 
 <script setup>
 import { useDebounceFn } from "@vueuse/core";
+import { computed } from "vue";
 import { useRootStore } from "../../../stores/root";
 import { useNuxtApp, useI18n } from "#imports";
 

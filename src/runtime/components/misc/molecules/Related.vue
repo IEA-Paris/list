@@ -15,27 +15,29 @@
 </template>
 
 <script setup>
+import { computed } from "vue";
+
 const props = defineProps({
   related: {
     type: Object,
     required: true,
   },
-})
+});
 
 const typeMapping = {
   events: "events",
   people: "people",
   news: "news",
   projects: "projects",
-}
+};
 
 const filteredRelatedItems = computed(() => {
-  const result = {}
+  const result = {};
   for (const key in typeMapping) {
     if (props.related[key] && props.related[key].length > 0) {
-      result[typeMapping[key]] = props.related[key]
+      result[typeMapping[key]] = props.related[key];
     }
   }
-  return result
-})
+  return result;
+});
 </script>

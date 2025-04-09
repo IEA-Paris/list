@@ -40,14 +40,17 @@
 </template>
 
 <script setup>
-import { useDisplay } from "vuetify"
+import { useDisplay } from "vuetify";
+import { computed } from "vue";
 import {
   getDetailedFormatedDate,
   formatDateValue,
-} from "../../../composables/useUtils"
-const { smAndDown, mdAndUp, name } = useDisplay()
+} from "../../../composables/useUtils";
+import { useI18n } from "#imports";
 
-const { locale } = useI18n()
+const { smAndDown, mdAndUp, name } = useDisplay();
+
+const { locale } = useI18n();
 const props = defineProps({
   dateStart: {
     type: String,
@@ -60,22 +63,23 @@ const props = defineProps({
     default: false,
     required: true,
   },
-})
+});
 
 const detailedDateStart = computed(() =>
   getDetailedFormatedDate(props.dateStart, locale.value)
-)
+);
 
 const detailedDateStop = computed(() =>
   getDetailedFormatedDate(props.dateStop, locale.value)
-)
+);
 
 const showDateStop = computed(() => {
-  const dateStartFormatted = formatDateValue(props.dateStart, locale.value)
-  const dateStopFormatted = formatDateValue(props.dateStop, locale.value)
-  return dateStopFormatted > dateStartFormatted
-})
+  const dateStartFormatted = formatDateValue(props.dateStart, locale.value);
+  const dateStopFormatted = formatDateValue(props.dateStop, locale.value);
+  return dateStopFormatted > dateStartFormatted;
+});
 </script>
+
 <style lang="scss" scoped>
 .date-stamp {
   font-family: "Open sans";

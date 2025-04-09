@@ -25,6 +25,7 @@
 </template>
 
 <script setup>
+import { resolveComponent, computed } from "vue";
 import { useRootStore } from "../../../stores/root";
 import { capitalize } from "../../../composables/useUtils";
 import { useNuxtApp, useI18n } from "#imports";
