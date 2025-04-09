@@ -77,9 +77,8 @@
 </template>
 
 <script setup>
-import { computed } from "vue";
 import { useRootStore } from "../../../stores/root";
-import { useRoute } from "#imports";
+import { useRoute, computed, watch } from "#imports";
 
 const route = useRoute();
 const rootStore = useRootStore();
