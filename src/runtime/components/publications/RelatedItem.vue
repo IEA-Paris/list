@@ -34,11 +34,13 @@
 </template>
 
 <script setup>
-import { useDisplay } from "vuetify"
-import { useRootStore } from "../../stores/root"
-const localePath = useLocalePath()
-const rootStore = useRootStore()
-const { lgAndUp } = useDisplay()
+import { useDisplay } from "vuetify";
+import { useRootStore } from "../../stores/root";
+import { useLocalePath } from "#imports";
 
-const props = defineProps({ item: { type: Object, required: true } })
+const localePath = useLocalePath();
+const rootStore = useRootStore();
+const { lgAndUp } = useDisplay();
+
+const props = defineProps({ item: { type: Object, required: true } });
 </script>

@@ -35,6 +35,8 @@ import { useDisplay } from "vuetify";
 import { useRootStore } from "../../stores/root";
 import { slugify } from "../../../composables/useUtils";
 
+import { useLocalePath } from "#imports";
+
 const localePath = useLocalePath();
 const rootStore = useRootStore();
 const { lgAndUp } = useDisplay();

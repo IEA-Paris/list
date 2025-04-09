@@ -51,7 +51,7 @@
 
 <script setup>
 import { slugify } from "../../../composables/useUtils";
-import { computed } from "#imports";
+import { computed, useLocalePath } from "#imports";
 
 const localePath = useLocalePath();
 const img = useImage();

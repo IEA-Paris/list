@@ -66,7 +66,7 @@
 
 <script setup>
 import { useDisplay } from "vuetify";
-import { computed } from "vue";
+import { useLocalePath, computed } from "#imports";
 
 const { name, mdAndUp } = useDisplay();
 const localePath = useLocalePath();

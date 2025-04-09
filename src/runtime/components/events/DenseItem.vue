@@ -24,9 +24,12 @@
     </v-col>
   </v-row>
 </template>
+
 <script setup>
-const { locale } = useI18n()
-const localePath = useLocalePath()
+import { useLocalePath } from "#imports";
+
+const { locale } = useI18n();
+const localePath = useLocalePath();
 const props = defineProps({
   item: {
     type: Object,
@@ -36,5 +39,5 @@ const props = defineProps({
     type: Number,
     required: true,
   },
-})
+});
 </script>
