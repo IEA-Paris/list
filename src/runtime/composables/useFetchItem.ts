@@ -1,4 +1,4 @@
-import { useRoute } from "#imports";
+import { useRoute, useAsyncQuery } from "#imports";
 
 export const useFetchItem = () => {
   const fetchItem = async <T>(payload: {
