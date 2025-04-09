@@ -4,7 +4,7 @@
       :value="event"
       style="cursor: pointer"
       @click="
-        $router.push(localePath('/activities/events/' + slugify(event.title)))
+        $router.push(localePath('/activities/events/' + event.slug[locale]))
       "
     >
       <v-col cols="3">
@@ -28,14 +28,20 @@
     </v-row>
   </v-sheet>
 </template>
+
 <script setup>
-import { useRootStore } from "../../stores/root"
-const rootStore = useRootStore()
+import { useRootStore } from "../../stores/root";
+import { useI18n } from "#imports";
+
+const { locale } = useI18n();
+
+const rootStore = useRootStore();
 const props = defineProps({
   events: {
     type: Array,
     required: true,
   },
-})
+});
 </script>
+
 <style lang="scss"></style>

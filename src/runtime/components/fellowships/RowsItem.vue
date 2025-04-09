@@ -43,7 +43,7 @@
 
 <script setup>
 import { useDisplay } from "vuetify";
-import { useLocalePath } from "#imports";
+import { useLocalePath, useI18n } from "#imports";
 
 const { name } = useDisplay();
 const localePath = useLocalePath();

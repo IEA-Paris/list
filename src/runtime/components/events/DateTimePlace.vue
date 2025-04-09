@@ -58,6 +58,7 @@
 <script setup>
 import { ref } from "vue";
 import { getDetailedFormatedDate } from "../../composables/useUtils";
+import { useI18n } from "#imports";
 
 const { locale } = useI18n();
 const props = defineProps({

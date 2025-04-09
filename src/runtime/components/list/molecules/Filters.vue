@@ -35,9 +35,14 @@
 
 <script setup>
 import { useDisplay } from "vuetify";
-import { resolveComponent } from "vue";
 import { useRootStore } from "../../../stores/root";
-import { useNuxtApp, useI18n, onMounted } from "#imports";
+import {
+  useNuxtApp,
+  useI18n,
+  onMounted,
+  resolveComponent,
+  useI18n,
+} from "#imports";
 
 const { smAndDown } = useDisplay();
 const i18n = useI18n();

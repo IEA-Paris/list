@@ -14,7 +14,7 @@
           link
             ? localePath({
                 name: link,
-                params: { slug: slugify(slug) },
+                params: { slug },
               })
             : null
         "
@@ -50,8 +50,7 @@
 </template>
 
 <script setup>
-import { slugify } from "../../../composables/useUtils";
-import { computed, useLocalePath } from "#imports";
+import { computed, useLocalePath, useImage } from "#imports";
 
 const localePath = useLocalePath();
 const img = useImage();

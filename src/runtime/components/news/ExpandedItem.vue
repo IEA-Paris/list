@@ -85,7 +85,9 @@
 <script setup>
 import { useDisplay } from "vuetify";
 import { useRootStore } from "../../stores/root";
-import { useRouter } from "#imports";
+import { useRouter, useI18n, useLocalePath } from "#imports";
+
+const localePath = useLocalePath();
 
 const router = useRouter();
 const rootStore = useRootStore();

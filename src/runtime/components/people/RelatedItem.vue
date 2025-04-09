@@ -3,7 +3,7 @@
     :to="
       localePath({
         name: 'people-slug',
-        params: { slug: slugify(item.firstname + item.lastname) }, //TODO à modifier
+        params: { slug: item.slug },
       })
     "
   >
@@ -33,7 +33,6 @@
 <script setup>
 import { useDisplay } from "vuetify";
 import { useRootStore } from "../../stores/root";
-import { slugify } from "../../../composables/useUtils";
 
 import { useLocalePath } from "#imports";
 

@@ -13,8 +13,8 @@
       <template #prepend>
         <v-icon size="large" color="danger" />
       </template>
-      {{ $t("event-full") }}</v-btn
-    >
+      {{ $t("event-full") }}
+    </v-btn>
 
     <v-divider v-if="smAndUp" vertical class="mx-3" />
     <v-btn
@@ -32,8 +32,8 @@
         })
       "
     >
-      {{ $t("live-stream-available") }}</v-btn
-    >
+      {{ $t("live-stream-available") }}
+    </v-btn>
 
     <v-btn
       v-if="item.outside"
@@ -44,8 +44,8 @@
       size="small"
       class="my-xs-2"
     >
-      {{ $t("outside-event") }}</v-btn
-    >
+      {{ $t("outside-event") }}
+    </v-btn>
 
     <v-btn
       v-if="item.type === 'HYBRID'"
@@ -56,18 +56,20 @@
       size="small"
       class="my-xs-2"
     >
-      {{ $t("hybrid-event") }}</v-btn
-    >
+      {{ $t("hybrid-event") }}
+    </v-btn>
   </div>
 </template>
 
 <script setup>
-import { useDisplay } from "vuetify"
-const { smAndUp } = useDisplay()
-const { locale } = useI18n()
+import { useDisplay } from "vuetify";
+import { useI18n } from "#imports";
+
+const { smAndUp } = useDisplay();
+const { locale } = useI18n();
 const props = defineProps({
   item: { type: Object, required: true },
-})
+});
 </script>
 
 <style lang="scss" scoped></style>

@@ -25,7 +25,7 @@
 </template>
 
 <script setup>
-import { useLocalePath } from "#imports";
+import { useLocalePath, useI18n } from "#imports";
 
 const { locale } = useI18n();
 const localePath = useLocalePath();
