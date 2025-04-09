@@ -23,13 +23,15 @@
     />
   </div>
 </template>
-<script setup>
-import { useRootStore } from "../../../stores/root"
-import { capitalize } from "../../../composables/useUtils"
-const { $stores } = useNuxtApp()
-const { locale } = useI18n()
 
-const rootStore = useRootStore()
+<script setup>
+import { useRootStore } from "../../../stores/root";
+import { capitalize } from "../../../composables/useUtils";
+
+const { $stores } = useNuxtApp();
+const { locale } = useI18n();
+
+const rootStore = useRootStore();
 const props = defineProps({
   addBtn: {
     type: Boolean,
@@ -48,14 +50,14 @@ const props = defineProps({
       return {
         cols: 12,
         xl: 12,
-      }
+      };
     },
   },
   pagination: {
     type: Object,
     required: false,
     default: () => {
-      return {}
+      return {};
     },
   },
   addButton: {
@@ -64,11 +66,11 @@ const props = defineProps({
     default: false,
   },
   items: [Object],
-})
+});
 
 const view = computed(() =>
   resolveComponent("ListViews" + capitalize($stores[props.type].view.name))
-)
+);
 const itemTemplate = computed(() =>
   resolveComponent(
     (
@@ -77,16 +79,16 @@ const itemTemplate = computed(() =>
       "Item"
     ).toString()
   )
-)
-const numberOfPages = computed(() => $stores[props.type].numberOfPages)
+);
+const numberOfPages = computed(() => $stores[props.type].numberOfPages);
 
-const page = computed(() => +$stores[props.type].page)
+const page = computed(() => +$stores[props.type].page);
 
-const items = computed(() => $stores[props.type].items)
+const items = computed(() => $stores[props.type].items);
 
 try {
-  await rootStore.update(props.type, locale.value)
+  await rootStore.update(props.type, locale.value);
 } catch (error) {
-  console.log("error fetching update list: ", error)
+  console.log("error fetching update list: ", error);
 }
 </script>

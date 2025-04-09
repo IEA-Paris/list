@@ -7,6 +7,9 @@ export default defineNuxtConfig({
     "@nuxtjs/apollo",
     "@pinia/nuxt",
   ],
+  imports: {
+    autoImport: false,
+  },
   css: [
     "vuetify/lib/styles/main.sass",
     "@mdi/font/css/materialdesignicons.min.css",
@@ -31,4 +34,4 @@ export default defineNuxtConfig({
   pinia: {
     autoImports: ["defineStore", ["defineStore", "definePiniaStore"]],
   },
-})
+});
