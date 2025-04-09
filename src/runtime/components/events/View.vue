@@ -145,9 +145,7 @@
           <v-sheet class="mt-md-0 mt-lg-2 mt-xl-4">
             <v-list v-if="!loading && item.files && item.files.length">
               <v-list-subheader class="text-overline font-weight-bold">
-                {{
-                  $t("document")
-                }}
+                {{ $t("document") }}
               </v-list-subheader>
 
               <v-list-item
@@ -370,9 +368,9 @@
 
 <script setup>
 import { useDisplay } from 'vuetify'
-import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import getFileIcon from '../../composables/useIcons'
+import { ref } from '#imports'
 
 const { name, mdAndUp, sm, xs } = useDisplay()
 const router = useRouter()

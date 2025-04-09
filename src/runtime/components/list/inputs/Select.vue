@@ -7,7 +7,7 @@
 </template>
 
 <script setup>
-import { computed, onMounted } from "vue";
+import { computed } from "vue";
 import { useRootStore } from "../../../stores/root";
 import { useNuxtApp } from "#imports";
 
@@ -21,9 +21,6 @@ const val = computed({
   set(value) {
     rootStore.updateFilter(props.name, value, props.type);
   },
-});
-onMounted(() => {
-  console.log(props);
 });
 </script>
 

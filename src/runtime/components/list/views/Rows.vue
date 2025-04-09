@@ -9,5 +9,4 @@
 
 <script setup lang="ts">
 /* const { signIn } = useSession() */
-onMounted(() => {})
 </script>

@@ -149,10 +149,10 @@
 </template>
 
 <script setup>
-import { useDisplay } from "vuetify"
+import { useDisplay } from "vuetify";
 
-const { name } = useDisplay()
-const accordeon = ref(-1)
+const { name } = useDisplay();
+const accordeon = ref(-1);
 const props = defineProps({
   item: {
     type: Object,
@@ -163,12 +163,9 @@ const props = defineProps({
     default: false,
     required: true,
   },
-})
+});
 
-const view = ref(true)
-onMounted(() => {
-  /*   console.log("fellowship item", props.item.value) */
-})
+const view = ref(true);
 
 const renderedDetails = {
   ...(props.item?.fellowshipDetails?.type && {
@@ -204,7 +201,7 @@ const renderedDetails = {
   ...(props.item?.fellowshipDetails?.researchProcess && {
     researchProcess: props.item?.fellowshipDetails?.researchProcess,
   }),
-}
+};
 </script>
 
 <style lang="scss" scoped></style>

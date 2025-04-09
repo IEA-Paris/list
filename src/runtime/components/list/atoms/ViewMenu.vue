@@ -64,10 +64,6 @@ const current = ref($stores[props.type].view);
 const updateView = async (value) => {
   await rootStore.updateView({ value, type: props.type });
 };
-
-onMounted(() => {
-  // Add any logic needed on component mount
-});
 </script>
 
 <style lang="scss"></style>

@@ -90,10 +90,6 @@ const current = computed(() => {
 const updateSort = async (value) => {
   await rootStore.updateSort({ value, type: props.type });
 };
-
-onMounted(() => {
-  // Add any logic needed on component mount
-});
 </script>
 
 <style lang="scss"></style>
