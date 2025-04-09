@@ -1,0 +1,35 @@
+query buildFiltersValues {
+  buildFiltersValues {
+    events {
+      disciplines
+      fellowships
+      tags
+      category
+    }
+    fellowships {
+      affiliations
+      disciplines
+      tags
+    }
+    news {
+      category
+      tags
+    }
+    people {
+      disciplines
+      fellowships
+      members
+      vintage
+    }
+    projects {
+      tags
+    }
+    publications {
+      affiliations
+      disciplines
+      eventCategory
+      tags
+      type
+    }
+  }
+}
