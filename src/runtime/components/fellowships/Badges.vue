@@ -23,7 +23,8 @@
 </template>
 
 <script setup>
-import { computed } from "vue";
+import { getLocalizedDate } from "../../composables/useUtils";
+import { computed } from "#imports";
 
 const props = defineProps({
   item: { type: Object, required: true },

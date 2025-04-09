@@ -1,11 +1,7 @@
 <template>
   <div class="">
     <v-row>
-      <v-col
-        v-if="mdAndUp"
-        cols="12"
-        md="3"
-      >
+      <v-col v-if="mdAndUp" cols="12" md="3">
         <MiscAtomsImageContainer
           cover
           :src="
@@ -42,10 +38,7 @@
               {{ item.name }}
             </div>
 
-            <v-divider
-              width="154px"
-              class="mb-1 mt-6"
-            />
+            <v-divider width="154px" class="mb-1 mt-6" />
             <v-divider width="154px" />
 
             <div
@@ -65,10 +58,7 @@
               <!--   <EventsBadges :item="item" /> -->
             </div>
 
-            <v-divider
-              width="154px"
-              class="mb-1 mt-6"
-            />
+            <v-divider width="154px" class="mb-1 mt-6" />
             <v-divider width="154px" />
           </div>
         </template>
@@ -76,12 +66,7 @@
     </v-row>
 
     <v-row class="mt-md-3 mt-lg-10 mt-xl-12">
-      <v-col
-        v-if="mdAndUp"
-        class="d-flex flex-column"
-        cols="12"
-        md="3"
-      >
+      <v-col v-if="mdAndUp" class="d-flex flex-column" cols="12" md="3">
         <v-skeleton-loader
           v-if="loading"
           height="100%"
@@ -129,10 +114,7 @@
                   style="height: auto"
                 >
                   <template #append>
-                    <v-icon
-                      class="text-green"
-                      size="x-large"
-                    >
+                    <v-icon class="text-green" size="x-large">
                       mdi-circle-medium
                     </v-icon>
                   </template>
@@ -154,26 +136,16 @@
                 :value="file"
               >
                 <template #prepend>
-                  <v-icon
-                    v-if="mdAndUp"
-                    :icon="getFileIcon(file.url)"
-                  />
+                  <v-icon v-if="mdAndUp" :icon="getFileIcon(file.url)" />
                 </template>
-                <v-list-item-title
-                  class="text-wrap"
-                  v-text="file.name"
-                />
+                <v-list-item-title class="text-wrap" v-text="file.name" />
               </v-list-item>
             </v-list>
           </v-sheet>
         </template>
       </v-col>
 
-      <v-col
-        v-if="sm"
-        class="d-flex flex-row"
-        cols="12"
-      >
+      <v-col v-if="sm" class="d-flex flex-row" cols="12">
         <v-row class="ml-sm-1">
           <v-col cols="6">
             <MiscAtomsImageContainer
@@ -188,19 +160,12 @@
               v-if="loading"
               type="heading, subtitle, heading, subtitle, ossein, button"
             />
-            <EventsDateTimePlace
-              v-else
-              :item="item"
-            />
+            <EventsDateTimePlace v-else :item="item" />
           </v-col>
         </v-row>
       </v-col>
 
-      <v-col
-        v-if="xs"
-        class="ml-2"
-        cols="12"
-      >
+      <v-col v-if="xs" class="ml-2" cols="12">
         <MiscAtomsImageContainer
           cover
           :src="item.image.url ? item.image : '/default.png'"
@@ -209,26 +174,15 @@
         />
       </v-col>
 
-      <v-col
-        v-if="xs"
-        class="ml-2"
-        cols="12"
-      >
+      <v-col v-if="xs" class="ml-2" cols="12">
         <v-skeleton-loader
           v-if="loading"
           type="heading, subtitle, heading, subtitle, ossein, button"
         />
-        <EventsDateTimePlace
-          v-else
-          :item="item"
-        />
+        <EventsDateTimePlace v-else :item="item" />
       </v-col>
 
-      <v-col
-        cols="12"
-        md="9"
-        class="px-0"
-      >
+      <v-col cols="12" md="9" class="px-0">
         <v-skeleton-loader
           v-if="loading"
           :type="
@@ -272,10 +226,7 @@
                   class="py-2"
                   style="white-space: pre; text-wrap: auto"
                 >
-                  <MDC
-                    v-if="item.description"
-                    :value="item.description"
-                  />
+                  <MDC v-if="item.description" :value="item.description" />
                 </v-expansion-panel-text>
               </v-expansion-panel>
 
@@ -293,10 +244,7 @@
                   {{ $t("programme") }}
                 </v-expansion-panel-title>
                 <v-expansion-panel-text>
-                  <MDC
-                    v-if="item.program"
-                    :value="item.program"
-                  />
+                  <MDC v-if="item.program" :value="item.program" />
 
                   >
                 </v-expansion-panel-text>
@@ -319,10 +267,7 @@
                   class="border-thin text-black"
                   :color="key === accordeon ? 'light-grey' : 'white'"
                 >
-                  <MDC
-                    v-if="item.details"
-                    :value="item.details"
-                  />
+                  <MDC v-if="item.details" :value="item.details" />
                 </v-expansion-panel-text>
               </v-expansion-panel>
             </v-expansion-panels>
@@ -332,10 +277,7 @@
     </v-row>
 
     <!-- DIVIDERS -->
-    <v-responsive
-      class="mx-auto my-9"
-      width="120"
-    >
+    <v-responsive class="mx-auto my-9" width="120">
       <v-divider class="mb-1" />
       <v-divider />
     </v-responsive>
@@ -352,10 +294,7 @@
         {{ $t("gallery") }}
       </div>
     </MiscAtomsSlidingCarousel> -->
-    <v-responsive
-      class="mx-auto my-9"
-      width="120"
-    >
+    <v-responsive class="mx-auto my-9" width="120">
       <v-divider class="mb-1" />
       <v-divider />
     </v-responsive>
@@ -367,13 +306,14 @@
 </template>
 
 <script setup>
-import { useDisplay } from 'vuetify'
-import { useRouter } from 'vue-router'
-import getFileIcon from '../../composables/useIcons'
-import { ref } from '#imports'
+import { useDisplay } from "vuetify";
+import { useRouter } from "vue-router";
+import getFileIcon from "../../composables/useIcons";
+import { getLocalizedDate } from "../../composables/useUtils";
+import { ref } from "#imports";
 
-const { name, mdAndUp, sm, xs } = useDisplay()
-const router = useRouter()
+const { name, mdAndUp, sm, xs } = useDisplay();
+const router = useRouter();
 const props = defineProps({
   item: {
     type: Object,
@@ -384,14 +324,14 @@ const props = defineProps({
     required: false,
     default: false,
   },
-})
+});
 
 // UI components models
-const panel = ref(['presentation'])
+const panel = ref(["presentation"]);
 
 function redirectToMap(long, lat) {
   router.push(
-    `https://www.openstreetmap.org/?mlat=${lat}&amp;mlon=${long}#map=19/${lat}/${long}`,
-  )
+    `https://www.openstreetmap.org/?mlat=${lat}&amp;mlon=${long}#map=19/${lat}/${long}`
+  );
 }
 </script>

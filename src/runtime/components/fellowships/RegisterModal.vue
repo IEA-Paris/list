@@ -7,10 +7,8 @@
         :variant="view ? 'outlined' : 'text'"
         class="text-overline"
       >
-        {{
-          $t("register-until-0", [getLocalizedDate(item.applicationStop)])
-        }}</v-btn
-      >
+        {{ $t("register-until-0", [getLocalizedDate(item.applicationStop)]) }}
+      </v-btn>
     </template>
 
     <template #default="{ isActive }">
@@ -33,9 +31,12 @@
     </template>
   </v-dialog>
 </template>
+
 <script setup>
+import { getLocalizedDate } from "../../composables/useUtils";
+
 const props = defineProps({
   item: { type: Object, required: true },
   view: { type: Boolean, required: false, default: false },
-})
+});
 </script>
