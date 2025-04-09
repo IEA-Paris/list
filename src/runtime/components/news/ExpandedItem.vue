@@ -83,13 +83,15 @@
 </template>
 
 <script setup>
-import { useDisplay } from "vuetify"
-import { useRootStore } from "../../stores/root"
-const router = useRouter()
-const rootStore = useRootStore()
-const expanded = ref(false)
-const { name, lgAndUp } = useDisplay()
-const { locale } = useI18n()
+import { useDisplay } from "vuetify";
+import { useRootStore } from "../../stores/root";
+import { useRouter } from "#imports";
+
+const router = useRouter();
+const rootStore = useRootStore();
+const expanded = ref(false);
+const { name, lgAndUp } = useDisplay();
+const { locale } = useI18n();
 const props = defineProps({
   item: {
     type: Object,
@@ -99,7 +101,7 @@ const props = defineProps({
     type: Number,
     required: true,
   },
-})
+});
 </script>
 
 <style lang="scss" scoped>

@@ -24,8 +24,9 @@
       </div>
       <v-expand-transition>
         <div v-if="filtersOpen" class="mb-7">
-          <ListMoleculesFilters :type="type" /></div
-      ></v-expand-transition>
+          <ListMoleculesFilters :type="type" />
+        </div>
+      </v-expand-transition>
       <ListAtomsSearchInput :type="type" />
       <ListAtomsSearchString :type="type" />
     </v-col>
@@ -33,9 +34,13 @@
 </template>
 
 <script setup>
-const route = useRoute()
+import { ref } from "vue";
 
-const filtersOpen = ref(!!Object.keys(route.query)?.length)
+import { useRoute } from "#imports";
+
+const route = useRoute();
+
+const filtersOpen = ref(!!Object.keys(route.query)?.length);
 
 const props = defineProps({
   type: {
@@ -43,5 +48,5 @@ const props = defineProps({
     required: false,
     default: "",
   },
-})
+});
 </script>

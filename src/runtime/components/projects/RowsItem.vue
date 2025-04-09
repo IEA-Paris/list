@@ -73,34 +73,37 @@
               ['xs', 'sm', 'md', 'lg', 'xl', 'xxl'].indexOf(name || 'md')
             ]
           "
-          >{{ $t("visit-the-project-website") }}</v-btn
         >
+          {{ $t("visit-the-project-website") }}
+        </v-btn>
       </template>
-    </v-col></v-row
-  >
+    </v-col>
+  </v-row>
   <v-divider />
 </template>
 
 <script setup>
-import { useRootStore } from "../../stores/root"
-import { useDisplay } from "vuetify"
-const { locale } = useI18n()
+import { useDisplay } from "vuetify";
+import { useRootStore } from "../../stores/root";
+import { useRouter } from "#imports";
 
-const { name } = useDisplay()
+const { locale } = useI18n();
 
-const rootStore = useRootStore()
-const router = useRouter()
-const localePath = useLocalePath()
+const { name } = useDisplay();
+
+const rootStore = useRootStore();
+const router = useRouter();
+const localePath = useLocalePath();
 
 const props = defineProps({
   item: {
     type: Object,
     default: () => {
-      return {}
+      return {};
     },
     required: true,
   },
-})
+});
 </script>
 
 <style lang="scss"></style>

@@ -41,8 +41,8 @@
           >Afficher une carte plus grande</a
         ></small
       >
-      ></v-responsive
-    >
+      >
+    </v-responsive>
   </v-expand-transition>
   <br />
   <v-btn
@@ -56,22 +56,24 @@
 </template>
 
 <script setup>
-import { getDetailedFormatedDate } from "../../composables/useUtils"
-const { locale } = useI18n()
+import { ref } from "vue";
+import { getDetailedFormatedDate } from "../../composables/useUtils";
+
+const { locale } = useI18n();
 const props = defineProps({
   item: {
     type: Object,
     required: true,
   },
-})
-const open = ref(false)
-const detailedStart = getDetailedFormatedDate(props.item.start, locale.value)
+});
+const open = ref(false);
+const detailedStart = getDetailedFormatedDate(props.item.start, locale.value);
 const startDay = ref(
   `${detailedStart.day} ${detailedStart.month} ${detailedStart.year}`
-)
-const startTime = ref(detailedStart.hours)
-const detailedStop = getDetailedFormatedDate(props.item.stop, locale.value)
-const stopTime = ref(detailedStop.hours)
+);
+const startTime = ref(detailedStart.hours);
+const detailedStop = getDetailedFormatedDate(props.item.stop, locale.value);
+const stopTime = ref(detailedStop.hours);
 </script>
 
 <style lang="scss" scoped></style>

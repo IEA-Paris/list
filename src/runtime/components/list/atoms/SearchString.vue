@@ -152,6 +152,7 @@
 </template>
 
 <script setup>
+import { ref } from "vue";
 import { useNuxtApp } from "#imports";
 
 const { $stores } = useNuxtApp();

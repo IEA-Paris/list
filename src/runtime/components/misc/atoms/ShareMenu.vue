@@ -25,16 +25,22 @@
           :image="item.image"
           :hashtags="item.tags.map((tag) => tag.name)"
           :url="config.url + route.fullPath"
-          ><template #label>{{ network }}</template>
+        >
+          <template #label>
+            {{ network }}
+          </template>
         </SocialShare>
       </v-list-item>
     </v-list>
   </v-menu>
 </template>
+
 <script setup>
-import config from "~/static.config"
-import { mergeProps } from "vue"
-const route = useRoute()
+import { mergeProps } from "vue";
+import { useRoute } from "#imports";
+import config from "~/static.config";
+
+const route = useRoute();
 
 const props = defineProps({
   networks: {
@@ -54,7 +60,7 @@ const props = defineProps({
     type: Object,
     required: true,
   },
-})
+});
 
 /* console.log("PRPOS", props.item) */
 </script>

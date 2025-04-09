@@ -78,8 +78,8 @@
 
 <script setup>
 import { computed } from "vue";
-import { useRoute } from "vue-router";
 import { useRootStore } from "../../../stores/root";
+import { useRoute } from "#imports";
 
 const route = useRoute();
 const rootStore = useRootStore();
