@@ -1,6 +1,6 @@
 import type { AppConfig } from "nuxt/schema";
 import { createDynamicStore } from "../stores/factory";
-import { defineNuxtPlugin } from "nuxt/app";
+import { defineNuxtPlugin, useAppConfig } from "#app";
 export default defineNuxtPlugin(async (nuxtApp) => {
   const appConfig = useAppConfig() as AppConfig & {
     list: {
