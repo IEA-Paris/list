@@ -19,11 +19,14 @@
     </v-col>
   </v-row>
 </template>
+
 <script setup>
-import { useRootStore } from "../../stores/root"
-const { $stores } = useNuxtApp()
-const localePath = useLocalePath()
-const rootStore = useRootStore()
+import { useRootStore } from "../../stores/root";
+import { useNuxtApp, useLocalePath } from "#imports";
+
+const { $stores } = useNuxtApp();
+const localePath = useLocalePath();
+const rootStore = useRootStore();
 const props = defineProps({
   item: {
     type: Object,
@@ -33,5 +36,5 @@ const props = defineProps({
     type: Number,
     required: true,
   },
-})
+});
 </script>

@@ -75,31 +75,34 @@
               ['xs', 'sm', 'md', 'lg', 'xl', 'xxl'].indexOf(name || 'md')
             ]
           "
-          >{{ $t("visit-the-publications-website") }}</v-btn
         >
-        ></template
-      >
+          {{ $t("visit-the-publications-website") }}
+        </v-btn>
+        >
+      </template>
     </div>
   </v-col>
   <v-divider />
 </template>
 
 <script setup>
-import { useDisplay } from "vuetify"
-const { name } = useDisplay()
-const { locale } = useI18n()
-const { $stores } = useNuxtApp()
-const router = useRouter()
-const localePath = useLocalePath()
+import { useDisplay } from "vuetify";
+import { useNuxtApp, useI18n, useLocalePath, useRouter } from "#imports";
+
+const { name } = useDisplay();
+const { locale } = useI18n();
+const { $stores } = useNuxtApp();
+const router = useRouter();
+const localePath = useLocalePath();
 const props = defineProps({
   item: {
     type: Object,
     default: () => {
-      return {}
+      return {};
     },
     required: true,
   },
-})
+});
 </script>
 
 <style lang="scss"></style>

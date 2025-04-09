@@ -45,7 +45,7 @@
               class="my-8 text-h3 align-self-center text-wrap"
             >
               {{ item.firstname + " " + item.lastname
-              }}<!--  TODO : call a composable to format people names (multiple, initials, capped & al. )-->
+              }}<!--  TODO : call a composable to format people names (multiple, initials, capped & al. ) -->
             </div>
             <!-- SOCIALS -->
             <div class="text-center">
@@ -150,13 +150,15 @@
 </template>
 
 <script setup>
-import { useDisplay } from "vuetify"
-const { locale } = useI18n()
-const { $stores } = useNuxtApp()
-const { name, mdAndUp } = useDisplay()
+import { useDisplay } from "vuetify";
+import { useNuxtApp, useI18n } from "#imports";
+
+const { locale } = useI18n();
+const { $stores } = useNuxtApp();
+const { name, mdAndUp } = useDisplay();
 const props = defineProps({
   item: { type: Object, required: true },
   loading: { type: Boolean, default: false },
-})
-$stores.people.loading = false
+});
+$stores.people.loading = false;
 </script>

@@ -27,6 +27,7 @@
 <script setup>
 import { useRootStore } from "../../../stores/root";
 import { capitalize } from "../../../composables/useUtils";
+import { useNuxtApp, useI18n } from "#imports";
 
 const { $stores } = useNuxtApp();
 const { locale } = useI18n();

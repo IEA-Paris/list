@@ -10,10 +10,10 @@
         link="news-slug"
         :slug="item._path && item._path.split('/').pop()"
       >
-        <v-chip class="ma-2" style="background-color: white; color: black">{{
-          $t(eventCategory)
-        }}</v-chip></MiscAtomsImageContainer
-      >
+        <v-chip class="ma-2" style="background-color: white; color: black">
+          {{ $t(eventCategory) }}
+        </v-chip>
+      </MiscAtomsImageContainer>
     </v-col>
     <v-col cols="12" md="8" lg="4" class="pl-md-6">
       <v-skeleton-loader
@@ -32,11 +32,11 @@
 
       <template v-else>
         <template v-if="smAndDown && item.category">
-          <v-chip class="mb-4">{{
-            $t("list.filters.news.category." + item.category)
-          }}</v-chip>
-          <br
-        /></template>
+          <v-chip class="mb-4">
+            {{ $t("list.filters.news.category." + item.category) }}
+          </v-chip>
+          <br />
+        </template>
 
         <NuxtLink
           :to="
@@ -131,20 +131,23 @@
 </template>
 
 <script setup>
-import { useRootStore } from "../../stores/root"
-import { useDisplay } from "vuetify"
-const { $stores } = useNuxtApp()
-const { locale } = useI18n()
-const localePath = useLocalePath()
-const rootStore = useRootStore()
-const { name, smAndDown, mdAndDown, mdAndUp, lgAndUp } = useDisplay()
+import { useDisplay } from "vuetify";
+import { computed } from "vue";
+import { useRootStore } from "../../stores/root";
+import { useNuxtApp, useI18n } from "#imports";
+
+const { $stores } = useNuxtApp();
+const { locale } = useI18n();
+const localePath = useLocalePath();
+const rootStore = useRootStore();
+const { name, smAndDown, mdAndDown, mdAndUp, lgAndUp } = useDisplay();
 const eventCategory = computed(() => {
   if (props.item.category) {
-    return "list.filters.news.category." + props.item.category
+    return "list.filters.news.category." + props.item.category;
   } else {
-    return "list.filters.news.category.others"
+    return "list.filters.news.category.others";
   }
-})
+});
 const props = defineProps({
   item: {
     type: Object,
@@ -154,7 +157,7 @@ const props = defineProps({
     type: Number,
     required: true,
   },
-})
+});
 </script>
 
 <style></style>

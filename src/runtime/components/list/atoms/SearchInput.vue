@@ -19,8 +19,8 @@
         <div class="searchLabel">
           {{ $t("list.search-type", [$t(type)]) }}
         </div>
-      </template></v-text-field
-    >
+      </template>
+    </v-text-field>
     <v-expand-transition v-if="type === 'all'">
       <v-list
         v-show="search.length"
@@ -36,8 +36,9 @@
           <v-list-subheader
             v-if="item.type && item.type === 'subheader'"
             :key="'subheader-' + index"
-            >{{ item.name }}</v-list-subheader
           >
+            {{ item.name }}
+          </v-list-subheader>
           <div
             v-else-if="item.type && item.type === 'no-result'"
             :key="'no-result-' + index"
@@ -57,17 +58,20 @@
             :item
             :type="item.type"
           />
-        </template> </v-list
-    ></v-expand-transition>
+        </template>
+      </v-list>
+    </v-expand-transition>
   </div>
 </template>
 
 <script setup>
-import { useDebounceFn } from "@vueuse/core"
-import { useRootStore } from "../../../stores/root"
-const { locale, t } = useI18n()
-const rootStore = useRootStore()
-const { $stores } = useNuxtApp()
+import { useDebounceFn } from "@vueuse/core";
+import { useRootStore } from "../../../stores/root";
+import { useNuxtApp, useI18n } from "#imports";
+
+const { locale, t } = useI18n();
+const rootStore = useRootStore();
+const { $stores } = useNuxtApp();
 const props = defineProps({
   type: {
     type: String,
@@ -77,24 +81,24 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
-})
+});
 const results = computed(() => {
-  const storeRst = rootStore.results
+  const storeRst = rootStore.results;
   const rst =
     (Object.keys(storeRst).length &&
       Object.keys(storeRst)
         .sort((a, b) => {
-          return storeRst[b]?.items?.length - storeRst[a]?.items?.length
+          return storeRst[b]?.items?.length - storeRst[a]?.items?.length;
         })
         .reduce((acc, key, index) => {
-          const items = storeRst[key]?.items
-          const total = storeRst[key]?.total
+          const items = storeRst[key]?.items;
+          const total = storeRst[key]?.total;
           if (total === 0 && index === 0) {
-            acc.push({ type: "no-result" })
-            return acc
+            acc.push({ type: "no-result" });
+            return acc;
           }
           if (items?.length) {
-            acc.push({ type: "subheader", name: t("items." + key, 2) })
+            acc.push({ type: "subheader", name: t("items." + key, 2) });
             acc.push(
               ...items.map((item) => ({
                 prependAvatar: item?.image?.url || "mdi-square",
@@ -103,27 +107,27 @@ const results = computed(() => {
                 id: item.id,
                 type: key,
               }))
-            )
+            );
           }
-          acc.push({ type: "divider" })
-          return acc
+          acc.push({ type: "divider" });
+          return acc;
         }, [])) ||
-    {}
+    {};
 
-  return rst
-})
+  return rst;
+});
 const search = computed({
   get() {
-    return props.type === "all" ? rootStore.search : $stores[props.type].search
+    return props.type === "all" ? rootStore.search : $stores[props.type].search;
   },
   set: await useDebounceFn(async function (v) {
     await rootStore.updateSearch({
       type: props.type,
       search: v || "",
       lang: locale.value,
-    })
+    });
   }, 300),
-})
+});
 </script>
 
 <style lang="scss" scoped></style>

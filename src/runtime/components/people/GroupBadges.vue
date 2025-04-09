@@ -35,22 +35,24 @@
         tile
         variant="outlined"
       >
-        {{ $t("list.filters.people.groups." + key) }}</v-chip
-      ></template
-    >
+        {{ $t("list.filters.people.groups." + key) }}
+      </v-chip>
+    </template>
   </div>
 </template>
 
 <script setup>
-import { useRootStore } from "../../stores/root"
-const rootStore = useRootStore()
-const { $stores } = useNuxtApp()
+import { useRootStore } from "../../stores/root";
+import { useNuxtApp } from "#imports";
+
+const rootStore = useRootStore();
+const { $stores } = useNuxtApp();
 const props = defineProps({
   item: {
     type: Object,
     required: true,
   },
-})
+});
 </script>
 
 <style lang="scss" scoped></style>

@@ -25,23 +25,27 @@
       />
 
       <template v-else>
-        <v-chip class="ma-2" style="background-color: white; color: black">{{
-          $t(eventCategory)
-        }}</v-chip>
+        <v-chip class="ma-2" style="background-color: white; color: black">
+          {{ $t(eventCategory) }}
+        </v-chip>
         <MiscMoleculesChipContainer :items="item.tags" size="small" />
       </template>
     </v-col>
   </v-row>
 </template>
-<script setup>
-import { useDisplay } from "vuetify"
-import { useRootStore } from "../../stores/root"
-const { $stores } = useNuxtApp()
-const { name } = useDisplay()
-const localePath = useLocalePath()
-const { locale } = useI18n()
 
-const rootStore = useRootStore()
+<script setup>
+import { useDisplay } from "vuetify";
+import { computed } from "vue";
+import { useRootStore } from "../../stores/root";
+import { useNuxtApp, useI18n, useLocalePath } from "#imports";
+
+const { $stores } = useNuxtApp();
+const { name } = useDisplay();
+const localePath = useLocalePath();
+const { locale } = useI18n();
+
+const rootStore = useRootStore();
 const props = defineProps({
   item: {
     type: Object,
@@ -51,12 +55,12 @@ const props = defineProps({
     type: Number,
     required: true,
   },
-})
+});
 const eventCategory = computed(() => {
   if (props.item.category) {
-    return "list.filters.news.category." + props.item.category
+    return "list.filters.news.category." + props.item.category;
   } else {
-    return "list.filters.news.category.others"
+    return "list.filters.news.category.others";
   }
-})
+});
 </script>

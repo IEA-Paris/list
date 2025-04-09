@@ -10,9 +10,9 @@
         :type="['heading', 'heading'][['xs', 'sm'].indexOf(name || 'sm')]"
       />
       <template v-else>
-        <v-chip v-if="item && item.category && item.name" class="mb-4">{{
-          $t("list.filters.news.category." + item.category)
-        }}</v-chip>
+        <v-chip v-if="item && item.category && item.name" class="mb-4">
+          {{ $t("list.filters.news.category." + item.category) }}
+        </v-chip>
         <br />
         {{ item.name }}
       </template>
@@ -47,9 +47,9 @@
       />
 
       <div v-else class="mx-4 mx-md-0 justify-md-end">
-        <v-chip v-if="item && item.category && mdAndUp" class="mb-4">{{
-          $t("list.filters.news.category." + item.category)
-        }}</v-chip>
+        <v-chip v-if="item && item.category && mdAndUp" class="mb-4">
+          {{ $t("list.filters.news.category." + item.category) }}
+        </v-chip>
         <div
           v-if="item && item.name && mdAndUp"
           class="d-flex text-wrap text-h4 text-black"
@@ -160,9 +160,11 @@
 </template>
 
 <script setup>
-import { useDisplay } from "vuetify"
-const { $stores } = useNuxtApp()
-const { name, mdAndUp, smAndDown } = useDisplay()
+import { useDisplay } from "vuetify";
+import { useNuxtApp } from "#imports";
+
+const { $stores } = useNuxtApp();
+const { name, mdAndUp, smAndDown } = useDisplay();
 const props = defineProps({
   item: {
     type: Object,
@@ -173,10 +175,10 @@ const props = defineProps({
     required: false,
     default: false,
   },
-})
+});
 
-const today = new Date()
-/*const academicYear = ref(
+const today = new Date();
+/* const academicYear = ref(
    today.getMonth() > 6
     ? today.getFullYear() + "-" + (today.getFullYear() + 1)
     : today.getFullYear() - 1 + "-" + today.getFullYear()
@@ -186,5 +188,5 @@ const { data: action } = await useAsyncData("actions", () =>
     .limit(1)
     .find()
 ) */
-$stores.news.loading = false
+$stores.news.loading = false;
 </script>

@@ -36,20 +36,22 @@
             <v-icon>mdi-{{ item.icon }}</v-icon>
           </template>
           <v-list-item-title>{{ $t("list." + item.text) }}</v-list-item-title>
-        </v-list-item></template
-      >
+        </v-list-item>
+      </template>
     </v-list>
   </v-menu>
 </template>
 
 <script setup>
-import { useRootStore } from "../../../stores/root"
-import { mergeProps } from "vue"
-import { useDisplay } from "vuetify"
-const { $stores } = useNuxtApp()
-const { xs: isXsDisplay } = useDisplay()
+import { mergeProps } from "vue";
+import { useDisplay } from "vuetify";
+import { useRootStore } from "../../../stores/root";
+import { useNuxtApp } from "#imports";
 
-const rootStore = useRootStore()
+const { $stores } = useNuxtApp();
+const { xs: isXsDisplay } = useDisplay();
+
+const rootStore = useRootStore();
 
 const props = defineProps({
   type: {
@@ -57,15 +59,15 @@ const props = defineProps({
     default: "articles",
     required: true,
   },
-})
-const items = ref($stores[props.type].sort)
+});
+const items = ref($stores[props.type].sort);
 const defaultSort = ref(
   $stores[props.type].sort[
     Object.keys($stores[props.type].sort).find(
       (item) => $stores[props.type].sort[item].default === true
     )
   ]
-)
+);
 
 const current = computed(() => {
   try {
@@ -76,22 +78,22 @@ const current = computed(() => {
             $stores[props.type].sortBy[0] &&
           $stores[props.type].sort[item].value[1] ===
             $stores[props.type].sortDesc[0]
-        )
+        );
       })
-    ]
+    ];
   } catch (error) {
-    console.log("error: ", error)
-    return items[Object.keys(items).find((item) => item.default)]
+    console.log("error: ", error);
+    return items[Object.keys(items).find((item) => item.default)];
   }
-})
+});
 
 const updateSort = async (value) => {
-  await rootStore.updateSort({ value, type: props.type })
-}
+  await rootStore.updateSort({ value, type: props.type });
+};
 
 onMounted(() => {
   // Add any logic needed on component mount
-})
+});
 </script>
 
 <style lang="scss"></style>

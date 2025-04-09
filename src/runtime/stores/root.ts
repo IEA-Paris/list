@@ -2,10 +2,10 @@
 import lists from '~/assets/data/lists' */
 
 /* import api from "~/server/api/github" */
-import { defineStore } from "pinia"
-import type { Views, ModuleType } from "@paris-ias/data"
-
-import SEARCH from "../graphql/queries/list/search.gql"
+import { defineStore } from "pinia";
+import type { Views, ModuleType } from "@paris-ias/data";
+import SEARCH from "../graphql/queries/list/search.gql";
+import { useNuxtApp } from "#imports";
 
 export const useRootStore = defineStore("rootStore", {
   state: (): Record<
@@ -31,27 +31,27 @@ export const useRootStore = defineStore("rootStore", {
 
   actions: {
     setLoading(value: boolean, type: string = "") {
-      const { $stores } = useNuxtApp()
-      this.loading = value
-      if (type.length) $stores[type].loading = value
+      const { $stores } = useNuxtApp();
+      this.loading = value;
+      if (type.length) $stores[type].loading = value;
     },
     setScrolled() {
       if (import.meta.browser) {
-        this.scrolled = window.scrollY > 0
+        this.scrolled = window.scrollY > 0;
       }
     },
     loadRouteQuery(type: string) {
-      const { currentRoute } = useRouter()
-      const { $stores } = useNuxtApp()
-      const query = currentRoute.value.query
+      const { currentRoute } = useRouter();
+      const { $stores } = useNuxtApp();
+      const query = currentRoute.value.query;
       if (Object.keys(query)?.length) {
         Object.keys(query).forEach((filter) => {
           if (Object.keys($stores[type].filters).includes(filter))
             $stores[type].filters[filter].value = (this[type] as ModuleType)
               .list.filters[filter].multiple
               ? JSON.parse(query[filter] as string)
-              : query[filter]
-        })
+              : query[filter];
+        });
         /*       if (query.view) {
         ;$stores[type].view = query.view as
           | string
@@ -83,12 +83,12 @@ export const useRootStore = defineStore("rootStore", {
         sortDescItem = defaultSort[0].value[1]
       } */
       }
-      console.log("query loaded")
+      console.log("query loaded");
     },
 
     setFiltersCount(type: string) {
-      const { $stores } = useNuxtApp()
-      let filtersCount = 0 as number
+      const { $stores } = useNuxtApp();
+      let filtersCount = 0 as number;
       Object.keys($stores[type].filters)
         // remove empty values
         .forEach((filter) => {
@@ -102,19 +102,19 @@ export const useRootStore = defineStore("rootStore", {
             $stores[type].filters[filter]?.value?.length &&
             typeof $stores[type].filters[filter]?.value !== "undefined"
           ) {
-            filtersCount++
+            filtersCount++;
           }
-          return filtersCount
-        })
+          return filtersCount;
+        });
 
-      $stores[type].filtersCount = filtersCount
+      $stores[type].filtersCount = filtersCount;
     },
     setBlankFilterLoad(type: string) {
       /*  ;(this[type] as ModuleType).loading = false */
     },
     setDefaults() {
       // lang
-      const lang = localStorage.getItem("lang")
+      const lang = localStorage.getItem("lang");
       /*    if(lang)i18n.global.locale = lang; */
       // dark mode
 
@@ -125,8 +125,8 @@ export const useRootStore = defineStore("rootStore", {
       // fellowships
     },
     updateRouteQuery(type: string) {
-      const router = useRouter()
-      const { $stores } = useNuxtApp()
+      const router = useRouter();
+      const { $stores } = useNuxtApp();
       // update route
       const routeQuery: Record<string, string> = {
         // Add search if it exists and is defined
@@ -139,30 +139,30 @@ export const useRootStore = defineStore("rootStore", {
         ...Object.entries($stores[type].filters).reduce(
           (acc, [filterKey, filter]) => {
             if (!$stores[type].filters[filterKey]?.value) {
-              return acc
+              return acc;
             }
             return {
               ...acc,
               ...{
                 [filterKey]: $stores[type].filters[filterKey]?.value,
               },
-            }
+            };
           },
           {} as Record<string, string>
         ),
-      }
-      router.replace({ query: routeQuery })
+      };
+      router.replace({ query: routeQuery });
     },
     resetState() {
-      const { $stores } = useNuxtApp()
-      console.log("resetState")
-      this.search = ""
-      this.page = 1
-      this.scrolled = false
-      this.loading = false
-      this.total = 0
-      this.skip = 0
-      this.numberOfPages = 0
+      const { $stores } = useNuxtApp();
+      console.log("resetState");
+      this.search = "";
+      this.page = 1;
+      this.scrolled = false;
+      this.loading = false;
+      this.total = 0;
+      this.skip = 0;
+      this.numberOfPages = 0;
       const modules = [
         "events",
         "news",
@@ -170,7 +170,7 @@ export const useRootStore = defineStore("rootStore", {
         "projects",
         "fellowships",
         "publications",
-      ]
+      ];
       /*       this.events.list.filters = events.list.filters
       this.news.list.filters = news.list.filters
       this.people.list.filters = people.list.filters
@@ -197,89 +197,89 @@ export const useRootStore = defineStore("rootStore", {
         ;$stores[type].view = defaultView
         ;$stores[type].sortBy = [defaultSort.value[0]]
         ;$stores[type].sortDesc = [defaultSort.value[1]] */
-      })
+      });
     },
     updateSort({ value, type }: { value: number[] | string[]; type: string }) {
-      const { $stores } = useNuxtApp()
-      $stores[type].sortBy = [value[0]] as string[]
-      $stores[type].sortDesc = [value[1]] as number[]
-      this.page = 1
-      this.updateLocalStorage(type + "_sort", value.join("_"))
-      this.update(type)
+      const { $stores } = useNuxtApp();
+      $stores[type].sortBy = [value[0]] as string[];
+      $stores[type].sortDesc = [value[1]] as number[];
+      this.page = 1;
+      this.updateLocalStorage(type + "_sort", value.join("_"));
+      this.update(type);
     },
     updateView({ value, type }: { value: string; type: string }) {
-      const { $stores } = useNuxtApp()
+      const { $stores } = useNuxtApp();
       $stores[type].view = {
         ...($stores[type].views[value] as Views),
         name: value,
-      }
-      this.updateLocalStorage(type + "_view", value)
-      this.update(type)
+      };
+      this.updateLocalStorage(type + "_view", value);
+      this.update(type);
     },
     updateLocalStorage(key: string, value: string) {
-      const local = JSON.parse(localStorage.getItem("PARIS_IAS") as any) || {}
-      local[key] = value
-      localStorage.setItem("PARIS_IAS", JSON.stringify(local))
+      const local = JSON.parse(localStorage.getItem("PARIS_IAS") as any) || {};
+      local[key] = value;
+      localStorage.setItem("PARIS_IAS", JSON.stringify(local));
     },
     updateFilter(key: string, val: any, type: string) {
-      const { $stores } = useNuxtApp()
-      console.log("update filter: ", { key, val, type })
+      const { $stores } = useNuxtApp();
+      console.log("update filter: ", { key, val, type });
 
       if (["online", "outside", "past"].includes(key) && val === false) {
-        $stores[type].filters[key].value = null
+        $stores[type].filters[key].value = null;
       } else {
-        $stores[type].filters[key].value = val
+        $stores[type].filters[key].value = val;
       }
 
-      this.updatePage({ page: 1, type })
+      this.updatePage({ page: 1, type });
     },
     updateItemsPerPage({ value, type }: { value: number; type: string }) {
-      const { $stores } = useNuxtApp()
-      this.page = 1
-      $stores[types].itemsPerPage = value
+      const { $stores } = useNuxtApp();
+      this.page = 1;
+      $stores[types].itemsPerPage = value;
 
-      this.update(type)
+      this.update(type);
     },
     updatePage({ page, type }: { page: number; type: string }) {
-      this.page = page
-      this.update(type)
+      this.page = page;
+      this.update(type);
     },
     async updateSearch({
       type = "all",
       search = "",
       lang = "en",
     }: {
-      type: string
-      search: string
-      lang: string
+      type: string;
+      search: string;
+      lang: string;
     }) {
-      this.search = search
+      this.search = search;
       /*   console.log("updateSearch: ", search + " " + lang) */
-      this.setLoading(true)
+      this.setLoading(true);
 
-      await this.update(type, lang)
+      await this.update(type, lang);
     },
 
     async update(type: string, lang: string = "en") {
-      const { $stores } = useNuxtApp()
-      this.setLoading(true)
+      const { $stores } = useNuxtApp();
+      this.setLoading(true);
       if (type !== "all") {
-        $stores[type].loading = true
+        $stores[type].loading = true;
       }
 
       // fetch the item categories
 
       const itemsPerPage =
-        type === "all" ? 3 : ($stores[type]?.itemsPerPage as number)
-      const filters: Record<string, any> = {}
+        type === "all" ? 3 : ($stores[type]?.itemsPerPage as number);
+      const filters: Record<string, any> = {};
 
       if (type !== "all") {
         for (const filter in $stores[type].filters) {
-          const filterValue = $stores[type].filters[filter]?.value
+          const filterValue = $stores[type].filters[filter]?.value;
 
           // Prune empty values
           if (typeof filterValue !== "undefined" && filterValue?.length) {
-            filters[filter] = filterValue
+            filters[filter] = filterValue;
           }
         }
       }
@@ -306,49 +306,49 @@ export const useRootStore = defineStore("rootStore", {
           appId: "iea",
           lang,
         })
-      )
-      args.options.filters = JSON.stringify(args.options.filters)
-      let result: any = {}
-      console.log("args: ", args)
+      );
+      args.options.filters = JSON.stringify(args.options.filters);
+      let result: any = {};
+      console.log("args: ", args);
 
-      console.log(`Fetching ${type}`)
-      const { $queries } = useNuxtApp()
+      console.log(`Fetching ${type}`);
+      const { $queries } = useNuxtApp();
       const { data, error } = await useAsyncQuery(
         type === "all" ? SEARCH : $queries[type].list,
         args
-      )
+      );
       /*    console.log("data: ", data) */
-      if (error.value) console.log(error.value)
+      if (error.value) console.log(error.value);
       const key =
         type === "all"
           ? "search"
-          : "list" + type.charAt(0).toUpperCase() + type.slice(1)
+          : "list" + type.charAt(0).toUpperCase() + type.slice(1);
 
       if (type === "all") {
-        this.results = data?.value?.[key]
+        this.results = data?.value?.[key];
       } else {
-        const items = data?.value?.[key]?.items ?? []
-        this.total = data?.value?.[key]?.total
+        const items = data?.value?.[key]?.items ?? [];
+        this.total = data?.value?.[key]?.total;
         result = {
           ...data?.value?.[key],
           items: items.map(({ id, ...rest }) => ({
             ...rest,
             _path: `/${id}`,
           })),
-        }
-        $stores[type].items = result["items"]
+        };
+        $stores[type].items = result["items"];
 
-        const lastPage = Math.ceil(result.total / itemsPerPage)
+        const lastPage = Math.ceil(result.total / itemsPerPage);
         /*         this.updateRouteQuery(type) */
-        this.setFiltersCount(type)
-        this.setBlankFilterLoad(type)
+        this.setFiltersCount(type);
+        this.setBlankFilterLoad(type);
         /*       console.log("type2: ", type) */
-        $stores[type].numberOfPages = lastPage
+        $stores[type].numberOfPages = lastPage;
       }
       /*     console.log("this.total: ", this.total)
        */
-      this.setLoading(false, type)
-      return true
+      this.setLoading(false, type);
+      return true;
     },
   },
-})
+});

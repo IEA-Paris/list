@@ -32,7 +32,8 @@
         !(!$stores[type].search || $stores[type].search.length === 0) &&
         $stores[type].filtersCount === 0
       "
-      >{{
+    >
+      {{
         feminine
           ? $t(
               "list.0-items-found-searching-for-f",
@@ -60,15 +61,16 @@
               ],
               $stores[type].total
             )
-      }}</template
-    >
+      }}
+    </template>
     <!--  with X filters -->
     <template
       v-else-if="
         (!$stores[type].search || $stores[type].search.length === 0) &&
         $stores[type][props.type].filtersCount > 0
       "
-      >{{
+    >
+      {{
         feminine
           ? $t(
               "list.0-items-found-with-1-filter-f",
@@ -98,8 +100,8 @@
               ],
               $stores[type].total
             )
-      }}</template
-    >
+      }}
+    </template>
     <!--  searching for "XXX" with Y filters  -->
     <template
       v-else-if="
@@ -107,7 +109,8 @@
         $stores[type].search.length &&
         $stores[type].filtersCount > 0
       "
-      >{{
+    >
+      {{
         feminine
           ? $t(
               "list.0-items-found-searching-for-with-1-filter-f",
@@ -131,8 +134,8 @@
               ],
               $stores[type].total
             )
-      }}</template
-    >
+      }}
+    </template>
     <template v-if="$stores[type].numberOfPages > 1">
       <!--   // Page X of Y -->
       {{
@@ -140,22 +143,25 @@
           $stores[type].page || 1,
           $stores[type].numberOfPages || 1,
         ])
-      }}</template
-    >
+      }}
+    </template>
     <!--  X items per page -->
     <!-- displayed by X -->
     <!--  and sorted by X -->
   </div>
 </template>
+
 <script setup>
-const { $stores } = useNuxtApp()
+import { useNuxtApp } from "#imports";
+
+const { $stores } = useNuxtApp();
 const props = defineProps({
   type: {
     type: String,
     required: true,
   },
-})
-const feminine = ref(["news", "publications", "people"].includes(props.type))
+});
+const feminine = ref(["news", "publications", "people"].includes(props.type));
 </script>
 
 <style lang="scss" scoped></style>

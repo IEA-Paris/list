@@ -31,19 +31,21 @@
         <template #prepend>
           <v-icon>mdi-{{ value.icon }}</v-icon>
         </template>
-        <v-list-item-title>{{
-          $t("list." + (value.name || key))
-        }}</v-list-item-title>
+        <v-list-item-title>
+          {{ $t("list." + (value.name || key)) }}
+        </v-list-item-title>
       </v-list-item>
     </v-list>
   </v-menu>
 </template>
 
 <script setup>
-import { useRootStore } from "../../../stores/root"
-import { mergeProps } from "vue"
-import { useDisplay } from "vuetify"
-const { $stores } = useNuxtApp()
+import { mergeProps } from "vue";
+import { useDisplay } from "vuetify";
+import { useRootStore } from "../../../stores/root";
+import { useNuxtApp } from "#imports";
+
+const { $stores } = useNuxtApp();
 
 const props = defineProps({
   type: {
@@ -51,21 +53,21 @@ const props = defineProps({
     default: "articles",
     required: true,
   },
-})
-const { xs: isXsDisplay } = useDisplay()
+});
+const { xs: isXsDisplay } = useDisplay();
 
-const rootStore = useRootStore()
-const items = ref($stores[props.type].views)
+const rootStore = useRootStore();
+const items = ref($stores[props.type].views);
 
-const current = ref($stores[props.type].view)
+const current = ref($stores[props.type].view);
 
 const updateView = async (value) => {
-  await rootStore.updateView({ value, type: props.type })
-}
+  await rootStore.updateView({ value, type: props.type });
+};
 
 onMounted(() => {
   // Add any logic needed on component mount
-})
+});
 </script>
 
 <style lang="scss"></style>
