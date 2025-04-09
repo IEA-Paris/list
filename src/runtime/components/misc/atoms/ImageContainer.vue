@@ -50,7 +50,8 @@
 </template>
 
 <script setup>
-import { computed } from "vue";
+import { slugify } from "../../../composables/useUtils";
+import { computed } from "#imports";
 
 const localePath = useLocalePath();
 const img = useImage();
