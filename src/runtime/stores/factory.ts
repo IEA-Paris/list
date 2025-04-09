@@ -1,4 +1,5 @@
-import { defineStore } from "pinia"
+import { defineStore } from "pinia";
+import { reactive, toRefs } from "vue";
 export const createDynamicStore = (storeName: string, moduleState: object) => {
   return defineStore(storeName, () => {
     const state = reactive({
@@ -10,10 +11,10 @@ export const createDynamicStore = (storeName: string, moduleState: object) => {
       search: "",
       error: null as string | null,
       ...moduleState,
-    })
+    });
 
     return {
       ...toRefs(state),
-    }
-  })
-}
+    };
+  });
+};
