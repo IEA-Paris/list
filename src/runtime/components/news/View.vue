@@ -177,10 +177,7 @@ const today = new Date();
     ? today.getFullYear() + "-" + (today.getFullYear() + 1)
     : today.getFullYear() - 1 + "-" + today.getFullYear()
 )
-const { data: action } = await useAsyncData("actions", () =>
-  queryContent("/actions/" + locale.value)
-    .limit(1)
-    .find()
+
 ) */
 $stores.news.loading = false;
 </script>
