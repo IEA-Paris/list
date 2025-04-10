@@ -1,38 +1,38 @@
 import process from 'node:process';globalThis._importMeta_={url:import.meta.url,env:process.env};import { tmpdir } from 'node:os';
-import { defineEventHandler, handleCacheHeaders, splitCookiesString, createEvent, fetchWithEvent, isEvent, eventHandler, setHeaders, sendRedirect, proxyRequest, getRequestHeader, setResponseHeaders, setResponseStatus, send, getRequestHeaders, setResponseHeader, getRequestURL, getResponseHeader, createApp, createRouter as createRouter$1, toNodeListener, lazyEventHandler, getResponseStatus, createError, getRouterParam, readBody, getQuery as getQuery$1, getResponseStatusText } from 'file:///home/bob/Projects/listModuleAlt/modules/list/node_modules/h3/dist/index.mjs';
+import { defineEventHandler, handleCacheHeaders, splitCookiesString, createEvent, fetchWithEvent, isEvent, eventHandler, setHeaders, sendRedirect, proxyRequest, getRequestHeader, setResponseHeaders, setResponseStatus, send, getRequestHeaders, setResponseHeader, getRequestURL, getResponseHeader, createApp, createRouter as createRouter$1, toNodeListener, lazyEventHandler, getResponseStatus, createError, getRouterParam, readBody, getQuery as getQuery$1, getResponseStatusText } from 'file:///home/bob/Projects/list/node_modules/h3/dist/index.mjs';
 import { Server } from 'node:http';
 import { resolve, dirname, join } from 'node:path';
 import nodeCrypto from 'node:crypto';
 import { parentPort, threadId } from 'node:worker_threads';
-import { createRenderer, getRequestDependencies, getPreloadLinks, getPrefetchLinks } from 'file:///home/bob/Projects/listModuleAlt/modules/list/node_modules/vue-bundle-renderer/dist/runtime.mjs';
-import destr from 'file:///home/bob/Projects/listModuleAlt/modules/list/node_modules/destr/dist/index.mjs';
-import { parseURL, withoutBase, joinURL, getQuery, withQuery, withTrailingSlash, joinRelativeURL } from 'file:///home/bob/Projects/listModuleAlt/modules/list/node_modules/ufo/dist/index.mjs';
-import { createHead as createHead$1, propsToString, renderSSRHead } from 'file:///home/bob/Projects/listModuleAlt/modules/list/node_modules/unhead/dist/server.mjs';
-import { isVNode, toValue, isRef } from 'file:///home/bob/Projects/listModuleAlt/modules/list/node_modules/vue/index.mjs';
-import { walkResolver } from 'file:///home/bob/Projects/listModuleAlt/modules/list/node_modules/unhead/dist/utils.mjs';
-import { renderToString } from 'file:///home/bob/Projects/listModuleAlt/modules/list/node_modules/vue/server-renderer/index.mjs';
-import { createHooks } from 'file:///home/bob/Projects/listModuleAlt/modules/list/node_modules/hookable/dist/index.mjs';
-import { createFetch, Headers as Headers$1 } from 'file:///home/bob/Projects/listModuleAlt/modules/list/node_modules/ofetch/dist/node.mjs';
-import { fetchNodeRequestHandler, callNodeRequestHandler } from 'file:///home/bob/Projects/listModuleAlt/modules/list/node_modules/node-mock-http/dist/index.mjs';
-import { createStorage, prefixStorage } from 'file:///home/bob/Projects/listModuleAlt/modules/list/node_modules/unstorage/dist/index.mjs';
-import unstorage_47drivers_47fs from 'file:///home/bob/Projects/listModuleAlt/modules/list/node_modules/unstorage/drivers/fs.mjs';
-import { digest } from 'file:///home/bob/Projects/listModuleAlt/modules/list/node_modules/ohash/dist/index.mjs';
-import { klona } from 'file:///home/bob/Projects/listModuleAlt/modules/list/node_modules/klona/dist/index.mjs';
-import defu, { defuFn } from 'file:///home/bob/Projects/listModuleAlt/modules/list/node_modules/defu/dist/defu.mjs';
-import { snakeCase } from 'file:///home/bob/Projects/listModuleAlt/modules/list/node_modules/scule/dist/index.mjs';
-import { getContext } from 'file:///home/bob/Projects/listModuleAlt/modules/list/node_modules/unctx/dist/index.mjs';
-import { toRouteMatcher, createRouter } from 'file:///home/bob/Projects/listModuleAlt/modules/list/node_modules/radix3/dist/index.mjs';
+import { createRenderer, getRequestDependencies, getPreloadLinks, getPrefetchLinks } from 'file:///home/bob/Projects/list/node_modules/vue-bundle-renderer/dist/runtime.mjs';
+import destr from 'file:///home/bob/Projects/list/node_modules/destr/dist/index.mjs';
+import { parseURL, withoutBase, joinURL, getQuery, withQuery, withTrailingSlash, joinRelativeURL } from 'file:///home/bob/Projects/list/node_modules/ufo/dist/index.mjs';
+import { createHead as createHead$1, propsToString, renderSSRHead } from 'file:///home/bob/Projects/list/node_modules/unhead/dist/server.mjs';
+import { isVNode, toValue, isRef } from 'file:///home/bob/Projects/list/node_modules/vue/index.mjs';
+import { walkResolver } from 'file:///home/bob/Projects/list/node_modules/unhead/dist/utils.mjs';
+import { renderToString } from 'file:///home/bob/Projects/list/node_modules/vue/server-renderer/index.mjs';
+import { createHooks } from 'file:///home/bob/Projects/list/node_modules/hookable/dist/index.mjs';
+import { createFetch, Headers as Headers$1 } from 'file:///home/bob/Projects/list/node_modules/ofetch/dist/node.mjs';
+import { fetchNodeRequestHandler, callNodeRequestHandler } from 'file:///home/bob/Projects/list/node_modules/node-mock-http/dist/index.mjs';
+import { createStorage, prefixStorage } from 'file:///home/bob/Projects/list/node_modules/unstorage/dist/index.mjs';
+import unstorage_47drivers_47fs from 'file:///home/bob/Projects/list/node_modules/unstorage/drivers/fs.mjs';
+import { digest } from 'file:///home/bob/Projects/list/node_modules/ohash/dist/index.mjs';
+import { klona } from 'file:///home/bob/Projects/list/node_modules/klona/dist/index.mjs';
+import defu, { defuFn } from 'file:///home/bob/Projects/list/node_modules/defu/dist/defu.mjs';
+import { snakeCase } from 'file:///home/bob/Projects/list/node_modules/scule/dist/index.mjs';
+import { getContext } from 'file:///home/bob/Projects/list/node_modules/unctx/dist/index.mjs';
+import { toRouteMatcher, createRouter } from 'file:///home/bob/Projects/list/node_modules/radix3/dist/index.mjs';
 import { readFile } from 'node:fs/promises';
-import consola, { consola as consola$1 } from 'file:///home/bob/Projects/listModuleAlt/modules/list/node_modules/consola/dist/index.mjs';
-import { ErrorParser } from 'file:///home/bob/Projects/listModuleAlt/modules/list/node_modules/youch-core/build/index.js';
-import { Youch } from 'file:///home/bob/Projects/listModuleAlt/modules/list/node_modules/youch/build/index.js';
-import { SourceMapConsumer } from 'file:///home/bob/Projects/listModuleAlt/modules/list/node_modules/nitropack/node_modules/source-map/source-map.js';
+import consola, { consola as consola$1 } from 'file:///home/bob/Projects/list/node_modules/consola/dist/index.mjs';
+import { ErrorParser } from 'file:///home/bob/Projects/list/node_modules/youch-core/build/index.js';
+import { Youch } from 'file:///home/bob/Projects/list/node_modules/youch/build/index.js';
+import { SourceMapConsumer } from 'file:///home/bob/Projects/list/node_modules/nitropack/node_modules/source-map/source-map.js';
 import { AsyncLocalStorage } from 'node:async_hooks';
-import { stringify, uneval } from 'file:///home/bob/Projects/listModuleAlt/modules/list/node_modules/devalue/index.js';
-import { captureRawStackTrace, parseRawStackTrace } from 'file:///home/bob/Projects/listModuleAlt/modules/list/node_modules/errx/dist/index.js';
-import { DeprecationsPlugin, PromisesPlugin, TemplateParamsPlugin, AliasSortingPlugin } from 'file:///home/bob/Projects/listModuleAlt/modules/list/node_modules/unhead/dist/plugins.mjs';
+import { stringify, uneval } from 'file:///home/bob/Projects/list/node_modules/devalue/index.js';
+import { captureRawStackTrace, parseRawStackTrace } from 'file:///home/bob/Projects/list/node_modules/errx/dist/index.js';
+import { DeprecationsPlugin, PromisesPlugin, TemplateParamsPlugin, AliasSortingPlugin } from 'file:///home/bob/Projects/list/node_modules/unhead/dist/plugins.mjs';
 
-const serverAssets = [{"baseName":"server","dir":"/home/bob/Projects/listModuleAlt/modules/list/playground/server/assets"}];
+const serverAssets = [{"baseName":"server","dir":"/home/bob/Projects/list/playground/server/assets"}];
 
 const assets = createStorage();
 
@@ -44,11 +44,11 @@ const storage = createStorage({});
 
 storage.mount('/assets', assets);
 
-storage.mount('root', unstorage_47drivers_47fs({"driver":"fs","readOnly":true,"base":"/home/bob/Projects/listModuleAlt/modules/list/playground","watchOptions":{"ignored":[null]}}));
-storage.mount('src', unstorage_47drivers_47fs({"driver":"fs","readOnly":true,"base":"/home/bob/Projects/listModuleAlt/modules/list/playground/server","watchOptions":{"ignored":[null]}}));
-storage.mount('build', unstorage_47drivers_47fs({"driver":"fs","readOnly":false,"base":"/home/bob/Projects/listModuleAlt/modules/list/playground/.nuxt"}));
-storage.mount('cache', unstorage_47drivers_47fs({"driver":"fs","readOnly":false,"base":"/home/bob/Projects/listModuleAlt/modules/list/playground/.nuxt/cache"}));
-storage.mount('data', unstorage_47drivers_47fs({"driver":"fs","base":"/home/bob/Projects/listModuleAlt/modules/list/playground/.data/kv"}));
+storage.mount('root', unstorage_47drivers_47fs({"driver":"fs","readOnly":true,"base":"/home/bob/Projects/list/playground","watchOptions":{"ignored":[null]}}));
+storage.mount('src', unstorage_47drivers_47fs({"driver":"fs","readOnly":true,"base":"/home/bob/Projects/list/playground/server","watchOptions":{"ignored":[null]}}));
+storage.mount('build', unstorage_47drivers_47fs({"driver":"fs","readOnly":false,"base":"/home/bob/Projects/list/playground/.nuxt"}));
+storage.mount('cache', unstorage_47drivers_47fs({"driver":"fs","readOnly":false,"base":"/home/bob/Projects/list/playground/.nuxt/cache"}));
+storage.mount('data', unstorage_47drivers_47fs({"driver":"fs","base":"/home/bob/Projects/list/playground/.data/kv"}));
 
 function useStorage(base = "") {
   return base ? prefixStorage(storage, base) : storage;
@@ -1012,13 +1012,13 @@ if (!window.__NUXT_DEVTOOLS_TIME_METRIC__) {
 window.__NUXT_DEVTOOLS_TIME_METRIC__.appInit = Date.now()
 `;
 
-const _E0Z28lZjHebw6SKqijhDylJ5M5Nsocytv3Y5Y1272fc = (function(nitro) {
+const _pW8ak4blyex1Xn6fsKZRD8_w5DAQUJngeudlMXTTqbI = (function(nitro) {
   nitro.hooks.hook("render:html", (htmlContext) => {
     htmlContext.head.push(`<script>${script}<\/script>`);
   });
 });
 
-const rootDir = "/home/bob/Projects/listModuleAlt/modules/list/playground";
+const rootDir = "/home/bob/Projects/list/playground";
 
 const appHead = {"meta":[{"name":"viewport","content":"width=device-width, initial-scale=1"},{"charset":"utf-8"}],"link":[],"style":[],"script":[],"noscript":[]};
 
@@ -1037,7 +1037,7 @@ const devReducers = {
   URL: (data) => data instanceof URL ? data.toString() : void 0
 };
 const asyncContext = getContext("nuxt-dev", { asyncContext: true, AsyncLocalStorage });
-const _OwjkIX_RIpFYxnIpAwon8Be6JM75aaYAP7Qy7gNdrI = (nitroApp) => {
+const _3UXj5wKV_UsltgfjxGaU4ovI9Q8Vp4I04IejwLEL3OY = (nitroApp) => {
   const handler = nitroApp.h3App.handler;
   nitroApp.h3App.handler = (event) => {
     return asyncContext.callAsync({ logs: [], event }, () => handler(event));
@@ -1107,15 +1107,15 @@ function onConsoleLog(callback) {
 }
 
 const plugins = [
-  _E0Z28lZjHebw6SKqijhDylJ5M5Nsocytv3Y5Y1272fc,
-_OwjkIX_RIpFYxnIpAwon8Be6JM75aaYAP7Qy7gNdrI
+  _pW8ak4blyex1Xn6fsKZRD8_w5DAQUJngeudlMXTTqbI,
+_3UXj5wKV_UsltgfjxGaU4ovI9Q8Vp4I04IejwLEL3OY
 ];
 
-const _lazy_MfwKs6 = () => Promise.resolve().then(function () { return renderer$1; });
+const _lazy_VYO9L0 = () => Promise.resolve().then(function () { return renderer$1; });
 
 const handlers = [
-  { route: '/__nuxt_error', handler: _lazy_MfwKs6, lazy: true, middleware: false, method: undefined },
-  { route: '/**', handler: _lazy_MfwKs6, lazy: true, middleware: false, method: undefined }
+  { route: '/__nuxt_error', handler: _lazy_VYO9L0, lazy: true, middleware: false, method: undefined },
+  { route: '/**', handler: _lazy_VYO9L0, lazy: true, middleware: false, method: undefined }
 ];
 
 function createNitroApp() {
@@ -1470,8 +1470,8 @@ function publicAssetsURL(...path) {
 
 const APP_ROOT_OPEN_TAG = `<${appRootTag}${propsToString(appRootAttrs)}>`;
 const APP_ROOT_CLOSE_TAG = `</${appRootTag}>`;
-const getClientManifest = () => import('file:///home/bob/Projects/listModuleAlt/modules/list/playground/.nuxt/dist/server/client.manifest.mjs').then((r) => r.default || r).then((r) => typeof r === "function" ? r() : r);
-const getServerEntry = () => import('file:///home/bob/Projects/listModuleAlt/modules/list/playground/.nuxt/dist/server/server.mjs').then((r) => r.default || r);
+const getClientManifest = () => import('file:///home/bob/Projects/list/playground/.nuxt/dist/server/client.manifest.mjs').then((r) => r.default || r).then((r) => typeof r === "function" ? r() : r);
+const getServerEntry = () => import('file:///home/bob/Projects/list/playground/.nuxt/dist/server/server.mjs').then((r) => r.default || r);
 const getSSRStyles = lazyCachedFunction(() => Promise.resolve().then(function () { return styles$1; }).then((r) => r.default || r));
 const getSSRRenderer = lazyCachedFunction(async () => {
   const manifest = await getClientManifest();

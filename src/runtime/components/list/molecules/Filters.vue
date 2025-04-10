@@ -36,6 +36,7 @@
 <script setup>
 import { useDisplay } from "vuetify";
 import { useRootStore } from "../../../stores/root";
+import { capitalize } from "../../../composables/useUtils";
 import { useNuxtApp, onMounted, resolveComponent, useI18n } from "#imports";
 
 const { smAndDown } = useDisplay();

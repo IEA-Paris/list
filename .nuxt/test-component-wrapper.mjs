@@ -1,0 +1,1 @@
+export { default } from "/home/bob/Projects/list/node_modules/nuxt/dist/app/components/test-component-wrapper";

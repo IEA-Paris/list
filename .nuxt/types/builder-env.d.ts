@@ -1,1 +1,1 @@
-import "vite/client";
+import "@nuxt/schema/builder-env";

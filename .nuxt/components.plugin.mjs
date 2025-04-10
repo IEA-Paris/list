@@ -1,0 +1,76 @@
+import { defineNuxtPlugin } from '#app/nuxt'
+import { LazyEventsBadges, LazyEventsDateTimePlace, LazyEventsDenseItem, LazyEventsExpandedItem, LazyEventsListContainer, LazyEventsRegisterModal, LazyEventsRelatedItem, LazyEventsRowsItem, LazyEventsView, LazyFellowshipsBadges, LazyFellowshipsDenseItem, LazyFellowshipsExpandedItem, LazyFellowshipsRegisterModal, LazyFellowshipsRowsItem, LazyFellowshipsView, LazyListAtomsFiltersMenu, LazyListAtomsSearchInput, LazyListAtomsSearchItem, LazyListAtomsSearchString, LazyListAtomsSortMenu, LazyListAtomsViewMenu, LazyListInputsAutoComplete, LazyListInputsBooleanSwitch, LazyListInputsCheckbox, LazyListInputsSelect, LazyListMoleculesFilters, LazyListMoleculesHeader, LazyListMoleculesPagination, LazyListOrganismsList, LazyListViewsDense, LazyListViewsExpanded, LazyListViewsGrid, LazyListViewsRows, LazyListViewsTable, LazyMiscAtomsDateStamp, LazyMiscAtomsImageContainer, LazyMiscAtomsShareMenu, LazyMiscAtomsSocials, LazyMiscMoleculesChipContainer, LazyMiscMoleculesRelated, LazyMiscMoleculesRelatedItems, LazyMiscMoleculesSearchItem, LazyNewsDenseItem, LazyNewsExpandedItem, LazyNewsHeader, LazyNewsRelatedItem, LazyNewsRowsItem, LazyNewsView, LazyPeopleDenseItem, LazyPeopleExpandedItem, LazyPeopleGroupBadges, LazyPeopleRelatedItem, LazyPeopleRowsItem, LazyPeopleView, LazyProjectsExpandedItem, LazyProjectsRelatedItem, LazyProjectsRowsItem, LazyProjectsView, LazyPublicationsRelatedItem, LazyPublicationsRowsItem, LazyPublicationsView } from '#components'
+const lazyGlobalComponents = [
+  ["EventsBadges", LazyEventsBadges],
+["EventsDateTimePlace", LazyEventsDateTimePlace],
+["EventsDenseItem", LazyEventsDenseItem],
+["EventsExpandedItem", LazyEventsExpandedItem],
+["EventsListContainer", LazyEventsListContainer],
+["EventsRegisterModal", LazyEventsRegisterModal],
+["EventsRelatedItem", LazyEventsRelatedItem],
+["EventsRowsItem", LazyEventsRowsItem],
+["EventsView", LazyEventsView],
+["FellowshipsBadges", LazyFellowshipsBadges],
+["FellowshipsDenseItem", LazyFellowshipsDenseItem],
+["FellowshipsExpandedItem", LazyFellowshipsExpandedItem],
+["FellowshipsRegisterModal", LazyFellowshipsRegisterModal],
+["FellowshipsRowsItem", LazyFellowshipsRowsItem],
+["FellowshipsView", LazyFellowshipsView],
+["ListAtomsFiltersMenu", LazyListAtomsFiltersMenu],
+["ListAtomsSearchInput", LazyListAtomsSearchInput],
+["ListAtomsSearchItem", LazyListAtomsSearchItem],
+["ListAtomsSearchString", LazyListAtomsSearchString],
+["ListAtomsSortMenu", LazyListAtomsSortMenu],
+["ListAtomsViewMenu", LazyListAtomsViewMenu],
+["ListInputsAutoComplete", LazyListInputsAutoComplete],
+["ListInputsBooleanSwitch", LazyListInputsBooleanSwitch],
+["ListInputsCheckbox", LazyListInputsCheckbox],
+["ListInputsSelect", LazyListInputsSelect],
+["ListMoleculesFilters", LazyListMoleculesFilters],
+["ListMoleculesHeader", LazyListMoleculesHeader],
+["ListMoleculesPagination", LazyListMoleculesPagination],
+["ListOrganismsList", LazyListOrganismsList],
+["ListViewsDense", LazyListViewsDense],
+["ListViewsExpanded", LazyListViewsExpanded],
+["ListViewsGrid", LazyListViewsGrid],
+["ListViewsRows", LazyListViewsRows],
+["ListViewsTable", LazyListViewsTable],
+["MiscAtomsDateStamp", LazyMiscAtomsDateStamp],
+["MiscAtomsImageContainer", LazyMiscAtomsImageContainer],
+["MiscAtomsShareMenu", LazyMiscAtomsShareMenu],
+["MiscAtomsSocials", LazyMiscAtomsSocials],
+["MiscMoleculesChipContainer", LazyMiscMoleculesChipContainer],
+["MiscMoleculesRelated", LazyMiscMoleculesRelated],
+["MiscMoleculesRelatedItems", LazyMiscMoleculesRelatedItems],
+["MiscMoleculesSearchItem", LazyMiscMoleculesSearchItem],
+["NewsDenseItem", LazyNewsDenseItem],
+["NewsExpandedItem", LazyNewsExpandedItem],
+["NewsHeader", LazyNewsHeader],
+["NewsRelatedItem", LazyNewsRelatedItem],
+["NewsRowsItem", LazyNewsRowsItem],
+["NewsView", LazyNewsView],
+["PeopleDenseItem", LazyPeopleDenseItem],
+["PeopleExpandedItem", LazyPeopleExpandedItem],
+["PeopleGroupBadges", LazyPeopleGroupBadges],
+["PeopleRelatedItem", LazyPeopleRelatedItem],
+["PeopleRowsItem", LazyPeopleRowsItem],
+["PeopleView", LazyPeopleView],
+["ProjectsExpandedItem", LazyProjectsExpandedItem],
+["ProjectsRelatedItem", LazyProjectsRelatedItem],
+["ProjectsRowsItem", LazyProjectsRowsItem],
+["ProjectsView", LazyProjectsView],
+["PublicationsRelatedItem", LazyPublicationsRelatedItem],
+["PublicationsRowsItem", LazyPublicationsRowsItem],
+["PublicationsView", LazyPublicationsView],
+  
+]
+
+export default defineNuxtPlugin({
+  name: 'nuxt:global-components',
+  setup (nuxtApp) {
+    for (const [name, component] of lazyGlobalComponents) {
+      nuxtApp.vueApp.component(name, component)
+      nuxtApp.vueApp.component('Lazy' + name, component)
+    }
+  }
+})
