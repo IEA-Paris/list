@@ -67,7 +67,7 @@
     <template
       v-else-if="
         (!$stores[type].search || $stores[type].search.length === 0) &&
-        $stores[type][props.type].filtersCount > 0
+        $stores[type].filtersCount > 0
       "
     >
       {{
@@ -90,11 +90,7 @@
               "list.0-items-found-with-1-filter",
               [
                 $stores[type].total,
-                $t(
-                  "items." + props.type,
-                  $stores[type].total,
-                  $stores[type].total
-                ),
+                $t("items." + type, $stores[type].total, $stores[type].total),
                 $stores[type].filtersCount,
                 $t("filters", $stores[type].filtersCount),
               ],
@@ -116,7 +112,7 @@
               "list.0-items-found-searching-for-with-1-filter-f",
               [
                 $stores[type].total,
-                $t("items." + props.type, $stores[type].total),
+                $t("items." + type, $stores[type].total),
                 $stores[type].search,
                 $stores[type].filtersCount,
                 $t("filters", $stores[type].filtersCount),
@@ -127,7 +123,7 @@
               "list.0-items-found-searching-for-with-1-filter",
               [
                 $stores[type].total,
-                $t("items." + props.type, $stores[type].total),
+                $t("items." + type, $stores[type].total),
                 $stores[type].search,
                 $stores[type].filtersCount,
                 $t("filters", $stores[type].filtersCount),
@@ -152,8 +148,7 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
-import { useNuxtApp } from "#imports";
+import { useNuxtApp, ref } from "#imports";
 
 const { $stores } = useNuxtApp();
 const props = defineProps({
