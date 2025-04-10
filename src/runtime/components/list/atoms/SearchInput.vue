@@ -2,7 +2,7 @@
   <div class="d-flex flex-grow-1 flex-column">
     <v-text-field
       v-model.trim="search"
-      :placeholder="$t('list.search-type', [$t(type)])"
+      :placeholder="$t('list.search-type', [$t('items.' + type, 2)])"
       prepend-inner-icon="mdi-magnify"
       single-line
       class="transition-swing"
@@ -17,7 +17,7 @@
       $store.state.scrolled }" -->
       <template v-if="!search" #label>
         <div class="searchLabel">
-          {{ $t("list.search-type", [$t(type)]) }}
+          {{ $t("list.search-type", [$t("item." + type, 2)]) }}
         </div>
       </template>
     </v-text-field>
