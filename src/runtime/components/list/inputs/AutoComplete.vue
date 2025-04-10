@@ -8,7 +8,7 @@
 
 <script setup>
 import { useRootStore } from "../../../stores/root";
-import { useNuxtApp } from "#imports";
+import { useNuxtApp, computed } from "#imports";
 
 const rootStore = useRootStore();
 const { $stores } = useNuxtApp();
