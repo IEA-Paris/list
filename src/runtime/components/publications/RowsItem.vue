@@ -32,10 +32,8 @@
         <div class="text-h5 text-sm-h3 text-md-h4 text-md-h4 my-6">
           {{ item.name }}
         </div>
-
-        <MDC
+        <div
           v-if="item.summary"
-          :value="item.summary"
           class="text-wrap clamped-text"
           :style="
             '-webkit-line-clamp:' +
@@ -43,7 +41,9 @@
               ['xs', 'sm', 'md', 'lg', 'xl', 'xxl'].indexOf(name || 'md')
             ]
           "
-        />
+        >
+          <MDC :value="item.summary" />
+        </div>
         <v-btn
           class="mt-4"
           variant="outlined"

@@ -83,12 +83,8 @@
           ]
         "
       />
-      <template v-else>
-        <MDC
-          v-if="item.biography"
-          :value="item.biography"
-          class="my-6 flex-wrap"
-        />
+      <template v-else class="my-6 flex-wrap">
+        <MDC v-if="item.biography" :value="item.biography" />
       </template>
 
       <!-- DIVIDERS -->

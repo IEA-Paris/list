@@ -58,9 +58,8 @@
           class="mt-4"
         />
         <template v-if="mdAndDown">
-          <MDC
+          <div
             v-if="item.summary"
-            :value="item.summary"
             class="text-body-1 text-wrap clamped-text"
             :style="
               '-webkit-line-clamp:' +
@@ -68,7 +67,9 @@
                 ['xs', 'sm', 'md', 'lg', 'xl', 'xxl'].indexOf(name || 'md')
               ]
             "
-          />
+          >
+            <MDC :value="item.summary" />
+          </div>
           <v-btn
             class="mt-4"
             variant="outlined"
@@ -94,9 +95,8 @@
       />
 
       <template v-else>
-        <MDC
+        <div
           v-if="item.summary"
-          :value="item.summary"
           class="text-body-1 text-wrap clamped-text"
           :style="
             '-webkit-line-clamp:' +
@@ -104,8 +104,9 @@
               ['xs', 'sm', 'md', 'lg', 'xl', 'xxl'].indexOf(name || 'md')
             ]
           "
-        />
-        <p v-else />
+        >
+          <MDC :value="item.summary" />
+        </div>
         <v-btn
           class="mt-4"
           variant="outlined"

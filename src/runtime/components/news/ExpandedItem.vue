@@ -48,7 +48,7 @@
           <MiscMoleculesChipContainer :items="item.tags" />
         </div>
       </v-expand-transition>
-      <MDC
+      <div
         v-if="item.summary"
         class="text-body-1 text-wrap clamped-text"
         :style="
@@ -57,9 +57,9 @@
             ['xs', 'sm', 'md', 'lg', 'xl', 'xxl'].indexOf(name || 'md')
           ]
         "
-        :value="item.summary"
-      />
-
+      >
+        <MDC :value="item.summary" />
+      </div>
       <v-expand-transition>
         <v-btn
           v-show="expanded"

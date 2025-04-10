@@ -75,11 +75,9 @@
           ]
         "
       />
-      <MDC
-        v-if="item.description"
-        :value="item.description"
-        class="mt-md-n2 mx-10 mx-md-0"
-      />
+      <div v-if="item.description" class="mt-md-n2 mx-10 mx-md-0">
+        <MDC :value="item.description" />
+      </div>
     </v-col>
   </v-row>
 

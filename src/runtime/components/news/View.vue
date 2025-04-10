@@ -59,13 +59,9 @@
 
         <div
           v-if="renderedDescription && mdAndUp"
-          class="d-flex text-wrap text-h6 text-black mt-3"
+          class="mt-md-n2 mx-4 mx-sm-8 mx-md-0 d-flex text-wrap text-h6 text-black mt-3"
         >
-          <MDC
-            v-if="item.description"
-            :value="item.description"
-            class="mt-md-n2 mx-4 mx-sm-8 mx-md-0"
-          />
+          <MDC v-if="item.description" :value="item.description" class="" />
         </div>
         <div
           class="d-flex flex-column flex-md-row align-md-center mt-6 mx-sm-4 mx-md-6"
@@ -124,11 +120,9 @@
           ]
         "
       />
-      <MDC
-        v-if="item.description"
-        :value="item.description"
-        class="mt-md-n2 mx-4 mx-sm-8 mx-md-0"
-      />
+      <div v-if="item.description" class="mt-md-n2 mx-4 mx-sm-8 mx-md-0">
+        <MDC :value="item.description" />
+      </div>
     </v-col>
   </v-row>
 

@@ -150,7 +150,7 @@
 
 <script setup>
 import { useDisplay } from "vuetify";
-
+import { ref } from "#imports";
 const { name } = useDisplay();
 const accordeon = ref(-1);
 const props = defineProps({

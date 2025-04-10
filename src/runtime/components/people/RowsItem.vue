@@ -52,13 +52,13 @@
         </NuxtLink>
         <MiscAtomsSocials v-if="item.socials" :socials="item.socials" />
         <PeopleGroupBadges :item="item" />
-
-        <MDC
+        <div
           v-if="item.biography"
-          :value="item.biography"
           class="text-wrap clamped-text text-black"
           :style="'-webkit-line-clamp:' + lineClamp"
-        />
+        >
+          <MDC :value="item.biography" />
+        </div>
       </div>
     </v-col>
   </v-row>

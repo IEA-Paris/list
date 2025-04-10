@@ -15,18 +15,16 @@
           {{ item.name }}
         </nuxt-link>
       </div>
-      <div class="d-flex">
-        <MDC
-          v-if="item.description"
-          :value="item.description"
-          class="text-wrap clamped-text"
-          :style="
-            '-webkit-line-clamp:' +
-            [5, 5, 5, 10, 12, 14][
-              ['xs', 'sm', 'md', 'lg', 'xl', 'xxl'].indexOf(name || 'md')
-            ]
-          "
-        />
+      <div
+        class="text-wrap clamped-text d-flex"
+        :style="
+          '-webkit-line-clamp:' +
+          [5, 5, 5, 10, 12, 14][
+            ['xs', 'sm', 'md', 'lg', 'xl', 'xxl'].indexOf(name || 'md')
+          ]
+        "
+      >
+        <MDC v-if="item.description" :value="item.description" />
       </div>
       <MiscMoleculesChipContainer
         :items="[
