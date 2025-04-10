@@ -35,17 +35,18 @@
       </v-btn>
       <template v-else>
         <v-btn
-          :class="{ 'active-page': page.current }"
+          :class="{ 'active-page': !!page.current }"
           tabindex="0"
           outlined
           min-width="35"
           height="35"
           tile
           nuxt
-          :color="page.current ? 'white' : 'black'"
+          :active="!!page.current"
+          :color="!!page.current ? 'white' : 'black'"
           text
           width="35"
-          :aria-current="page.current ? 'true' : 'false'"
+          :aria-current="!!page.current ? 'true' : 'false'"
           :aria-label="
             page.current
               ? `Current page, Page ${page.value}`

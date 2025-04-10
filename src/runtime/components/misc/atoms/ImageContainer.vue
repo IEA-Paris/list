@@ -10,14 +10,13 @@
 
     <template v-else>
       <nuxt-link
+        v-if="link"
         v-slot="{ navigate, isActive }"
         :to="
-          link
-            ? localePath({
-                name: link,
-                params: { slug },
-              })
-            : null
+          localePath({
+            name: link,
+            params: { slug },
+          })
         "
         custom
       >
@@ -49,6 +48,32 @@
             <slot />
           </v-img></div
       ></nuxt-link>
+      <div v-else class="overflow-hidden mw-100">
+        <!--  TODO debug why the picture is not displaying/sizing properly -->
+        <v-img
+          v-if="src"
+          :aspect-ratio="ratio"
+          :class="{ 'img-animation': animate }"
+          :lazy-src="
+            img(computedSrc, {
+              width,
+              quality: 70,
+            })
+          "
+          :src="
+            img(computedSrc, {
+              width,
+              quality: 70,
+            })
+          "
+          :srcset="_srcset.srcset"
+          :sizes="_srcset.sizes"
+          :title="caption"
+          v-bind="$attrs"
+        >
+          <slot />
+        </v-img>
+      </div>
     </template>
   </div>
 </template>

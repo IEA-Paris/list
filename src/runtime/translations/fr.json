@@ -1,6 +1,5 @@
 {
-  "0-1-found-page-2-of-3": "Aucun {1} trouvé. \n\nPage {2} sur {3} | \n{0} {1} trouvé. \n\nPage {2} sur {3} | \n{0} {1} trouvés. \n\nPage {2} de {3}",
-  "0-1-found-page-2-of-3-f": "Aucun {1} trouvée. \n\nPage {2} sur {3} | \n{0} {1} trouvée. \n\nPage {2} sur {3} | \n{0} {1} trouvées. \n\nPage {2} de {3}",
+  "applications-closed-since-0": "Inscriptions fermées deepuis le {0}",
   "back": "Retour",
   "biography": "Biographie",
   "date-et-heure": "Date et heure",
