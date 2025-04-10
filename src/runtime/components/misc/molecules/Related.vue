@@ -15,7 +15,7 @@
 </template>
 
 <script setup>
-import { computed } from "vue";
+import { computed } from "#imports";
 
 const props = defineProps({
   related: {

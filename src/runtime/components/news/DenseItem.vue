@@ -36,9 +36,8 @@
 
 <script setup>
 import { useDisplay } from "vuetify";
-import { computed } from "vue";
 import { useRootStore } from "../../stores/root";
-import { useNuxtApp, useI18n, useLocalePath } from "#imports";
+import { computed, useNuxtApp, useI18n, useLocalePath } from "#imports";
 
 const { $stores } = useNuxtApp();
 const { name } = useDisplay();

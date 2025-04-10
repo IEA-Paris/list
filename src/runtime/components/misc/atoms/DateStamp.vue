@@ -41,12 +41,11 @@
 
 <script setup>
 import { useDisplay } from "vuetify";
-import { computed } from "vue";
 import {
   getDetailedFormatedDate,
   formatDateValue,
 } from "../../../composables/useUtils";
-import { useI18n } from "#imports";
+import { computed, useI18n } from "#imports";
 
 const { smAndDown, mdAndUp, name } = useDisplay();
 

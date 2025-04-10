@@ -43,10 +43,10 @@
 </template>
 
 <script setup>
-import { mergeProps, computed, ref } from "vue";
+import { mergeProps } from "vue";
 import { useDisplay } from "vuetify";
 import { useRootStore } from "../../../stores/root";
-import { useNuxtApp } from "#imports";
+import { useNuxtApp, computed, ref } from "#imports";
 
 const { $stores } = useNuxtApp();
 const { xs: isXsDisplay } = useDisplay();
