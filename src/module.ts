@@ -4,7 +4,7 @@ import {
   addComponentsDir,
   addImportsDir,
   addPlugin,
-} from "@nuxt/kit"
+} from "@nuxt/kit";
 
 // Module options TypeScript interface definition
 export interface ModuleOptions {}
@@ -19,28 +19,28 @@ export default defineNuxtModule<ModuleOptions>({
     modules: [],
   },
   setup(options, nuxt) {
-    const resolver = createResolver(import.meta.url)
+    const resolver = createResolver(import.meta.url);
     // Add components
     addComponentsDir({
       path: resolver.resolve("./runtime/components"),
       global: true,
-    })
-
-    // Add store
-    /*     nuxt.hook("modules:before", () => {
-      console.log("transpilings stores")
-      nuxt.options.build.transpile.push(resolver.resolve("./runtime/stores"))
-    }) */
+    });
 
     // Add composables
-    addImportsDir(resolver.resolve("./runtime/composables"))
+    addImportsDir(resolver.resolve("./runtime/composables"));
 
     // Add graphQL queries
-    addImportsDir(resolver.resolve("./runtime/graphql"))
+    addImportsDir(resolver.resolve("./runtime/graphql"));
 
     // Do not add the extension since the `.ts` will be transpiled to `.mjs` after `npm run prepack`
-    addPlugin(resolver.resolve("./runtime/plugins/pinia"))
-    addPlugin(resolver.resolve("./runtime/plugins/vuetify"))
+    addPlugin(resolver.resolve("./runtime/plugins/pinia"));
+    addPlugin(resolver.resolve("./runtime/plugins/vuetify"));
+
+    // Serve the public directory
+    nuxt.hook("build:before", () => {
+      nuxt.options.dir.public = resolver.resolve("./public");
+    });
+
     // Add translations
 
     nuxt.hook("i18n:registerModule", (register) => {
@@ -57,16 +57,15 @@ export default defineNuxtModule<ModuleOptions>({
             file: "fr.json",
           },
         ],
-      })
-    })
-    nuxt.options.runtimeConfig.public.list = options
+      });
+    });
+    nuxt.options.runtimeConfig.public.list = options;
 
     // Add i18n configuration
     nuxt.options.i18n = {
       ...nuxt.options.i18n,
       langDir: resolver.resolve("./runtime/translations"),
-      lazy: true,
-    }
+    };
 
     /*     // Add Apollo configuration
     nuxt.options.apollo = {
@@ -110,6 +109,6 @@ export default defineNuxtModule<ModuleOptions>({
       build: {
         target: "esnext",
       },
-    }
+    };
   },
-})
+});
