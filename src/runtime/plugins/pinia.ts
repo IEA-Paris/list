@@ -1,5 +1,6 @@
 import type { AppConfig } from "nuxt/schema";
 import { createDynamicStore } from "../stores/factory";
+import { useRootStore } from "../stores/root";
 import { defineNuxtPlugin, useAppConfig } from "#app";
 export default defineNuxtPlugin(async (nuxtApp) => {
   const appConfig = useAppConfig() as AppConfig & {
@@ -79,8 +80,9 @@ export default defineNuxtPlugin(async (nuxtApp) => {
       }
     })
   );
-
+  const rootStore = useRootStore();
   // Provide synchronous access to stores and queries
+  nuxtApp.provide("rootStore", rootStore);
   nuxtApp.provide("stores", stores);
   nuxtApp.provide("queries", queries);
 });
