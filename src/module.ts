@@ -37,10 +37,13 @@ export default defineNuxtModule<ModuleOptions>({
     addPlugin(resolver.resolve("./runtime/plugins/vuetify"));
 
     // Serve the public directory
-    nuxt.hook("build:before", () => {
-      nuxt.options.dir.public = resolver.resolve("./public");
+    nuxt.hook("nitro:config", async (nitroConfig) => {
+      nitroConfig.publicAssets ||= [];
+      nitroConfig.publicAssets.push({
+        dir: resolver.resolve("./runtime/public"),
+        maxAge: 60 * 60 * 24 * 365, // 1 year
+      });
     });
-
     // Add translations
 
     nuxt.hook("i18n:registerModule", (register) => {
@@ -81,16 +84,16 @@ export default defineNuxtModule<ModuleOptions>({
         },
       },
     } */
-    /*
+
     // Add Vuetify configuration
     nuxt.options.build.transpile = [
       ...(nuxt.options.build.transpile || []),
       "vuetify",
-    ]
+    ];
     nuxt.options.css = [
       ...(nuxt.options.css || []),
       "vuetify/lib/styles/main.sass",
-    ] */
+    ];
 
     // Add Vite configuration
     nuxt.options.vite = {
