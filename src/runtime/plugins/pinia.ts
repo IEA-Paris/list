@@ -13,43 +13,43 @@ export default defineNuxtPlugin(async (nuxtApp) => {
     events: () => ({
       model: import("@paris-ias/data/dist/list/events.js"),
       queries: {
-        list: import("../graphql/queries/list/events.gql"),
-        get: import("../graphql/queries/item/events.gql"),
+        list: import("../graphql/list/events.gql"),
+        get: import("../graphql/item/events.gql"),
       },
     }),
     news: () => ({
       model: import("@paris-ias/data/dist/list/news.js"),
       queries: {
-        list: import("../graphql/queries/list/news.gql"),
-        get: import("../graphql/queries/item/news.gql"),
+        list: import("../graphql/list/news.gql"),
+        get: import("../graphql/item/news.gql"),
       },
     }),
     people: () => ({
       model: import("@paris-ias/data/dist/list/people.js"),
       queries: {
-        list: import("../graphql/queries/list/people.gql"),
-        get: import("../graphql/queries/item/people.gql"),
+        list: import("../graphql/list/people.gql"),
+        get: import("../graphql/item/people.gql"),
       },
     }),
     projects: () => ({
       model: import("@paris-ias/data/dist/list/projects.js"),
       queries: {
-        list: import("../graphql/queries/list/projects.gql"),
-        get: import("../graphql/queries/item/projects.gql"),
+        list: import("../graphql/list/projects.gql"),
+        get: import("../graphql/item/projects.gql"),
       },
     }),
     fellowships: () => ({
       model: import("@paris-ias/data/dist/list/fellowships.js"),
       queries: {
-        list: import("../graphql/queries/list/fellowships.gql"),
-        get: import("../graphql/queries/item/fellowships.gql"),
+        list: import("../graphql/list/fellowships.gql"),
+        get: import("../graphql/item/fellowships.gql"),
       },
     }),
     publications: () => ({
       model: import("@paris-ias/data/dist/list/publications.js"),
       queries: {
-        list: import("../graphql/queries/list/publications.gql"),
-        get: import("../graphql/queries/item/publications.gql"),
+        list: import("../graphql/list/publications.gql"),
+        get: import("../graphql/item/publications.gql"),
       },
     }),
 
