@@ -123,7 +123,7 @@
           "ONGOING": "En cours",
           "PLANNED": "Prévu"
         },
-        "discipline": {
+        "disciplines": {
           "label": "Discipline"
         }
       },
@@ -162,7 +162,7 @@
         "groups": {
           "label": "Catégorie",
           "board": "Conseil d'administration",
-          "fellows": "Résident",
+          "fellows": "Résidents",
           "sab": "Conseil scientifique",
           "sponsor": "Mécènes",
           "team": "Équipe"

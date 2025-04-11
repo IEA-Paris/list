@@ -16,7 +16,6 @@ interface _GlobalComponents {
     'EventsDateTimePlace': typeof import("../../src/runtime/components/events/DateTimePlace.vue")['default']
     'EventsDenseItem': typeof import("../../src/runtime/components/events/DenseItem.vue")['default']
     'EventsExpandedItem': typeof import("../../src/runtime/components/events/ExpandedItem.vue")['default']
-    'EventsListContainer': typeof import("../../src/runtime/components/events/ListContainer.vue")['default']
     'EventsRegisterModal': typeof import("../../src/runtime/components/events/RegisterModal.vue")['default']
     'EventsRelatedItem': typeof import("../../src/runtime/components/events/RelatedItem.vue")['default']
     'EventsRowsItem': typeof import("../../src/runtime/components/events/RowsItem.vue")['default']
@@ -100,7 +99,6 @@ interface _GlobalComponents {
     'LazyEventsDateTimePlace': LazyComponent<typeof import("../../src/runtime/components/events/DateTimePlace.vue")['default']>
     'LazyEventsDenseItem': LazyComponent<typeof import("../../src/runtime/components/events/DenseItem.vue")['default']>
     'LazyEventsExpandedItem': LazyComponent<typeof import("../../src/runtime/components/events/ExpandedItem.vue")['default']>
-    'LazyEventsListContainer': LazyComponent<typeof import("../../src/runtime/components/events/ListContainer.vue")['default']>
     'LazyEventsRegisterModal': LazyComponent<typeof import("../../src/runtime/components/events/RegisterModal.vue")['default']>
     'LazyEventsRelatedItem': LazyComponent<typeof import("../../src/runtime/components/events/RelatedItem.vue")['default']>
     'LazyEventsRowsItem': LazyComponent<typeof import("../../src/runtime/components/events/RowsItem.vue")['default']>
@@ -190,7 +188,6 @@ export const EventsBadges: typeof import("../../src/runtime/components/events/Ba
 export const EventsDateTimePlace: typeof import("../../src/runtime/components/events/DateTimePlace.vue")['default']
 export const EventsDenseItem: typeof import("../../src/runtime/components/events/DenseItem.vue")['default']
 export const EventsExpandedItem: typeof import("../../src/runtime/components/events/ExpandedItem.vue")['default']
-export const EventsListContainer: typeof import("../../src/runtime/components/events/ListContainer.vue")['default']
 export const EventsRegisterModal: typeof import("../../src/runtime/components/events/RegisterModal.vue")['default']
 export const EventsRelatedItem: typeof import("../../src/runtime/components/events/RelatedItem.vue")['default']
 export const EventsRowsItem: typeof import("../../src/runtime/components/events/RowsItem.vue")['default']
@@ -274,7 +271,6 @@ export const LazyEventsBadges: LazyComponent<typeof import("../../src/runtime/co
 export const LazyEventsDateTimePlace: LazyComponent<typeof import("../../src/runtime/components/events/DateTimePlace.vue")['default']>
 export const LazyEventsDenseItem: LazyComponent<typeof import("../../src/runtime/components/events/DenseItem.vue")['default']>
 export const LazyEventsExpandedItem: LazyComponent<typeof import("../../src/runtime/components/events/ExpandedItem.vue")['default']>
-export const LazyEventsListContainer: LazyComponent<typeof import("../../src/runtime/components/events/ListContainer.vue")['default']>
 export const LazyEventsRegisterModal: LazyComponent<typeof import("../../src/runtime/components/events/RegisterModal.vue")['default']>
 export const LazyEventsRelatedItem: LazyComponent<typeof import("../../src/runtime/components/events/RelatedItem.vue")['default']>
 export const LazyEventsRowsItem: LazyComponent<typeof import("../../src/runtime/components/events/RowsItem.vue")['default']>
