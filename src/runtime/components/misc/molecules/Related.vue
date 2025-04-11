@@ -10,7 +10,7 @@
       class="d-flex flex-column align-center"
     >
       <MiscMoleculesRelatedItems
-        v-if="items.length && type !== '__typename'"
+        v-if="items && items.length && type !== '__typename'"
         :type="type"
         :items="items"
       />

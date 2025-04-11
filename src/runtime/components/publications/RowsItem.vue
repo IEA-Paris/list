@@ -78,7 +78,6 @@
         >
           {{ $t("visit-the-publications-website") }}
         </v-btn>
-        >
       </template>
     </div>
   </v-col>
