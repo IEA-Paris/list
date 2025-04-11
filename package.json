@@ -1,7 +1,7 @@
 {
   "license": "AGPL-3.0-only",
   "main": "./dist/module.mjs",
-  "version": "1.0.47",
+  "version": "1.0.48",
   "name": "@paris-ias/list",
   "repository": "IEA-Paris/list",
   "dependencies": {
