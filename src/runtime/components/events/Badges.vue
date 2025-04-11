@@ -62,8 +62,9 @@
 </template>
 
 <script setup>
+import { useLocalePath, useI18n } from "#imports";
 import { useDisplay } from "vuetify";
-import { useI18n } from "#imports";
+const localePath = useLocalePath();
 
 const { smAndUp } = useDisplay();
 const { locale } = useI18n();
