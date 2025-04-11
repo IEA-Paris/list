@@ -307,6 +307,7 @@
     "github": "Visit our Github repositories",
     "idRef": "Visit the author IdRef page",
     "instagram": "Follow us on Instagram",
+    "researchgate": "Visit the author ResearchGate page",
     "linkedin": "Get in touch on linkedin",
     "orcid": "Visit the author Orcid page",
     "ROR": "Visit the institution ROR page",
@@ -333,5 +334,8 @@
   "watch-the-replay": "Watch the replay",
   "present": "present",
   "visit-this-project-website": "Visit this project website",
-  "visit-this-publications-website": "Visit this publication webpage"
+  "visit-this-publications-website": "Visit this publication webpage",
+  "close-the-filter-panel": "Close the filter panel",
+  "list.by-vintage-from-recent-to-old": "By Year, from recent to old",
+  "list.by-vintage-from-old-to-recent": "By Year, from old to recent"
 }

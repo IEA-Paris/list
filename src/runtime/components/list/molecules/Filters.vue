@@ -1,7 +1,13 @@
 <template>
   <v-row>
     <template v-for="filterItem in Object.keys($stores[type].filters)">
-      <v-col v-if="computeVisibility(filterItem)" cols="12" sm="6" md="4">
+      <v-col
+        v-if="computeVisibility(filterItem)"
+        :key="type + filterItem"
+        cols="12"
+        sm="6"
+        md="4"
+      >
         <component
           :is="ComponentName(filterItem)"
           tile
