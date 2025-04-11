@@ -3,7 +3,10 @@
   "main": "./dist/module.mjs",
   "version": "1.0.49",
   "name": "@paris-ias/list",
-  "repository": "IEA-Paris/list",
+  "repository": {
+    "url": "git+https://github.com/IEA-Paris/list.git",
+    "type": "git"
+  },
   "dependencies": {
     "@nuxt/kit": "^3.16.2"
   },
