@@ -99,7 +99,6 @@ const computeVisibility = (filterItem) => {
       }
     )
   );
-  return true;
 };
 </script>
 
