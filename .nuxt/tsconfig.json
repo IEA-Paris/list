@@ -138,7 +138,7 @@
         "./nuxt-i18n-logger"
       ],
       "#app-manifest": [
-        "./manifest/meta/24c61083-d95e-4a9c-8888-42dcba515897"
+        "./manifest/meta/4ecd4603-e09e-4715-8823-532252cd4224"
       ],
       "#components": [
         "./components"

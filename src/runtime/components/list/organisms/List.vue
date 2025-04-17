@@ -27,8 +27,8 @@
 <script setup>
 import { useRootStore } from "../../../stores/root";
 import { capitalize } from "../../../composables/useUtils";
-import { useNuxtApp, useI18n, resolveComponent, computed } from "#imports";
-
+import { useNuxtApp, resolveComponent, computed } from "#imports";
+import { useI18n } from "vue-i18n";
 const { $stores } = useNuxtApp();
 const { locale } = useI18n();
 

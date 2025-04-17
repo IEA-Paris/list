@@ -1,11 +1,10 @@
 import { defineNuxtPlugin } from '#app/nuxt'
-import { LazyEventsBadges, LazyEventsDateTimePlace, LazyEventsDenseItem, LazyEventsExpandedItem, LazyEventsListContainer, LazyEventsRegisterModal, LazyEventsRelatedItem, LazyEventsRowsItem, LazyEventsView, LazyFellowshipsBadges, LazyFellowshipsDenseItem, LazyFellowshipsExpandedItem, LazyFellowshipsRegisterModal, LazyFellowshipsRowsItem, LazyFellowshipsView, LazyListAtomsFiltersMenu, LazyListAtomsSearchInput, LazyListAtomsSearchItem, LazyListAtomsSearchString, LazyListAtomsSortMenu, LazyListAtomsViewMenu, LazyListInputsAutoComplete, LazyListInputsBooleanSwitch, LazyListInputsCheckbox, LazyListInputsSelect, LazyListMoleculesFilters, LazyListMoleculesHeader, LazyListMoleculesPagination, LazyListOrganismsList, LazyListViewsDense, LazyListViewsExpanded, LazyListViewsGrid, LazyListViewsRows, LazyListViewsTable, LazyMiscAtomsDateStamp, LazyMiscAtomsImageContainer, LazyMiscAtomsShareMenu, LazyMiscAtomsSocials, LazyMiscMoleculesChipContainer, LazyMiscMoleculesRelated, LazyMiscMoleculesRelatedItems, LazyMiscMoleculesSearchItem, LazyNewsDenseItem, LazyNewsExpandedItem, LazyNewsHeader, LazyNewsRelatedItem, LazyNewsRowsItem, LazyNewsView, LazyPeopleDenseItem, LazyPeopleExpandedItem, LazyPeopleGroupBadges, LazyPeopleRelatedItem, LazyPeopleRowsItem, LazyPeopleView, LazyProjectsExpandedItem, LazyProjectsRelatedItem, LazyProjectsRowsItem, LazyProjectsView, LazyPublicationsRelatedItem, LazyPublicationsRowsItem, LazyPublicationsView } from '#components'
+import { LazyEventsBadges, LazyEventsDateTimePlace, LazyEventsDenseItem, LazyEventsExpandedItem, LazyEventsRegisterModal, LazyEventsRelatedItem, LazyEventsRowsItem, LazyEventsView, LazyFellowshipsBadges, LazyFellowshipsDenseItem, LazyFellowshipsExpandedItem, LazyFellowshipsRegisterModal, LazyFellowshipsRowsItem, LazyFellowshipsView, LazyListAtomsFiltersMenu, LazyListAtomsSearchInput, LazyListAtomsSearchItem, LazyListAtomsSearchString, LazyListAtomsSortMenu, LazyListAtomsViewMenu, LazyListInputsAutoComplete, LazyListInputsBooleanSwitch, LazyListInputsCheckbox, LazyListInputsSelect, LazyListMoleculesFilters, LazyListMoleculesHeader, LazyListMoleculesPagination, LazyListOrganismsList, LazyListViewsDense, LazyListViewsExpanded, LazyListViewsGrid, LazyListViewsRows, LazyListViewsSlider, LazyListViewsTable, LazyMiscAtomsDateStamp, LazyMiscAtomsImageContainer, LazyMiscAtomsShareMenu, LazyMiscAtomsSocials, LazyMiscMoleculesChipContainer, LazyMiscMoleculesRelated, LazyMiscMoleculesRelatedItems, LazyMiscMoleculesSearchItem, LazyNewsDenseItem, LazyNewsExpandedItem, LazyNewsHeader, LazyNewsRelatedItem, LazyNewsRowsItem, LazyNewsView, LazyPeopleDenseItem, LazyPeopleExpandedItem, LazyPeopleGroupBadges, LazyPeopleRelatedItem, LazyPeopleRowsItem, LazyPeopleView, LazyProjectsExpandedItem, LazyProjectsRelatedItem, LazyProjectsRowsItem, LazyProjectsView, LazyPublicationsRelatedItem, LazyPublicationsRowsItem, LazyPublicationsView } from '#components'
 const lazyGlobalComponents = [
   ["EventsBadges", LazyEventsBadges],
 ["EventsDateTimePlace", LazyEventsDateTimePlace],
 ["EventsDenseItem", LazyEventsDenseItem],
 ["EventsExpandedItem", LazyEventsExpandedItem],
-["EventsListContainer", LazyEventsListContainer],
 ["EventsRegisterModal", LazyEventsRegisterModal],
 ["EventsRelatedItem", LazyEventsRelatedItem],
 ["EventsRowsItem", LazyEventsRowsItem],
@@ -34,6 +33,7 @@ const lazyGlobalComponents = [
 ["ListViewsExpanded", LazyListViewsExpanded],
 ["ListViewsGrid", LazyListViewsGrid],
 ["ListViewsRows", LazyListViewsRows],
+["ListViewsSlider", LazyListViewsSlider],
 ["ListViewsTable", LazyListViewsTable],
 ["MiscAtomsDateStamp", LazyMiscAtomsDateStamp],
 ["MiscAtomsImageContainer", LazyMiscAtomsImageContainer],

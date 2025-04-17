@@ -4,5 +4,9 @@
     "dist",
     "node_modules",
     "playground",
-  ]
+  ],
+  "compilerOptions": {
+    "verbatimModuleSyntax": false
+  },
+  "semi": false
 }

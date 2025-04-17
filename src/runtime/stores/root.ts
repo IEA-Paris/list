@@ -5,7 +5,8 @@ import lists from '~/assets/data/lists' */
 import { defineStore } from "pinia";
 import type { Views, ModuleType } from "@paris-ias/data";
 import SEARCH from "../graphql/list/search.gql";
-import { useNuxtApp, useRouter, useAsyncQuery } from "#imports";
+import { useNuxtApp, useRouter } from "#imports";
+import { useAsyncQuery } from "#app";
 
 export const useRootStore = defineStore("rootStore", {
   state: (): Record<
@@ -236,7 +237,7 @@ export const useRootStore = defineStore("rootStore", {
     updateItemsPerPage({ value, type }: { value: number; type: string }) {
       const { $stores } = useNuxtApp();
       this.page = 1;
-      $stores[types].itemsPerPage = value;
+      $stores[type].itemsPerPage = value;
 
       this.update(type);
     },

@@ -16,7 +16,7 @@
         :key="network"
         :value="network"
       >
-        <SocialShare
+        <!--         <SocialShare
           :key="network"
           class="text-black"
           :network="network"
@@ -29,7 +29,7 @@
           <template #label>
             {{ network }}
           </template>
-        </SocialShare>
+        </SocialShare> -->
       </v-list-item>
     </v-list>
   </v-menu>
@@ -38,7 +38,7 @@
 <script setup>
 import { mergeProps } from "vue";
 import { useRoute } from "#imports";
-import config from "~/static.config";
+/* import config from "~/static.config"; */
 
 const route = useRoute();
 

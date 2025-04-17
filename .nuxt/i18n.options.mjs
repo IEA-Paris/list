@@ -1,6 +1,7 @@
 
 // @ts-nocheck
-
+import locale_en_46json_febb77f5 from "#nuxt-i18n/febb77f5";
+import locale_fr_46json_768be560 from "#nuxt-i18n/768be560";
 
 export const localeCodes =  [
   "en",
@@ -11,14 +12,14 @@ export const localeLoaders = {
   en: [
     {
       key: "locale_en_46json_febb77f5",
-      load: () => import("#nuxt-i18n/febb77f5" /* webpackChunkName: "locale_en_46json_febb77f5" */),
+      load: () => Promise.resolve(locale_en_46json_febb77f5),
       cache: true
     }
   ],
   fr: [
     {
       key: "locale_fr_46json_768be560",
-      load: () => import("#nuxt-i18n/768be560" /* webpackChunkName: "locale_fr_46json_768be560" */),
+      load: () => Promise.resolve(locale_fr_46json_768be560),
       cache: true
     }
   ]
@@ -79,7 +80,7 @@ export const nuxtI18nOptions = {
   trailingSlash: false,
   defaultLocaleRouteNameSuffix: "default",
   strategy: "prefix_except_default",
-  lazy: true,
+  lazy: false,
   langDir: "/home/bob/Projects/list/src/runtime/translations",
   rootRedirect: undefined,
   detectBrowserLanguage: {

@@ -44,6 +44,7 @@ interface _GlobalComponents {
     'ListViewsExpanded': typeof import("../../src/runtime/components/list/views/Expanded.vue")['default']
     'ListViewsGrid': typeof import("../../src/runtime/components/list/views/Grid.vue")['default']
     'ListViewsRows': typeof import("../../src/runtime/components/list/views/Rows.vue")['default']
+    'ListViewsSlider': typeof import("../../src/runtime/components/list/views/Slider.vue")['default']
     'ListViewsTable': typeof import("../../src/runtime/components/list/views/Table.vue")['default']
     'MiscAtomsDateStamp': typeof import("../../src/runtime/components/misc/atoms/DateStamp.vue")['default']
     'MiscAtomsImageContainer': typeof import("../../src/runtime/components/misc/atoms/ImageContainer.vue")['default']
@@ -127,6 +128,7 @@ interface _GlobalComponents {
     'LazyListViewsExpanded': LazyComponent<typeof import("../../src/runtime/components/list/views/Expanded.vue")['default']>
     'LazyListViewsGrid': LazyComponent<typeof import("../../src/runtime/components/list/views/Grid.vue")['default']>
     'LazyListViewsRows': LazyComponent<typeof import("../../src/runtime/components/list/views/Rows.vue")['default']>
+    'LazyListViewsSlider': LazyComponent<typeof import("../../src/runtime/components/list/views/Slider.vue")['default']>
     'LazyListViewsTable': LazyComponent<typeof import("../../src/runtime/components/list/views/Table.vue")['default']>
     'LazyMiscAtomsDateStamp': LazyComponent<typeof import("../../src/runtime/components/misc/atoms/DateStamp.vue")['default']>
     'LazyMiscAtomsImageContainer': LazyComponent<typeof import("../../src/runtime/components/misc/atoms/ImageContainer.vue")['default']>
@@ -216,6 +218,7 @@ export const ListViewsDense: typeof import("../../src/runtime/components/list/vi
 export const ListViewsExpanded: typeof import("../../src/runtime/components/list/views/Expanded.vue")['default']
 export const ListViewsGrid: typeof import("../../src/runtime/components/list/views/Grid.vue")['default']
 export const ListViewsRows: typeof import("../../src/runtime/components/list/views/Rows.vue")['default']
+export const ListViewsSlider: typeof import("../../src/runtime/components/list/views/Slider.vue")['default']
 export const ListViewsTable: typeof import("../../src/runtime/components/list/views/Table.vue")['default']
 export const MiscAtomsDateStamp: typeof import("../../src/runtime/components/misc/atoms/DateStamp.vue")['default']
 export const MiscAtomsImageContainer: typeof import("../../src/runtime/components/misc/atoms/ImageContainer.vue")['default']
@@ -299,6 +302,7 @@ export const LazyListViewsDense: LazyComponent<typeof import("../../src/runtime/
 export const LazyListViewsExpanded: LazyComponent<typeof import("../../src/runtime/components/list/views/Expanded.vue")['default']>
 export const LazyListViewsGrid: LazyComponent<typeof import("../../src/runtime/components/list/views/Grid.vue")['default']>
 export const LazyListViewsRows: LazyComponent<typeof import("../../src/runtime/components/list/views/Rows.vue")['default']>
+export const LazyListViewsSlider: LazyComponent<typeof import("../../src/runtime/components/list/views/Slider.vue")['default']>
 export const LazyListViewsTable: LazyComponent<typeof import("../../src/runtime/components/list/views/Table.vue")['default']>
 export const LazyMiscAtomsDateStamp: LazyComponent<typeof import("../../src/runtime/components/misc/atoms/DateStamp.vue")['default']>
 export const LazyMiscAtomsImageContainer: LazyComponent<typeof import("../../src/runtime/components/misc/atoms/ImageContainer.vue")['default']>

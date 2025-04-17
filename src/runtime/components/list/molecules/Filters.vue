@@ -43,7 +43,8 @@
 import { useDisplay } from "vuetify";
 import { useRootStore } from "../../../stores/root";
 import { capitalize } from "../../../composables/useUtils";
-import { useNuxtApp, onMounted, resolveComponent, useI18n } from "#imports";
+import { useNuxtApp, onMounted, resolveComponent } from "#imports";
+import { useI18n } from "vue-i18n";
 
 const { smAndDown } = useDisplay();
 const i18n = useI18n();

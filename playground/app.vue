@@ -1,8 +1,7 @@
 <template>
   <div>
-    Nuxt module playground!
+    <ListOrganismsList type="events" />
   </div>
 </template>
 
-<script setup>
-</script>
+<script setup></script>

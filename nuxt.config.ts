@@ -1,7 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+
 export default defineNuxtConfig({
   modules: [
-    "@mdi-fonts",
     "@nuxt/eslint",
     "@nuxt/image",
     "@nuxtjs/i18n",
@@ -20,5 +20,15 @@ export default defineNuxtConfig({
   },
   pinia: {
     autoImports: ["defineStore", ["defineStore", "definePiniaStore"]],
+  },
+  apollo: {
+    // https://apollo.nuxtjs.org/getting-started/configuration
+    clients: {
+      default: {
+        inMemoryCacheOptions: {
+          addTypename: false,
+        },
+      },
+    },
   },
 });

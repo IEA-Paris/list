@@ -67,7 +67,8 @@
 <script setup>
 import { useDebounceFn } from "@vueuse/core";
 import { useRootStore } from "../../../stores/root";
-import { useNuxtApp, useI18n, computed } from "#imports";
+import { useNuxtApp, computed } from "#imports";
+import { useI18n } from "vue-i18n";
 
 const { locale, t } = useI18n();
 const rootStore = useRootStore();
