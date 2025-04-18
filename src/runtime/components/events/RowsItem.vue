@@ -89,7 +89,7 @@
         :slug="item.slug[locale]"
         link="activities-events-slug"
         :loading="$stores['events'].loading"
-        :src="item.image.url ? item.image : '/default.png'"
+        :src="item.image && item.image.url ? item.image : '/default.png'"
         :ratio="1 / 1"
       />
     </v-col>
