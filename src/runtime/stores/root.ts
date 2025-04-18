@@ -5,9 +5,7 @@ import lists from '~/assets/data/lists' */
 import { defineStore } from "pinia";
 import type { Views, ModuleType } from "@paris-ias/data";
 import SEARCH from "../graphql/list/search.gql";
-import { useNuxtApp, useRouter } from "#imports";
-import { useAsyncQuery } from "#app";
-
+import { useNuxtApp, useRouter, useAsyncQuery } from "#imports";
 export const useRootStore = defineStore("rootStore", {
   state: (): Record<
     string,

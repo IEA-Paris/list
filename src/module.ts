@@ -95,6 +95,10 @@ export default defineNuxtModule<ModuleOptions>({
       "vuetify/lib/styles/main.sass",
     ];
 
+    nuxt.options.apollo = {
+      ...nuxt.options.apollo,
+    };
+
     // Add Vite configuration
     nuxt.options.vite = {
       ...nuxt.options.vite,

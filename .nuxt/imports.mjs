@@ -34,4 +34,7 @@ export { useImage } from '/home/bob/Projects/list/node_modules/@nuxt/image/dist/
 export { useI18n } from '/home/bob/Projects/list/node_modules/vue-i18n/dist/vue-i18n';
 export { useRouteBaseName, useLocalePath, useLocaleRoute, useSwitchLocalePath, useLocaleHead, useBrowserLocale, useCookieLocale, useSetI18nParams, defineI18nRoute, defineI18nLocale, defineI18nConfig } from '/home/bob/Projects/list/node_modules/@nuxtjs/i18n/dist/runtime/composables/index';
 export { defineStore, acceptHMRUpdate, usePinia, storeToRefs } from '/home/bob/Projects/list/node_modules/@pinia/nuxt/dist/runtime/composables';
+export { flatUnwrap as unwrapSlot } from '/home/bob/Projects/list/node_modules/@nuxtjs/mdc/dist/runtime/utils/node';
+export { parseMarkdown } from '/home/bob/Projects/list/node_modules/@nuxtjs/mdc/dist/runtime/parser';
+export { stringifyMarkdown } from '/home/bob/Projects/list/node_modules/@nuxtjs/mdc/dist/runtime/stringify';
 if (import.meta.dev) { console.warn("[nuxt] `#imports` should be transformed with real imports. There seems to be something wrong with the imports plugin.") }

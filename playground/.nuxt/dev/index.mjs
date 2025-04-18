@@ -1,36 +1,279 @@
 import process from 'node:process';globalThis._importMeta_={url:import.meta.url,env:process.env};import { tmpdir } from 'node:os';
-import { defineEventHandler, handleCacheHeaders, splitCookiesString, createEvent, fetchWithEvent, isEvent, eventHandler, setHeaders, sendRedirect, proxyRequest, getRequestHeader, setResponseHeaders, setResponseStatus, send, getRequestHeaders, setResponseHeader, getRequestURL, getResponseHeader, createApp, createRouter as createRouter$1, toNodeListener, lazyEventHandler, getResponseStatus, createError, getRouterParam, readBody, getQuery as getQuery$1, getResponseStatusText } from 'file:///home/bob/Projects/list/node_modules/h3/dist/index.mjs';
+import { defineEventHandler, handleCacheHeaders, splitCookiesString, createEvent, fetchWithEvent, isEvent, eventHandler, setHeaders, sendRedirect, proxyRequest, getRequestHeader, setResponseHeaders, setResponseStatus, send, getRequestHeaders, setResponseHeader, getRequestURL, getResponseHeader, getResponseStatus, createError, createApp, createRouter as createRouter$1, toNodeListener, lazyEventHandler as lazyEventHandler$1, getRouterParam, readBody, getQuery as getQuery$1, getResponseStatusText } from 'file:///home/bob/Projects/list/playground/node_modules/h3/dist/index.mjs';
 import { Server } from 'node:http';
 import { resolve, dirname, join } from 'node:path';
 import nodeCrypto from 'node:crypto';
 import { parentPort, threadId } from 'node:worker_threads';
-import { createRenderer, getRequestDependencies, getPreloadLinks, getPrefetchLinks } from 'file:///home/bob/Projects/list/node_modules/vue-bundle-renderer/dist/runtime.mjs';
-import destr from 'file:///home/bob/Projects/list/node_modules/destr/dist/index.mjs';
-import { parseURL, withoutBase, joinURL, getQuery, withQuery, withTrailingSlash, joinRelativeURL } from 'file:///home/bob/Projects/list/node_modules/ufo/dist/index.mjs';
-import { createHead as createHead$1, propsToString, renderSSRHead } from 'file:///home/bob/Projects/list/node_modules/unhead/dist/server.mjs';
-import { isVNode, toValue, isRef } from 'file:///home/bob/Projects/list/node_modules/vue/index.mjs';
-import { walkResolver } from 'file:///home/bob/Projects/list/node_modules/unhead/dist/utils.mjs';
-import { renderToString } from 'file:///home/bob/Projects/list/node_modules/vue/server-renderer/index.mjs';
-import { createHooks } from 'file:///home/bob/Projects/list/node_modules/hookable/dist/index.mjs';
-import { createFetch, Headers as Headers$1 } from 'file:///home/bob/Projects/list/node_modules/ofetch/dist/node.mjs';
-import { fetchNodeRequestHandler, callNodeRequestHandler } from 'file:///home/bob/Projects/list/node_modules/node-mock-http/dist/index.mjs';
-import { createStorage, prefixStorage } from 'file:///home/bob/Projects/list/node_modules/unstorage/dist/index.mjs';
-import unstorage_47drivers_47fs from 'file:///home/bob/Projects/list/node_modules/unstorage/drivers/fs.mjs';
-import { digest } from 'file:///home/bob/Projects/list/node_modules/ohash/dist/index.mjs';
-import { klona } from 'file:///home/bob/Projects/list/node_modules/klona/dist/index.mjs';
-import defu, { defuFn } from 'file:///home/bob/Projects/list/node_modules/defu/dist/defu.mjs';
-import { snakeCase } from 'file:///home/bob/Projects/list/node_modules/scule/dist/index.mjs';
-import { getContext } from 'file:///home/bob/Projects/list/node_modules/unctx/dist/index.mjs';
-import { toRouteMatcher, createRouter } from 'file:///home/bob/Projects/list/node_modules/radix3/dist/index.mjs';
+import { createRenderer, getRequestDependencies, getPreloadLinks, getPrefetchLinks } from 'file:///home/bob/Projects/list/playground/node_modules/vue-bundle-renderer/dist/runtime.mjs';
+import destr from 'file:///home/bob/Projects/list/playground/node_modules/destr/dist/index.mjs';
+import { createHead as createHead$1, propsToString, renderSSRHead } from 'file:///home/bob/Projects/list/playground/node_modules/unhead/dist/server.mjs';
+import { isVNode, toValue, isRef } from 'file:///home/bob/Projects/list/playground/node_modules/vue/index.mjs';
+import { walkResolver } from 'file:///home/bob/Projects/list/playground/node_modules/unhead/dist/utils.mjs';
+import { renderToString } from 'file:///home/bob/Projects/list/playground/node_modules/vue/server-renderer/index.mjs';
+import { createHooks } from 'file:///home/bob/Projects/list/playground/node_modules/hookable/dist/index.mjs';
+import { createFetch, Headers as Headers$1 } from 'file:///home/bob/Projects/list/playground/node_modules/ofetch/dist/node.mjs';
+import { fetchNodeRequestHandler, callNodeRequestHandler } from 'file:///home/bob/Projects/list/playground/node_modules/node-mock-http/dist/index.mjs';
+import { createStorage, prefixStorage } from 'file:///home/bob/Projects/list/playground/node_modules/unstorage/dist/index.mjs';
+import unstorage_47drivers_47fs from 'file:///home/bob/Projects/list/playground/node_modules/unstorage/drivers/fs.mjs';
+import { digest } from 'file:///home/bob/Projects/list/playground/node_modules/ohash/dist/index.mjs';
+import { klona } from 'file:///home/bob/Projects/list/playground/node_modules/klona/dist/index.mjs';
+import defu, { defuFn } from 'file:///home/bob/Projects/list/playground/node_modules/defu/dist/defu.mjs';
+import { snakeCase } from 'file:///home/bob/Projects/list/playground/node_modules/scule/dist/index.mjs';
+import { getContext } from 'file:///home/bob/Projects/list/playground/node_modules/unctx/dist/index.mjs';
+import { toRouteMatcher, createRouter } from 'file:///home/bob/Projects/list/playground/node_modules/radix3/dist/index.mjs';
 import { readFile } from 'node:fs/promises';
-import consola, { consola as consola$1 } from 'file:///home/bob/Projects/list/node_modules/consola/dist/index.mjs';
-import { ErrorParser } from 'file:///home/bob/Projects/list/node_modules/youch-core/build/index.js';
-import { Youch } from 'file:///home/bob/Projects/list/node_modules/youch/build/index.js';
-import { SourceMapConsumer } from 'file:///home/bob/Projects/list/node_modules/nitropack/node_modules/source-map/source-map.js';
+import consola, { consola as consola$1 } from 'file:///home/bob/Projects/list/playground/node_modules/consola/dist/index.mjs';
+import { ErrorParser } from 'file:///home/bob/Projects/list/playground/node_modules/youch-core/build/index.js';
+import { Youch } from 'file:///home/bob/Projects/list/playground/node_modules/youch/build/index.js';
+import { SourceMapConsumer } from 'file:///home/bob/Projects/list/playground/node_modules/nitropack/node_modules/source-map/source-map.js';
 import { AsyncLocalStorage } from 'node:async_hooks';
-import { stringify, uneval } from 'file:///home/bob/Projects/list/node_modules/devalue/index.js';
-import { captureRawStackTrace, parseRawStackTrace } from 'file:///home/bob/Projects/list/node_modules/errx/dist/index.js';
-import { DeprecationsPlugin, PromisesPlugin, TemplateParamsPlugin, AliasSortingPlugin } from 'file:///home/bob/Projects/list/node_modules/unhead/dist/plugins.mjs';
+import { stringify, uneval } from 'file:///home/bob/Projects/list/playground/node_modules/devalue/index.js';
+import { captureRawStackTrace, parseRawStackTrace } from 'file:///home/bob/Projects/list/playground/node_modules/errx/dist/index.js';
+import { fileURLToPath } from 'node:url';
+import { ipxFSStorage, ipxHttpStorage, createIPX, createIPXH3Handler } from 'file:///home/bob/Projects/list/node_modules/ipx/dist/index.mjs';
+import { lazyEventHandler, useBase } from 'file:///home/bob/Projects/list/node_modules/h3/dist/index.mjs';
+import { isAbsolute } from 'file:///home/bob/Projects/list/node_modules/pathe/dist/index.mjs';
+import { DeprecationsPlugin, PromisesPlugin, TemplateParamsPlugin, AliasSortingPlugin } from 'file:///home/bob/Projects/list/playground/node_modules/unhead/dist/plugins.mjs';
+
+const HASH_RE = /#/g;
+const AMPERSAND_RE = /&/g;
+const SLASH_RE = /\//g;
+const EQUAL_RE = /=/g;
+const PLUS_RE = /\+/g;
+const ENC_CARET_RE = /%5e/gi;
+const ENC_BACKTICK_RE = /%60/gi;
+const ENC_PIPE_RE = /%7c/gi;
+const ENC_SPACE_RE = /%20/gi;
+function encode(text) {
+  return encodeURI("" + text).replace(ENC_PIPE_RE, "|");
+}
+function encodeQueryValue(input) {
+  return encode(typeof input === "string" ? input : JSON.stringify(input)).replace(PLUS_RE, "%2B").replace(ENC_SPACE_RE, "+").replace(HASH_RE, "%23").replace(AMPERSAND_RE, "%26").replace(ENC_BACKTICK_RE, "`").replace(ENC_CARET_RE, "^").replace(SLASH_RE, "%2F");
+}
+function encodeQueryKey(text) {
+  return encodeQueryValue(text).replace(EQUAL_RE, "%3D");
+}
+function decode(text = "") {
+  try {
+    return decodeURIComponent("" + text);
+  } catch {
+    return "" + text;
+  }
+}
+function decodeQueryKey(text) {
+  return decode(text.replace(PLUS_RE, " "));
+}
+function decodeQueryValue(text) {
+  return decode(text.replace(PLUS_RE, " "));
+}
+
+function parseQuery(parametersString = "") {
+  const object = /* @__PURE__ */ Object.create(null);
+  if (parametersString[0] === "?") {
+    parametersString = parametersString.slice(1);
+  }
+  for (const parameter of parametersString.split("&")) {
+    const s = parameter.match(/([^=]+)=?(.*)/) || [];
+    if (s.length < 2) {
+      continue;
+    }
+    const key = decodeQueryKey(s[1]);
+    if (key === "__proto__" || key === "constructor") {
+      continue;
+    }
+    const value = decodeQueryValue(s[2] || "");
+    if (object[key] === void 0) {
+      object[key] = value;
+    } else if (Array.isArray(object[key])) {
+      object[key].push(value);
+    } else {
+      object[key] = [object[key], value];
+    }
+  }
+  return object;
+}
+function encodeQueryItem(key, value) {
+  if (typeof value === "number" || typeof value === "boolean") {
+    value = String(value);
+  }
+  if (!value) {
+    return encodeQueryKey(key);
+  }
+  if (Array.isArray(value)) {
+    return value.map(
+      (_value) => `${encodeQueryKey(key)}=${encodeQueryValue(_value)}`
+    ).join("&");
+  }
+  return `${encodeQueryKey(key)}=${encodeQueryValue(value)}`;
+}
+function stringifyQuery(query) {
+  return Object.keys(query).filter((k) => query[k] !== void 0).map((k) => encodeQueryItem(k, query[k])).filter(Boolean).join("&");
+}
+
+const PROTOCOL_STRICT_REGEX = /^[\s\w\0+.-]{2,}:([/\\]{1,2})/;
+const PROTOCOL_REGEX = /^[\s\w\0+.-]{2,}:([/\\]{2})?/;
+const PROTOCOL_RELATIVE_REGEX = /^([/\\]\s*){2,}[^/\\]/;
+const JOIN_LEADING_SLASH_RE = /^\.?\//;
+function hasProtocol(inputString, opts = {}) {
+  if (typeof opts === "boolean") {
+    opts = { acceptRelative: opts };
+  }
+  if (opts.strict) {
+    return PROTOCOL_STRICT_REGEX.test(inputString);
+  }
+  return PROTOCOL_REGEX.test(inputString) || (opts.acceptRelative ? PROTOCOL_RELATIVE_REGEX.test(inputString) : false);
+}
+function hasTrailingSlash(input = "", respectQueryAndFragment) {
+  {
+    return input.endsWith("/");
+  }
+}
+function withoutTrailingSlash(input = "", respectQueryAndFragment) {
+  {
+    return (hasTrailingSlash(input) ? input.slice(0, -1) : input) || "/";
+  }
+}
+function withTrailingSlash(input = "", respectQueryAndFragment) {
+  {
+    return input.endsWith("/") ? input : input + "/";
+  }
+}
+function withoutBase(input, base) {
+  if (isEmptyURL(base)) {
+    return input;
+  }
+  const _base = withoutTrailingSlash(base);
+  if (!input.startsWith(_base)) {
+    return input;
+  }
+  const trimmed = input.slice(_base.length);
+  return trimmed[0] === "/" ? trimmed : "/" + trimmed;
+}
+function withQuery(input, query) {
+  const parsed = parseURL(input);
+  const mergedQuery = { ...parseQuery(parsed.search), ...query };
+  parsed.search = stringifyQuery(mergedQuery);
+  return stringifyParsedURL(parsed);
+}
+function getQuery(input) {
+  return parseQuery(parseURL(input).search);
+}
+function isEmptyURL(url) {
+  return !url || url === "/";
+}
+function isNonEmptyURL(url) {
+  return url && url !== "/";
+}
+function joinURL(base, ...input) {
+  let url = base || "";
+  for (const segment of input.filter((url2) => isNonEmptyURL(url2))) {
+    if (url) {
+      const _segment = segment.replace(JOIN_LEADING_SLASH_RE, "");
+      url = withTrailingSlash(url) + _segment;
+    } else {
+      url = segment;
+    }
+  }
+  return url;
+}
+function joinRelativeURL(..._input) {
+  const JOIN_SEGMENT_SPLIT_RE = /\/(?!\/)/;
+  const input = _input.filter(Boolean);
+  const segments = [];
+  let segmentsDepth = 0;
+  for (const i of input) {
+    if (!i || i === "/") {
+      continue;
+    }
+    for (const [sindex, s] of i.split(JOIN_SEGMENT_SPLIT_RE).entries()) {
+      if (!s || s === ".") {
+        continue;
+      }
+      if (s === "..") {
+        if (segments.length === 1 && hasProtocol(segments[0])) {
+          continue;
+        }
+        segments.pop();
+        segmentsDepth--;
+        continue;
+      }
+      if (sindex === 1 && segments[segments.length - 1]?.endsWith(":/")) {
+        segments[segments.length - 1] += "/" + s;
+        continue;
+      }
+      segments.push(s);
+      segmentsDepth++;
+    }
+  }
+  let url = segments.join("/");
+  if (segmentsDepth >= 0) {
+    if (input[0]?.startsWith("/") && !url.startsWith("/")) {
+      url = "/" + url;
+    } else if (input[0]?.startsWith("./") && !url.startsWith("./")) {
+      url = "./" + url;
+    }
+  } else {
+    url = "../".repeat(-1 * segmentsDepth) + url;
+  }
+  if (input[input.length - 1]?.endsWith("/") && !url.endsWith("/")) {
+    url += "/";
+  }
+  return url;
+}
+
+const protocolRelative = Symbol.for("ufo:protocolRelative");
+function parseURL(input = "", defaultProto) {
+  const _specialProtoMatch = input.match(
+    /^[\s\0]*(blob:|data:|javascript:|vbscript:)(.*)/i
+  );
+  if (_specialProtoMatch) {
+    const [, _proto, _pathname = ""] = _specialProtoMatch;
+    return {
+      protocol: _proto.toLowerCase(),
+      pathname: _pathname,
+      href: _proto + _pathname,
+      auth: "",
+      host: "",
+      search: "",
+      hash: ""
+    };
+  }
+  if (!hasProtocol(input, { acceptRelative: true })) {
+    return parsePath(input);
+  }
+  const [, protocol = "", auth, hostAndPath = ""] = input.replace(/\\/g, "/").match(/^[\s\0]*([\w+.-]{2,}:)?\/\/([^/@]+@)?(.*)/) || [];
+  let [, host = "", path = ""] = hostAndPath.match(/([^#/?]*)(.*)?/) || [];
+  if (protocol === "file:") {
+    path = path.replace(/\/(?=[A-Za-z]:)/, "");
+  }
+  const { pathname, search, hash } = parsePath(path);
+  return {
+    protocol: protocol.toLowerCase(),
+    auth: auth ? auth.slice(0, Math.max(0, auth.length - 1)) : "",
+    host,
+    pathname,
+    search,
+    hash,
+    [protocolRelative]: !protocol
+  };
+}
+function parsePath(input = "") {
+  const [pathname = "", search = "", hash = ""] = (input.match(/([^#?]*)(\?[^#]*)?(#.*)?/) || []).splice(1);
+  return {
+    pathname,
+    search,
+    hash
+  };
+}
+function stringifyParsedURL(parsed) {
+  const pathname = parsed.pathname || "";
+  const search = parsed.search ? (parsed.search.startsWith("?") ? "" : "?") + parsed.search : "";
+  const hash = parsed.hash || "";
+  const auth = parsed.auth ? parsed.auth + "@" : "";
+  const host = parsed.host || "";
+  const proto = parsed.protocol || parsed[protocolRelative] ? (parsed.protocol || "") + "//" : "";
+  return proto + auth + host + pathname + search + hash;
+}
 
 const serverAssets = [{"baseName":"server","dir":"/home/bob/Projects/list/playground/server/assets"}];
 
@@ -572,13 +815,238 @@ function cloneWithProxy(obj, overrides) {
 }
 const cachedEventHandler = defineCachedEventHandler;
 
+const defineAppConfig = (config) => config;
+
+const staticConfiguration = {
+  env: { NODE_ENV: "dev" },
+  name: "PARIS IAS",
+  full_name: "Paris Institute for Advanced Study",
+  // set to false if there is none
+  short_name: "Paris IAS",
+  // set to false if there is none
+  full_name_html: "Paris&nbsp;Institute<br>for Advanced&nbsp;Study",
+  // set to false if there is none
+  address: "17 Quai d'Anjou",
+  postcode_country: "75004 PARIS - FRANCE",
+  phone: "+33(0)1 56 81 00 52",
+  email: "contact@paris-iea.fr",
+  subtitle: "Paris Institute for Advanced Study",
+  description: "Paris Institute for Advanced Study",
+  splash_title: "Paris Institute for Advanced Study",
+  recaptcha: "6Lc_xuUUAAAAALwowUq0cC0wFtFnZ2NCi3UH4i1j",
+  // TODO: rm -> fetch from GPG secrets / SSM
+  graphqlEndpoint: "https://svrk22xx3zforcytbifrudb4k4.appsync-api.eu-west-2.amazonaws.com/graphql",
+  graphqlApiKey: "da2-2g3v2byhujc6xbv6ranaxb37wu",
+  keywords: "open source, open science, science, vuejs, nuxt, vuetify, vuex",
+  logo: {
+    light: "/logo.png",
+    dark: "/logo_white.png"
+  },
+  titleSeparator: " | ",
+  lang: {
+    default: "en",
+    locales: [
+      {
+        code: "fr",
+        iso: "fr-FR",
+        name: "French",
+        file: "fr.json",
+        dir: "ltr"
+      },
+      {
+        code: "en",
+        iso: "en-US",
+        name: "English",
+        file: "en.json",
+        dir: "ltr",
+        isCatchallLocale: true
+      }
+    ]
+  },
+  theme: {
+    loading: "red",
+    dark: false,
+    themes: {
+      light: {
+        primary: "#2196f3",
+        secondary: "#424242",
+        accent: "#82B1FF",
+        error: "#FF5252",
+        info: "#2196F3",
+        success: "#4CAF50",
+        warning: "#FFC107"
+      }
+      // dark: {
+      //   primary: colors.blue,
+      //   accent: colors.grey.darken3,
+      //   secondary: colors.grey.darken3,
+      //   info: colors.teal.lighten1,
+      //   warning: colors.amber.darken3,
+      //   error: colors.deepOrange.darken3,
+      //   success: colors.green.accent3,
+      // },
+    }
+  },
+  identifier: {
+    ISSN: "2826-2832"
+  },
+  modules: {
+    auth: {
+      // The module is enabled. Change this to disable the module
+      isEnabled: true,
+      // The origin is set to the development origin. Change this when deploying to production by setting `origin` in this config before build-time or by exporting `AUTH_ORIGIN` by running `export AUTH_ORIGIN=...`
+      origin: "http://localhost:3000",
+      // The base path to the authentication endpoints. Change this if you want to add your auth-endpoints at a non-default location
+      basePath: "/api/auth",
+      // Whether to periodically refresh the session. Change this to `true` for a refresh every seconds or set this to a number like `5000` for a refresh every 5000 milliseconds (aka: 5 seconds)
+      enableSessionRefreshPeriodically: false,
+      // Whether to refresh the session whenever a window focus event happens, i.e, when your user refocuses the window. Set this to `false` to turn this off
+      enableSessionRefreshOnWindowFocus: true,
+      // Whether to add a global authentication middleware that will protect all pages without exclusion
+      enableGlobalAppMiddleware: false,
+      // Select the default-provider to use when `signIn` is called. Setting this here will also effect the global middleware behavior: E.g., when you set it to `github` and the user is unauthorized, they will be directly forwarded to the Github OAuth page instead of seeing the app-login page
+      defaultProvider: "github",
+      // Whether to automatically set the callback url to the page the user tried to visit when the middleware stopped them. This is useful to disable this when using the credentials provider, as it does not allow a `callbackUrl`. Setting this to a string-value will result in that being used as the callbackUrl path.
+      addDefaultCallbackUrl: true,
+      // Configuration of the global auth-middleware (only applies if you set `enableGlobalAppMiddleware: true` above!)
+      globalMiddlewareOptions: {
+        // Whether to allow access to 404 pages without authentication. Set this to `false` to force users to sign-in before seeing `404` pages. Setting this to false may lead to vue-router problems (as the target page does not exist)
+        allow404WithoutAuth: true,
+        // Whether to automatically set the callback url to the page the user tried to visit when the middleware stopped them. This is useful to disable this when using the credentials provider, as it does not allow a `callbackUrl`. Setting this to a string-value will result in that being used as the callbackUrl path. Note: You also need to set the global `addDefaultCallbackUrl` setting to `false` if you want to fully disable this for the global middleware.
+        addDefaultCallbackUrl: true
+      }
+    },
+    apollo: {},
+    sentry: {
+      dsn: "https://a329c0ed448543d098d4c1956b6bffb4@sentry.paris-ias.io/13"
+    },
+    ackee: {
+      domain: "0406b6c9-6dfc-44de-bb13-83bc0607cb14",
+      server: "https://ackee.paris-ias.io/"
+    },
+    zenodo: {
+      token: "YZ2NJN33R5K68Qh3ev46llet5b01FSSWdws3y4zxc4auBBHnq91xaBdGXDfU"
+    },
+    image: {
+      domains: [
+        "https://picsum.photos",
+        // snipcart.nuxtjs.org',
+        "source.unsplash.com"
+      ]
+    },
+    deepl: {
+      /*     key: process.env.DEEPL_KEY, */
+    },
+    fonts: {
+      families: {
+        "Bodoni+Moda": [500, 700],
+        "Open+Sans": [500, 700]
+      }
+    },
+    bibliography: {
+      defaultStyle: "APA",
+      styles: []
+    },
+    github: {
+      apiRoot: "https://api.github.com",
+      token: process.env.GH_TOKEN,
+      branch: "master",
+      useOpenAuthoring: true,
+      repo: "paris-iea/apex",
+      squashMerges: true,
+      cmsLabelPrefix: "Apex CMS update",
+      initialWorkflowStatus: "Draft"
+    }
+  },
+  sitemap: {
+    main: [
+      {
+        text: "about",
+        dropdown: true,
+        children: [
+          { text: "institute", path: "/about/institute" },
+          { text: "scientific_policy", path: "/about/scientific_policy" },
+          { text: "network", path: "/about/network" }
+        ]
+      },
+      {
+        text: "activities",
+        dropdown: true,
+        children: [
+          { text: "fellowships", path: "/activities/fellowships" },
+          { text: "projects", path: "/activities/projects" },
+          {
+            text: "events.key",
+            path: "/activities/events"
+          },
+          { text: "publications", path: "/activities/publications" }
+        ]
+      },
+      {
+        text: "people",
+        dropdown: true,
+        children: [
+          { text: "fellows", path: "/people?groups=fellows" },
+          { text: "team", path: "/people?groups=team" },
+          {
+            text: "sab",
+            path: "/people?groups=sab"
+          },
+          { text: "board", path: "/people?groups=board" },
+          { text: "browse", path: "/people" }
+        ]
+      },
+      {
+        text: "news",
+        path: "/news"
+      }
+    ],
+    footer: [
+      { text: "tos", path: "/tos" },
+      { text: "contact", path: "/contact" },
+      { text: "pressroom", path: "/pressroom" },
+      { text: "newsletter", path: "/tos" },
+      { text: "about", path: "/tos" },
+      { text: "privacy_policy", path: "/tos" },
+      { text: "support", path: "/support" }
+    ]
+  },
+  socials: {
+    linkedin: "iea-de-paris",
+    youtube: "@IEAPARIS",
+    twitter: "ieadeparis",
+    bluesky: "iea-paris",
+    github: "iea-paris",
+    facebook: "Institut-d%C3%A9tudes-avanc%C3%A9es-de-Paris-IEA-de-Paris/277065215652486",
+    rss: "https://paris-iea.fr/en/rss.xml"
+  }
+};
+
+const appConfig0 = defineAppConfig({
+  ...staticConfiguration,
+  author: "Antoine Cordelois",
+  url: "https://paris-iea.fr",
+  lang: {
+    locales: ["en", "fr"],
+    default: "en"
+  },
+  list: {
+    modules: [
+      "events",
+      "news",
+      "people",
+      "projects",
+      "fellowships",
+      "publications"
+    ]
+  }
+});
+
 const inlineAppConfig = {
   "nuxt": {}
 };
 
-
-
-const appConfig = defuFn(inlineAppConfig);
+const appConfig = defuFn(appConfig0, inlineAppConfig);
 
 function getEnv(key, opts) {
   const envKey = snakeCase(key).toUpperCase();
@@ -645,7 +1113,94 @@ const _inlineRuntimeConfig = {
   },
   "public": {
     "list": {
-      "modules": []
+      "modules": [
+        "events",
+        "news",
+        "people",
+        "projects",
+        "fellowships",
+        "publications"
+      ]
+    },
+    "mdc": {
+      "components": {
+        "prose": true,
+        "map": {}
+      },
+      "headings": {
+        "anchorLinks": {
+          "h1": false,
+          "h2": true,
+          "h3": true,
+          "h4": true,
+          "h5": false,
+          "h6": false
+        }
+      }
+    },
+    "i18n": {
+      "baseUrl": "",
+      "defaultLocale": "",
+      "defaultDirection": "ltr",
+      "strategy": "prefix_except_default",
+      "lazy": false,
+      "rootRedirect": "",
+      "routesNameSeparator": "___",
+      "defaultLocaleRouteNameSuffix": "default",
+      "skipSettingLocaleOnNavigate": false,
+      "differentDomains": false,
+      "trailingSlash": false,
+      "locales": [
+        {
+          "code": "en",
+          "files": [
+            {
+              "path": "/home/bob/Projects/list/src/runtime/translations/en.json",
+              "cache": ""
+            }
+          ]
+        },
+        {
+          "code": "fr",
+          "files": [
+            {
+              "path": "/home/bob/Projects/list/src/runtime/translations/fr.json",
+              "cache": ""
+            }
+          ]
+        }
+      ],
+      "detectBrowserLanguage": {
+        "alwaysRedirect": false,
+        "cookieCrossOrigin": false,
+        "cookieDomain": "",
+        "cookieKey": "i18n_redirected",
+        "cookieSecure": false,
+        "fallbackLocale": "",
+        "redirectOn": "root",
+        "useCookie": true
+      },
+      "experimental": {
+        "localeDetector": "",
+        "switchLocalePathLinkSSR": false,
+        "autoImportTranslationFunctions": false,
+        "typedPages": true,
+        "typedOptionsAndMessages": false,
+        "generatedLocaleFilePathFormat": "absolute",
+        "alternateLinkCanonicalQueries": false,
+        "hmr": true
+      },
+      "multiDomainLocales": false
+    }
+  },
+  "ipx": {
+    "baseURL": "/_ipx",
+    "alias": {},
+    "fs": {
+      "dir": []
+    },
+    "http": {
+      "domains": []
     }
   }
 };
@@ -1012,7 +1567,7 @@ if (!window.__NUXT_DEVTOOLS_TIME_METRIC__) {
 window.__NUXT_DEVTOOLS_TIME_METRIC__.appInit = Date.now()
 `;
 
-const _pW8ak4blyex1Xn6fsKZRD8_w5DAQUJngeudlMXTTqbI = (function(nitro) {
+const _ZHWOGgbz535YgorvEFF_53VnxTaRozPe4Jp2YCD7I = (function(nitro) {
   nitro.hooks.hook("render:html", (htmlContext) => {
     htmlContext.head.push(`<script>${script}<\/script>`);
   });
@@ -1037,7 +1592,7 @@ const devReducers = {
   URL: (data) => data instanceof URL ? data.toString() : void 0
 };
 const asyncContext = getContext("nuxt-dev", { asyncContext: true, AsyncLocalStorage });
-const _3UXj5wKV_UsltgfjxGaU4ovI9Q8Vp4I04IejwLEL3OY = (nitroApp) => {
+const _cpA4sqrRKr02xeKjAdZeHz4o8hPyAnogCKyUqMf8 = (nitroApp) => {
   const handler = nitroApp.h3App.handler;
   nitroApp.h3App.handler = (event) => {
     return asyncContext.callAsync({ logs: [], event }, () => handler(event));
@@ -1107,15 +1662,122 @@ function onConsoleLog(callback) {
 }
 
 const plugins = [
-  _pW8ak4blyex1Xn6fsKZRD8_w5DAQUJngeudlMXTTqbI,
-_3UXj5wKV_UsltgfjxGaU4ovI9Q8Vp4I04IejwLEL3OY
+  _ZHWOGgbz535YgorvEFF_53VnxTaRozPe4Jp2YCD7I,
+_cpA4sqrRKr02xeKjAdZeHz4o8hPyAnogCKyUqMf8
 ];
 
-const _lazy_VYO9L0 = () => Promise.resolve().then(function () { return renderer$1; });
+function defineRenderHandler(render) {
+  const runtimeConfig = useRuntimeConfig();
+  return eventHandler(async (event) => {
+    const nitroApp = useNitroApp();
+    const ctx = { event, render, response: void 0 };
+    await nitroApp.hooks.callHook("render:before", ctx);
+    if (!ctx.response) {
+      if (event.path === `${runtimeConfig.app.baseURL}favicon.ico`) {
+        setResponseHeader(event, "Content-Type", "image/x-icon");
+        return send(
+          event,
+          "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+        );
+      }
+      ctx.response = await ctx.render(event);
+      if (!ctx.response) {
+        const _currentStatus = getResponseStatus(event);
+        setResponseStatus(event, _currentStatus === 200 ? 500 : _currentStatus);
+        return send(
+          event,
+          "No response returned from render handler: " + event.path
+        );
+      }
+    }
+    await nitroApp.hooks.callHook("render:response", ctx.response, ctx);
+    if (ctx.response.headers) {
+      setResponseHeaders(event, ctx.response.headers);
+    }
+    if (ctx.response.statusCode || ctx.response.statusMessage) {
+      setResponseStatus(
+        event,
+        ctx.response.statusCode,
+        ctx.response.statusMessage
+      );
+    }
+    return ctx.response.body;
+  });
+}
+
+const scheduledTasks = false;
+
+const tasks = {
+  
+};
+
+const __runningTasks__ = {};
+async function runTask(name, {
+  payload = {},
+  context = {}
+} = {}) {
+  if (__runningTasks__[name]) {
+    return __runningTasks__[name];
+  }
+  if (!(name in tasks)) {
+    throw createError({
+      message: `Task \`${name}\` is not available!`,
+      statusCode: 404
+    });
+  }
+  if (!tasks[name].resolve) {
+    throw createError({
+      message: `Task \`${name}\` is not implemented!`,
+      statusCode: 501
+    });
+  }
+  const handler = await tasks[name].resolve();
+  const taskEvent = { name, payload, context };
+  __runningTasks__[name] = handler.run(taskEvent);
+  try {
+    const res = await __runningTasks__[name];
+    return res;
+  } finally {
+    delete __runningTasks__[name];
+  }
+}
+
+function buildAssetsDir() {
+  return useRuntimeConfig().app.buildAssetsDir;
+}
+function buildAssetsURL(...path) {
+  return joinRelativeURL(publicAssetsURL(), buildAssetsDir(), ...path);
+}
+function publicAssetsURL(...path) {
+  const app = useRuntimeConfig().app;
+  const publicBase = app.cdnURL || app.baseURL;
+  return path.length ? joinRelativeURL(publicBase, ...path) : publicBase;
+}
+
+const _IEK8hS = lazyEventHandler(() => {
+  const opts = useRuntimeConfig().ipx || {};
+  const fsDir = opts?.fs?.dir ? (Array.isArray(opts.fs.dir) ? opts.fs.dir : [opts.fs.dir]).map((dir) => isAbsolute(dir) ? dir : fileURLToPath(new URL(dir, globalThis._importMeta_.url))) : void 0;
+  const fsStorage = opts.fs?.dir ? ipxFSStorage({ ...opts.fs, dir: fsDir }) : void 0;
+  const httpStorage = opts.http?.domains ? ipxHttpStorage({ ...opts.http }) : void 0;
+  if (!fsStorage && !httpStorage) {
+    throw new Error("IPX storage is not configured!");
+  }
+  const ipxOptions = {
+    ...opts,
+    storage: fsStorage || httpStorage,
+    httpStorage
+  };
+  const ipx = createIPX(ipxOptions);
+  const ipxHandler = createIPXH3Handler(ipx);
+  return useBase(opts.baseURL, ipxHandler);
+});
+
+const _lazy_PsL7n0 = () => Promise.resolve().then(function () { return renderer$1; });
 
 const handlers = [
-  { route: '/__nuxt_error', handler: _lazy_VYO9L0, lazy: true, middleware: false, method: undefined },
-  { route: '/**', handler: _lazy_VYO9L0, lazy: true, middleware: false, method: undefined }
+  { route: '/__nuxt_error', handler: _lazy_PsL7n0, lazy: true, middleware: false, method: undefined },
+  { route: '/_ipx/**', handler: _IEK8hS, lazy: false, middleware: false, method: undefined },
+  { route: '/**', handler: _lazy_PsL7n0, lazy: true, middleware: false, method: undefined }
 ];
 
 function createNitroApp() {
@@ -1207,7 +1869,7 @@ function createNitroApp() {
   globalThis.$fetch = $fetch;
   h3App.use(createRouteRulesHandler({ localFetch }));
   for (const h of handlers) {
-    let handler = h.lazy ? lazyEventHandler(h.handler) : h.handler;
+    let handler = h.lazy ? lazyEventHandler$1(h.handler) : h.handler;
     if (h.middleware || !h.route) {
       const middlewareBase = (config.app.baseURL + (h.route || "/")).replace(
         /\/+/g,
@@ -1253,82 +1915,6 @@ function useNitroApp() {
   return nitroApp$1;
 }
 runNitroPlugins(nitroApp$1);
-
-function defineRenderHandler(render) {
-  const runtimeConfig = useRuntimeConfig();
-  return eventHandler(async (event) => {
-    const nitroApp = useNitroApp();
-    const ctx = { event, render, response: void 0 };
-    await nitroApp.hooks.callHook("render:before", ctx);
-    if (!ctx.response) {
-      if (event.path === `${runtimeConfig.app.baseURL}favicon.ico`) {
-        setResponseHeader(event, "Content-Type", "image/x-icon");
-        return send(
-          event,
-          "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-        );
-      }
-      ctx.response = await ctx.render(event);
-      if (!ctx.response) {
-        const _currentStatus = getResponseStatus(event);
-        setResponseStatus(event, _currentStatus === 200 ? 500 : _currentStatus);
-        return send(
-          event,
-          "No response returned from render handler: " + event.path
-        );
-      }
-    }
-    await nitroApp.hooks.callHook("render:response", ctx.response, ctx);
-    if (ctx.response.headers) {
-      setResponseHeaders(event, ctx.response.headers);
-    }
-    if (ctx.response.statusCode || ctx.response.statusMessage) {
-      setResponseStatus(
-        event,
-        ctx.response.statusCode,
-        ctx.response.statusMessage
-      );
-    }
-    return ctx.response.body;
-  });
-}
-
-const scheduledTasks = false;
-
-const tasks = {
-  
-};
-
-const __runningTasks__ = {};
-async function runTask(name, {
-  payload = {},
-  context = {}
-} = {}) {
-  if (__runningTasks__[name]) {
-    return __runningTasks__[name];
-  }
-  if (!(name in tasks)) {
-    throw createError({
-      message: `Task \`${name}\` is not available!`,
-      statusCode: 404
-    });
-  }
-  if (!tasks[name].resolve) {
-    throw createError({
-      message: `Task \`${name}\` is not implemented!`,
-      statusCode: 501
-    });
-  }
-  const handler = await tasks[name].resolve();
-  const taskEvent = { name, payload, context };
-  __runningTasks__[name] = handler.run(taskEvent);
-  try {
-    const res = await __runningTasks__[name];
-    return res;
-  } finally {
-    delete __runningTasks__[name];
-  }
-}
 
 if (!globalThis.crypto) {
   globalThis.crypto = nodeCrypto;
@@ -1454,18 +2040,6 @@ function createHead(options = {}) {
 
 function resolveUnrefHeadInput(input) {
   return walkResolver(input, VueResolver);
-}
-
-function buildAssetsDir() {
-  return useRuntimeConfig().app.buildAssetsDir;
-}
-function buildAssetsURL(...path) {
-  return joinRelativeURL(publicAssetsURL(), buildAssetsDir(), ...path);
-}
-function publicAssetsURL(...path) {
-  const app = useRuntimeConfig().app;
-  const publicBase = app.cdnURL || app.baseURL;
-  return path.length ? joinRelativeURL(publicBase, ...path) : publicBase;
 }
 
 const APP_ROOT_OPEN_TAG = `<${appRootTag}${propsToString(appRootAttrs)}>`;

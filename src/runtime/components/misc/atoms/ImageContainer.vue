@@ -79,9 +79,8 @@
 </template>
 
 <script setup>
-import { computed } from "#imports";
+import { computed, useImage } from "#imports";
 import { useLocalePath } from "vue-i18n";
-import { useImage } from "@nuxt/image";
 const localePath = useLocalePath();
 const img = useImage();
 

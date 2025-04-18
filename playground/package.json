@@ -8,6 +8,7 @@
     "generate": "nuxi generate"
   },
   "dependencies": {
+    "@nuxtjs/mdc": "0.16.1",
     "nuxt": "^3.16.2"
   }
 }

@@ -1,5 +1,5 @@
 <template>
-  <ListMoleculesHeader v-if="headless" :type="type" />
+  <ListMoleculesHeader :type="type" />
   <component :is="view">
     <component
       :is="itemTemplate"
@@ -67,16 +67,6 @@ const props = defineProps({
     default: false,
   },
   items: [Object],
-  customView: {
-    type: String || Boolean,
-    required: false,
-    default: false,
-  },
-  headless: {
-    type: Boolean,
-    required: false,
-    default: true,
-  },
 });
 
 const view = computed(() =>

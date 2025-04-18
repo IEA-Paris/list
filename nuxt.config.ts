@@ -7,6 +7,7 @@ export default defineNuxtConfig({
     "@nuxtjs/i18n",
     "@nuxtjs/apollo",
     "@pinia/nuxt",
+    "@nuxtjs/mdc",
   ],
   imports: {
     autoImport: false,
@@ -20,15 +21,5 @@ export default defineNuxtConfig({
   },
   pinia: {
     autoImports: ["defineStore", ["defineStore", "definePiniaStore"]],
-  },
-  apollo: {
-    // https://apollo.nuxtjs.org/getting-started/configuration
-    clients: {
-      default: {
-        inMemoryCacheOptions: {
-          addTypename: false,
-        },
-      },
-    },
   },
 });

@@ -34,3 +34,6 @@ export { useImage } from '../node_modules/@nuxt/image/dist/runtime/composables';
 export { useI18n } from '../node_modules/vue-i18n/dist/vue-i18n';
 export { useRouteBaseName, useLocalePath, useLocaleRoute, useSwitchLocalePath, useLocaleHead, useBrowserLocale, useCookieLocale, useSetI18nParams, defineI18nRoute, defineI18nLocale, defineI18nConfig } from '../node_modules/@nuxtjs/i18n/dist/runtime/composables/index';
 export { defineStore, acceptHMRUpdate, usePinia, storeToRefs } from '../node_modules/@pinia/nuxt/dist/runtime/composables';
+export { flatUnwrap as unwrapSlot } from '../node_modules/@nuxtjs/mdc/dist/runtime/utils/node';
+export { parseMarkdown } from '../node_modules/@nuxtjs/mdc/dist/runtime/parser';
+export { stringifyMarkdown } from '../node_modules/@nuxtjs/mdc/dist/runtime/stringify';

@@ -100,6 +100,15 @@
       "#image/*": [
         "../node_modules/@nuxt/image/dist/runtime/*"
       ],
+      "#mdc-configs": [
+        "./mdc-configs"
+      ],
+      "#mdc-highlighter": [
+        "./mdc-highlighter"
+      ],
+      "#mdc-imports": [
+        "./mdc-imports"
+      ],
       "#unhead/composables": [
         "../node_modules/nuxt/dist/head/runtime/composables/v3"
       ],
@@ -148,6 +157,7 @@
     "../node_modules/@nuxtjs/i18n/runtime/server",
     "../node_modules/@nuxtjs/apollo/runtime/server",
     "../node_modules/@pinia/nuxt/runtime/server",
+    "../node_modules/@nuxtjs/mdc/runtime/server",
     "../node_modules/@nuxt/devtools/runtime/server",
     "../node_modules/@nuxt/telemetry/runtime/server",
     "./types/nitro.d.ts",
@@ -163,6 +173,7 @@
     "../node_modules/@nuxtjs/i18n/node_modules",
     "../node_modules/@nuxtjs/apollo/node_modules",
     "../node_modules/@pinia/nuxt/node_modules",
+    "../node_modules/@nuxtjs/mdc/node_modules",
     "../node_modules/@nuxt/devtools/node_modules",
     "../node_modules/@nuxt/telemetry/node_modules",
     "../dist"

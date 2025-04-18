@@ -98,6 +98,15 @@
       "#image/*": [
         "../node_modules/@nuxt/image/dist/runtime/*"
       ],
+      "#mdc-configs": [
+        "./mdc-configs"
+      ],
+      "#mdc-highlighter": [
+        "./mdc-highlighter"
+      ],
+      "#mdc-imports": [
+        "./mdc-imports"
+      ],
       "#vue-router": [
         "../node_modules/vue-router"
       ],
@@ -138,7 +147,7 @@
         "./nuxt-i18n-logger"
       ],
       "#app-manifest": [
-        "./manifest/meta/4ecd4603-e09e-4715-8823-532252cd4224"
+        "./manifest/meta/52f033b1-62c2-4905-9eb4-29691e62a494"
       ],
       "#components": [
         "./components"
@@ -194,6 +203,8 @@
     "../node_modules/@nuxtjs/apollo/dist/runtime",
     "../node_modules/@pinia/nuxt/runtime",
     "../node_modules/@pinia/nuxt/dist/runtime",
+    "../node_modules/@nuxtjs/mdc/runtime",
+    "../node_modules/@nuxtjs/mdc/dist/runtime",
     "../node_modules/@nuxt/devtools/runtime",
     "../node_modules/@nuxt/devtools/dist/runtime",
     "../node_modules/@nuxt/telemetry/runtime",
@@ -210,6 +221,7 @@
     "../node_modules/@nuxtjs/i18n/node_modules",
     "../node_modules/@nuxtjs/apollo/node_modules",
     "../node_modules/@pinia/nuxt/node_modules",
+    "../node_modules/@nuxtjs/mdc/node_modules",
     "../node_modules/@nuxt/devtools/node_modules",
     "../node_modules/@nuxt/telemetry/node_modules",
     "../src/module/runtime/server",
@@ -224,6 +236,8 @@
     "../node_modules/@nuxtjs/apollo/dist/runtime/server",
     "../node_modules/@pinia/nuxt/runtime/server",
     "../node_modules/@pinia/nuxt/dist/runtime/server",
+    "../node_modules/@nuxtjs/mdc/runtime/server",
+    "../node_modules/@nuxtjs/mdc/dist/runtime/server",
     "../node_modules/@nuxt/devtools/runtime/server",
     "../node_modules/@nuxt/devtools/dist/runtime/server",
     "../node_modules/@nuxt/telemetry/runtime/server",

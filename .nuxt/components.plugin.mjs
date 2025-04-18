@@ -1,5 +1,5 @@
 import { defineNuxtPlugin } from '#app/nuxt'
-import { LazyEventsBadges, LazyEventsDateTimePlace, LazyEventsDenseItem, LazyEventsExpandedItem, LazyEventsRegisterModal, LazyEventsRelatedItem, LazyEventsRowsItem, LazyEventsView, LazyFellowshipsBadges, LazyFellowshipsDenseItem, LazyFellowshipsExpandedItem, LazyFellowshipsRegisterModal, LazyFellowshipsRowsItem, LazyFellowshipsView, LazyListAtomsFiltersMenu, LazyListAtomsSearchInput, LazyListAtomsSearchItem, LazyListAtomsSearchString, LazyListAtomsSortMenu, LazyListAtomsViewMenu, LazyListInputsAutoComplete, LazyListInputsBooleanSwitch, LazyListInputsCheckbox, LazyListInputsSelect, LazyListMoleculesFilters, LazyListMoleculesHeader, LazyListMoleculesPagination, LazyListOrganismsList, LazyListViewsDense, LazyListViewsExpanded, LazyListViewsGrid, LazyListViewsRows, LazyListViewsSlider, LazyListViewsTable, LazyMiscAtomsDateStamp, LazyMiscAtomsImageContainer, LazyMiscAtomsShareMenu, LazyMiscAtomsSocials, LazyMiscMoleculesChipContainer, LazyMiscMoleculesRelated, LazyMiscMoleculesRelatedItems, LazyMiscMoleculesSearchItem, LazyNewsDenseItem, LazyNewsExpandedItem, LazyNewsHeader, LazyNewsRelatedItem, LazyNewsRowsItem, LazyNewsView, LazyPeopleDenseItem, LazyPeopleExpandedItem, LazyPeopleGroupBadges, LazyPeopleRelatedItem, LazyPeopleRowsItem, LazyPeopleView, LazyProjectsExpandedItem, LazyProjectsRelatedItem, LazyProjectsRowsItem, LazyProjectsView, LazyPublicationsRelatedItem, LazyPublicationsRowsItem, LazyPublicationsView } from '#components'
+import { LazyEventsBadges, LazyEventsDateTimePlace, LazyEventsDenseItem, LazyEventsExpandedItem, LazyEventsRegisterModal, LazyEventsRelatedItem, LazyEventsRowsItem, LazyEventsView, LazyFellowshipsBadges, LazyFellowshipsDenseItem, LazyFellowshipsExpandedItem, LazyFellowshipsRegisterModal, LazyFellowshipsRowsItem, LazyFellowshipsView, LazyListAtomsFiltersMenu, LazyListAtomsSearchInput, LazyListAtomsSearchItem, LazyListAtomsSearchString, LazyListAtomsSortMenu, LazyListAtomsViewMenu, LazyListInputsAutoComplete, LazyListInputsBooleanSwitch, LazyListInputsCheckbox, LazyListInputsSelect, LazyListMoleculesFilters, LazyListMoleculesHeader, LazyListMoleculesPagination, LazyListOrganismsList, LazyListViewsDense, LazyListViewsExpanded, LazyListViewsGrid, LazyListViewsRows, LazyListViewsSlider, LazyListViewsTable, LazyMiscAtomsDateStamp, LazyMiscAtomsImageContainer, LazyMiscAtomsShareMenu, LazyMiscAtomsSocials, LazyMiscMoleculesChipContainer, LazyMiscMoleculesRelated, LazyMiscMoleculesRelatedItems, LazyMiscMoleculesSearchItem, LazyNewsDenseItem, LazyNewsExpandedItem, LazyNewsHeader, LazyNewsRelatedItem, LazyNewsRowsItem, LazyNewsView, LazyPeopleDenseItem, LazyPeopleExpandedItem, LazyPeopleGroupBadges, LazyPeopleRelatedItem, LazyPeopleRowsItem, LazyPeopleView, LazyProjectsExpandedItem, LazyProjectsRelatedItem, LazyProjectsRowsItem, LazyProjectsView, LazyPublicationsRelatedItem, LazyPublicationsRowsItem, LazyPublicationsView, LazyProseA, LazyProseBlockquote, LazyProseCode, LazyProseEm, LazyProseH1, LazyProseH2, LazyProseH3, LazyProseH4, LazyProseH5, LazyProseH6, LazyProseHr, LazyProseImg, LazyProseLi, LazyProseOl, LazyProseP, LazyProsePre, LazyProseScript, LazyProseStrong, LazyProseTable, LazyProseTbody, LazyProseTd, LazyProseTh, LazyProseThead, LazyProseTr, LazyProseUl } from '#components'
 const lazyGlobalComponents = [
   ["EventsBadges", LazyEventsBadges],
 ["EventsDateTimePlace", LazyEventsDateTimePlace],
@@ -62,6 +62,31 @@ const lazyGlobalComponents = [
 ["PublicationsRelatedItem", LazyPublicationsRelatedItem],
 ["PublicationsRowsItem", LazyPublicationsRowsItem],
 ["PublicationsView", LazyPublicationsView],
+["ProseA", LazyProseA],
+["ProseBlockquote", LazyProseBlockquote],
+["ProseCode", LazyProseCode],
+["ProseEm", LazyProseEm],
+["ProseH1", LazyProseH1],
+["ProseH2", LazyProseH2],
+["ProseH3", LazyProseH3],
+["ProseH4", LazyProseH4],
+["ProseH5", LazyProseH5],
+["ProseH6", LazyProseH6],
+["ProseHr", LazyProseHr],
+["ProseImg", LazyProseImg],
+["ProseLi", LazyProseLi],
+["ProseOl", LazyProseOl],
+["ProseP", LazyProseP],
+["ProsePre", LazyProsePre],
+["ProseScript", LazyProseScript],
+["ProseStrong", LazyProseStrong],
+["ProseTable", LazyProseTable],
+["ProseTbody", LazyProseTbody],
+["ProseTd", LazyProseTd],
+["ProseTh", LazyProseTh],
+["ProseThead", LazyProseThead],
+["ProseTr", LazyProseTr],
+["ProseUl", LazyProseUl],
   
 ]
 
