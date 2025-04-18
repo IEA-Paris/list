@@ -47,7 +47,7 @@ export const useRootStore = defineStore("rootStore", {
         Object.keys(query).forEach((filter) => {
           if (Object.keys($stores[type].filters).includes(filter))
             $stores[type].filters[filter].value = $stores[type].filters[filter]
-              .multiple
+              ?.multiple
               ? JSON.parse(query[filter] as string)
               : query[filter];
         });

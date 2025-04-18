@@ -24,8 +24,7 @@
 <script setup>
 // import { useDisplay } from "vuetify"
 // const { smAndUp } = useDisplay()
-import { useLocalePath } from "vue-i18n";
-
+import { useLocalePath } from "#imports";
 const localePath = useLocalePath();
 const props = defineProps({
   item: {

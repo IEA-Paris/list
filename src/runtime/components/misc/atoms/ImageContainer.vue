@@ -79,8 +79,7 @@
 </template>
 
 <script setup>
-import { computed, useImage } from "#imports";
-import { useLocalePath } from "vue-i18n";
+import { computed, useImage, useLocalePath } from "#imports";
 const localePath = useLocalePath();
 const img = useImage();
 
