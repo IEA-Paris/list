@@ -186,7 +186,7 @@ export const useRootStore = defineStore("rootStore", {
     resetState(type: string) {
       const { $stores, $models } = useNuxtApp();
       console.log("$models[type]: ", $models[type]);
-      $stores[type] = $models[type].default();
+      $stores[type] = $models[type];
       console.log("resetState");
       this.search = "";
       this.page = 1;
