@@ -18,7 +18,7 @@
   </v-tooltip>
 </template>
 <script setup>
-import { useNuxtApp } from "#imports";
+import { useNuxtApp, onMounted } from "#imports";
 import { useRootStore } from "../../../stores/root";
 const { $stores } = useNuxtApp();
 const rootStore = useRootStore();
