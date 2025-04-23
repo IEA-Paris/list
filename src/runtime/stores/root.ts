@@ -184,8 +184,9 @@ export const useRootStore = defineStore("rootStore", {
       router.replace({ query: routeQuery });
     },
     resetState(type: string) {
-      const { $stores } = useNuxtApp();
-      $stores[type].$reset();
+      const { $stores, $models } = useNuxtApp();
+      console.log("$models[type]: ", $models[type]);
+      $stores[type] = $models[type].default();
       console.log("resetState");
       this.search = "";
       this.page = 1;

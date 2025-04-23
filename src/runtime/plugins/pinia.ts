@@ -60,6 +60,7 @@ export default defineNuxtPlugin(async (nuxtApp) => {
   // Initialize empty stores object
   const stores: Record<string, any> = {};
   const queries = {};
+  const models = {};
   console.log("INITIALIZING STORES");
   // Preload all required modules
   await Promise.all(
@@ -73,7 +74,7 @@ export default defineNuxtPlugin(async (nuxtApp) => {
           list: (await imports.queries.list).default,
           get: (await imports.queries.get).default,
         };
-
+        models[type] = model;
         stores[type] = createDynamicStore(type, model)();
       } catch (error) {
         console.error(`Failed to initialize ${type} store:`, error);
@@ -82,6 +83,7 @@ export default defineNuxtPlugin(async (nuxtApp) => {
   );
   const rootStore = useRootStore();
   // Provide synchronous access to stores and queries
+  nuxtApp.provide("models", models);
   nuxtApp.provide("rootStore", rootStore);
   nuxtApp.provide("stores", stores);
   nuxtApp.provide("queries", queries);
