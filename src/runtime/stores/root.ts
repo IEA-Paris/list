@@ -183,7 +183,7 @@ export const useRootStore = defineStore("rootStore", {
 
       router.replace({ query: routeQuery });
     },
-    resetState() {
+    resetState(type: string) {
       const { $stores } = useNuxtApp();
       $stores[type].$reset();
       console.log("resetState");
