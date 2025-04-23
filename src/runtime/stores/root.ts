@@ -39,17 +39,30 @@ export const useRootStore = defineStore("rootStore", {
         this.scrolled = window.scrollY > 0;
       }
     },
-    loadRouteQuery(type: string) {
-      const { currentRoute } = useRouter();
+    saveFiltersToLocalStorage(type: string) {
       const { $stores } = useNuxtApp();
+      const filters = $stores[type].filters ?? {};
+      const values = Object.fromEntries(
+        Object.entries(filters).map(([key, filter]) => [key, filter.value])
+      );
+
+      const local = JSON.parse(localStorage.getItem("PARIS_IAS") || "{}");
+      local[`${type}_filters`] = values;
+      localStorage.setItem("PARIS_IAS", JSON.stringify(local));
+    },
+    loadRouteQuery(type: string) {
+      const { $stores } = useNuxtApp();
+      const { currentRoute } = useRouter();
       const query = currentRoute.value.query;
+      const filters = $stores[type].filters;
+
       if (Object.keys(query)?.length) {
         Object.keys(query).forEach((filter) => {
-          if (Object.keys($stores[type].filters).includes(filter))
-            $stores[type].filters[filter].value = $stores[type].filters[filter]
-              ?.multiple
+          if (filter in filters) {
+            filters[filter].value = filters[filter].multiple
               ? JSON.parse(query[filter] as string)
               : query[filter];
+          }
         });
         /*       if (query.view) {
         ;$stores[type].view = query.view as
@@ -83,30 +96,45 @@ export const useRootStore = defineStore("rootStore", {
       } */
       }
       console.log("query loaded");
+      this.setFiltersCount(type);
+    },
+
+    loadFiltersFromLocalStorage(type: string) {
+      const { $stores } = useNuxtApp();
+      const local = JSON.parse(localStorage.getItem("PARIS_IAS") || "{}");
+      const saved = local[`${type}_filters`] ?? null;
+
+      if (!saved) {
+        console.log(`[${type}] Aucune donnée à restaurer.`);
+        return;
+      }
+
+      const filters = $stores[type].filters ?? {};
+      for (const [key, value] of Object.entries(saved)) {
+        if (filters[key]) {
+          filters[key].value = value;
+        }
+      }
+
+      this.setFiltersCount(type);
+      this.updateRouteQuery(type);
+      console.log(`[${type}] Filtres restaurés depuis localStorage`, saved);
     },
 
     setFiltersCount(type: string) {
       const { $stores } = useNuxtApp();
-      let filtersCount = 0 as number;
-      Object.keys($stores[type].filters)
-        // remove empty values
-        .forEach((filter) => {
-          /* console.log("filter: ", filter)
-          console.log("filters[filter]?.value: ", filters[filter].value)
-          */ /*  console.log(
-            'typeof filters[filter]?.value !== "undefined": ',
-            typeof filters[filter]?.value !== "undefined",
-          ) */
-          if (
-            $stores[type].filters[filter]?.value?.length &&
-            typeof $stores[type].filters[filter]?.value !== "undefined"
-          ) {
-            filtersCount++;
-          }
-          return filtersCount;
-        });
+      const filters = $stores[type].filters ?? {};
+      const count = Object.values(filters).reduce((acc, filter) => {
+        const value = filter?.value;
+        const isEmpty =
+          value === undefined ||
+          value === null ||
+          (Array.isArray(value) && value.length === 0) ||
+          (typeof value === "string" && value.trim() === "");
 
-      $stores[type].filtersCount = filtersCount;
+        return isEmpty ? acc : acc + 1;
+      }, 0);
+      $stores[type].filtersCount = count;
     },
     setBlankFilterLoad(type: string) {
       /*  ;(this[type] as ModuleType).loading = false */
@@ -126,34 +154,38 @@ export const useRootStore = defineStore("rootStore", {
     updateRouteQuery(type: string) {
       const router = useRouter();
       const { $stores } = useNuxtApp();
-      // update route
+
       const routeQuery: Record<string, string> = {
-        // Add search if it exists and is defined
         ...(this.search ? { search: this.search } : {}),
-
-        // Add page if it's greater than 1
         ...(this.page > 1 ? { page: this.page.toString() } : {}),
-
-        // Add filters with defined values
         ...Object.entries($stores[type].filters).reduce(
-          (acc, [filterKey, filter]) => {
-            if (!$stores[type].filters[filterKey]?.value) {
-              return acc;
-            }
+          (acc, [key, filter]) => {
+            const value = filter?.value;
+
+            console.log("valueStore", value);
+            const isEmpty =
+              value === undefined ||
+              value === null ||
+              value === false ||
+              (Array.isArray(value) && value.length === 0) ||
+              (typeof value === "string" && value.trim() === "");
+
+            if (isEmpty) return acc;
+
             return {
               ...acc,
-              ...{
-                [filterKey]: $stores[type].filters[filterKey]?.value,
-              },
+              [key]: Array.isArray(value) ? JSON.stringify(value) : value,
             };
           },
-          {} as Record<string, string>
+          {}
         ),
       };
+
       router.replace({ query: routeQuery });
     },
     resetState() {
       const { $stores } = useNuxtApp();
+      $stores[type].$reset();
       console.log("resetState");
       this.search = "";
       this.page = 1;
@@ -162,41 +194,6 @@ export const useRootStore = defineStore("rootStore", {
       this.total = 0;
       this.skip = 0;
       this.numberOfPages = 0;
-      const modules = [
-        "events",
-        "news",
-        "people",
-        "projects",
-        "fellowships",
-        "publications",
-      ];
-      /*       this.events.list.filters = events.list.filters
-      this.news.list.filters = news.list.filters
-      this.people.list.filters = people.list.filters
-      this.projects.list.filters = projects.list.filters
-      this.fellowships.list.filters = fellowships.list.filters
-      this.publications.list.filters = publications.list.filters */
-      modules.forEach((type) => {
-        /*  const viewsObj = $stores[type].views as Record<
-          string,
-          Views
-        >
-        const defaultViewsKey = Object.keys(viewsObj).find(
-          (item) => viewsObj[item].default === true
-        )
-        const defaultView = viewsObj[defaultViewsKey as string]
-
-        const sortObj = $stores[type].sort
-        const defaultSortKey = Object.keys(sortObj).find(
-          (item) => sortObj[item].default === true
-        )
-        const defaultSort = sortObj[defaultSortKey as string] */
-        /*
-        // TODO make dynamic based on an ~/assets located file
-        ;$stores[type].view = defaultView
-        ;$stores[type].sortBy = [defaultSort.value[0]]
-        ;$stores[type].sortDesc = [defaultSort.value[1]] */
-      });
     },
     updateSort({ value, type }: { value: number[] | string[]; type: string }) {
       const { $stores } = useNuxtApp();
@@ -223,14 +220,29 @@ export const useRootStore = defineStore("rootStore", {
     updateFilter(key: string, val: any, type: string) {
       const { $stores } = useNuxtApp();
       console.log("update filter: ", { key, val, type });
+      $stores[type].filters[key].value = val;
 
-      if (["online", "outside", "past"].includes(key) && val === false) {
-        $stores[type].filters[key].value = null;
-      } else {
-        $stores[type].filters[key].value = val;
-      }
+      this.setFiltersCount(type);
 
-      this.updatePage({ page: 1, type });
+      this.saveFiltersToLocalStorage(type);
+
+      // const router = useRouter()
+
+      // // Update the route query with the new filter
+      // console.log(
+      //   "router.currentRoute.value.query: ",
+      //   router.currentRoute.value.query,
+      // )
+      // const query = {
+      //   ...router.currentRoute.value.query,
+      //   [key]: Array.isArray(val) ? JSON.stringify(val) : val,
+      // }
+      // router.push({ query })
+
+      this.updateRouteQuery(type);
+
+      this.page = 1;
+      this.update(type);
     },
     updateItemsPerPage({ value, type }: { value: number; type: string }) {
       const { $stores } = useNuxtApp();

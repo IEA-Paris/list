@@ -1112,16 +1112,6 @@ const _inlineRuntimeConfig = {
     }
   },
   "public": {
-    "list": {
-      "modules": [
-        "events",
-        "news",
-        "people",
-        "projects",
-        "fellowships",
-        "publications"
-      ]
-    },
     "mdc": {
       "components": {
         "prose": true,
@@ -1137,6 +1127,16 @@ const _inlineRuntimeConfig = {
           "h6": false
         }
       }
+    },
+    "list": {
+      "modules": [
+        "events",
+        "news",
+        "people",
+        "projects",
+        "fellowships",
+        "publications"
+      ]
     },
     "i18n": {
       "baseUrl": "",

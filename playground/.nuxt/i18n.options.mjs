@@ -141,7 +141,7 @@ export const normalizedLocales = [
 export const NUXT_I18N_MODULE_ID = "@nuxtjs/i18n"
 export const parallelPlugin = false
 export const isSSG = false
-export const hasPages = false
+export const hasPages = true
 
 export const DEFAULT_COOKIE_KEY = "i18n_redirected"
 export const DEFAULT_DYNAMIC_PARAMS_KEY = "nuxtI18nInternal"

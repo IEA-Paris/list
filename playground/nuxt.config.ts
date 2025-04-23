@@ -6,8 +6,8 @@ export default defineNuxtConfig({
     "@nuxtjs/i18n",
     "@nuxtjs/apollo",
     "@pinia/nuxt",
-    "../src/module",
     "@nuxtjs/mdc",
+    "../src/module",
   ],
   list: {
     modules: [

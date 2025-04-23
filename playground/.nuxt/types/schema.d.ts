@@ -22,13 +22,13 @@ declare module '@nuxt/schema' {
      */
     ["pinia"]: typeof import("@pinia/nuxt").default extends NuxtModule<infer O> ? O : Record<string, any>
     /**
-     * Configuration for `./../../../src/module`
-     */
-    ["list"]: typeof import("./../../../src/module").default extends NuxtModule<infer O> ? O : Record<string, any>
-    /**
      * Configuration for `@nuxtjs/mdc`
      */
     ["mdc"]: typeof import("@nuxtjs/mdc").default extends NuxtModule<infer O> ? O : Record<string, any>
+    /**
+     * Configuration for `./../../../src/module`
+     */
+    ["list"]: typeof import("./../../../src/module").default extends NuxtModule<infer O> ? O : Record<string, any>
     /**
      * Configuration for `@nuxt/devtools`
      */
@@ -60,13 +60,13 @@ declare module '@nuxt/schema' {
      */
     ["pinia"]?: typeof import("@pinia/nuxt").default extends NuxtModule<infer O> ? Partial<O> : Record<string, any>
     /**
-     * Configuration for `./../../../src/module`
-     */
-    ["list"]?: typeof import("./../../../src/module").default extends NuxtModule<infer O> ? Partial<O> : Record<string, any>
-    /**
      * Configuration for `@nuxtjs/mdc`
      */
     ["mdc"]?: typeof import("@nuxtjs/mdc").default extends NuxtModule<infer O> ? Partial<O> : Record<string, any>
+    /**
+     * Configuration for `./../../../src/module`
+     */
+    ["list"]?: typeof import("./../../../src/module").default extends NuxtModule<infer O> ? Partial<O> : Record<string, any>
     /**
      * Configuration for `@nuxt/devtools`
      */
@@ -75,7 +75,7 @@ declare module '@nuxt/schema' {
      * Configuration for `@nuxt/telemetry`
      */
     ["telemetry"]?: typeof import("@nuxt/telemetry").default extends NuxtModule<infer O> ? Partial<O> : Record<string, any>
-    modules?: (undefined | null | false | NuxtModule<any> | string | [NuxtModule | string, Record<string, any>] | ["@nuxt/eslint", Exclude<NuxtConfig["eslint"], boolean>] | ["@nuxt/image", Exclude<NuxtConfig["image"], boolean>] | ["@nuxtjs/i18n", Exclude<NuxtConfig["i18n"], boolean>] | ["@nuxtjs/apollo", Exclude<NuxtConfig["apollo"], boolean>] | ["@pinia/nuxt", Exclude<NuxtConfig["pinia"], boolean>] | ["./../../../src/module", Exclude<NuxtConfig["list"], boolean>] | ["@nuxtjs/mdc", Exclude<NuxtConfig["mdc"], boolean>] | ["@nuxt/devtools", Exclude<NuxtConfig["devtools"], boolean>] | ["@nuxt/telemetry", Exclude<NuxtConfig["telemetry"], boolean>])[],
+    modules?: (undefined | null | false | NuxtModule<any> | string | [NuxtModule | string, Record<string, any>] | ["@nuxt/eslint", Exclude<NuxtConfig["eslint"], boolean>] | ["@nuxt/image", Exclude<NuxtConfig["image"], boolean>] | ["@nuxtjs/i18n", Exclude<NuxtConfig["i18n"], boolean>] | ["@nuxtjs/apollo", Exclude<NuxtConfig["apollo"], boolean>] | ["@pinia/nuxt", Exclude<NuxtConfig["pinia"], boolean>] | ["@nuxtjs/mdc", Exclude<NuxtConfig["mdc"], boolean>] | ["./../../../src/module", Exclude<NuxtConfig["list"], boolean>] | ["@nuxt/devtools", Exclude<NuxtConfig["devtools"], boolean>] | ["@nuxt/telemetry", Exclude<NuxtConfig["telemetry"], boolean>])[],
   }
 }
 declare module 'nuxt/schema' {
@@ -106,15 +106,15 @@ declare module 'nuxt/schema' {
      */
     ["pinia"]: typeof import("@pinia/nuxt").default extends NuxtModule<infer O> ? O : Record<string, any>
     /**
-     * Configuration for `./../../../src/module`
-     * @see https://www.npmjs.com/package/./../../../src/module
-     */
-    ["list"]: typeof import("./../../../src/module").default extends NuxtModule<infer O> ? O : Record<string, any>
-    /**
      * Configuration for `@nuxtjs/mdc`
      * @see https://www.npmjs.com/package/@nuxtjs/mdc
      */
     ["mdc"]: typeof import("@nuxtjs/mdc").default extends NuxtModule<infer O> ? O : Record<string, any>
+    /**
+     * Configuration for `./../../../src/module`
+     * @see https://www.npmjs.com/package/./../../../src/module
+     */
+    ["list"]: typeof import("./../../../src/module").default extends NuxtModule<infer O> ? O : Record<string, any>
     /**
      * Configuration for `@nuxt/devtools`
      * @see https://www.npmjs.com/package/@nuxt/devtools
@@ -153,15 +153,15 @@ declare module 'nuxt/schema' {
      */
     ["pinia"]?: typeof import("@pinia/nuxt").default extends NuxtModule<infer O> ? Partial<O> : Record<string, any>
     /**
-     * Configuration for `./../../../src/module`
-     * @see https://www.npmjs.com/package/./../../../src/module
-     */
-    ["list"]?: typeof import("./../../../src/module").default extends NuxtModule<infer O> ? Partial<O> : Record<string, any>
-    /**
      * Configuration for `@nuxtjs/mdc`
      * @see https://www.npmjs.com/package/@nuxtjs/mdc
      */
     ["mdc"]?: typeof import("@nuxtjs/mdc").default extends NuxtModule<infer O> ? Partial<O> : Record<string, any>
+    /**
+     * Configuration for `./../../../src/module`
+     * @see https://www.npmjs.com/package/./../../../src/module
+     */
+    ["list"]?: typeof import("./../../../src/module").default extends NuxtModule<infer O> ? Partial<O> : Record<string, any>
     /**
      * Configuration for `@nuxt/devtools`
      * @see https://www.npmjs.com/package/@nuxt/devtools
@@ -172,7 +172,7 @@ declare module 'nuxt/schema' {
      * @see https://www.npmjs.com/package/@nuxt/telemetry
      */
     ["telemetry"]?: typeof import("@nuxt/telemetry").default extends NuxtModule<infer O> ? Partial<O> : Record<string, any>
-    modules?: (undefined | null | false | NuxtModule<any> | string | [NuxtModule | string, Record<string, any>] | ["@nuxt/eslint", Exclude<NuxtConfig["eslint"], boolean>] | ["@nuxt/image", Exclude<NuxtConfig["image"], boolean>] | ["@nuxtjs/i18n", Exclude<NuxtConfig["i18n"], boolean>] | ["@nuxtjs/apollo", Exclude<NuxtConfig["apollo"], boolean>] | ["@pinia/nuxt", Exclude<NuxtConfig["pinia"], boolean>] | ["./../../../src/module", Exclude<NuxtConfig["list"], boolean>] | ["@nuxtjs/mdc", Exclude<NuxtConfig["mdc"], boolean>] | ["@nuxt/devtools", Exclude<NuxtConfig["devtools"], boolean>] | ["@nuxt/telemetry", Exclude<NuxtConfig["telemetry"], boolean>])[],
+    modules?: (undefined | null | false | NuxtModule<any> | string | [NuxtModule | string, Record<string, any>] | ["@nuxt/eslint", Exclude<NuxtConfig["eslint"], boolean>] | ["@nuxt/image", Exclude<NuxtConfig["image"], boolean>] | ["@nuxtjs/i18n", Exclude<NuxtConfig["i18n"], boolean>] | ["@nuxtjs/apollo", Exclude<NuxtConfig["apollo"], boolean>] | ["@pinia/nuxt", Exclude<NuxtConfig["pinia"], boolean>] | ["@nuxtjs/mdc", Exclude<NuxtConfig["mdc"], boolean>] | ["./../../../src/module", Exclude<NuxtConfig["list"], boolean>] | ["@nuxt/devtools", Exclude<NuxtConfig["devtools"], boolean>] | ["@nuxt/telemetry", Exclude<NuxtConfig["telemetry"], boolean>])[],
   }
   interface RuntimeConfig {
    app: {
@@ -190,10 +190,6 @@ declare module 'nuxt/schema' {
    },
   }
   interface PublicRuntimeConfig {
-   list: {
-      modules: Array<string>,
-   },
-
    mdc: {
       components: {
          prose: boolean,
@@ -216,6 +212,10 @@ declare module 'nuxt/schema' {
             h6: boolean,
          },
       },
+   },
+
+   list: {
+      modules: Array<string>,
    },
 
    i18n: {

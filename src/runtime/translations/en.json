@@ -30,6 +30,7 @@
   },
   "learn-more": "read more",
   "list": {
+    "reset-filters": "Reset filters",
     "0-items-found": "No {1} found. | One {1} found. | {0} {1} found.",
     "0-items-found-f": "No {1} found. | One {1} found. | {0} {1} found.",
     "0-items-found-searching-for": "No {1} found for \"{2}\". | One {1} found for \"{2}\". | {0} {1} found for \"{2}\".",

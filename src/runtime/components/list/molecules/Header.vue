@@ -7,6 +7,7 @@
           @open="filtersOpen = $event"
         />
         <v-spacer />
+        <ListAtomsResetButton :type="type" />
         <ListAtomsViewMenu :type="type" />
         <ListAtomsSortMenu :type="type" />
       </div>

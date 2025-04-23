@@ -30,6 +30,7 @@
   },
   "learn-more": "En savoir plus",
   "list": {
+    "reset-filters": "Réinitialiser les filtres",
     "0-items-found": "Aucun {1} trouvé. | Un seul {1} trouvé. | {0} {1} trouvés.",
     "0-items-found-f": "Aucune {1} trouvée. | Une seule {1} trouvée. | {0} {1} trouvées.",
     "0-items-found-searching-for": "Aucun {1} trouvé pour la recherche de \"{2}\". | Un seul {1} trouvé pour la recherche de \"{2}\".| {0} {1} trouvés pour la recherche de \"{2}\".",

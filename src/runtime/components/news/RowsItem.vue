@@ -107,6 +107,7 @@
         >
           <MDC :value="item.summary" />
         </div>
+        <br />
         <v-btn
           class="mt-4"
           variant="outlined"

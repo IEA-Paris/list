@@ -27,6 +27,7 @@ interface _GlobalComponents {
     'FellowshipsRowsItem': typeof import("../../src/runtime/components/fellowships/RowsItem.vue")['default']
     'FellowshipsView': typeof import("../../src/runtime/components/fellowships/View.vue")['default']
     'ListAtomsFiltersMenu': typeof import("../../src/runtime/components/list/atoms/FiltersMenu.vue")['default']
+    'ListAtomsResetButton': typeof import("../../src/runtime/components/list/atoms/ResetButton.vue")['default']
     'ListAtomsSearchInput': typeof import("../../src/runtime/components/list/atoms/SearchInput.vue")['default']
     'ListAtomsSearchItem': typeof import("../../src/runtime/components/list/atoms/SearchItem.vue")['default']
     'ListAtomsSearchString': typeof import("../../src/runtime/components/list/atoms/SearchString.vue")['default']
@@ -114,7 +115,7 @@ interface _GlobalComponents {
     'MDC': typeof import("../node_modules/@nuxtjs/mdc/dist/runtime/components/MDC.vue")['default']
     'MDCRenderer': typeof import("../node_modules/@nuxtjs/mdc/dist/runtime/components/MDCRenderer.vue")['default']
     'MDCSlot': typeof import("../node_modules/@nuxtjs/mdc/dist/runtime/components/MDCSlot.vue")['default']
-    'NuxtPage': typeof import("../node_modules/nuxt/dist/pages/runtime/page-placeholder")['default']
+    'NuxtPage': typeof import("../node_modules/nuxt/dist/pages/runtime/page")['default']
     'NoScript': typeof import("../node_modules/nuxt/dist/head/runtime/components")['NoScript']
     'Link': typeof import("../node_modules/nuxt/dist/head/runtime/components")['Link']
     'Base': typeof import("../node_modules/nuxt/dist/head/runtime/components")['Base']
@@ -141,6 +142,7 @@ interface _GlobalComponents {
     'LazyFellowshipsRowsItem': LazyComponent<typeof import("../../src/runtime/components/fellowships/RowsItem.vue")['default']>
     'LazyFellowshipsView': LazyComponent<typeof import("../../src/runtime/components/fellowships/View.vue")['default']>
     'LazyListAtomsFiltersMenu': LazyComponent<typeof import("../../src/runtime/components/list/atoms/FiltersMenu.vue")['default']>
+    'LazyListAtomsResetButton': LazyComponent<typeof import("../../src/runtime/components/list/atoms/ResetButton.vue")['default']>
     'LazyListAtomsSearchInput': LazyComponent<typeof import("../../src/runtime/components/list/atoms/SearchInput.vue")['default']>
     'LazyListAtomsSearchItem': LazyComponent<typeof import("../../src/runtime/components/list/atoms/SearchItem.vue")['default']>
     'LazyListAtomsSearchString': LazyComponent<typeof import("../../src/runtime/components/list/atoms/SearchString.vue")['default']>
@@ -228,7 +230,7 @@ interface _GlobalComponents {
     'LazyMDC': LazyComponent<typeof import("../node_modules/@nuxtjs/mdc/dist/runtime/components/MDC.vue")['default']>
     'LazyMDCRenderer': LazyComponent<typeof import("../node_modules/@nuxtjs/mdc/dist/runtime/components/MDCRenderer.vue")['default']>
     'LazyMDCSlot': LazyComponent<typeof import("../node_modules/@nuxtjs/mdc/dist/runtime/components/MDCSlot.vue")['default']>
-    'LazyNuxtPage': LazyComponent<typeof import("../node_modules/nuxt/dist/pages/runtime/page-placeholder")['default']>
+    'LazyNuxtPage': LazyComponent<typeof import("../node_modules/nuxt/dist/pages/runtime/page")['default']>
     'LazyNoScript': LazyComponent<typeof import("../node_modules/nuxt/dist/head/runtime/components")['NoScript']>
     'LazyLink': LazyComponent<typeof import("../node_modules/nuxt/dist/head/runtime/components")['Link']>
     'LazyBase': LazyComponent<typeof import("../node_modules/nuxt/dist/head/runtime/components")['Base']>
@@ -261,6 +263,7 @@ export const FellowshipsRegisterModal: typeof import("../../src/runtime/componen
 export const FellowshipsRowsItem: typeof import("../../src/runtime/components/fellowships/RowsItem.vue")['default']
 export const FellowshipsView: typeof import("../../src/runtime/components/fellowships/View.vue")['default']
 export const ListAtomsFiltersMenu: typeof import("../../src/runtime/components/list/atoms/FiltersMenu.vue")['default']
+export const ListAtomsResetButton: typeof import("../../src/runtime/components/list/atoms/ResetButton.vue")['default']
 export const ListAtomsSearchInput: typeof import("../../src/runtime/components/list/atoms/SearchInput.vue")['default']
 export const ListAtomsSearchItem: typeof import("../../src/runtime/components/list/atoms/SearchItem.vue")['default']
 export const ListAtomsSearchString: typeof import("../../src/runtime/components/list/atoms/SearchString.vue")['default']
@@ -348,7 +351,7 @@ export const SwitchLocalePathLink: typeof import("../../node_modules/@nuxtjs/i18
 export const MDC: typeof import("../node_modules/@nuxtjs/mdc/dist/runtime/components/MDC.vue")['default']
 export const MDCRenderer: typeof import("../node_modules/@nuxtjs/mdc/dist/runtime/components/MDCRenderer.vue")['default']
 export const MDCSlot: typeof import("../node_modules/@nuxtjs/mdc/dist/runtime/components/MDCSlot.vue")['default']
-export const NuxtPage: typeof import("../node_modules/nuxt/dist/pages/runtime/page-placeholder")['default']
+export const NuxtPage: typeof import("../node_modules/nuxt/dist/pages/runtime/page")['default']
 export const NoScript: typeof import("../node_modules/nuxt/dist/head/runtime/components")['NoScript']
 export const Link: typeof import("../node_modules/nuxt/dist/head/runtime/components")['Link']
 export const Base: typeof import("../node_modules/nuxt/dist/head/runtime/components")['Base']
@@ -375,6 +378,7 @@ export const LazyFellowshipsRegisterModal: LazyComponent<typeof import("../../sr
 export const LazyFellowshipsRowsItem: LazyComponent<typeof import("../../src/runtime/components/fellowships/RowsItem.vue")['default']>
 export const LazyFellowshipsView: LazyComponent<typeof import("../../src/runtime/components/fellowships/View.vue")['default']>
 export const LazyListAtomsFiltersMenu: LazyComponent<typeof import("../../src/runtime/components/list/atoms/FiltersMenu.vue")['default']>
+export const LazyListAtomsResetButton: LazyComponent<typeof import("../../src/runtime/components/list/atoms/ResetButton.vue")['default']>
 export const LazyListAtomsSearchInput: LazyComponent<typeof import("../../src/runtime/components/list/atoms/SearchInput.vue")['default']>
 export const LazyListAtomsSearchItem: LazyComponent<typeof import("../../src/runtime/components/list/atoms/SearchItem.vue")['default']>
 export const LazyListAtomsSearchString: LazyComponent<typeof import("../../src/runtime/components/list/atoms/SearchString.vue")['default']>
@@ -462,7 +466,7 @@ export const LazySwitchLocalePathLink: LazyComponent<typeof import("../../node_m
 export const LazyMDC: LazyComponent<typeof import("../node_modules/@nuxtjs/mdc/dist/runtime/components/MDC.vue")['default']>
 export const LazyMDCRenderer: LazyComponent<typeof import("../node_modules/@nuxtjs/mdc/dist/runtime/components/MDCRenderer.vue")['default']>
 export const LazyMDCSlot: LazyComponent<typeof import("../node_modules/@nuxtjs/mdc/dist/runtime/components/MDCSlot.vue")['default']>
-export const LazyNuxtPage: LazyComponent<typeof import("../node_modules/nuxt/dist/pages/runtime/page-placeholder")['default']>
+export const LazyNuxtPage: LazyComponent<typeof import("../node_modules/nuxt/dist/pages/runtime/page")['default']>
 export const LazyNoScript: LazyComponent<typeof import("../node_modules/nuxt/dist/head/runtime/components")['NoScript']>
 export const LazyLink: LazyComponent<typeof import("../node_modules/nuxt/dist/head/runtime/components")['Link']>
 export const LazyBase: LazyComponent<typeof import("../node_modules/nuxt/dist/head/runtime/components")['Base']>

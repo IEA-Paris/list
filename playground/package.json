@@ -1,9 +1,9 @@
 {
   "private": true,
-  "name": "my-module-playground",
+  "name": "@paris-ias/list-playground",
   "type": "module",
   "scripts": {
-    "dev": "nuxi dev",
+    "dev": "nuxi dev --host",
     "build": "nuxi build",
     "generate": "nuxi generate"
   },
