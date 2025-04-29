@@ -9,7 +9,12 @@
         icon
         class="ml-auto"
         v-bind="tooltip"
-        @click="rootStore.resetState(type)"
+        @click="
+          () => {
+            rootStore.resetState(type);
+            rootStore.update(type);
+          }
+        "
       >
         <v-icon>mdi-restore</v-icon>
       </v-btn>
