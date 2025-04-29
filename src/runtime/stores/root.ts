@@ -195,6 +195,8 @@ export const useRootStore = defineStore("rootStore", {
       this.total = 0;
       this.skip = 0;
       this.numberOfPages = 0;
+      this.setFiltersCount(type);
+      this.updateRouteQuery(type);
     },
     updateSort({ value, type }: { value: number[] | string[]; type: string }) {
       const { $stores } = useNuxtApp();
