@@ -1,5 +1,5 @@
 <template>
-  <v-tooltip v-if="$stores[type]?.filtersCount > 0" location="top">
+  <v-tooltip location="top">
     <template #activator="{ props: tooltip }">
       <v-btn
         x-large

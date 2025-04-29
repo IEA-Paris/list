@@ -7,7 +7,10 @@
           @open="filtersOpen = $event"
         />
         <v-spacer />
-        <ListAtomsResetButton :type="type" />
+        <ListAtomsResetButton
+          v-if="$stores[type]?.filtersCount && $stores[type]?.filtersCount > 0"
+          :type="type"
+        />
         <ListAtomsViewMenu :type="type" />
         <ListAtomsSortMenu :type="type" />
       </div>
