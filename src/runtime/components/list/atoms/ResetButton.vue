@@ -37,7 +37,6 @@ const props = defineProps({
 });
 onMounted(() => {
   console.log("store module", $stores[props.type]);
-  rootStore.loadFiltersFromLocalStorage(props.type);
 });
 </script>
 <style lang="scss"></style>
