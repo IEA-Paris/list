@@ -136,21 +136,6 @@ export const useRootStore = defineStore("rootStore", {
       }, 0);
       $stores[type].filtersCount = count;
     },
-    setBlankFilterLoad(type: string) {
-      /*  ;(this[type] as ModuleType).loading = false */
-    },
-    setDefaults() {
-      // lang
-      const lang = localStorage.getItem("lang");
-      /*    if(lang)i18n.global.locale = lang; */
-      // dark mode
-
-      // event
-      // people
-      // news
-      // project
-      // fellowships
-    },
     updateRouteQuery(type: string) {
       const router = useRouter();
       const { $stores } = useNuxtApp();
@@ -188,17 +173,8 @@ export const useRootStore = defineStore("rootStore", {
       console.log("$models[type]: ", $models[type]);
 
       const store = $stores[type];
-      if (store.filters) {
-        for (const key in store.filters) {
-          if (store.filters[key].multiple) {
-            store.filters[key].value = [];
-          } else {
-            store.filters[key].value = "";
-          }
-        }
-      }
 
-      // $stores[type] = $models[type];
+      $stores[type] = $models[type];
       console.log("resetState");
       this.search = "";
       this.page = 1;
@@ -287,13 +263,13 @@ export const useRootStore = defineStore("rootStore", {
     },
 
     async update(type: string, lang: string = "en") {
-      const { $stores } = useNuxtApp();
+      const { $stores, $queries } = useNuxtApp();
+
       this.setLoading(true);
+
       if (type !== "all") {
         $stores[type].loading = true;
       }
-
-      // fetch the item categories
 
       const itemsPerPage =
         type === "all" ? 3 : ($stores[type]?.itemsPerPage as number);
@@ -338,12 +314,11 @@ export const useRootStore = defineStore("rootStore", {
       console.log("args: ", args);
 
       console.log(`Fetching ${type}`);
-      const { $queries } = useNuxtApp();
       const { data, error } = await useAsyncQuery(
         type === "all" ? SEARCH : $queries[type].list,
         args
       );
-      /*    console.log("data: ", data) */
+      console.log("data: ", data);
       if (error.value) console.log(error.value);
       const key =
         type === "all"
@@ -367,7 +342,6 @@ export const useRootStore = defineStore("rootStore", {
         const lastPage = Math.ceil(result.total / itemsPerPage);
         /*         this.updateRouteQuery(type) */
         this.setFiltersCount(type);
-        this.setBlankFilterLoad(type);
         /*       console.log("type2: ", type) */
         $stores[type].numberOfPages = lastPage;
       }

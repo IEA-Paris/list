@@ -94,4 +94,7 @@ try {
 } catch (error) {
   console.log("error fetching update list: ", error);
 }
+onBeforeUnmount(() => {
+  rootStore.resetState(props.type);
+});
 </script>

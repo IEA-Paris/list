@@ -1,7 +1,7 @@
 {
   "license": "AGPL-3.0-only",
   "main": "./dist/module.mjs",
-  "version": "1.0.66",
+  "version": "1.0.68",
   "name": "@paris-ias/list",
   "repository": {
     "url": "git+https://github.com/IEA-Paris/list.git",
@@ -23,7 +23,7 @@
     "@nuxtjs/apollo": "^5.0.0-alpha.14",
     "@nuxtjs/i18n": "^9.5.2",
     "@nuxtjs/mdc": "0.16.1",
-    "@paris-ias/data": "^1.8.0",
+    "@paris-ias/data": "^1.8.3",
     "@pinia/nuxt": "^0.10.1",
     "@types/node": "latest",
     "@urql/exchange-execute": "2.3.1",
