@@ -1,0 +1,9 @@
+query getTag($itemId: ID = "", $appId: ID = "iea", $lang: String = "en") {
+  getTag(itemId: $itemId, appId: $appId, lang: $lang) {
+    createdAt
+    description
+    icon
+    name
+    updatedAt
+  }
+}
