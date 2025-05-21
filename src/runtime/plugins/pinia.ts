@@ -54,6 +54,51 @@ export default defineNuxtPlugin(async (nuxtApp) => {
       },
     }),
 
+    actions: () => ({
+      model: import("@paris-ias/data/dist/list/action.js"),
+      queries: {
+        list: import("../graphql/list/action.gql"),
+        get: import("../graphql/item/action.gql"),
+      },
+    }),
+
+    affiliations: () => ({
+      model: import("@paris-ias/data/dist/list/affiliations.js"),
+      queries: {
+        list: import("../graphql/list/affiliations.gql"),
+        get: import("../graphql/item/affiliations.gql"),
+      },
+    }),
+    disciplines: () => ({
+      model: import("@paris-ias/data/dist/list/disciplines.js"),
+      queries: {
+        list: import("../graphql/list/disciplines.gql"),
+        get: import("../graphql/item/disciplines.gql"),
+      },
+    }),
+    files: () => ({
+      model: import("@paris-ias/data/dist/list/files.js"),
+      queries: {
+        list: import("../graphql/list/files.gql"),
+        get: import("../graphql/item/files.gql"),
+      },
+    }),
+
+    mailing: () => ({
+      model: import("@paris-ias/data/dist/list/mailing.js"),
+      queries: {
+        list: import("../graphql/list/mailing.gql"),
+        get: import("../graphql/item/mailing.gql"),
+      },
+    }),
+
+    tags: () => ({
+      model: import("@paris-ias/data/dist/list/tags.js"),
+      queries: {
+        list: import("../graphql/list/tags.gql"),
+        get: import("../graphql/item/tags.gql"),
+      },
+    }),
     // Add other modules similarly...
   };
 
