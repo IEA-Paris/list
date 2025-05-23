@@ -25,6 +25,12 @@ export const useRootStore = defineStore("rootStore", {
       projects: {},
       fellowships: {},
       publications: {},
+      actions: {},
+      affiliations: {},
+      disciplines: {},
+      files: {},
+      mailing: {},
+      tags: {},
     },
   }),
 
