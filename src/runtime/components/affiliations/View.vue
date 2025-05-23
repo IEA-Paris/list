@@ -18,5 +18,5 @@ defineProps({
   },
 });
 
-$stores.actions.loading = false;
+$stores.affiliations.loading = false;
 </script>
