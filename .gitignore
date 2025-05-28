@@ -1,7 +1,10 @@
 # Dependencies
 node_modules
-playground/.nuxt/*
+./playground/.nuxt/*
+./playground/.output/*
+./playground/node_modules/*
 
+.nuxt
 # Logs
 *.log*
 
