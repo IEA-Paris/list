@@ -3,58 +3,58 @@
   "compilerOptions": {
     "paths": {
       "nitropack/types": [
-        "../node_modules/nitropack/types"
+        "../../node_modules/nitropack/types"
       ],
       "nitropack/runtime": [
-        "../node_modules/nitropack/runtime"
+        "../../node_modules/nitropack/runtime"
       ],
       "nitropack": [
-        "../node_modules/nitropack"
+        "../../node_modules/nitropack"
       ],
       "defu": [
-        "../node_modules/defu"
+        "../../node_modules/defu"
       ],
       "h3": [
-        "../node_modules/h3"
+        "../../node_modules/h3"
       ],
       "consola": [
-        "../node_modules/consola"
+        "../../node_modules/consola"
       ],
       "ofetch": [
-        "../node_modules/ofetch"
+        "../../node_modules/ofetch"
       ],
       "@unhead/vue": [
-        "../node_modules/@unhead/vue"
+        "../../node_modules/@unhead/vue"
       ],
       "@nuxt/devtools": [
-        "../node_modules/@nuxt/devtools"
+        "../../node_modules/@nuxt/devtools"
       ],
       "vue": [
-        "../node_modules/vue"
+        "../../node_modules/vue"
       ],
       "@vue/runtime-core": [
-        "../node_modules/@vue/runtime-core"
+        "../../node_modules/@vue/runtime-core"
       ],
       "@vue/compiler-sfc": [
-        "../node_modules/@vue/compiler-sfc"
+        "../../node_modules/@vue/compiler-sfc"
       ],
       "vue-router": [
-        "../node_modules/vue-router"
+        "../../node_modules/vue-router"
       ],
       "vue-router/auto-routes": [
-        "../node_modules/vue-router/vue-router-auto-routes"
+        "../../node_modules/vue-router/vue-router-auto-routes"
       ],
       "unplugin-vue-router/client": [
-        "../node_modules/unplugin-vue-router/client"
+        "../../node_modules/unplugin-vue-router/client"
       ],
       "@nuxt/schema": [
-        "../node_modules/@nuxt/schema"
+        "../../node_modules/@nuxt/schema"
       ],
       "nuxt": [
-        "../node_modules/nuxt"
+        "../../node_modules/nuxt"
       ],
       "vite/client": [
-        "../node_modules/vite/client"
+        "../../node_modules/vite/client"
       ],
       "~": [
         ".."
@@ -90,13 +90,13 @@
         "../public"
       ],
       "#app": [
-        "../node_modules/nuxt/dist/app"
+        "../../node_modules/nuxt/dist/app"
       ],
       "#app/*": [
-        "../node_modules/nuxt/dist/app/*"
+        "../../node_modules/nuxt/dist/app/*"
       ],
       "vue-demi": [
-        "../node_modules/nuxt/dist/app/compat/vue-demi"
+        "../../node_modules/nuxt/dist/app/compat/vue-demi"
       ],
       "#image": [
         "../../node_modules/@nuxt/image/dist/runtime"
@@ -106,6 +106,9 @@
       ],
       "#apollo": [
         "./apollo"
+      ],
+      "pinia": [
+        "../../node_modules/@pinia/nuxt/node_modules/pinia/dist/pinia"
       ],
       "#mdc-configs": [
         "./mdc-configs"
@@ -117,10 +120,10 @@
         "./mdc-imports"
       ],
       "#vue-router": [
-        "../node_modules/vue-router"
+        "../../node_modules/vue-router"
       ],
       "#unhead/composables": [
-        "../node_modules/nuxt/dist/head/runtime/composables/v3"
+        "../../node_modules/nuxt/dist/head/runtime/composables/v3"
       ],
       "#imports": [
         "./imports"
@@ -144,7 +147,7 @@
         "../../node_modules/@intlify/utils/dist/h3"
       ],
       "ufo": [
-        "../node_modules/ufo/dist/index"
+        "../../node_modules/ufo/dist/index"
       ],
       "#i18n": [
         "../../node_modules/@nuxtjs/i18n/dist/runtime/composables/index"
@@ -210,21 +213,27 @@
     "../../node_modules/@nuxtjs/apollo/dist/runtime",
     "../../node_modules/@pinia/nuxt/runtime",
     "../../node_modules/@pinia/nuxt/dist/runtime",
-    "../node_modules/@nuxtjs/mdc/runtime",
-    "../node_modules/@nuxtjs/mdc/dist/runtime",
-    "../../../../Pr/runtime",
-    "../../../../Pr/dist/runtime",
-    "../node_modules/@nuxt/devtools/runtime",
-    "../node_modules/@nuxt/devtools/dist/runtime",
-    "../node_modules/@nuxt/telemetry/runtime",
-    "../node_modules/@nuxt/telemetry/dist/runtime",
+    "../../node_modules/@nuxtjs/mdc/runtime",
+    "../../node_modules/@nuxtjs/mdc/dist/runtime",
+    "../../../../../../hbo/runtime",
+    "../../../../../../hbo/dist/runtime",
+    "../../node_modules/@nuxt/devtools/runtime",
+    "../../node_modules/@nuxt/devtools/dist/runtime",
+    "../../node_modules/@nuxt/telemetry/runtime",
+    "../../node_modules/@nuxt/telemetry/dist/runtime",
     "..",
+    "../../node_modules/nuxt/dist/app",
+    "../../node_modules/nuxt/dist/app/compat/vue-demi",
+    "../../node_modules/@pinia/nuxt/node_modules/pinia/dist/pinia",
+    "../../node_modules/vue-router/dist/vue-router.node",
+    "../../node_modules/nuxt/dist/head/runtime/composables/v3",
     "../../node_modules/vue-i18n/dist/vue-i18n",
     "../../node_modules/@intlify/shared/dist/shared",
     "../../node_modules/@intlify/message-compiler/dist/message-compiler",
     "../../node_modules/@intlify/core-base/dist/core-base",
     "../../node_modules/@intlify/core/dist/core.node",
     "../../node_modules/@intlify/utils/dist/h3",
+    "../../node_modules/ufo/dist/index",
     "../../node_modules/@nuxtjs/i18n/dist/runtime/composables/index",
     "../../node_modules/@nuxtjs/i18n/dist/types"
   ],
@@ -232,16 +241,16 @@
     "../dist",
     "../node_modules",
     "../../node_modules",
-    "../node_modules/nuxt/node_modules",
+    "../../node_modules/nuxt/node_modules",
     "../../node_modules/@nuxt/eslint/node_modules",
     "../../node_modules/@nuxt/image/node_modules",
     "../../node_modules/@nuxtjs/i18n/node_modules",
     "../../node_modules/@nuxtjs/apollo/node_modules",
     "../../node_modules/@pinia/nuxt/node_modules",
-    "../node_modules/@nuxtjs/mdc/node_modules",
+    "../../node_modules/@nuxtjs/mdc/node_modules",
     "../../src/node_modules",
-    "../node_modules/@nuxt/devtools/node_modules",
-    "../node_modules/@nuxt/telemetry/node_modules",
+    "../../node_modules/@nuxt/devtools/node_modules",
+    "../../node_modules/@nuxt/telemetry/node_modules",
     "../../node_modules/@nuxt/eslint/runtime/server",
     "../../node_modules/@nuxt/eslint/dist/runtime/server",
     "../../node_modules/@nuxt/image/runtime/server",
@@ -252,14 +261,14 @@
     "../../node_modules/@nuxtjs/apollo/dist/runtime/server",
     "../../node_modules/@pinia/nuxt/runtime/server",
     "../../node_modules/@pinia/nuxt/dist/runtime/server",
-    "../node_modules/@nuxtjs/mdc/runtime/server",
-    "../node_modules/@nuxtjs/mdc/dist/runtime/server",
-    "../../../../Pr/runtime/server",
-    "../../../../Pr/dist/runtime/server",
-    "../node_modules/@nuxt/devtools/runtime/server",
-    "../node_modules/@nuxt/devtools/dist/runtime/server",
-    "../node_modules/@nuxt/telemetry/runtime/server",
-    "../node_modules/@nuxt/telemetry/dist/runtime/server",
+    "../../node_modules/@nuxtjs/mdc/runtime/server",
+    "../../node_modules/@nuxtjs/mdc/dist/runtime/server",
+    "../../../../../../hbo/runtime/server",
+    "../../../../../../hbo/dist/runtime/server",
+    "../../node_modules/@nuxt/devtools/runtime/server",
+    "../../node_modules/@nuxt/devtools/dist/runtime/server",
+    "../../node_modules/@nuxt/telemetry/runtime/server",
+    "../../node_modules/@nuxt/telemetry/dist/runtime/server",
     "../.output"
   ]
 }

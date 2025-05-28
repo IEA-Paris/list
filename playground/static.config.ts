@@ -12,11 +12,12 @@ export default {
   description: "Paris Institute for Advanced Study",
   splash_title: "Paris Institute for Advanced Study",
   recaptcha: "6Lc_xuUUAAAAALwowUq0cC0wFtFnZ2NCi3UH4i1j", // TODO: rm -> fetch from GPG secrets / SSM
-  graphqlEndpoint: 'https://svrk22xx3zforcytbifrudb4k4.appsync-api.eu-west-2.amazonaws.com/graphql',
-  graphqlApiKey: 'da2-2g3v2byhujc6xbv6ranaxb37wu',
+  graphqlEndpoint:
+    "https://svrk22xx3zforcytbifrudb4k4.appsync-api.eu-west-2.amazonaws.com/graphql",
+  graphqlApiKey: "da2-2g3v2byhujc6xbv6ranaxb37wu",
   keywords: "open source, open science, science, vuejs, nuxt, vuetify, vuex",
   logo: {
-    light :"/logo.png",
+    light: "/logo.png",
     dark: "/logo_white.png",
   },
   titleSeparator: " | ",
@@ -209,4 +210,4 @@ export default {
       "Institut-d%C3%A9tudes-avanc%C3%A9es-de-Paris-IEA-de-Paris/277065215652486",
     rss: "https://paris-iea.fr/en/rss.xml",
   },
-}
+};

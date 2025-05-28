@@ -1,10 +1,10 @@
 <template>
   <div>
-    <ListOrganismsList type="events" />
-    <ListOrganismsList type="people" />
+    <!-- <ListOrganismsList type="events" />
+    <ListOrganismsList type="people" /> -->
     <ListOrganismsList type="news" />
-    <ListOrganismsList type="publications" />
+    <!-- <ListOrganismsList type="publications" />
     <ListOrganismsList type="projects" />
-    <ListOrganismsList type="fellowships" />
+    <ListOrganismsList type="fellowships" /> -->
   </div>
 </template>
