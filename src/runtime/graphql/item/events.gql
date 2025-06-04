@@ -1,5 +1,5 @@
 query getEvent($appId: ID = "iea", $itemId: ID = "", $lang: String = "en") {
-  getEvent(itemId: $itemId, appId: $appId, lang: $lang) {
+  getEvent(appId: $appId, itemId: $itemId, lang: $lang) {
     appId
     availableSlots
     bookingState

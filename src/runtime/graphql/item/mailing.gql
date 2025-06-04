@@ -1,9 +1,10 @@
-query getMailing($itemId: ID = "", $appId: ID = "iea", $lang: String = "en") {
-  getMailing(itemId: $itemId, appId: $appId, lang: $lang) {
+query getMailing($appId: ID = "iea", $itemId: ID = "", $lang: String = "en") {
+  getMailing(appId: $appId, itemId: $itemId, lang: $lang) {
     createdAt
     date
     description
     name
     updatedAt
+    slug
   }
 }

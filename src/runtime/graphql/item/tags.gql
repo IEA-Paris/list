@@ -1,9 +1,13 @@
-query getTag($itemId: ID = "", $appId: ID = "iea", $lang: String = "en") {
-  getTag(itemId: $itemId, appId: $appId, lang: $lang) {
+query getTag($appId: ID = "iea", $itemId: ID = "", $lang: String = "en") {
+  getTag(appId: $appId, itemId: $itemId, lang: $lang) {
     createdAt
     description
     icon
     name
     updatedAt
+    slug {
+      fr
+      en
+    }
   }
 }

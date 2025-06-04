@@ -1,9 +1,9 @@
 query getAffiliation(
-  $itemId: ID = ""
   $appId: ID = "iea"
+  $itemId: ID = ""
   $lang: String = "en"
 ) {
-  getAffiliation(itemId: $itemId, appId: $appId, lang: $lang) {
+  getAffiliation(appId: $appId, itemId: $itemId, lang: $lang) {
     image {
       alt
       backgroundColor
@@ -29,5 +29,9 @@ query getAffiliation(
     name
     ror
     url
+    slug {
+      fr
+      en
+    }
   }
 }
