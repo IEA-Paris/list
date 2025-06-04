@@ -1036,7 +1036,15 @@ const appConfig0 = defineAppConfig({
       "people",
       "projects",
       "fellowships",
-      "publications"
+      "publications",
+      "actions",
+      "disciplines",
+      "apps",
+      "affiliations",
+      "files",
+      "mailing",
+      "tags",
+      "users"
     ]
   }
 });
@@ -1134,7 +1142,15 @@ const _inlineRuntimeConfig = {
         "people",
         "projects",
         "fellowships",
-        "publications"
+        "publications",
+        "actions",
+        "disciplines",
+        "apps",
+        "affiliations",
+        "files",
+        "mailing",
+        "tags",
+        "users"
       ]
     },
     "i18n": {

@@ -1,4 +1,4 @@
-import staticConfiguration from "./static.config"
+import staticConfiguration from "./static.config";
 
 export default defineAppConfig({
   ...staticConfiguration,
@@ -16,6 +16,14 @@ export default defineAppConfig({
       "projects",
       "fellowships",
       "publications",
+      "actions",
+      "disciplines",
+      "apps",
+      "affiliations",
+      "files",
+      "mailing",
+      "tags",
+      "users",
     ],
   },
-})
+});
