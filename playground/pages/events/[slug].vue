@@ -1,17 +1,19 @@
 <template>
-  <v-container> <NewsView :item="news" :loading /></v-container>
+  <v-container>
+    <EventsView :item="tag" :loading="loading"></EventsView
+  ></v-container>
 </template>
 
 <script setup>
 const { $queries } = useNuxtApp();
+
 const { fetchItem } = useFetchItem();
 const loading = ref(true);
-
 // Fetch the item
-const { data: news } = await useAsyncData("item", async () => {
+const { data: tag } = await useAsyncData("item", async () => {
   return await fetchItem({
-    query: $queries.news.get,
-    key: "getNews",
+    query: $queries.events.get,
+    key: "getEvent",
   });
 });
 loading.value = false;

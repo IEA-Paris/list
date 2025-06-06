@@ -1,5 +1,5 @@
-query getAction($itemId: ID = "", $lang: String = "en", $appId: ID = "iea") {
-  getAction(itemId: $itemId, appId: $appId, lang: $lang) {
+query getAction($appId: ID = "iea", $itemId: ID = "", $lang: String = "en") {
+  getAction(appId: $appId, itemId: $itemId, lang: $lang) {
     color
     image {
       alt
@@ -14,5 +14,9 @@ query getAction($itemId: ID = "", $lang: String = "en", $appId: ID = "iea") {
     name
     slots
     video
+    slug {
+      fr
+      en
+    }
   }
 }
