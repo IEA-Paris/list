@@ -90,10 +90,10 @@ export default defineNuxtModule<ModuleOptions>({
       ...(nuxt.options.build.transpile || []),
       "vuetify",
     ];
-    nuxt.options.css = [
+    /*     nuxt.options.css = [
       ...(nuxt.options.css || []),
-      /*  "vuetify/lib/styles/main.sass", */
-    ];
+      /*  "vuetify/lib/styles/main.sass", 
+    ]; */
 
     nuxt.options.apollo = {
       ...nuxt.options.apollo,
