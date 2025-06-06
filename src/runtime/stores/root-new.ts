@@ -1,1 +1,0 @@
-Antonio de Francecso, "1814. Der Untergang des Königsreichs Italien", dans Annali dell'Istituto storico italo-germanico in Trento, n° 40, 2014/2**.**
