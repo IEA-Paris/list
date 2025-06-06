@@ -9,7 +9,8 @@
   },
   "dependencies": {
     "@nuxt/kit": "^3.16.2",
-    "@vue/apollo-composable": "^4.2.2"
+    "@vue/apollo-composable": "^4.2.2",
+    "vuetify": "3.8.0"
   },
   "description": "Paris IAS List Module",
   "devDependencies": {
@@ -38,8 +39,7 @@
     "vite-plugin-graphql-loader": "^4.0.4",
     "vitest": "^3.1.1",
     "vue": "^3.5.13",
-    "vue-tsc": "^2.2.8",
-    "vuetify": "3.8.0"
+    "vue-tsc": "^2.2.8"
   },
   "exports": {
     ".": {

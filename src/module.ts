@@ -92,7 +92,7 @@ export default defineNuxtModule<ModuleOptions>({
     ];
     nuxt.options.css = [
       ...(nuxt.options.css || []),
-      "vuetify/lib/styles/main.sass",
+      /*  "vuetify/lib/styles/main.sass", */
     ];
 
     nuxt.options.apollo = {

@@ -58,7 +58,7 @@
         </div>
 
         <div
-          v-if="renderedDescription && mdAndUp"
+          v-if="item.description && mdAndUp"
           class="mt-md-n2 mx-4 mx-sm-8 mx-md-0 d-flex text-wrap text-h6 text-black mt-3"
         >
           <MDC v-if="item.description" :value="item.description" class="" />
