@@ -335,7 +335,7 @@ export const useRootStore = defineStore("rootStore", {
         this.results = data?.value?.[key];
       } else {
         const items = data?.value?.[key]?.items ?? [];
-        this.total = data?.value?.[key]?.total;
+        $stores[type].total = data?.value?.[key]?.total;
         result = {
           ...data?.value?.[key],
           items: items.map(({ id, ...rest }) => ({

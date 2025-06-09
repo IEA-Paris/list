@@ -10,25 +10,25 @@ export const localeCodes =  [
 export const localeLoaders = {
   fr: [
     {
-      key: "locale_fr_46json_bfdd20ee",
-      load: () => import("#nuxt-i18n/bfdd20ee" /* webpackChunkName: "locale_fr_46json_bfdd20ee" */),
+      key: "locale_fr_46json_768be560",
+      load: () => import("#nuxt-i18n/768be560" /* webpackChunkName: "locale_fr_46json_768be560" */),
       cache: true
     },
     {
-      key: "locale_fr_46json_09dacf0c",
-      load: () => import("#nuxt-i18n/09dacf0c" /* webpackChunkName: "locale_fr_46json_09dacf0c" */),
+      key: "locale_fr_46json_c4616558",
+      load: () => import("#nuxt-i18n/c4616558" /* webpackChunkName: "locale_fr_46json_c4616558" */),
       cache: true
     }
   ],
   en: [
     {
-      key: "locale_en_46json_3db94579",
-      load: () => import("#nuxt-i18n/3db94579" /* webpackChunkName: "locale_en_46json_3db94579" */),
+      key: "locale_en_46json_febb77f5",
+      load: () => import("#nuxt-i18n/febb77f5" /* webpackChunkName: "locale_en_46json_febb77f5" */),
       cache: true
     },
     {
-      key: "locale_en_46json_1d5ba820",
-      load: () => import("#nuxt-i18n/1d5ba820" /* webpackChunkName: "locale_en_46json_1d5ba820" */),
+      key: "locale_en_46json_fe7860fc",
+      load: () => import("#nuxt-i18n/fe7860fc" /* webpackChunkName: "locale_en_46json_fe7860fc" */),
       cache: true
     }
   ]
@@ -71,11 +71,11 @@ export const nuxtI18nOptions = {
       dir: "ltr",
       files: [
         {
-          path: "C:/Users/hbouare/Desktop/project/list/src/runtime/translations/fr.json",
+          path: "/home/bob/Projects/list/src/runtime/translations/fr.json",
           cache: undefined
         },
         {
-          path: "C:/Users/hbouare/Desktop/project/list/playground/translations/fr.json",
+          path: "/home/bob/Projects/list/playground/translations/fr.json",
           cache: undefined
         }
       ]
@@ -88,11 +88,11 @@ export const nuxtI18nOptions = {
       isCatchallLocale: true,
       files: [
         {
-          path: "C:/Users/hbouare/Desktop/project/list/src/runtime/translations/en.json",
+          path: "/home/bob/Projects/list/src/runtime/translations/en.json",
           cache: undefined
         },
         {
-          path: "C:/Users/hbouare/Desktop/project/list/playground/translations/en.json",
+          path: "/home/bob/Projects/list/playground/translations/en.json",
           cache: undefined
         }
       ]
@@ -128,7 +128,7 @@ export const nuxtI18nOptions = {
   multiDomainLocales: false,
   i18nModules: [
     {
-      langDir: "C:/Users/hbouare/Desktop/project/list/src/runtime/translations",
+      langDir: "/home/bob/Projects/list/src/runtime/translations",
       locales: [
         {
           code: "en"
@@ -149,11 +149,11 @@ export const normalizedLocales = [
     dir: "ltr",
     files: [
       {
-        path: "C:/Users/hbouare/Desktop/project/list/src/runtime/translations/fr.json",
+        path: "/home/bob/Projects/list/src/runtime/translations/fr.json",
         cache: undefined
       },
       {
-        path: "C:/Users/hbouare/Desktop/project/list/playground/translations/fr.json",
+        path: "/home/bob/Projects/list/playground/translations/fr.json",
         cache: undefined
       }
     ]
@@ -166,11 +166,11 @@ export const normalizedLocales = [
     isCatchallLocale: true,
     files: [
       {
-        path: "C:/Users/hbouare/Desktop/project/list/src/runtime/translations/en.json",
+        path: "/home/bob/Projects/list/src/runtime/translations/en.json",
         cache: undefined
       },
       {
-        path: "C:/Users/hbouare/Desktop/project/list/playground/translations/en.json",
+        path: "/home/bob/Projects/list/playground/translations/en.json",
         cache: undefined
       }
     ]

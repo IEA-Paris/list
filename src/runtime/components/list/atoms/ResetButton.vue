@@ -23,7 +23,7 @@
   </v-tooltip>
 </template>
 <script setup>
-import { useNuxtApp, onMounted } from "#imports";
+import { useNuxtApp, onMounted, computed } from "#imports";
 import { useRootStore } from "../../../stores/root";
 const { $stores } = useNuxtApp();
 const rootStore = useRootStore();
@@ -34,9 +34,6 @@ const props = defineProps({
     default: "articles",
     required: true,
   },
-});
-onMounted(() => {
-  console.log("store module", $stores[props.type]);
 });
 </script>
 <style lang="scss"></style>

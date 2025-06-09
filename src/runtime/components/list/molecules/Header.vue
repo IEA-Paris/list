@@ -3,14 +3,11 @@
     <v-col cols="12">
       <div class="d-flex">
         <ListAtomsFiltersMenu
-          :open="filtersOpen"
+          :open="filtersOpen || visible"
           @open="filtersOpen = $event"
         />
         <v-spacer />
-        <ListAtomsResetButton
-          v-if="$stores[type]?.filtersCount && $stores[type]?.filtersCount > 0"
-          :type="type"
-        />
+        <ListAtomsResetButton v-if="visible" :type="type" />
         <ListAtomsViewMenu :type="type" />
         <ListAtomsSortMenu :type="type" />
       </div>
@@ -28,12 +25,10 @@
 <script setup>
 import { ref } from "vue";
 
-import { useRoute } from "#imports";
-
-const route = useRoute();
-
-const filtersOpen = ref(!!Object.keys(route.query)?.length);
-
+const filtersOpen = ref(false);
+const visible = computed(() => {
+  return $stores[type]?.filtersCount && $stores[type]?.filtersCount > 0;
+});
 const props = defineProps({
   type: {
     type: String,
