@@ -24,10 +24,14 @@
 
 <script setup>
 import { ref, computed } from "vue";
+import { useNuxtApp } from "#imports";
+const { $stores } = useNuxtApp();
 
 const filtersOpen = ref(false);
 const visible = computed(() => {
-  return $stores[type]?.filtersCount && $stores[type]?.filtersCount > 0;
+  return (
+    $stores[props.type]?.filtersCount && $stores[props.type]?.filtersCount > 0
+  );
 });
 const props = defineProps({
   type: {
