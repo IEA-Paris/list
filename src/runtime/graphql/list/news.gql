@@ -16,6 +16,7 @@ query listNews(
       date
       description
       featured
+      summary
       image {
         alt
         backgroundColor
