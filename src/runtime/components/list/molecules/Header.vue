@@ -23,7 +23,7 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, computed } from "vue";
 
 const filtersOpen = ref(false);
 const visible = computed(() => {
