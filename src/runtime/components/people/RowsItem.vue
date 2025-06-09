@@ -53,11 +53,15 @@
         <MiscAtomsSocials v-if="item.socials" :socials="item.socials" />
         <PeopleGroupBadges :item="item" />
         <div
-          v-if="item.biography"
+          v-if="item.summary && item.summary.length > 0"
           class="text-wrap clamped-text text-black"
           :style="'-webkit-line-clamp:' + lineClamp"
         >
-          <MDC :value="item.biography" />
+          <MDC :value="item.summary" />
+        </div>
+
+        <div v-else class="text-body-2">
+          {{ $t("no-biography") }}
         </div>
       </div>
     </v-col>

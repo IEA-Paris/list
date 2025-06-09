@@ -336,5 +336,6 @@
   "groups": "Catégorie",
   "present": "aujourd'hui",
   "visit-this-project-website": "Visitez le site Web du projet",
-  "visit-this-publications-website": "Visitez la page Web de cette publication"
+  "visit-this-publications-website": "Visitez la page Web de cette publication",
+  "no-biography": "Aucune biographie disponible"
 }

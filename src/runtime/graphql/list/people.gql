@@ -9,6 +9,7 @@ query listPeople(
       slug
       biography
       firstname
+      summary
       groups {
         board
         fellows

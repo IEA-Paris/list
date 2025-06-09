@@ -84,7 +84,13 @@
         "
       />
       <template v-else class="my-6 flex-wrap">
-        <MDC v-if="item.biography" :value="item.biography" />
+        <MDC
+          v-if="item.biography && item.biography.length > 0"
+          :value="item.biography"
+        />
+        <div v-else class="text-body-2">
+          {{ $t("no-biography") }}
+        </div>
       </template>
 
       <!-- DIVIDERS -->
