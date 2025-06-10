@@ -233,7 +233,7 @@ export const useRootStore = defineStore("rootStore", {
       router.replace({ query: routeQuery });
     },
 
-    resetState(type: string): void {
+    resetState(type: string, lang: string): void {
       const { $stores, $models } = useNuxtApp() as NuxtAppExtended;
       console.log("$models[type]: ", $models[type]);
 
@@ -251,6 +251,7 @@ export const useRootStore = defineStore("rootStore", {
       this.numberOfPages = 0;
       this.setFiltersCount(type);
       this.updateRouteQuery(type);
+      this.update(type, lang);
     },
 
     updateSort({
