@@ -12,7 +12,8 @@ type HydrationStrategies = {
 }
 type LazyComponent<T> = (T & DefineComponent<HydrationStrategies, {}, {}, {}, {}, {}, {}, { hydrated: () => void }>)
 interface _GlobalComponents {
-      'ActionsExpandedItem': typeof import("../../src/runtime/components/actions/ExpandedItem.vue")['default']
+      'Footer': typeof import("../components/Footer.vue")['default']
+    'ActionsExpandedItem': typeof import("../../src/runtime/components/actions/ExpandedItem.vue")['default']
     'ActionsRowsItem': typeof import("../../src/runtime/components/actions/RowsItem.vue")['default']
     'ActionsView': typeof import("../../src/runtime/components/actions/View.vue")['default']
     'AffiliationsExpandedItem': typeof import("../../src/runtime/components/affiliations/ExpandedItem.vue")['default']
@@ -28,7 +29,6 @@ interface _GlobalComponents {
     'EventsRegisterModal': typeof import("../../src/runtime/components/events/RegisterModal.vue")['default']
     'EventsRelatedItem': typeof import("../../src/runtime/components/events/RelatedItem.vue")['default']
     'EventsRowsItem': typeof import("../../src/runtime/components/events/RowsItem.vue")['default']
-    'EventsSlidingItem': typeof import("../../src/runtime/components/events/SlidingItem.vue")['default']
     'EventsView': typeof import("../../src/runtime/components/events/View.vue")['default']
     'FellowshipsBadges': typeof import("../../src/runtime/components/fellowships/Badges.vue")['default']
     'FellowshipsDenseItem': typeof import("../../src/runtime/components/fellowships/DenseItem.vue")['default']
@@ -147,7 +147,8 @@ interface _GlobalComponents {
     'Body': typeof import("../node_modules/nuxt/dist/head/runtime/components")['Body']
     'NuxtIsland': typeof import("../node_modules/nuxt/dist/app/components/nuxt-island")['default']
     'NuxtRouteAnnouncer': IslandComponent<typeof import("../node_modules/nuxt/dist/app/components/server-placeholder")['default']>
-      'LazyActionsExpandedItem': LazyComponent<typeof import("../../src/runtime/components/actions/ExpandedItem.vue")['default']>
+      'LazyFooter': LazyComponent<typeof import("../components/Footer.vue")['default']>
+    'LazyActionsExpandedItem': LazyComponent<typeof import("../../src/runtime/components/actions/ExpandedItem.vue")['default']>
     'LazyActionsRowsItem': LazyComponent<typeof import("../../src/runtime/components/actions/RowsItem.vue")['default']>
     'LazyActionsView': LazyComponent<typeof import("../../src/runtime/components/actions/View.vue")['default']>
     'LazyAffiliationsExpandedItem': LazyComponent<typeof import("../../src/runtime/components/affiliations/ExpandedItem.vue")['default']>
@@ -163,7 +164,6 @@ interface _GlobalComponents {
     'LazyEventsRegisterModal': LazyComponent<typeof import("../../src/runtime/components/events/RegisterModal.vue")['default']>
     'LazyEventsRelatedItem': LazyComponent<typeof import("../../src/runtime/components/events/RelatedItem.vue")['default']>
     'LazyEventsRowsItem': LazyComponent<typeof import("../../src/runtime/components/events/RowsItem.vue")['default']>
-    'LazyEventsSlidingItem': LazyComponent<typeof import("../../src/runtime/components/events/SlidingItem.vue")['default']>
     'LazyEventsView': LazyComponent<typeof import("../../src/runtime/components/events/View.vue")['default']>
     'LazyFellowshipsBadges': LazyComponent<typeof import("../../src/runtime/components/fellowships/Badges.vue")['default']>
     'LazyFellowshipsDenseItem': LazyComponent<typeof import("../../src/runtime/components/fellowships/DenseItem.vue")['default']>
@@ -288,6 +288,7 @@ declare module 'vue' {
   export interface GlobalComponents extends _GlobalComponents { }
 }
 
+export const Footer: typeof import("../components/Footer.vue")['default']
 export const ActionsExpandedItem: typeof import("../../src/runtime/components/actions/ExpandedItem.vue")['default']
 export const ActionsRowsItem: typeof import("../../src/runtime/components/actions/RowsItem.vue")['default']
 export const ActionsView: typeof import("../../src/runtime/components/actions/View.vue")['default']
@@ -304,7 +305,6 @@ export const EventsExpandedItem: typeof import("../../src/runtime/components/eve
 export const EventsRegisterModal: typeof import("../../src/runtime/components/events/RegisterModal.vue")['default']
 export const EventsRelatedItem: typeof import("../../src/runtime/components/events/RelatedItem.vue")['default']
 export const EventsRowsItem: typeof import("../../src/runtime/components/events/RowsItem.vue")['default']
-export const EventsSlidingItem: typeof import("../../src/runtime/components/events/SlidingItem.vue")['default']
 export const EventsView: typeof import("../../src/runtime/components/events/View.vue")['default']
 export const FellowshipsBadges: typeof import("../../src/runtime/components/fellowships/Badges.vue")['default']
 export const FellowshipsDenseItem: typeof import("../../src/runtime/components/fellowships/DenseItem.vue")['default']
@@ -423,6 +423,7 @@ export const Html: typeof import("../node_modules/nuxt/dist/head/runtime/compone
 export const Body: typeof import("../node_modules/nuxt/dist/head/runtime/components")['Body']
 export const NuxtIsland: typeof import("../node_modules/nuxt/dist/app/components/nuxt-island")['default']
 export const NuxtRouteAnnouncer: IslandComponent<typeof import("../node_modules/nuxt/dist/app/components/server-placeholder")['default']>
+export const LazyFooter: LazyComponent<typeof import("../components/Footer.vue")['default']>
 export const LazyActionsExpandedItem: LazyComponent<typeof import("../../src/runtime/components/actions/ExpandedItem.vue")['default']>
 export const LazyActionsRowsItem: LazyComponent<typeof import("../../src/runtime/components/actions/RowsItem.vue")['default']>
 export const LazyActionsView: LazyComponent<typeof import("../../src/runtime/components/actions/View.vue")['default']>
@@ -439,7 +440,6 @@ export const LazyEventsExpandedItem: LazyComponent<typeof import("../../src/runt
 export const LazyEventsRegisterModal: LazyComponent<typeof import("../../src/runtime/components/events/RegisterModal.vue")['default']>
 export const LazyEventsRelatedItem: LazyComponent<typeof import("../../src/runtime/components/events/RelatedItem.vue")['default']>
 export const LazyEventsRowsItem: LazyComponent<typeof import("../../src/runtime/components/events/RowsItem.vue")['default']>
-export const LazyEventsSlidingItem: LazyComponent<typeof import("../../src/runtime/components/events/SlidingItem.vue")['default']>
 export const LazyEventsView: LazyComponent<typeof import("../../src/runtime/components/events/View.vue")['default']>
 export const LazyFellowshipsBadges: LazyComponent<typeof import("../../src/runtime/components/fellowships/Badges.vue")['default']>
 export const LazyFellowshipsDenseItem: LazyComponent<typeof import("../../src/runtime/components/fellowships/DenseItem.vue")['default']>

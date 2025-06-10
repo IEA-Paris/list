@@ -1,6 +1,10 @@
 <template>
-  <v-list-item :to="localePath(getPath(item.id))" class="search-item py-2">
-    <template #item :key="index.toString() + item.id" />
+  <v-list-item
+    :key="index.toString() + item.id"
+    :to="localePath(getPath(item.id))"
+    class="search-item py-2"
+  >
+    <template #item />
     <template v-if="item.prependAvatar" #prepend>
       <v-avatar rounded="0" :image="item.prependAvatar" />
     </template>
@@ -14,7 +18,7 @@
       <v-btn
         icon="mdi-open-in-new"
         variant="text"
-        :to="localePath(getPath(item.id))"
+        :to="localePath(getPath(item.slug || item.id))"
         target="_blank"
       />
     </template>

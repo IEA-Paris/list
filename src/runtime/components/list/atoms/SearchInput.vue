@@ -17,7 +17,11 @@
       $store.state.scrolled }" -->
       <template v-if="!search" #label>
         <div class="searchLabel">
-          {{ $t("list.search-type", [$t("items." + type, 2)]) }}
+          {{
+            type === "all"
+              ? $t("search")
+              : $t("list.search-type", [$t("items." + type, 2)])
+          }}
         </div>
       </template>
     </v-text-field>
@@ -37,7 +41,7 @@
             v-if="item.type && item.type === 'subheader'"
             :key="'subheader-' + index"
           >
-            {{ item.name }}
+            {{ $t(item.name) }}
           </v-list-subheader>
           <div
             v-else-if="item.type && item.type === 'no-result'"
