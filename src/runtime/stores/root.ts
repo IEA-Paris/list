@@ -102,7 +102,7 @@ export const useRootStore = defineStore("rootStore", {
         $stores: Record<string, ModuleStore>;
       };
       this.loading = value;
-      if (type.length && $stores[type]) {
+      if (type.length && type !== "all" && $stores[type]) {
         $stores[type].loading = value;
       }
     },
