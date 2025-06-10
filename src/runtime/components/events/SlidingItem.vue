@@ -40,7 +40,9 @@
 </template>
 <script setup>
 import { useDisplay } from "vuetify";
+import { useLocalePath } from "#imports";
 const { name } = useDisplay();
+const localePath = useLocalePath();
 
 const props = defineProps({
   item: { type: Object, required: true },
