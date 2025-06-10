@@ -1,7 +1,13 @@
 query listUsers(
+  $options: ListInput = {
+    skip: 0
+    limit: 9
+    sortBy: ["start"]
+    sortDesc: false
+    filters: "{}"
+  }
   $appId: ID = "iea"
   $lang: String = "en"
-  $options: ListInput = {}
 ) {
   listUsers(appId: $appId, lang: $lang, options: $options) {
     items {
