@@ -18,7 +18,7 @@
       <v-btn
         icon="mdi-open-in-new"
         variant="text"
-        :to="localePath(getPath(item.slug || item.id))"
+        :to="localePath(getPath(item.slug[locale]))"
         target="_blank"
       />
     </template>
@@ -28,7 +28,9 @@
 <script setup>
 // import { useDisplay } from "vuetify"
 // const { smAndUp } = useDisplay()
-import { useLocalePath } from "#imports";
+import { useLocalePath, useI18n } from "#imports";
+
+const { locale } = useI18n();
 const localePath = useLocalePath();
 const props = defineProps({
   item: {

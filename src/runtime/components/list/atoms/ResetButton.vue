@@ -9,12 +9,7 @@
         icon
         class="ml-auto"
         v-bind="tooltip"
-        @click="
-          () => {
-            rootStore.resetState(type);
-            rootStore.update(type);
-          }
-        "
+        @click="rootStore.resetState(type)"
       >
         <v-icon>mdi-restore</v-icon>
       </v-btn>
@@ -23,9 +18,7 @@
   </v-tooltip>
 </template>
 <script setup>
-import { useNuxtApp, onMounted, computed } from "#imports";
 import { useRootStore } from "../../../stores/root";
-const { $stores } = useNuxtApp();
 const rootStore = useRootStore();
 
 const props = defineProps({
