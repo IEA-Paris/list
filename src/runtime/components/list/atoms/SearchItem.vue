@@ -18,7 +18,7 @@
       <v-btn
         icon="mdi-open-in-new"
         variant="text"
-        :to="localePath(getPath(item.slug[locale]))"
+        :to="localePath(getPath((item.slug && item.slug[locale]) || item.id))"
         target="_blank"
       />
     </template>
