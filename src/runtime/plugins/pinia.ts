@@ -99,6 +99,23 @@ export default defineNuxtPlugin(async (nuxtApp) => {
         get: import("../graphql/item/tags.gql"),
       },
     }),
+
+    apps: () => ({
+      model: import("@paris-ias/data/dist/list/apps.js"),
+      queries: {
+        list: import("../graphql/list/apps.gql"),
+        get: import("../graphql/item/apps.gql"),
+      },
+    }),
+
+    users: () => ({
+      model: import("@paris-ias/data/dist/list/users.js"),
+      queries: {
+        list: import("../graphql/list/users.gql"),
+        get: import("../graphql/item/users.gql"),
+      },
+    }),
+
     // Add other modules similarly...
   };
 

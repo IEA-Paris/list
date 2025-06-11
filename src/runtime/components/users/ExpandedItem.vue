@@ -1,6 +1,6 @@
 <template>
   <div>
-    {{ item.email }}
+    {{ item }}
   </div>
 </template>
 

@@ -9,7 +9,7 @@ query listUsers(
   $appId: ID = "iea"
   $lang: String = "en"
 ) {
-  listUsers(appId: $appId, lang: $lang, options: $options) {
+  listUsers(options: $options, appId: $appId, lang: $lang) {
     items {
       admin
       branch
