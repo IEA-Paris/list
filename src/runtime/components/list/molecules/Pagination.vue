@@ -35,18 +35,18 @@
       </v-btn>
       <template v-else>
         <v-btn
-          :class="{ 'active-page': isActive }"
+          :class="{ 'active-page': !!page.current }"
           tabindex="0"
           outlined
           min-width="35"
           height="35"
           tile
           nuxt
-          :active="isActive"
-          :color="isActive ? 'white' : 'black'"
+          :active="!!page.current"
+          :color="!!page.current ? 'white' : 'black'"
           text
           width="35"
-          :aria-current="isActive ? 'true' : 'false'"
+          :aria-current="!!page.current ? 'true' : 'false'"
           :aria-label="
             page.current
               ? `Current page, Page ${page.value}`
@@ -118,10 +118,6 @@ const props = defineProps({
     default: "",
     required: true,
   },
-});
-
-const isActive = computed(() => {
-  return !!pages.current;
 });
 
 const renderPages = computed(() => {
