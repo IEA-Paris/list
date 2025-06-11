@@ -1,6 +1,6 @@
 <template>
   <div>
-    <ListOrganismsList type="events" />
+    <ListOrganismsList type="users" />
     <!-- <ListOrganismsList type="people" /> -->
     <!--     <ListOrganismsList type="actions" /> -->
     <!-- <ListOrganismsList type="publications" />
