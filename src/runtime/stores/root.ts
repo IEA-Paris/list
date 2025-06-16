@@ -323,6 +323,10 @@ export const useRootStore = defineStore("rootStore", {
 
     updatePage({ page, type }: { page: number; type: string }): void {
       this.page = page;
+      const router = useRouter();
+      const query = router.currentRoute.value.query;
+      query.page = page > 1 ? page.toString() : undefined;
+      router.replace({ query });
       this.update(type);
     },
 
