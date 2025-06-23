@@ -124,7 +124,7 @@
               <v-divider />
             </v-responsive>
 
-            <!--      <MiscAtomsSlidingCarousel
+            <MiscAtomsSlidingCarousel
               v-if="item && item.fellows && item.fellows.length"
               key="people"
               ref="fellows"
@@ -136,7 +136,7 @@
               <div :class="mdAndUp ? 'text-h5' : 'text-h6'">
                 {{ $t("this-fellowship-alumni") }}
               </div>
-            </MiscAtomsSlidingCarousel> -->
+            </MiscAtomsSlidingCarousel>
           </div>
         </v-col>
         <MiscMoleculesRelated

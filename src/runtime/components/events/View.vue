@@ -281,7 +281,7 @@
       <v-divider class="mb-1" />
       <v-divider />
     </v-responsive>
-    <!--     <MiscAtomsSlidingCarousel
+    <MiscAtomsSlidingCarousel
       v-if="!loading && item && item.gallery && item.gallery.length"
       ref="MiscAtomsImage"
       key="MiscAtomsImage"
@@ -293,7 +293,7 @@
       <div :class="mdAndUp ? 'text-h5' : 'text-h6'">
         {{ $t("gallery") }}
       </div>
-    </MiscAtomsSlidingCarousel> -->
+    </MiscAtomsSlidingCarousel>
     <v-responsive class="mx-auto my-9" width="120">
       <v-divider class="mb-1" />
       <v-divider />
