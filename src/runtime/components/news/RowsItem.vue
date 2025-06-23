@@ -68,7 +68,7 @@
               ]
             "
           >
-            <MDC :value="item.summary" />
+            <MDC :value="processedSummary" />
           </div>
           <v-btn
             class="mt-4"
@@ -105,7 +105,7 @@
             ]
           "
         >
-          <MDC :value="item.summary" />
+          <MDC :value="processedSummary" />
         </div>
         <br />
         <v-btn
@@ -135,7 +135,13 @@
 <script setup>
 import { useDisplay } from "vuetify";
 import { useRootStore } from "../../stores/root";
-import { useNuxtApp, useI18n, useLocalePath, computed } from "#imports";
+import {
+  useNuxtApp,
+  useI18n,
+  useLocalePath,
+  computed,
+  useRouter,
+} from "#imports";
 
 const { $stores } = useNuxtApp();
 const { locale } = useI18n();
@@ -159,6 +165,27 @@ const props = defineProps({
     required: true,
   },
 });
+
+const processedSummary = computed(() => {
+  const raw = props.item.summary || "";
+
+  const slugPath = localePath({
+    name: "news-slug",
+    params: { slug: props.item.slug[locale.value] },
+  });
+
+  console.log("Raw summary:", raw);
+  console.log("Slug path:", slugPath);
+  return replaceMarkdownLinksWithSlug(raw, slugPath);
+});
+
+function replaceMarkdownLinksWithSlug(markdownText, slugPath) {
+  const regex = /\[([^\]]+)\]\(([^)]+)\)/g;
+  return markdownText.replace(regex, (_match, text, url) => {
+    const encodedUrl = encodeURIComponent(url);
+    return `[${text}](${slugPath}?redirect=${encodedUrl})`;
+  });
+}
 </script>
 
 <style></style>
