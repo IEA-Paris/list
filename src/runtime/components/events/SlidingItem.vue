@@ -25,26 +25,29 @@
         :slug="item.id"
         :loading="loading"
       />
-      <a
+      <nuxt-link
         class="mt-6 pl-0 text-h5 text-md-h4 font-weight-medium sliding-item-title cursor-pointer"
-        :href="
-          localePath('activities-events-slug', {
-            slug: item.id,
+        :to="
+          localePath({
+            name: 'activities-events-slug',
+            params: { slug: item.slug[locale] },
           })
         "
       >
         {{ item.name }}
-      </a>
+      </nuxt-link>
     </div>
   </v-sheet>
 </template>
 <script setup>
 import { useDisplay } from "vuetify";
-import { useLocalePath } from "#imports";
+import { useLocalePath, useI18n } from "#imports";
+const { locale } = useI18n();
+
 const { name } = useDisplay();
 const localePath = useLocalePath();
 
-const props = defineProps({
+defineProps({
   item: { type: Object, required: true },
   loading: { type: Boolean, required: true, default: false },
 });
