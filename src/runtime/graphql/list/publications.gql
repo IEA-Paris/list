@@ -19,6 +19,7 @@ query listPublications(
       summary
       description
       name
+      type
       url
       tags {
         createdAt

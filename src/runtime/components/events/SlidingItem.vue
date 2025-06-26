@@ -24,9 +24,16 @@
         link="activities-events-slug"
         :slug="item.id"
         :loading="loading"
+        :to="
+          localePath({
+            name: 'activities-events-slug',
+            params: { slug: item.slug[locale] },
+          })
+        "
+        style="cursor: pointer"
       />
       <nuxt-link
-        class="mt-6 pl-0 text-h5 text-md-h4 font-weight-medium sliding-item-title cursor-pointer"
+        class="mt-6 pl-0 text-h6 text-md-h5 font-weight-medium sliding-item-title cursor-pointer"
         :to="
           localePath({
             name: 'activities-events-slug',
@@ -34,22 +41,25 @@
           })
         "
       >
+        <div class="text-overline text-uppercase">
+          {{ $t(item.category) }}
+        </div>
         {{ item.name }}
       </nuxt-link>
     </div>
   </v-sheet>
 </template>
 <script setup>
-import { useDisplay } from "vuetify";
-import { useLocalePath, useI18n } from "#imports";
-const { locale } = useI18n();
+import { useDisplay } from "vuetify"
+import { useLocalePath, useI18n } from "#imports"
+const { locale } = useI18n()
 
-const { name } = useDisplay();
-const localePath = useLocalePath();
+const { name } = useDisplay()
+const localePath = useLocalePath()
 
 defineProps({
   item: { type: Object, required: true },
   loading: { type: Boolean, required: true, default: false },
-});
+})
 </script>
 <style lang="scss"></style>

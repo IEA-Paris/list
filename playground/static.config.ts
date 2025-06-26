@@ -15,7 +15,7 @@ export default {
   graphqlEndpoint:
     "https://svrk22xx3zforcytbifrudb4k4.appsync-api.eu-west-2.amazonaws.com/graphql",
   graphqlApiKey: "da2-2g3v2byhujc6xbv6ranaxb37wu",
-  keywords: "open source, open science, science, vuejs, nuxt, vuetify, vuex",
+  keywords: "open source, open science, science",
   logo: {
     light: "/logo.png",
     dark: "/logo_white.png",

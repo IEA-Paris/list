@@ -4,7 +4,7 @@
   </div>
   <div>
     <div>{{ startDay }}</div>
-    <div>{{ startTime }} - {{ stopTime }}</div>
+    <div>{{ $t("from-starttime-to-stoptime", [startTime, stopTime]) }}</div>
   </div>
 
   <div class="text-overline font-weight-bold mt-md-4">
@@ -56,26 +56,26 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
-import { getDetailedFormatedDate } from "../../composables/useUtils";
+import { ref } from "vue"
+import { getDetailedFormatedDate } from "../../composables/useUtils"
 
-import { useI18n } from "vue-i18n";
+import { useI18n } from "vue-i18n"
 
-const { locale } = useI18n();
+const { locale } = useI18n()
 const props = defineProps({
   item: {
     type: Object,
     required: true,
   },
-});
-const open = ref(false);
-const detailedStart = getDetailedFormatedDate(props.item.start, locale.value);
+})
+const open = ref(false)
+const detailedStart = getDetailedFormatedDate(props.item.start, locale.value)
 const startDay = ref(
-  `${detailedStart.day} ${detailedStart.month} ${detailedStart.year}`
-);
-const startTime = ref(detailedStart.hours);
-const detailedStop = getDetailedFormatedDate(props.item.stop, locale.value);
-const stopTime = ref(detailedStop.hours);
+  `${detailedStart.day} ${detailedStart.month} ${detailedStart.year}`,
+)
+const startTime = ref(detailedStart.hours)
+const detailedStop = getDetailedFormatedDate(props.item.stop, locale.value)
+const stopTime = ref(detailedStop.hours)
 </script>
 
 <style lang="scss" scoped></style>

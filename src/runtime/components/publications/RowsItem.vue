@@ -29,6 +29,7 @@
       />
 
       <template v-else>
+        <div v-if="item.type" class="text-overline">{{ $t(item.type) }}</div>
         <div class="text-h5 text-sm-h3 text-md-h4 text-md-h4 my-6">
           {{ item.name }}
         </div>
@@ -85,23 +86,23 @@
 </template>
 
 <script setup>
-import { useDisplay } from "vuetify";
-import { useNuxtApp, useI18n, useLocalePath, useRouter } from "#imports";
+import { useDisplay } from "vuetify"
+import { useNuxtApp, useI18n, useLocalePath, useRouter } from "#imports"
 
-const { name } = useDisplay();
-const { locale } = useI18n();
-const { $stores } = useNuxtApp();
-const router = useRouter();
-const localePath = useLocalePath();
+const { name } = useDisplay()
+const { locale } = useI18n()
+const { $stores } = useNuxtApp()
+const router = useRouter()
+const localePath = useLocalePath()
 const props = defineProps({
   item: {
     type: Object,
     default: () => {
-      return {};
+      return {}
     },
     required: true,
   },
-});
+})
 </script>
 
 <style lang="scss"></style>
