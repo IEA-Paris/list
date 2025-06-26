@@ -133,28 +133,28 @@
 </template>
 
 <script setup>
-import { useDisplay } from "vuetify";
-import { useRootStore } from "../../stores/root";
+import { useDisplay } from "vuetify"
+import { useRootStore } from "../../stores/root"
 import {
   useNuxtApp,
   useI18n,
   useLocalePath,
   computed,
   useRouter,
-} from "#imports";
+} from "#imports"
 
-const { $stores } = useNuxtApp();
-const { locale } = useI18n();
-const localePath = useLocalePath();
-const rootStore = useRootStore();
-const { name, smAndDown, mdAndDown, mdAndUp, lgAndUp } = useDisplay();
+const { $stores } = useNuxtApp()
+const { locale } = useI18n()
+const localePath = useLocalePath()
+const rootStore = useRootStore()
+const { name, smAndDown, mdAndDown, mdAndUp, lgAndUp } = useDisplay()
 const eventCategory = computed(() => {
   if (props.item.category) {
-    return "list.filters.news.category." + props.item.category;
+    return "list.filters.news.category." + props.item.category
   } else {
-    return "list.filters.news.category.others";
+    return "list.filters.news.category.others"
   }
-});
+})
 const props = defineProps({
   item: {
     type: Object,
@@ -164,27 +164,27 @@ const props = defineProps({
     type: Number,
     required: true,
   },
-});
+})
 
 const processedSummary = computed(() => {
-  const raw = props.item.summary || "";
+  const raw = props.item.summary || ""
 
   const slugPath = localePath({
     name: "news-slug",
     params: { slug: props.item.slug[locale.value] },
-  });
+  })
 
-  console.log("Raw summary:", raw);
-  console.log("Slug path:", slugPath);
-  return replaceMarkdownLinksWithSlug(raw, slugPath);
-});
+  /*   console.log("Raw summary:", raw);
+  console.log("Slug path:", slugPath); */
+  return replaceMarkdownLinksWithSlug(raw, slugPath)
+})
 
 function replaceMarkdownLinksWithSlug(markdownText, slugPath) {
-  const regex = /\[([^\]]+)\]\(([^)]+)\)/g;
+  const regex = /\[([^\]]+)\]\(([^)]+)\)/g
   return markdownText.replace(regex, (_match, text, url) => {
-    const encodedUrl = encodeURIComponent(url);
-    return `[${text}](${slugPath}?redirect=${encodedUrl})`;
-  });
+    const encodedUrl = encodeURIComponent(url)
+    return `[${text}](${slugPath}?redirect=${encodedUrl})`
+  })
 }
 </script>
 

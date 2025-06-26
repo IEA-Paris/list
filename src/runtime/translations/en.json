@@ -31,14 +31,14 @@
   "learn-more": "read more",
   "list": {
     "reset-filters": "Reset filters",
-    "0-items-found": "No {1} found. | One {1} found. | {0} {1} found.",
-    "0-items-found-f": "No {1} found. | One {1} found. | {0} {1} found.",
-    "0-items-found-searching-for": "No {1} found for \"{2}\". | One {1} found for \"{2}\". | {0} {1} found for \"{2}\".",
-    "0-items-found-searching-for-f": "No {1} found for \"{2}\". | One {1} found for \"{2}\". | {0} {1} found for \"{2}\".",
-    "0-items-found-searching-for-with-1-filter": "No {1} found for \"{2}\" with {3} {4}. | One {1} found for \"{2}\" with {3} {4}. | {0} {1} found for \"{2}\" with {3} {4}.",
-    "0-items-found-searching-for-with-1-filter-f": "No {1} found for \"{2}\" with {3} {4}. | One {1} found for \"{2}\" with {3} {4}. | {0} {1} found for \"{2}\" with {3} {4}.",
-    "0-items-found-with-1-filter": "No {1} found with {2} {3}. | One {1} found with {2} {3}. | {0} {1} found with {2} {3}.",
-    "0-items-found-with-1-filter-f": "No {1} found with {2} {3}. | One {1} found with {2} {3}. | {0} {1} found with {2} {3}.",
+    "0-items-found": "No {1} found. | One {1} found. | {0} {1} found. ",
+    "0-items-found-f": "No {1} found. | One {1} found. | {0} {1} found. ",
+    "0-items-found-searching-for": "No {1} found for \"{2}\". | One {1} found for \"{2}\". | {0} {1} found for \"{2}\". ",
+    "0-items-found-searching-for-f": "No {1} found for \"{2}\". | One {1} found for \"{2}\". | {0} {1} found for \"{2}\". ",
+    "0-items-found-searching-for-with-1-filter": "No {1} found for \"{2}\" with {3} {4}. | One {1} found for \"{2}\" with {3} {4}. | {0} {1} found for \"{2}\" with {3} {4}. ",
+    "0-items-found-searching-for-with-1-filter-f": "No {1} found for \"{2}\" with {3} {4}. | One {1} found for \"{2}\" with {3} {4}. | {0} {1} found for \"{2}\" with {3} {4}. ",
+    "0-items-found-with-1-filter": "No {1} found with {2} {3}. | One {1} found with {2} {3}. | {0} {1} found with {2} {3}. ",
+    "0-items-found-with-1-filter-f": "No {1} found with {2} {3}. | One {1} found with {2} {3}. | {0} {1} found with {2} {3}. ",
     "by-date-most-recent-first": "Latest",
     "by-date-oldest-first": "Oldest",
     "by-name-from-a-to-z": "By Name, from A to Z",
@@ -339,5 +339,6 @@
   "close-the-filter-panel": "Close the filter panel",
   "list.by-vintage-from-recent-to-old": "By Year, from recent to old",
   "list.by-vintage-from-old-to-recent": "By Year, from old to recent",
-  "no-biography": "No biography available"
+  "no-biography": "No biography available",
+  "search": "Search"
 }

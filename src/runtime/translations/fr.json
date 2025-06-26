@@ -31,14 +31,14 @@
   "learn-more": "En savoir plus",
   "list": {
     "reset-filters": "Réinitialiser les filtres",
-    "0-items-found": "Aucun {1} trouvé. | Un seul {1} trouvé. | {0} {1} trouvés.",
-    "0-items-found-f": "Aucune {1} trouvée. | Une seule {1} trouvée. | {0} {1} trouvées.",
-    "0-items-found-searching-for": "Aucun {1} trouvé pour la recherche de \"{2}\". | Un seul {1} trouvé pour la recherche de \"{2}\".| {0} {1} trouvés pour la recherche de \"{2}\".",
-    "0-items-found-searching-for-f": "Aucune {1} trouvée pour la recherche de \"{2}\". | Une seule {1} trouvée pour la recherche de \"{2}\".| {0} {1} trouvées pour la recherche de \"{2}\".",
-    "0-items-found-searching-for-with-1-filter": "Aucun {1} trouvé pour la recherche de \"{2}\" avec {3} {4}.| Un seul {1} trouvé pour la recherche de  \"{2}\" avec {3} {4}. | {0} {1} trouvés pour la recherche de \"{2}\" avec {3} {4}.",
-    "0-items-found-searching-for-with-1-filter-f": "Aucune {1} trouvée pour la recherche de \"{2}\" avec {3} {4}. | Une seule {1} trouvée pour la recherche de  \"{2}\" avec {3} {4}. | {0} {1} trouvées pour la recherche de \"{2}\" avec {3} {4}.",
-    "0-items-found-with-1-filter": "Aucun {1} trouvé avec {2} {3}. | Un seul {1} trouvé avec {2} {3}. | {0} {1} trouvés avec {2} {3}.",
-    "0-items-found-with-1-filter-f": "Aucune {1} trouvée avec {2} {3}. | Une seule {1} trouvée avec {2} {3}. | {0} {1} trouvées avec {2} {3}.",
+    "0-items-found": "Aucun {1} trouvé. | Un seul {1} trouvé. | {0} {1} trouvés. ",
+    "0-items-found-f": "Aucune {1} trouvée. | Une seule {1} trouvée. | {0} {1} trouvées. ",
+    "0-items-found-searching-for": "Aucun {1} trouvé pour la recherche de \"{2}\". | Un seul {1} trouvé pour la recherche de \"{2}\".| {0} {1} trouvés pour la recherche de \"{2}\". ",
+    "0-items-found-searching-for-f": "Aucune {1} trouvée pour la recherche de \"{2}\". | Une seule {1} trouvée pour la recherche de \"{2}\".| {0} {1} trouvées pour la recherche de \"{2}\". ",
+    "0-items-found-searching-for-with-1-filter": "Aucun {1} trouvé pour la recherche de \"{2}\" avec {3} {4}.| Un seul {1} trouvé pour la recherche de  \"{2}\" avec {3} {4}. | {0} {1} trouvés pour la recherche de \"{2}\" avec {3} {4}. ",
+    "0-items-found-searching-for-with-1-filter-f": "Aucune {1} trouvée pour la recherche de \"{2}\" avec {3} {4}. | Une seule {1} trouvée pour la recherche de  \"{2}\" avec {3} {4}. | {0} {1} trouvées pour la recherche de \"{2}\" avec {3} {4}. ",
+    "0-items-found-with-1-filter": "Aucun {1} trouvé avec {2} {3}. | Un seul {1} trouvé avec {2} {3}. | {0} {1} trouvés avec {2} {3}. ",
+    "0-items-found-with-1-filter-f": "Aucune {1} trouvée avec {2} {3}. | Une seule {1} trouvée avec {2} {3}. | {0} {1} trouvées avec {2} {3}. ",
     "by-date-most-recent-first": "Dernier",
     "by-date-oldest-first": "Le plus ancien",
     "by-name-from-a-to-z": "Par nom, de A à Z",
@@ -337,5 +337,6 @@
   "present": "aujourd'hui",
   "visit-this-project-website": "Visitez le site Web du projet",
   "visit-this-publications-website": "Visitez la page Web de cette publication",
-  "no-biography": "Aucune biographie disponible"
+  "no-biography": "Aucune biographie disponible",
+  "search": "Rechercher"
 }

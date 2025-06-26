@@ -1,5 +1,16 @@
 <template>
-  <v-sheet class="d-flex sliding-item flex-md-row flex-column px-6">
+  <v-sheet
+    v-motion
+    class="d-flex sliding-item flex-md-row flex-column px-6"
+    :initial="{
+      opacity: 0,
+      x: 100,
+    }"
+    :enter="{
+      opacity: 1,
+      x: 0,
+    }"
+  >
     <MiscAtomsDateStamp
       :date-start="item.start"
       :date-stop="item.stop"
