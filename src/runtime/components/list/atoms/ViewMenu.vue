@@ -43,7 +43,7 @@
 import { mergeProps, ref } from "vue"
 import { useDisplay } from "vuetify"
 import { useRootStore } from "../../../stores/root"
-import { useNuxtApp } from "#imports"
+import { useNuxtApp, ref, useI18n } from "#imports"
 const { locale } = useI18n()
 const { $stores } = useNuxtApp()
 

@@ -69,14 +69,13 @@
 </template>
 
 <script setup>
-import { useDebounceFn } from "@vueuse/core";
-import { useRootStore } from "../../../stores/root";
-import { useNuxtApp, computed } from "#imports";
-import { useI18n } from "vue-i18n";
+import { useDebounceFn } from "@vueuse/core"
+import { useRootStore } from "../../../stores/root"
+import { useNuxtApp, computed, useI18n } from "#imports"
 
-const { locale, t } = useI18n();
-const rootStore = useRootStore();
-const { $stores } = useNuxtApp();
+const { locale, t } = useI18n()
+const rootStore = useRootStore()
+const { $stores } = useNuxtApp()
 const props = defineProps({
   type: {
     type: String,
@@ -86,24 +85,24 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
-});
+})
 const results = computed(() => {
-  const storeRst = rootStore.results;
+  const storeRst = rootStore.results
   const rst =
     (Object.keys(storeRst).length &&
       Object.keys(storeRst)
         .sort((a, b) => {
-          return storeRst[b]?.items?.length - storeRst[a]?.items?.length;
+          return storeRst[b]?.items?.length - storeRst[a]?.items?.length
         })
         .reduce((acc, key, index) => {
-          const items = storeRst[key]?.items;
-          const total = storeRst[key]?.total;
+          const items = storeRst[key]?.items
+          const total = storeRst[key]?.total
           if (total === 0 && index === 0) {
-            acc.push({ type: "no-result" });
-            return acc;
+            acc.push({ type: "no-result" })
+            return acc
           }
           if (items?.length) {
-            acc.push({ type: "subheader", name: t("items." + key, 2) });
+            acc.push({ type: "subheader", name: t("items." + key, 2) })
             acc.push(
               ...items.map((item) => ({
                 prependAvatar: item?.image?.url || "mdi-square",
@@ -111,28 +110,28 @@ const results = computed(() => {
                 subtitle: item.summary || item.biography,
                 id: item.id,
                 type: key,
-              }))
-            );
+              })),
+            )
           }
-          acc.push({ type: "divider" });
-          return acc;
+          acc.push({ type: "divider" })
+          return acc
         }, [])) ||
-    {};
+    {}
 
-  return rst;
-});
+  return rst
+})
 const search = computed({
   get() {
-    return props.type === "all" ? rootStore.search : $stores[props.type].search;
+    return props.type === "all" ? rootStore.search : $stores[props.type].search
   },
   set: await useDebounceFn(async function (v) {
     await rootStore.updateSearch({
       type: props.type,
       search: v || "",
       lang: locale.value,
-    });
+    })
   }, 300),
-});
+})
 </script>
 
 <style lang="scss" scoped></style>

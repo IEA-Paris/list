@@ -33,8 +33,8 @@ import {
   computed,
   onBeforeUnmount,
   onMounted,
+  useI18n,
 } from "#imports"
-import { useI18n } from "vue-i18n"
 const { $stores } = useNuxtApp()
 const { locale } = useI18n()
 

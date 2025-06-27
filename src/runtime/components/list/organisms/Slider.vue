@@ -55,8 +55,7 @@
 import { ref, computed, onMounted, onBeforeUnmount, nextTick, watch } from "vue"
 import { useRootStore } from "../../../stores/root"
 import { capitalize } from "../../../composables/useUtils"
-import { useNuxtApp } from "#imports"
-import { useI18n } from "vue-i18n"
+import { useNuxtApp, useI18n } from "#imports"
 
 defineOptions({ name: "ListOrganismsSlider" })
 

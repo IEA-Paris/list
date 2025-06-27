@@ -4,7 +4,7 @@
 
 <script setup>
 import { useRootStore } from "../../../stores/root"
-import { useNuxtApp, computed } from "#imports"
+import { useNuxtApp, computed, useI18n } from "#imports"
 const { locale } = useI18n()
 
 const rootStore = useRootStore()
@@ -15,7 +15,7 @@ const val = computed({
     return $stores[props.type].filters[props.name]?.value
   },
   set(value) {
-    rootStore.updateFilter(props.name, value, props.type)
+    rootStore.updateFilter(props.name, value, props.type, locale.value)
   },
 })
 </script>

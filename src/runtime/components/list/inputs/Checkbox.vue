@@ -4,8 +4,7 @@
 
 <script setup>
 import { useRootStore } from "../../../stores/root"
-import { useNuxtApp, computed } from "#imports"
-import { useI18n } from "vue-i18n"
+import { useNuxtApp, computed, useI18n } from "#imports"
 const { locale } = useI18n()
 const rootStore = useRootStore()
 const props = defineProps(["type", "items", "name"])

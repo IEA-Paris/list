@@ -46,11 +46,10 @@
 import { mergeProps } from "vue"
 import { useDisplay } from "vuetify"
 import { useRootStore } from "../../../stores/root"
-import { useNuxtApp, computed, ref } from "#imports"
+import { useNuxtApp, computed, ref, useI18n } from "#imports"
 const { $stores } = useNuxtApp()
 const { xs: isXsDisplay } = useDisplay()
 const { locale } = useI18n()
-
 const rootStore = useRootStore()
 
 const props = defineProps({

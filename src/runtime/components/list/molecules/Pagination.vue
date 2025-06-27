@@ -79,8 +79,7 @@
 
 <script setup>
 import { useRootStore } from "../../../stores/root"
-import { useRoute, computed, watch } from "#imports"
-import { useI18n } from "vue-i18n"
+import { useRoute, computed, useI18n } from "#imports"
 const { locale } = useI18n()
 const route = useRoute()
 const rootStore = useRootStore()
