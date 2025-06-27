@@ -338,5 +338,8 @@
   "visit-this-project-website": "Visitez le site Web du projet",
   "visit-this-publications-website": "Visitez la page Web de cette publication",
   "no-biography": "Aucune biographie disponible",
-  "search": "Rechercher"
+  "search": "Rechercher",
+  "close-the-filter-panel": "Réduire les filtres",
+  "list.by-vintage-from-recent-to-old": "Par année, du plus récent au plus vieux",
+  "list.by-vintage-from-old-to-recent": "Par année, du plus vieux au plus récent"
 }

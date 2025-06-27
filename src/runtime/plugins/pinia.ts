@@ -133,20 +133,8 @@ export default defineNuxtPlugin(async (nuxtApp) => {
   const models: Record<string, unknown> = {}
 
   // Import filters from remote JSON
-  let builtFilters: FiltersStructure = {}
-  try {
-    const filtersResponse = await fetch(
-      "https://cdn-yggdrasil-dev.s3.eu-west-2.amazonaws.com/iea/filters.json",
-    )
-    if (filtersResponse.ok) {
-      builtFilters = await filtersResponse.json()
-      console.log("Filters loaded successfully:", builtFilters)
-    } else {
-      console.warn("Failed to load filters, using empty object")
-    }
-  } catch (error) {
-    console.error("Error loading filters:", error)
-  }
+  const builtFilters = await import("../public/filters.json")
+  console.log("Filters loaded successfully:", builtFilters)
 
   console.log("INITIALIZING STORES")
   // Preload all required modules

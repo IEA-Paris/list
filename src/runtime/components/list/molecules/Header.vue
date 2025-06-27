@@ -3,7 +3,7 @@
     <v-col cols="12">
       <div class="d-flex">
         <ListAtomsFiltersMenu
-          :open="filtersOpen || visible"
+          :open="filtersOpen ?? visible"
           @open="filtersOpen = $event"
         />
         <v-spacer />
@@ -12,7 +12,7 @@
         <ListAtomsSortMenu :type="type" />
       </div>
       <v-expand-transition>
-        <div v-if="filtersOpen" class="mb-7">
+        <div v-show="filtersOpen" class="mb-7">
           <ListMoleculesFilters :type="type" />
         </div>
       </v-expand-transition>
@@ -23,21 +23,34 @@
 </template>
 
 <script setup>
-import { ref, computed } from "vue";
-import { useNuxtApp } from "#imports";
-const { $stores } = useNuxtApp();
+import { ref, computed } from "vue"
+import { useNuxtApp } from "#imports"
+const { $stores } = useNuxtApp()
 
-const filtersOpen = ref(false);
+const filtersOpen = ref(false)
 const visible = computed(() => {
-  return (
+  console.log(
+    "$stores[props.type]?.filtersCount > 0: ",
+    $stores[props.type]?.filtersCount > 0,
+  )
+  console.log(
+    "$stores[props.type]?.filtersCount: ",
+    $stores[props.type]?.filtersCount,
+  )
+  console.log(
+    !!(
+      $stores[props.type]?.filtersCount && $stores[props.type]?.filtersCount > 0
+    ),
+  )
+  return !!(
     $stores[props.type]?.filtersCount && $stores[props.type]?.filtersCount > 0
-  );
-});
+  )
+})
 const props = defineProps({
   type: {
     type: String,
     required: false,
     default: "",
   },
-});
+})
 </script>
