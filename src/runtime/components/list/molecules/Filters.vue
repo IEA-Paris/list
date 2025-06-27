@@ -40,47 +40,57 @@
 </template>
 
 <script setup>
-import { useDisplay } from "vuetify";
-import { useRootStore } from "../../../stores/root";
-import { capitalize } from "../../../composables/useUtils";
-import { useNuxtApp, onMounted, resolveComponent } from "#imports";
-import { useI18n } from "vue-i18n";
+import { useDisplay } from "vuetify"
+import { useRootStore } from "../../../stores/root"
+import { capitalize } from "../../../composables/useUtils"
+import { useNuxtApp, onMounted, resolveComponent } from "#imports"
+import { useI18n } from "vue-i18n"
 
-const { smAndDown } = useDisplay();
-const i18n = useI18n();
-const { locale, messages } = useI18n();
-const { $stores } = useNuxtApp();
-const rootStore = useRootStore();
-const props = defineProps(["type", "expanded"]);
+const { smAndDown } = useDisplay()
+const i18n = useI18n()
+const { locale, messages } = useI18n()
+const { $stores, $filters } = useNuxtApp()
+const rootStore = useRootStore()
+const props = defineProps(["type", "expanded"])
 
 const ComponentName = (name) => {
   return resolveComponent(
-    "ListInputs" + capitalize($stores[props.type].filters[name].type)
-  );
-};
+    "ListInputs" + capitalize($stores[props.type].filters[name].type),
+  )
+}
 const getItems = (name) => {
   if ($stores[props.type].filters[name].type === "Checkbox") {
-    return [];
+    return []
+  }
+
+  if ($filters?.[props.type]?.[name]) {
+    console.log("filters found for ", name, $filters[props.type][name])
+    return $filters[props.type][name]
+      .filter((key) => key !== "label")
+      .map((item) => ({
+        title: i18n.t(`list.filters.${props.type}.${name}.${item}`),
+        value: item,
+      }))
   }
   if (
     messages.value[locale.value].list.filters[props.type][name] === undefined
   ) {
-    console.log("name not found, no item for this filmter: ", name);
-    return [];
+    console.log("name not found, no item for this filmter: ", name)
+    return []
   }
   // TODO replace with package based values
   return Object.keys(
-    messages.value[locale.value].list.filters[props.type][name]
+    messages.value[locale.value].list.filters[props.type][name],
   )
     .filter((key) => key !== "label")
     .map((item) => ({
       title: i18n.t(`list.filters.${props.type}.${name}.${item}`),
       value: item,
-    }));
-};
+    }))
+}
 onMounted(() => {
-  rootStore.loadRouteQuery(props.type);
-});
+  rootStore.loadRouteQuery(props.type)
+})
 
 const computeVisibility = (filterItem) => {
   return (
@@ -95,12 +105,12 @@ const computeVisibility = (filterItem) => {
           return $stores[props.type].filters[value].multiple
             ? $stores[props.type].filters[value]?.value &&
                 $stores[props.type].filters[value]?.value.includes(rule[value])
-            : $stores[props.type].filters[value]?.value === rule[value];
-        });
-      }
+            : $stores[props.type].filters[value]?.value === rule[value]
+        })
+      },
     )
-  );
-};
+  )
+}
 </script>
 
 <style lang="scss" scoped></style>
