@@ -321,30 +321,27 @@ export const useRootStore = defineStore("rootStore", {
       this.update(type);
     },
 
-    updatePage({ page, type }: { page: number; type: string }): void {
-      // this.page = page;
-      // const router = useRouter();
-      // const query = router.currentRoute.value.query;
-      // query.page = page > 1 ? page.toString() : void 0;
-      // router.replace({ query });
-      // this.update(type);
-
+    async updatePage({
+      page,
+      type,
+    }: {
+      page: number;
+      type: string;
+    }): Promise<void> {
       const router = useRouter();
       const currentQuery = router.currentRoute.value.query;
 
       const newQuery = { ...currentQuery };
-
       if (page > 1) {
         newQuery.page = page.toString();
       } else {
         delete newQuery.page;
       }
 
-      router.replace({ query: newQuery });
-
       this.page = page;
+      await router.replace({ query: newQuery });
 
-      this.update(type);
+      await this.update(type);
     },
 
     initializePageFromRoute(): void {
