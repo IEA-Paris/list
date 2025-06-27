@@ -223,15 +223,15 @@ const getGapPage = (index) => {
   );
 };
 // Watch for changes in the route query and update the currentPage accordingly
-watch(
-  () => route.query.page,
-  (newPage) => {
-    if (newPage) {
-      props.currentPage = Number.parseInt(newPage, 10);
-    }
-  },
-  { immediate: true }
-);
+// watch(
+//   () => route.query.page,
+//   (newPage) => {
+//     if (newPage) {
+//       props.currentPage = Number.parseInt(newPage, 10);
+//     }
+//   },
+//   { immediate: true }
+// );
 </script>
 
 <style>

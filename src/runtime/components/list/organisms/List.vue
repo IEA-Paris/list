@@ -94,6 +94,8 @@ const page = computed(() => +$stores[props.type].page);
 
 const items = computed(() => $stores[props.type].items);
 
+rootStore.initializePageFromRoute();
+
 try {
   await rootStore.update(props.type, locale.value);
 } catch (error) {

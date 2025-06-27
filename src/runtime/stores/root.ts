@@ -321,13 +321,45 @@ export const useRootStore = defineStore("rootStore", {
       this.update(type);
     },
 
+    // updatePage({ page, type }: { page: number; type: string }): void {
+    //   this.page = page;
+    //   const router = useRouter();
+    //   const query = router.currentRoute.value.query;
+    //   query.page = page > 1 ? page.toString() : undefined;
+    //   router.replace({ query });
+    //   this.update(type);
+    // },
+
     updatePage({ page, type }: { page: number; type: string }): void {
-      this.page = page;
+      // this.page = page;
+      // const router = useRouter();
+      // const query = router.currentRoute.value.query;
+      // query.page = page > 1 ? page.toString() : void 0;
+      // router.replace({ query });
+      // this.update(type);
+
       const router = useRouter();
-      const query = router.currentRoute.value.query;
-      query.page = page > 1 ? page.toString() : undefined;
-      router.replace({ query });
+      const currentQuery = router.currentRoute.value.query;
+
+      const newQuery = { ...currentQuery };
+
+      if (page > 1) {
+        newQuery.page = page.toString();
+      } else {
+        delete newQuery.page;
+      }
+
+      router.replace({ query: newQuery });
+
+      this.page = page;
+
       this.update(type);
+    },
+
+    initializePageFromRoute(): void {
+      const { query } = useRouter().currentRoute.value;
+      const page = Number.parseInt(query.page as string, 10);
+      this.page = isNaN(page) || page < 1 ? 1 : page;
     },
 
     async updateSearch({
