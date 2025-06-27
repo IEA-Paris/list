@@ -122,7 +122,7 @@ const results = computed(() => {
 })
 const search = computed({
   get() {
-    return props.type === "all" ? rootStore.search : $stores[props.type].search
+    return rootStore.search
   },
   set: await useDebounceFn(async function (v) {
     await rootStore.updateSearch({

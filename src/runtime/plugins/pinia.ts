@@ -3,13 +3,6 @@ import { createDynamicStore } from "../stores/factory"
 import { useRootStore } from "../stores/root"
 import { defineNuxtPlugin, useAppConfig } from "#app"
 
-// Define the filters structure
-interface FiltersStructure {
-  [key: string]: {
-    [filterType: string]: string[] | number[]
-  }
-}
-
 export default defineNuxtPlugin(async (nuxtApp) => {
   const appConfig = useAppConfig() as AppConfig & {
     list: {
@@ -134,7 +127,6 @@ export default defineNuxtPlugin(async (nuxtApp) => {
 
   // Import filters from remote JSON
   const builtFilters = await import("../public/filters.json")
-  console.log("Filters loaded successfully:", builtFilters)
 
   console.log("INITIALIZING STORES")
   // Preload all required modules
