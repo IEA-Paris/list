@@ -40,7 +40,7 @@
 </template>
 
 <script setup>
-import { mergeProps, ref } from "vue"
+import { mergeProps } from "vue"
 import { useDisplay } from "vuetify"
 import { useRootStore } from "../../../stores/root"
 import { useNuxtApp, ref, useI18n } from "#imports"
