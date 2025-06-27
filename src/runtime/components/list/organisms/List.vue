@@ -106,6 +106,6 @@ try {
   console.log("error fetching update list: ", error)
 }
 onBeforeUnmount(() => {
-  rootStore.resetState(props.type)
+  rootStore.resetState(props.type, locale.value)
 })
 </script>

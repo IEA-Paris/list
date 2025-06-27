@@ -215,8 +215,6 @@ export const useRootStore = defineStore("rootStore", {
         ...Object.entries($stores[type]?.filters ?? {}).reduce(
           (acc, [key, filter]) => {
             const value = filter?.value
-
-            console.log("valueStore", value)
             const isEmpty =
               value === undefined ||
               value === null ||
@@ -240,14 +238,14 @@ export const useRootStore = defineStore("rootStore", {
       router.replace({ query: routeQuery })
     },
 
-    resetState(type: string, lang: string): void {
+    async resetState(type: string, lang: string): void {
       console.log("resetState", { type, lang })
       const { $stores, $models } = useNuxtApp() as NuxtAppExtended
       console.log("$models[type]: ", $models[type])
       console.log("$stores[type]: ", $stores[type])
 
       if ($models[type] && $stores[type]) {
-        $stores[type] = $models[type] as ModuleStore
+        $stores[type].filters = $models[type].filters
       }
 
       console.log("resetState")
@@ -258,15 +256,17 @@ export const useRootStore = defineStore("rootStore", {
       this.total = 0
       this.skip = 0
       this.numberOfPages = 0
-      this.update(type, lang)
+      await this.update(type, lang)
     },
 
-    updateSort({
+    async updateSort({
       value,
       type,
+      lang = "en",
     }: {
       value: (number | string)[]
       type: string
+      lang?: string
     }): void {
       console.log("updateSort", {
         value,
@@ -281,10 +281,18 @@ export const useRootStore = defineStore("rootStore", {
       }
       this.page = 1
       /* this.updateLocalStorage(type + "_sort", value.join("_")) */
-      this.update(type)
+      await this.update(type, lang)
     },
 
-    updateView({ value, type }: { value: string; type: string }): void {
+    async updateView({
+      value,
+      type,
+      lang,
+    }: {
+      value: string
+      type: string
+      lang?: string
+    }): void {
       console.log("updateView", { value, type })
       const { $stores } = useNuxtApp() as {
         $stores: Record<string, ModuleStore>
@@ -296,7 +304,7 @@ export const useRootStore = defineStore("rootStore", {
         }
       }
       /* this.updateLocalStorage(type + "_view", value) */
-      this.update(type)
+      await this.update(type, lang)
     },
 
     /*     updateLocalStorage(key: string, value: string): void {
@@ -305,7 +313,12 @@ export const useRootStore = defineStore("rootStore", {
       localStorage.setItem("PARIS_IAS", JSON.stringify(local))
     }, */
 
-    updateFilter(key: string, val: unknown, type: string): void {
+    async updateFilter(
+      key: string,
+      val: unknown,
+      type: string,
+      lang: string,
+    ): void {
       const { $stores } = useNuxtApp() as {
         $stores: Record<string, ModuleStore>
       }
@@ -316,10 +329,18 @@ export const useRootStore = defineStore("rootStore", {
       }
 
       this.page = 1
-      this.update(type)
+      await this.update(type, lang)
     },
 
-    updateItemsPerPage({ value, type }: { value: number; type: string }): void {
+    async updateItemsPerPage({
+      value,
+      type,
+      lang,
+    }: {
+      value: number
+      type: string
+      lang?: string
+    }): void {
       console.log("updateItemsPerPage", { value, type })
       const { $stores } = useNuxtApp() as {
         $stores: Record<string, ModuleStore>
@@ -328,15 +349,17 @@ export const useRootStore = defineStore("rootStore", {
       if ($stores[type]) {
         $stores[type].itemsPerPage = value
       }
-      this.update(type)
+      await this.update(type, lang)
     },
 
     async updatePage({
       page,
       type,
+      lang = "en",
     }: {
       page: number
       type: string
+      lang?: string
     }): Promise<void> {
       console.log("updatePage", { page, type })
       const router = useRouter()
@@ -349,7 +372,7 @@ export const useRootStore = defineStore("rootStore", {
         delete newQuery.page
       }
       this.page = page
-      await this.update(type)
+      await this.update(type, lang)
     },
     /* 
     initializePageFromRoute(): void {
@@ -367,8 +390,16 @@ export const useRootStore = defineStore("rootStore", {
       search: string
       lang: string
     }): Promise<void> {
+      /*   const { $stores } = useNuxtApp() as NuxtAppExtended */
       console.log("updateSearch", { type, search, lang })
+      /*  if (type === "all") { */
       this.search = search
+      /*     } else {
+        if ($stores[type]) {
+          $stores[type].search = search
+        }
+      } */
+
       await this.update(type, lang)
     },
 

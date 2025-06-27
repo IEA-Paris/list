@@ -40,12 +40,12 @@
 </template>
 
 <script setup>
-import { mergeProps, ref } from "vue";
-import { useDisplay } from "vuetify";
-import { useRootStore } from "../../../stores/root";
-import { useNuxtApp } from "#imports";
-
-const { $stores } = useNuxtApp();
+import { mergeProps, ref } from "vue"
+import { useDisplay } from "vuetify"
+import { useRootStore } from "../../../stores/root"
+import { useNuxtApp } from "#imports"
+const { locale } = useI18n()
+const { $stores } = useNuxtApp()
 
 const props = defineProps({
   type: {
@@ -53,17 +53,17 @@ const props = defineProps({
     default: "articles",
     required: true,
   },
-});
-const { xs: isXsDisplay } = useDisplay();
+})
+const { xs: isXsDisplay } = useDisplay()
 
-const rootStore = useRootStore();
-const items = ref($stores[props.type].views);
+const rootStore = useRootStore()
+const items = ref($stores[props.type].views)
 
-const current = ref($stores[props.type].view);
+const current = ref($stores[props.type].view)
 
 const updateView = async (value) => {
-  await rootStore.updateView({ value, type: props.type });
-};
+  await rootStore.updateView({ value, type: props.type, lang: locale.value })
+}
 </script>
 
 <style lang="scss"></style>

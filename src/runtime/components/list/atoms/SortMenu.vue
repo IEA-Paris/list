@@ -43,15 +43,15 @@
 </template>
 
 <script setup>
-import { mergeProps } from "vue";
-import { useDisplay } from "vuetify";
-import { useRootStore } from "../../../stores/root";
-import { useNuxtApp, computed, ref } from "#imports";
+import { mergeProps } from "vue"
+import { useDisplay } from "vuetify"
+import { useRootStore } from "../../../stores/root"
+import { useNuxtApp, computed, ref } from "#imports"
+const { $stores } = useNuxtApp()
+const { xs: isXsDisplay } = useDisplay()
+const { locale } = useI18n()
 
-const { $stores } = useNuxtApp();
-const { xs: isXsDisplay } = useDisplay();
-
-const rootStore = useRootStore();
+const rootStore = useRootStore()
 
 const props = defineProps({
   type: {
@@ -59,15 +59,15 @@ const props = defineProps({
     default: "articles",
     required: true,
   },
-});
-const items = ref($stores[props.type].sort);
+})
+const items = ref($stores[props.type].sort)
 const defaultSort = ref(
   $stores[props.type].sort[
     Object.keys($stores[props.type].sort).find(
-      (item) => $stores[props.type].sort[item].default === true
+      (item) => $stores[props.type].sort[item].default === true,
     )
-  ]
-);
+  ],
+)
 
 const current = computed(() => {
   try {
@@ -78,18 +78,18 @@ const current = computed(() => {
             $stores[props.type].sortBy[0] &&
           $stores[props.type].sort[item].value[1] ===
             $stores[props.type].sortDesc[0]
-        );
+        )
       })
-    ];
+    ]
   } catch (error) {
-    console.log("error: ", error);
-    return items[Object.keys(items).find((item) => item.default)];
+    console.log("error: ", error)
+    return items[Object.keys(items).find((item) => item.default)]
   }
-});
+})
 
 const updateSort = async (value) => {
-  await rootStore.updateSort({ value, type: props.type });
-};
+  await rootStore.updateSort({ value, type: props.type, lang: locale.value })
+}
 </script>
 
 <style lang="scss"></style>

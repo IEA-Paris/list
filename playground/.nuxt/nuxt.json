@@ -1,7 +1,7 @@
 {
-  "_hash": "uncJy5BBM7ZI_LL_mW6ycNKwI9PhsJRTvzRgHK6d-rU",
+  "_hash": "jaH3r5WlNztbAaWYhHFSNBZ1nMT5UVvmdk2TTJVVd8I",
   "project": {
-    "rootDir": "/home/bob/Projects/list/playground"
+    "rootDir": "/home/bob/Projects/seed/modules/list/playground"
   },
   "versions": {
     "nuxt": "3.16.2"

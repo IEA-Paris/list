@@ -68,7 +68,11 @@ const getItems = (name) => {
     return $filters[props.type][name]
       .filter((key) => key !== "label")
       .map((item) => ({
-        title: i18n.t(`list.filters.${props.type}.${name}.${item}`),
+        title: i18n.t(
+          props.type === "people" && name === "vintage"
+            ? item
+            : `list.filters.${props.type}.${name}.${item}`,
+        ),
         value: item,
       }))
   }

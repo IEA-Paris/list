@@ -52,68 +52,61 @@
 </template>
 
 <script setup>
-import {
-  ref,
-  computed,
-  onMounted,
-  onBeforeUnmount,
-  nextTick,
-  watch,
-} from "vue";
-import { useRootStore } from "../../../stores/root";
-import { capitalize } from "../../../composables/useUtils";
-import { useNuxtApp } from "#imports";
-import { useI18n } from "vue-i18n";
+import { ref, computed, onMounted, onBeforeUnmount, nextTick, watch } from "vue"
+import { useRootStore } from "../../../stores/root"
+import { capitalize } from "../../../composables/useUtils"
+import { useNuxtApp } from "#imports"
+import { useI18n } from "vue-i18n"
 
-defineOptions({ name: "ListOrganismsSlider" });
+defineOptions({ name: "ListOrganismsSlider" })
 
-const { $stores } = useNuxtApp();
-const { locale } = useI18n();
-const rootStore = useRootStore();
+const { $stores } = useNuxtApp()
+const { locale } = useI18n()
+const rootStore = useRootStore()
 
 const props = defineProps({
   type: {
     type: String,
     required: true,
   },
-});
+})
 
 // Data from store
-const items = computed(() => $stores[props.type].items);
+const items = computed(() => $stores[props.type].items)
 
 // Reactive state
-const sliderRef = ref(null);
-const activeSlideIndex = ref(0);
-const offsetX = ref(0);
-const containerWidth = ref(0);
-const slideWidth = ref(0);
-const slidesPerView = ref(1);
+const sliderRef = ref(null)
+const activeSlideIndex = ref(0)
+const offsetX = ref(0)
+const containerWidth = ref(0)
+const slideWidth = ref(0)
+const slidesPerView = ref(1)
 
 // Computed properties
 const itemComponent = computed(() => {
-  return capitalize(props.type) + "SlidingItem";
-});
+  return capitalize(props.type) + "SlidingItem"
+})
 
-const totalSlides = computed(() => items.value.length);
+const totalSlides = computed(() => items.value.length)
 
-const canGoBack = computed(() => activeSlideIndex.value > 0);
+const canGoBack = computed(() => activeSlideIndex.value > 0)
 
 const canGoForward = computed(() => {
-  const maxIndex = Math.max(0, totalSlides.value - slidesPerView.value);
-  return activeSlideIndex.value < maxIndex;
-});
+  const maxIndex = Math.max(0, totalSlides.value - slidesPerView.value)
+  return activeSlideIndex.value < maxIndex
+})
 
 const visibleSlideIndices = computed(() => {
-  const start = activeSlideIndex.value;
-  const end = Math.min(start + slidesPerView.value, totalSlides.value);
-  return Array.from({ length: end - start }, (_, i) => start + i);
-});
+  const start = activeSlideIndex.value
+  const end = Math.min(start + slidesPerView.value, totalSlides.value)
+  return Array.from({ length: end - start }, (_, i) => start + i)
+})
 
 // Methods
 const calculateDimensions = () => {
-  if (!sliderRef.value) return;
+  if (!sliderRef.value) return
 
-  containerWidth.value = sliderRef.value.offsetWidth;
+  containerWidth.value = sliderRef.value.offsetWidth
 
   // Calculate slide width based on container and desired slides per view
   const breakpoints = {
@@ -122,33 +115,33 @@ const calculateDimensions = () => {
     960: { slidesPerView: 2.5, spacing: 28 },
     1280: { slidesPerView: 3, spacing: 32 },
     1600: { slidesPerView: 3.5, spacing: 36 },
-  };
+  }
 
   const currentBreakpoint = Object.entries(breakpoints)
     .reverse()
-    .find(([width]) => window.innerWidth >= Number.parseInt(width));
+    .find(([width]) => window.innerWidth >= Number.parseInt(width))
 
-  const config = currentBreakpoint ? currentBreakpoint[1] : breakpoints[320];
-  slidesPerView.value = Math.floor(config.slidesPerView);
+  const config = currentBreakpoint ? currentBreakpoint[1] : breakpoints[320]
+  slidesPerView.value = Math.floor(config.slidesPerView)
 
   slideWidth.value =
     (containerWidth.value - config.spacing * (config.slidesPerView - 1)) /
-    config.slidesPerView;
-};
+    config.slidesPerView
+}
 
 const isSlideVisible = (index) => {
-  return visibleSlideIndices.value.includes(index);
-};
+  return visibleSlideIndices.value.includes(index)
+}
 
 const isSlideEntering = (index) => {
-  const rightmostVisible = Math.max(...visibleSlideIndices.value);
-  return index === rightmostVisible && index > activeSlideIndex.value;
-};
+  const rightmostVisible = Math.max(...visibleSlideIndices.value)
+  return index === rightmostVisible && index > activeSlideIndex.value
+}
 
 const isSlideExiting = (index) => {
-  const leftmostVisible = Math.min(...visibleSlideIndices.value);
-  return index === leftmostVisible && index < activeSlideIndex.value;
-};
+  const leftmostVisible = Math.min(...visibleSlideIndices.value)
+  return index === leftmostVisible && index < activeSlideIndex.value
+}
 
 const getSlideStyle = (index) => {
   const baseStyles = {
@@ -156,82 +149,82 @@ const getSlideStyle = (index) => {
     opacity: isSlideVisible(index) ? 1 : 0,
     transform: `translateX(${index * (slideWidth.value + 24)}px)`,
     transition: "all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
-  };
+  }
 
   // Add special animations for entering/exiting slides
   if (isSlideEntering(index)) {
-    baseStyles.transform += " translateX(20px)";
-    baseStyles.opacity = 0.8;
+    baseStyles.transform += " translateX(20px)"
+    baseStyles.opacity = 0.8
   }
 
   if (isSlideExiting(index)) {
-    baseStyles.transform += " translateX(-20px)";
-    baseStyles.opacity = 0.6;
+    baseStyles.transform += " translateX(-20px)"
+    baseStyles.opacity = 0.6
   }
 
-  return baseStyles;
-};
+  return baseStyles
+}
 
 const goToSlide = (targetIndex) => {
-  const maxIndex = Math.max(0, totalSlides.value - slidesPerView.value);
-  const newIndex = Math.max(0, Math.min(targetIndex, maxIndex));
+  const maxIndex = Math.max(0, totalSlides.value - slidesPerView.value)
+  const newIndex = Math.max(0, Math.min(targetIndex, maxIndex))
 
-  if (newIndex === activeSlideIndex.value) return;
+  if (newIndex === activeSlideIndex.value) return
 
-  activeSlideIndex.value = newIndex;
-  updateSliderPosition();
-};
+  activeSlideIndex.value = newIndex
+  updateSliderPosition()
+}
 
 const updateSliderPosition = () => {
   // Calculate offset to show current slide group
-  const newOffset = -(activeSlideIndex.value * (slideWidth.value + 24));
+  const newOffset = -(activeSlideIndex.value * (slideWidth.value + 24))
 
   // Add slight offset for visual appeal (Radcliffe-style)
-  const visualOffset = activeSlideIndex.value > 0 ? -40 : 0;
+  const visualOffset = activeSlideIndex.value > 0 ? -40 : 0
 
-  offsetX.value = newOffset + visualOffset;
-};
+  offsetX.value = newOffset + visualOffset
+}
 
 const handleScroll = () => {
   // Optional: handle manual scrolling
-};
+}
 
 const handleResize = () => {
-  calculateDimensions();
-  updateSliderPosition();
-};
+  calculateDimensions()
+  updateSliderPosition()
+}
 
 // Lifecycle
 onMounted(async () => {
-  await nextTick();
-  calculateDimensions();
-  updateSliderPosition();
+  await nextTick()
+  calculateDimensions()
+  updateSliderPosition()
 
-  window.addEventListener("resize", handleResize);
-});
+  window.addEventListener("resize", handleResize)
+})
 
 onBeforeUnmount(() => {
-  window.removeEventListener("resize", handleResize);
-  rootStore.resetState(props.type);
-});
+  window.removeEventListener("resize", handleResize)
+  rootStore.resetState(props.type, locale.value)
+})
 
 // Watch for items changes
 watch(
   () => items.value,
   () => {
     nextTick(() => {
-      calculateDimensions();
-      updateSliderPosition();
-    });
+      calculateDimensions()
+      updateSliderPosition()
+    })
   },
-  { deep: true }
-);
+  { deep: true },
+)
 
 // Initialize data
 try {
-  await rootStore.update(props.type, locale.value);
+  await rootStore.update(props.type, locale.value)
 } catch (error) {
-  console.log("error fetching update list: ", error);
+  console.log("error fetching update list: ", error)
 }
 </script>
 
@@ -254,7 +247,8 @@ try {
   font-size: 14px;
   font-weight: 500;
   color: #666;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 
 .navigation-controls {
