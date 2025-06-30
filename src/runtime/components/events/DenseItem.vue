@@ -4,7 +4,7 @@
     class="cursor-pointer highlight-on-hover"
     @click="$router.push(localePath('/activities/events/' + item.slug[locale]))"
   >
-    <v-col align-self="center" cols="2">
+    <v-col align-self="center" cols="auto">
       {{
         new Date(item.start).toLocaleDateString(locale, {
           year: "numeric",
@@ -26,10 +26,10 @@
 </template>
 
 <script setup>
-import { useLocalePath, useI18n } from "#imports";
+import { useLocalePath, useI18n } from "#imports"
 
-const { locale } = useI18n();
-const localePath = useLocalePath();
+const { locale } = useI18n()
+const localePath = useLocalePath()
 const props = defineProps({
   item: {
     type: Object,
@@ -39,5 +39,5 @@ const props = defineProps({
     type: Number,
     required: true,
   },
-});
+})
 </script>

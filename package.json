@@ -24,7 +24,7 @@
     "@nuxtjs/apollo": "^5.0.0-alpha.14",
     "@nuxtjs/i18n": "^9.5.2",
     "@nuxtjs/mdc": "0.16.1",
-    "@paris-ias/data": "^1.8.5",
+    "@paris-ias/data": "^1.8.25",
     "@pinia/nuxt": "^0.5.4",
     "@types/node": "latest",
     "@urql/exchange-execute": "2.3.1",

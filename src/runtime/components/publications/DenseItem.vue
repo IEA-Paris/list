@@ -2,7 +2,9 @@
   <v-row
     v-ripple
     class="cursor-pointer highlight-on-hover"
-    @click="$router.push(localePath('/activities/news/' + item.slug[locale]))"
+    @click="
+      $router.push(localePath('/activities/publications/' + item.slug[locale]))
+    "
   >
     <v-col align-self="center" cols="7" class="text-h6 dense">
       <v-skeleton-loader v-if="rootStore.loading" type="heading" />

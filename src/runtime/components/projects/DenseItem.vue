@@ -2,7 +2,7 @@
   <v-row
     v-ripple
     class="cursor-pointer highlight-on-hover"
-    @click="$router.push(localePath('/activities/news/' + item.slug[locale]))"
+    @click="$router.push(localePath('/projects/' + item.slug[locale]))"
   >
     <v-col align-self="center" cols="7" class="text-h6 dense">
       <v-skeleton-loader v-if="rootStore.loading" type="heading" />
@@ -22,9 +22,6 @@
       />
 
       <template v-else>
-        <v-chip class="ma-2" style="background-color: white; color: black">
-          {{ $t(eventCategory) }}
-        </v-chip>
         <MiscMoleculesChipContainer :items="item.tags" size="small" />
       </template>
     </v-col>
