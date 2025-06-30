@@ -14,7 +14,7 @@
                 $stores[type].total,
                 $t("items." + props.type, $stores[type].total),
               ],
-              $stores[type].total
+              $stores[type].total,
             )
           : $t(
               "list.0-items-found",
@@ -22,7 +22,7 @@
                 $stores[type].total,
                 $t("items." + props.type, $stores[type].total),
               ],
-              $stores[type].total
+              $stores[type].total,
             )
       }}
     </template>
@@ -42,11 +42,11 @@
                 $t(
                   "items." + props.type,
                   $stores[type].total,
-                  $stores[type].total
+                  $stores[type].total,
                 ),
                 $stores[type].search,
               ],
-              $stores[type].total
+              $stores[type].total,
             )
           : $t(
               "list.0-items-found-searching-for",
@@ -55,11 +55,11 @@
                 $t(
                   "items." + props.type,
                   $stores[type].total,
-                  $stores[type].total
+                  $stores[type].total,
                 ),
                 $stores[type].search,
               ],
-              $stores[type].total
+              $stores[type].total,
             )
       }}
     </template>
@@ -79,12 +79,12 @@
                 $t(
                   "items." + props.type,
                   $stores[type].total,
-                  $stores[type].total
+                  $stores[type].total,
                 ),
                 $stores[type].filtersCount,
                 $t("filters", $stores[type].filtersCount),
               ],
-              $stores[type].total
+              $stores[type].total,
             )
           : $t(
               "list.0-items-found-with-1-filter",
@@ -94,7 +94,7 @@
                 $stores[type].filtersCount,
                 $t("filters", $stores[type].filtersCount),
               ],
-              $stores[type].total
+              $stores[type].total,
             )
       }}
     </template>
@@ -117,7 +117,7 @@
                 $stores[type].filtersCount,
                 $t("filters", $stores[type].filtersCount),
               ],
-              $stores[type].total
+              $stores[type].total,
             )
           : $t(
               "list.0-items-found-searching-for-with-1-filter",
@@ -128,7 +128,7 @@
                 $stores[type].filtersCount,
                 $t("filters", $stores[type].filtersCount),
               ],
-              $stores[type].total
+              $stores[type].total,
             )
       }}
     </template>
@@ -148,16 +148,16 @@
 </template>
 
 <script setup>
-import { useNuxtApp, ref } from "#imports";
+import { useNuxtApp, ref } from "#imports"
 
-const { $stores } = useNuxtApp();
+const { $stores } = useNuxtApp()
 const props = defineProps({
   type: {
     type: String,
     required: true,
   },
-});
-const feminine = ref(["news", "publications", "people"].includes(props.type));
+})
+const feminine = ref(["news", "publications", "people"].includes(props.type))
 </script>
 
 <style lang="scss" scoped></style>

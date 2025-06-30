@@ -1,19 +1,32 @@
 <template>
   <v-row
     v-ripple
+    no-gutters
     class="cursor-pointer highlight-on-hover"
     @click="
       $router.push(localePath('/activities/publications/' + item.slug[locale]))
     "
   >
-    <v-col align-self="center" cols="7" class="text-h6 dense">
+    <v-col v-if="mdAndUp" align-self="center" cols="1">
+      <MiscAtomsImageContainer
+        cover
+        :loading="$stores.people.loading"
+        :src="item.image.url ? item.image : '/default.png'"
+        :ratio="1 / 1"
+        :name="item.lastname + ' ' + item.firstname"
+        :slug="item.slug[locale]"
+        link="activities-publications-slug"
+        width="80px"
+      />
+    </v-col>
+    <v-col align-self="center" class="text-h5 dense pl-2">
       <v-skeleton-loader v-if="rootStore.loading" type="heading" />
       <template v-else>
         {{ item.name }}
       </template>
     </v-col>
 
-    <v-col align-self="center" cols="5" class="dense">
+    <v-col align-self="center">
       <v-skeleton-loader
         v-if="rootStore.loading"
         :type="
@@ -39,7 +52,7 @@ import { useRootStore } from "../../stores/root"
 import { computed, useNuxtApp, useI18n, useLocalePath } from "#imports"
 
 const { $stores } = useNuxtApp()
-const { name } = useDisplay()
+const { name, mdAndUp } = useDisplay()
 const localePath = useLocalePath()
 const { locale } = useI18n()
 

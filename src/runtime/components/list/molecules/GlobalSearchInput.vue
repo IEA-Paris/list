@@ -49,16 +49,16 @@
         </template>
 
         <v-card min-width="200">
-          <v-list>
+          <v-list density="compact">
             <v-list-item
-              v-for="option in filterOptions"
+              v-for="(option, index) in filterOptions"
               :key="option.value"
               @click="toggleFilter(option)"
             >
               <template #prepend>
                 <v-checkbox
                   hide-details
-                  :model-value="selectedFilters.includes(option.value)"
+                  :model-value="categories.includes(index)"
                   @update:model-value="toggleFilter(option)"
                 />
               </template>
@@ -89,11 +89,14 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
+  categories: {
+    type: Array,
+    default: () => [],
+  },
 })
 
 // Filter dropdown state
 const filterMenuOpen = ref(false)
-const selectedFilters = ref([])
 
 // Filter options
 const filterOptions = [
@@ -107,17 +110,16 @@ const filterOptions = [
 
 // Toggle filter selection
 const toggleFilter = (option) => {
-  const index = selectedFilters.value.indexOf(option.value)
+  const index = props.categories.indexOf(option.value)
   if (index > -1) {
-    selectedFilters.value.splice(index, 1)
+    props.categories.splice(index, 1)
   } else {
-    selectedFilters.value.push(option.value)
+    props.categories.push(option.value)
   }
 
   emit("filter-change", {
     name: option.value,
-    value: selectedFilters.value.includes(option.value),
-    allSelected: selectedFilters.value,
+    value: props.categories.includes(option.value),
   })
 }
 

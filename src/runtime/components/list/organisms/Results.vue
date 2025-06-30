@@ -1,62 +1,49 @@
 <template>
-  <ListMoleculesResultsHeader :type="props.type" />
-  <div class="results-container">
-    <component
-      :is="itemTemplate"
-      v-for="(item, index) in items"
-      :key="index"
-      :item="item"
-      :index="index"
-    />
-  </div>
+  <ListMoleculesGlobalSearchInput
+    type="all"
+    :placeholder="$t('search')"
+    variant="outlined"
+  />
+  <ListMoleculesResultsContainer
+    v-for="(type, index) in appConfig.list.modules"
+    :key="index"
+    :feminine="type === 'people'"
+    :type
+    :open="$rootStore.results[type].total > 0"
+    @toggle="open[$event] = !open[$event]"
+  >
+    <v-expand-transition class="results-container">
+      <div v-show="open[type]">
+        <ListAtomsResultsList :type />
+      </div> </v-expand-transition
+  ></ListMoleculesResultsContainer>
 </template>
 
 <script setup>
-import { useRootStore } from "../../../stores/root"
-import { capitalize } from "../../../composables/useUtils"
 import {
-  useNuxtApp,
-  resolveComponent,
-  computed,
   onBeforeUnmount,
   onMounted,
   useI18n,
+  useAppConfig,
+  useNuxtApp,
 } from "#imports"
-const { $stores } = useNuxtApp()
+const { $rootStore } = useNuxtApp()
+
+const appConfig = useAppConfig()
 const { locale } = useI18n()
+const open = ref({})
 
-const rootStore = useRootStore()
-const props = defineProps({
-  type: {
-    type: String,
-    default: "people",
-    required: true,
-  },
-  items: [Object],
-})
-
-const itemTemplate = computed(() =>
-  resolveComponent(
-    (
-      capitalize(props.type) +
-      capitalize($stores[props.type].view.name) +
-      "Item"
-    ).toString(),
-  ),
-)
-
-const items = computed(() => $stores[props.type].items)
 onMounted(() => {
   // Initialize the page from the route
   console.log("mounted list")
 })
 try {
-  await rootStore.update(props.type, locale.value)
+  await $rootStore.update("all", locale.value)
 } catch (error) {
   console.log("error fetching update list: ", error)
 }
 onBeforeUnmount(() => {
-  rootStore.resetState(props.type, locale.value)
+  /* rootStore.resetState("all", locale.value) */
 })
 </script>
 <style scoped>
