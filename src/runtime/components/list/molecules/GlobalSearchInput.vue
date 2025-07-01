@@ -51,14 +51,14 @@
         <v-card min-width="200">
           <v-list density="compact">
             <v-list-item
-              v-for="(option, index) in filterOptions"
+              v-for="option in filterOptions"
               :key="option.value"
               @click="toggleFilter(option)"
             >
               <template #prepend>
                 <v-checkbox
                   hide-details
-                  :model-value="categories.includes(index)"
+                  :model-value="categories.includes(option.value)"
                   @update:model-value="toggleFilter(option)"
                 />
               </template>
@@ -77,6 +77,9 @@ import { useRootStore } from "../../../stores/root"
 import { computed, useI18n, ref } from "#imports"
 const { locale, t } = useI18n()
 const rootStore = useRootStore()
+
+// Utility function to capitalize first letter
+const capitalize = (str) => str.charAt(0).toUpperCase() + str.slice(1)
 
 const emit = defineEmits(["filter-change"])
 
@@ -110,16 +113,19 @@ const filterOptions = [
 
 // Toggle filter selection
 const toggleFilter = (option) => {
-  const index = props.categories.indexOf(option.value)
+  const currentCategories = [...props.categories]
+  const index = currentCategories.indexOf(option.value)
+
   if (index > -1) {
-    props.categories.splice(index, 1)
+    currentCategories.splice(index, 1)
   } else {
-    props.categories.push(option.value)
+    currentCategories.push(option.value)
   }
 
   emit("filter-change", {
     name: option.value,
-    value: props.categories.includes(option.value),
+    value: currentCategories.includes(option.value),
+    categories: currentCategories,
   })
 }
 

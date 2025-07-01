@@ -75,6 +75,7 @@
 import { useDebounceFn } from "@vueuse/core"
 import { useRootStore } from "../../../stores/root"
 import { computed, useI18n, ref } from "#imports"
+import { capitalize } from "../../../composables/useUtils"
 const { locale, t } = useI18n()
 const rootStore = useRootStore()
 

@@ -95,11 +95,11 @@ const page = computed(() => +$stores[props.type].page)
 
 const items = computed(() => $stores[props.type].items)
 console.log("setup list")
-rootStore.loadRouteQuery(props.type)
 onMounted(() => {
   // Initialize the page from the route
   console.log("mounted list")
 })
+rootStore.loadRouteQuery(props.type)
 try {
   await rootStore.update(props.type, locale.value)
 } catch (error) {

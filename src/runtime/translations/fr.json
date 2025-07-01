@@ -62,7 +62,8 @@
           "SYMPOSIUM": "Symposium",
           "EXHIBITION": "Exposition",
           "WEBINAR": "Webinaire",
-          "WORKSHOP": "Atelier"
+          "WORKSHOP": "Atelier",
+          "CALL": "Appel à propositions"
         },
         "fellowship": {
           "label": "Programme d'accueil",
@@ -150,7 +151,8 @@
           "REPORT": "Rapport",
           "SOFTWARE": "Logiciel",
           "TOOL": "Outil",
-          "VIDEO": "Vidéo"
+          "VIDEO": "Vidéo",
+          "OTHER": "Autres"
         },
         "tags": {
           "label": "Tags",
@@ -229,7 +231,8 @@
           "SEMINAR": "Séminaire",
           "SYMPOSIUM": "Symposium",
           "WEBINAR": "Webinaire",
-          "WORKSHOP": "Atelier"
+          "WORKSHOP": "Atelier",
+          "OTHERS": "Autres"
         },
         "type": {
           "label": "Type",
@@ -243,7 +246,8 @@
           "REPORT": "Rapport",
           "SOFTWARE": "Logiciel",
           "THESIS": "Thèse",
-          "VIDEO": "Vidéo"
+          "VIDEO": "Vidéo",
+          "OTHERS": "Autres"
         }
       }
     },

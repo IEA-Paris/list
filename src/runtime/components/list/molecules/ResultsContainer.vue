@@ -1,6 +1,5 @@
 <template>
   <div>
-    <v-divider />
     <div class="d-flex align-center justify-space-between my-6">
       <v-btn
         variant="text"
@@ -42,17 +41,17 @@
         </div>
       </div>
       <v-spacer />
-      <v-btn
-        class="ma-2"
-        color="default"
-        variant="outlined"
-        rounded="0"
-        :to="localePath(type === 'people' ? '/people' : '/activities/' + type)"
-      >
-        {{ $t("list.pls-x-more", [$rootStore.results[type].total]) }}
-      </v-btn>
     </div>
     <slot />
+    <v-btn
+      class="ma-2 float-right"
+      color="default"
+      variant="text"
+      rounded="0"
+      :to="localePath(type === 'people' ? '/people' : '/activities/' + type)"
+    >
+      {{ $t("list.pls-x-more", [$rootStore.results[type].total]) }}
+    </v-btn>
   </div>
 </template>
 <script setup>

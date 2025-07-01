@@ -2,7 +2,7 @@
   <v-row
     v-ripple
     no-gutters
-    class="cursor-pointer highlight-on-hover"
+    class="cursor-pointer highlight-on-hover my-2"
     @click="
       $router.push(localePath('/activities/publications/' + item.slug[locale]))
     "
@@ -23,6 +23,9 @@
       <v-skeleton-loader v-if="rootStore.loading" type="heading" />
       <template v-else>
         {{ item.name }}
+        <div class="text-body-2">
+          {{ item.summary }}
+        </div>
       </template>
     </v-col>
 
@@ -38,7 +41,9 @@
 
       <template v-else>
         <v-chip class="ma-2" style="background-color: white; color: black">
-          {{ $t(eventCategory) }}
+          {{ $t(eventCategory) }} </v-chip
+        ><v-chip class="ma-2" style="background-color: white; color: black">
+          {{ $t(eventType) }}
         </v-chip>
         <MiscMoleculesChipContainer :items="item.tags" size="small" />
       </template>
@@ -69,9 +74,18 @@ const props = defineProps({
 })
 const eventCategory = computed(() => {
   if (props.item.category) {
-    return "list.filters.news.category." + props.item.category
+    console.log("props.item.category: ", props.item.category)
+    return "list.filters.publications.category." + props.item.category
   } else {
-    return "list.filters.news.category.others"
+    return "list.filters.publications.category.OTHERS"
+  }
+})
+const eventType = computed(() => {
+  if (props.item.type) {
+    console.log("props.item.type: ", props.item.type)
+    return "list.filters.publications.type." + props.item.type
+  } else {
+    return "list.filters.publications.type.OTHERS"
   }
 })
 </script>
