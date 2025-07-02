@@ -125,7 +125,14 @@
             :key="position.role + index"
             class="text-body-2"
           >
-            {{ position.role + " " + (position.department || "") }}
+            <template v-if="position.role === 'Fellow'">
+              <span class="text-caption text-uppercase">
+                {{ $t("fellow") }}
+              </span>
+            </template>
+            <template v-else>
+              {{ position.role + " " + (position.department || "") }}
+            </template>
             <span v-if="position.start" class="">
               <!--  TODO FIx dates display -->
               -
@@ -152,15 +159,15 @@
 </template>
 
 <script setup>
-import { useDisplay } from "vuetify";
-import { useNuxtApp, useI18n } from "#imports";
+import { useDisplay } from "vuetify"
+import { useNuxtApp, useI18n } from "#imports"
 
-const { locale } = useI18n();
-const { $stores } = useNuxtApp();
-const { name, mdAndUp } = useDisplay();
+const { locale } = useI18n()
+const { $stores } = useNuxtApp()
+const { name, mdAndUp } = useDisplay()
 const props = defineProps({
   item: { type: Object, required: true },
   loading: { type: Boolean, default: false },
-});
-$stores.people.loading = false;
+})
+$stores.people.loading = false
 </script>
