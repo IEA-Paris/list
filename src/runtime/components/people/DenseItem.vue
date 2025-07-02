@@ -2,7 +2,7 @@
   <v-row
     v-ripple
     no-gutters
-    class="cursor-pointer highlight-on-hover"
+    class="cursor-pointer highlight-on-hover my-3"
     @click="
       $router.push(
         localePath({
@@ -24,12 +24,12 @@
         width="80px"
       />
     </v-col>
-    <v-col align-self="center" class="text-h6 dense pl-2">
+    <v-col align-self="center" class="text-h6 dense px-2">
       <v-skeleton-loader v-if="rootStore.loading" type="heading" />
       <div v-else class="text-h5">
         {{ item.firstname + " " + item.lastname }}
       </div>
-      <div class="mt-2 text-body-2 font-weight-light">
+      <div class="mt-2 text-body-1 font-weight-light">
         {{ item.groups.vintage ? item.groups.vintage[0].theme : "" }}
       </div>
     </v-col>
