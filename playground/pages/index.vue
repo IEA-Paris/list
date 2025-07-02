@@ -1,6 +1,7 @@
 <template>
   <div>
-    <ListOrganismsList type="users" />
+    <!-- <ListOrganismsList type="users" /> -->
+    <ListAtomsItemsPerPage type="events" />
     <!-- <ListOrganismsList type="people" /> -->
     <!--     <ListOrganismsList type="actions" /> -->
     <!-- <ListOrganismsList type="publications" />
