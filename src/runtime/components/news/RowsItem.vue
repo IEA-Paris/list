@@ -77,7 +77,7 @@
             size="small"
             :to="
               localePath({
-                name: 'news-slug',
+                name: 'activities-news-slug',
                 params: { slug: item.slug[locale] },
               })
             "
@@ -114,7 +114,7 @@
           tile
           :to="
             localePath({
-              name: 'news-slug',
+              name: 'activities-news-slug',
               params: { slug: item.slug[locale] },
             })
           "

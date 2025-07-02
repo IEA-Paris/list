@@ -13,6 +13,6 @@ if (import.meta.hot) {
   })
 }
 
-import cfg0 from "/home/bob/Projects/list/playground/app.config.ts"
+import cfg0 from "/home/bob/Projects/seed/modules/list/playground/app.config.ts"
 
 export default /*@__PURE__*/ defuFn(cfg0, inlineConfig)

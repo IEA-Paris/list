@@ -169,7 +169,7 @@
     "../../node_modules/@nuxtjs/apollo/runtime/server",
     "../../node_modules/@pinia/nuxt/runtime/server",
     "../node_modules/@nuxtjs/mdc/runtime/server",
-    "../../../../Pr/runtime/server",
+    "../../../../../../Pr/runtime/server",
     "../node_modules/@nuxt/devtools/runtime/server",
     "../node_modules/@nuxt/telemetry/runtime/server",
     "./types/nitro.d.ts",

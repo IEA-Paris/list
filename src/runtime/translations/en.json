@@ -20,6 +20,8 @@
   "inscription-ouverte": "Registration Open",
   "items": {
     "all": "all | all | all",
+    "activities": "activity | activity | activities",
+    "about": "about | about | about",
     "events": "event | event | events",
     "fellow": "fellow | fellow | fellows",
     "fellowships": "fellowship | fellowship | fellowships",
@@ -62,7 +64,8 @@
           "SYMPOSIUM": "Symposium",
           "EXHIBITION": "Exhibition",
           "WEBINAR": "Webinar",
-          "WORKSHOP": "Workshop"
+          "WORKSHOP": "Workshop",
+          "CALL": "Call to propositions"
         },
         "fellowship": {
           "cat": "Constructive Advanced Thinking",
@@ -149,7 +152,8 @@
           "REPORT": "Report",
           "SOFTWARE": "Software",
           "TOOL": "Tool",
-          "VIDEO": "Video"
+          "VIDEO": "Video",
+          "OTHER": "Other"
         },
         "tags": {
           "label": "Tags",
@@ -228,7 +232,8 @@
           "SEMINAR": "Seminar",
           "SYMPOSIUM": "Symposium",
           "WEBINAR": "Webinar",
-          "WORKSHOP": "Workshop"
+          "WORKSHOP": "Workshop",
+          "OTHERS": "Others"
         },
         "type": {
           "label": "Type",
@@ -242,7 +247,8 @@
           "REPORT": "Report",
           "SOFTWARE": "Software",
           "THESIS": "Thesis",
-          "VIDEO": "Video"
+          "VIDEO": "Video",
+          "OTHERS": "Others"
         }
       }
     },
@@ -329,7 +335,7 @@
   "upcoming-events": "Upcoming events",
   "videos": "Videos",
   "view-larger-map": "View on a larger map",
-  "vintage": "Year {0}",
+  "vintage": "{0} Fellow",
   "visit": "Visit us",
   "visit-the-project-website": "Visit the project website",
   "watch-the-replay": "Watch the replay",

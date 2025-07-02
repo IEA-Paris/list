@@ -4,6 +4,19 @@ query search($appId: ID = "", $search: String = "", $lang: String = "en") {
       items {
         firstname
         id
+        groups {
+          board
+          fellows
+          sab
+          sponsor
+          team
+          vintage {
+            name
+            theme
+            url
+            year
+          }
+        }
         image {
           alt
           backgroundColor

@@ -43,8 +43,7 @@
 import { useDisplay } from "vuetify"
 import { useRootStore } from "../../../stores/root"
 import { capitalize } from "../../../composables/useUtils"
-import { useNuxtApp, onMounted, resolveComponent } from "#imports"
-import { useI18n } from "vue-i18n"
+import { useNuxtApp, onMounted, resolveComponent, useI18n } from "#imports"
 
 const { smAndDown } = useDisplay()
 const i18n = useI18n()
@@ -68,7 +67,11 @@ const getItems = (name) => {
     return $filters[props.type][name]
       .filter((key) => key !== "label")
       .map((item) => ({
-        title: i18n.t(`list.filters.${props.type}.${name}.${item}`),
+        title: i18n.t(
+          props.type === "people" && name === "vintage"
+            ? item
+            : `list.filters.${props.type}.${name}.${item}`,
+        ),
         value: item,
       }))
   }

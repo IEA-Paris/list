@@ -1,5 +1,5 @@
 {
-  "applications-closed-since-0": "Inscriptions fermées deepuis le {0}",
+  "applications-closed-since-0": "Inscriptions fermées depuis le {0}",
   "back": "Retour",
   "biography": "Biographie",
   "date-et-heure": "Date et heure",
@@ -62,7 +62,8 @@
           "SYMPOSIUM": "Symposium",
           "EXHIBITION": "Exposition",
           "WEBINAR": "Webinaire",
-          "WORKSHOP": "Atelier"
+          "WORKSHOP": "Atelier",
+          "CALL": "Appel à propositions"
         },
         "fellowship": {
           "label": "Programme d'accueil",
@@ -150,7 +151,8 @@
           "REPORT": "Rapport",
           "SOFTWARE": "Logiciel",
           "TOOL": "Outil",
-          "VIDEO": "Vidéo"
+          "VIDEO": "Vidéo",
+          "OTHER": "Autres"
         },
         "tags": {
           "label": "Tags",
@@ -229,7 +231,8 @@
           "SEMINAR": "Séminaire",
           "SYMPOSIUM": "Symposium",
           "WEBINAR": "Webinaire",
-          "WORKSHOP": "Atelier"
+          "WORKSHOP": "Atelier",
+          "OTHERS": "Autres"
         },
         "type": {
           "label": "Type",
@@ -243,7 +246,8 @@
           "REPORT": "Rapport",
           "SOFTWARE": "Logiciel",
           "THESIS": "Thèse",
-          "VIDEO": "Vidéo"
+          "VIDEO": "Vidéo",
+          "OTHERS": "Autres"
         }
       }
     },
@@ -330,7 +334,7 @@
   "upcoming-events": "Événements à venir",
   "videos": "Vidéos",
   "view-larger-map": "Afficher sur une carte plus grande",
-  "vintage": "Année {0}",
+  "vintage": "Résident {0}",
   "visit": "Nous rendre visite",
   "visit-the-project-website": "Visiter le site web",
   "groups": "Catégorie",
@@ -338,5 +342,8 @@
   "visit-this-project-website": "Visitez le site Web du projet",
   "visit-this-publications-website": "Visitez la page Web de cette publication",
   "no-biography": "Aucune biographie disponible",
-  "search": "Rechercher"
+  "search": "Rechercher",
+  "close-the-filter-panel": "Réduire les filtres",
+  "list.by-vintage-from-recent-to-old": "Par année, du plus récent au plus vieux",
+  "list.by-vintage-from-old-to-recent": "Par année, du plus vieux au plus récent"
 }

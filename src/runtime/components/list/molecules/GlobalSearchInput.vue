@@ -49,7 +49,7 @@
         </template>
 
         <v-card min-width="200">
-          <v-list>
+          <v-list density="compact">
             <v-list-item
               v-for="option in filterOptions"
               :key="option.value"
@@ -58,7 +58,7 @@
               <template #prepend>
                 <v-checkbox
                   hide-details
-                  :model-value="selectedFilters.includes(option.value)"
+                  :model-value="categories.includes(option.value)"
                   @update:model-value="toggleFilter(option)"
                 />
               </template>
@@ -75,9 +75,11 @@
 import { useDebounceFn } from "@vueuse/core"
 import { useRootStore } from "../../../stores/root"
 import { computed, useI18n, ref } from "#imports"
-import { capitalize } from "../../../composables/useUtils"
 const { locale, t } = useI18n()
 const rootStore = useRootStore()
+
+// Utility function to capitalize first letter
+const capitalize = (str) => str.charAt(0).toUpperCase() + str.slice(1)
 
 const emit = defineEmits(["filter-change"])
 
@@ -90,11 +92,14 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
+  categories: {
+    type: Array,
+    default: () => [],
+  },
 })
 
 // Filter dropdown state
 const filterMenuOpen = ref(false)
-const selectedFilters = ref([])
 
 // Filter options
 const filterOptions = [
@@ -108,17 +113,19 @@ const filterOptions = [
 
 // Toggle filter selection
 const toggleFilter = (option) => {
-  const index = selectedFilters.value.indexOf(option.value)
+  const currentCategories = [...props.categories]
+  const index = currentCategories.indexOf(option.value)
+
   if (index > -1) {
-    selectedFilters.value.splice(index, 1)
+    currentCategories.splice(index, 1)
   } else {
-    selectedFilters.value.push(option.value)
+    currentCategories.push(option.value)
   }
 
   emit("filter-change", {
     name: option.value,
-    value: selectedFilters.value.includes(option.value),
-    allSelected: selectedFilters.value,
+    value: currentCategories.includes(option.value),
+    categories: currentCategories,
   })
 }
 

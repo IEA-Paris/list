@@ -25,19 +25,20 @@
 </template>
 
 <script setup>
-import { useRootStore } from "../../../stores/root";
-import { capitalize } from "../../../composables/useUtils";
+import { useRootStore } from "../../../stores/root"
+import { capitalize } from "../../../composables/useUtils"
 import {
   useNuxtApp,
   resolveComponent,
   computed,
   onBeforeUnmount,
-} from "#imports";
-import { useI18n } from "vue-i18n";
-const { $stores } = useNuxtApp();
-const { locale } = useI18n();
+  onMounted,
+  useI18n,
+} from "#imports"
+const { $stores } = useNuxtApp()
+const { locale } = useI18n()
 
-const rootStore = useRootStore();
+const rootStore = useRootStore()
 const props = defineProps({
   addBtn: {
     type: Boolean,
@@ -56,14 +57,14 @@ const props = defineProps({
       return {
         cols: 12,
         xl: 12,
-      };
+      }
     },
   },
   pagination: {
     type: Object,
     required: false,
     default: () => {
-      return {};
+      return {}
     },
   },
   addButton: {
@@ -72,36 +73,39 @@ const props = defineProps({
     default: false,
   },
   items: [Object],
-});
+})
 
 const view = computed(() =>
   props.customView
     ? resolveComponent("ListViews" + capitalize(props.customView))
-    : resolveComponent("ListViews" + capitalize($stores[props.type].view.name))
-);
+    : resolveComponent("ListViews" + capitalize($stores[props.type].view.name)),
+)
 const itemTemplate = computed(() =>
   resolveComponent(
     (
       capitalize(props.type) +
       capitalize($stores[props.type].view.name) +
       "Item"
-    ).toString()
-  )
-);
-const numberOfPages = computed(() => $stores[props.type].numberOfPages);
+    ).toString(),
+  ),
+)
+const numberOfPages = computed(() => $stores[props.type].numberOfPages)
 
-const page = computed(() => +$stores[props.type].page);
+const page = computed(() => +$stores[props.type].page)
 
-const items = computed(() => $stores[props.type].items);
-
-rootStore.initializePageFromRoute();
-
+const items = computed(() => $stores[props.type].items)
+console.log("setup list")
+onMounted(() => {
+  // Initialize the page from the route
+  console.log("mounted list")
+})
+rootStore.loadRouteQuery(props.type)
 try {
-  await rootStore.update(props.type, locale.value);
+  await rootStore.update(props.type, locale.value)
 } catch (error) {
-  console.log("error fetching update list: ", error);
+  console.log("error fetching update list: ", error)
 }
 onBeforeUnmount(() => {
-  rootStore.resetState(props.type);
-});
+  rootStore.resetState(props.type, locale.value)
+})
 </script>

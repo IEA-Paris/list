@@ -1,12 +1,13 @@
 <template>
   <v-row
     v-ripple
+    no-gutters
     class="cursor-pointer highlight-on-hover"
     @click="
       $router.push(localePath('/activities/fellowships' + item.slug[locale]))
     "
   >
-    <v-col align-self="center" cols="8" class="text-h6">
+    <v-col align-self="center" cols="8" class="text-h5 dense">
       {{ item.name }}
       <FellowshipsBadges :item="item" />
     </v-col>
@@ -25,10 +26,10 @@
 </template>
 
 <script setup>
-import { useLocalePath, useI18n } from "#imports";
+import { useLocalePath, useI18n } from "#imports"
 
-const { locale } = useI18n();
-const localePath = useLocalePath();
+const { locale } = useI18n()
+const localePath = useLocalePath()
 const props = defineProps({
   item: {
     type: Object,
@@ -38,5 +39,5 @@ const props = defineProps({
     type: Number,
     required: true,
   },
-});
+})
 </script>

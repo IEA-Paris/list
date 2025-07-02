@@ -3,18 +3,25 @@
     v-ripple
     no-gutters
     class="cursor-pointer highlight-on-hover"
-    @click="$router.push(localePath('/activities/news/' + item.slug[locale]))"
+    @click="
+      $router.push(
+        localePath({
+          name: 'activities-projects-slug',
+          params: { slug: item.slug[locale] },
+        }),
+      )
+    "
   >
     <v-col v-if="mdAndUp" align-self="center" cols="1">
       <MiscAtomsImageContainer
         cover
-        :loading="$stores.people.loading"
+        :loading="$stores.projects.loading"
         :src="item.image.url ? item.image : '/default.png'"
         :ratio="1 / 1"
-        :name="item.lastname + ' ' + item.firstname"
-        :slug="item.slug"
-        link="people-slug"
-        width="80px"
+        :name="item.name"
+        :slug="item.slug[locale]"
+        link="activities-projects-slug"
+        width="50"
       />
     </v-col>
     <v-col align-self="center" class="text-h5 dense pl-2">
@@ -24,7 +31,7 @@
       </template>
     </v-col>
 
-    <v-col align-self="center">
+    <v-col align-self="center" cols="5" class="dense">
       <v-skeleton-loader
         v-if="rootStore.loading"
         :type="
@@ -35,9 +42,6 @@
       />
 
       <template v-else>
-        <v-chip class="ma-2" style="background-color: white; color: black">
-          {{ $t(eventCategory) }}
-        </v-chip>
         <MiscMoleculesChipContainer :items="item.tags" size="small" />
       </template>
     </v-col>
