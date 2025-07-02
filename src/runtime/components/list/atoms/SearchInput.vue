@@ -3,6 +3,7 @@
     <v-text-field
       v-model.trim="search"
       :placeholder="$t('list.search-type', [$t('items.' + type, 2)])"
+      :append-icon="type === 'all' ? 'mdi-magnify' : false"
       prepend-inner-icon="mdi-magnify"
       single-line
       class="transition-swing"
@@ -12,6 +13,8 @@
       tile
       type="search"
       :loading="rootStore.loading"
+      @keyup.enter="$router.push(localePath('/search'))"
+      @click:append="$router.push(localePath('/search'))"
     >
       <!--    :loading="$nuxt.loading || $store.state.loading" :class="{ 'mt-3':
       $store.state.scrolled }" -->
@@ -32,6 +35,8 @@
 import { useDebounceFn } from "@vueuse/core"
 import { useRootStore } from "../../../stores/root"
 import { computed, useI18n } from "#imports"
+const { $router } = useNuxtApp()
+const localePath = useLocalePath()
 
 const { locale } = useI18n()
 const rootStore = useRootStore()

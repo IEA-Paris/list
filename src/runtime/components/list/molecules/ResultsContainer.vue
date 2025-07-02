@@ -15,7 +15,12 @@
         class="d-flex flex-column cursor-pointer"
         @click="$emit('toggle', type)"
       >
-        <div class="text-h4">
+        <div
+          class="text-h4"
+          :class="
+            $rootStore.results[type].total > 0 ? '' : 'text-grey darken-2'
+          "
+        >
           {{ capitalize($t("items." + props.type, 2)) }}
         </div>
         <div class="text-overline">
@@ -58,7 +63,13 @@
 import { useNuxtApp, useLocalePath } from "#imports"
 const localePath = useLocalePath()
 
+// Utility function to capitalize first letter
+const capitalize = (str) => str.charAt(0).toUpperCase() + str.slice(1)
+
 const { $rootStore } = useNuxtApp()
+
+defineEmits(["toggle"])
+
 const props = defineProps({
   type: {
     type: String,
