@@ -45,19 +45,24 @@ interface _GlobalComponents {
     'FilesView': typeof import("../../src/runtime/components/files/View.vue")['default']
     'ListAtomsFiltersMenu': typeof import("../../src/runtime/components/list/atoms/FiltersMenu.vue")['default']
     'ListAtomsResetButton': typeof import("../../src/runtime/components/list/atoms/ResetButton.vue")['default']
+    'ListAtomsResultsList': typeof import("../../src/runtime/components/list/atoms/ResultsList.vue")['default']
     'ListAtomsSearchInput': typeof import("../../src/runtime/components/list/atoms/SearchInput.vue")['default']
     'ListAtomsSearchItem': typeof import("../../src/runtime/components/list/atoms/SearchItem.vue")['default']
     'ListAtomsSearchString': typeof import("../../src/runtime/components/list/atoms/SearchString.vue")['default']
     'ListAtomsSortMenu': typeof import("../../src/runtime/components/list/atoms/SortMenu.vue")['default']
     'ListAtomsViewMenu': typeof import("../../src/runtime/components/list/atoms/ViewMenu.vue")['default']
+    'ListAtomsItemsPerPage': typeof import("../../src/runtime/components/list/atoms/itemsPerPage.vue")['default']
     'ListInputsAutoComplete': typeof import("../../src/runtime/components/list/inputs/AutoComplete.vue")['default']
     'ListInputsBooleanSwitch': typeof import("../../src/runtime/components/list/inputs/BooleanSwitch.vue")['default']
     'ListInputsCheckbox': typeof import("../../src/runtime/components/list/inputs/Checkbox.vue")['default']
     'ListInputsSelect': typeof import("../../src/runtime/components/list/inputs/Select.vue")['default']
     'ListMoleculesFilters': typeof import("../../src/runtime/components/list/molecules/Filters.vue")['default']
+    'ListMoleculesGlobalSearchInput': typeof import("../../src/runtime/components/list/molecules/GlobalSearchInput.vue")['default']
     'ListMoleculesHeader': typeof import("../../src/runtime/components/list/molecules/Header.vue")['default']
     'ListMoleculesPagination': typeof import("../../src/runtime/components/list/molecules/Pagination.vue")['default']
+    'ListMoleculesResultsContainer': typeof import("../../src/runtime/components/list/molecules/ResultsContainer.vue")['default']
     'ListOrganismsList': typeof import("../../src/runtime/components/list/organisms/List.vue")['default']
+    'ListOrganismsResults': typeof import("../../src/runtime/components/list/organisms/Results.vue")['default']
     'ListOrganismsSlider': typeof import("../../src/runtime/components/list/organisms/Slider.vue")['default']
     'ListViewsDense': typeof import("../../src/runtime/components/list/views/Dense.vue")['default']
     'ListViewsExpanded': typeof import("../../src/runtime/components/list/views/Expanded.vue")['default']
@@ -88,10 +93,12 @@ interface _GlobalComponents {
     'PeopleRelatedItem': typeof import("../../src/runtime/components/people/RelatedItem.vue")['default']
     'PeopleRowsItem': typeof import("../../src/runtime/components/people/RowsItem.vue")['default']
     'PeopleView': typeof import("../../src/runtime/components/people/View.vue")['default']
+    'ProjectsDenseItem': typeof import("../../src/runtime/components/projects/DenseItem.vue")['default']
     'ProjectsExpandedItem': typeof import("../../src/runtime/components/projects/ExpandedItem.vue")['default']
     'ProjectsRelatedItem': typeof import("../../src/runtime/components/projects/RelatedItem.vue")['default']
     'ProjectsRowsItem': typeof import("../../src/runtime/components/projects/RowsItem.vue")['default']
     'ProjectsView': typeof import("../../src/runtime/components/projects/View.vue")['default']
+    'PublicationsDenseItem': typeof import("../../src/runtime/components/publications/DenseItem.vue")['default']
     'PublicationsRelatedItem': typeof import("../../src/runtime/components/publications/RelatedItem.vue")['default']
     'PublicationsRowsItem': typeof import("../../src/runtime/components/publications/RowsItem.vue")['default']
     'PublicationsView': typeof import("../../src/runtime/components/publications/View.vue")['default']
@@ -101,59 +108,59 @@ interface _GlobalComponents {
     'UsersExpandedItem': typeof import("../../src/runtime/components/users/ExpandedItem.vue")['default']
     'UsersRowsItem': typeof import("../../src/runtime/components/users/RowsItem.vue")['default']
     'UsersView': typeof import("../../src/runtime/components/users/View.vue")['default']
-    'ProseA': typeof import("../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseA.vue")['default']
-    'ProseBlockquote': typeof import("../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseBlockquote.vue")['default']
-    'ProseCode': typeof import("../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseCode.vue")['default']
-    'ProseEm': typeof import("../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseEm.vue")['default']
-    'ProseH1': typeof import("../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseH1.vue")['default']
-    'ProseH2': typeof import("../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseH2.vue")['default']
-    'ProseH3': typeof import("../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseH3.vue")['default']
-    'ProseH4': typeof import("../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseH4.vue")['default']
-    'ProseH5': typeof import("../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseH5.vue")['default']
-    'ProseH6': typeof import("../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseH6.vue")['default']
-    'ProseHr': typeof import("../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseHr.vue")['default']
-    'ProseImg': typeof import("../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseImg.vue")['default']
-    'ProseLi': typeof import("../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseLi.vue")['default']
-    'ProseOl': typeof import("../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseOl.vue")['default']
-    'ProseP': typeof import("../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseP.vue")['default']
-    'ProsePre': typeof import("../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProsePre.vue")['default']
-    'ProseScript': typeof import("../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseScript.vue")['default']
-    'ProseStrong': typeof import("../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseStrong.vue")['default']
-    'ProseTable': typeof import("../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseTable.vue")['default']
-    'ProseTbody': typeof import("../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseTbody.vue")['default']
-    'ProseTd': typeof import("../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseTd.vue")['default']
-    'ProseTh': typeof import("../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseTh.vue")['default']
-    'ProseThead': typeof import("../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseThead.vue")['default']
-    'ProseTr': typeof import("../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseTr.vue")['default']
-    'ProseUl': typeof import("../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseUl.vue")['default']
-    'NuxtWelcome': typeof import("../node_modules/nuxt/dist/app/components/welcome.vue")['default']
-    'NuxtLayout': typeof import("../node_modules/nuxt/dist/app/components/nuxt-layout")['default']
-    'NuxtErrorBoundary': typeof import("../node_modules/nuxt/dist/app/components/nuxt-error-boundary")['default']
-    'ClientOnly': typeof import("../node_modules/nuxt/dist/app/components/client-only")['default']
-    'DevOnly': typeof import("../node_modules/nuxt/dist/app/components/dev-only")['default']
-    'ServerPlaceholder': typeof import("../node_modules/nuxt/dist/app/components/server-placeholder")['default']
-    'NuxtLink': typeof import("../node_modules/nuxt/dist/app/components/nuxt-link")['default']
-    'NuxtLoadingIndicator': typeof import("../node_modules/nuxt/dist/app/components/nuxt-loading-indicator")['default']
-    'NuxtRouteAnnouncer': typeof import("../node_modules/nuxt/dist/app/components/nuxt-route-announcer")['default']
+    'ProseA': typeof import("../../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseA.vue")['default']
+    'ProseBlockquote': typeof import("../../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseBlockquote.vue")['default']
+    'ProseCode': typeof import("../../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseCode.vue")['default']
+    'ProseEm': typeof import("../../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseEm.vue")['default']
+    'ProseH1': typeof import("../../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseH1.vue")['default']
+    'ProseH2': typeof import("../../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseH2.vue")['default']
+    'ProseH3': typeof import("../../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseH3.vue")['default']
+    'ProseH4': typeof import("../../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseH4.vue")['default']
+    'ProseH5': typeof import("../../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseH5.vue")['default']
+    'ProseH6': typeof import("../../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseH6.vue")['default']
+    'ProseHr': typeof import("../../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseHr.vue")['default']
+    'ProseImg': typeof import("../../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseImg.vue")['default']
+    'ProseLi': typeof import("../../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseLi.vue")['default']
+    'ProseOl': typeof import("../../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseOl.vue")['default']
+    'ProseP': typeof import("../../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseP.vue")['default']
+    'ProsePre': typeof import("../../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProsePre.vue")['default']
+    'ProseScript': typeof import("../../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseScript.vue")['default']
+    'ProseStrong': typeof import("../../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseStrong.vue")['default']
+    'ProseTable': typeof import("../../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseTable.vue")['default']
+    'ProseTbody': typeof import("../../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseTbody.vue")['default']
+    'ProseTd': typeof import("../../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseTd.vue")['default']
+    'ProseTh': typeof import("../../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseTh.vue")['default']
+    'ProseThead': typeof import("../../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseThead.vue")['default']
+    'ProseTr': typeof import("../../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseTr.vue")['default']
+    'ProseUl': typeof import("../../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseUl.vue")['default']
+    'NuxtWelcome': typeof import("../../node_modules/nuxt/dist/app/components/welcome.vue")['default']
+    'NuxtLayout': typeof import("../../node_modules/nuxt/dist/app/components/nuxt-layout")['default']
+    'NuxtErrorBoundary': typeof import("../../node_modules/nuxt/dist/app/components/nuxt-error-boundary")['default']
+    'ClientOnly': typeof import("../../node_modules/nuxt/dist/app/components/client-only")['default']
+    'DevOnly': typeof import("../../node_modules/nuxt/dist/app/components/dev-only")['default']
+    'ServerPlaceholder': typeof import("../../node_modules/nuxt/dist/app/components/server-placeholder")['default']
+    'NuxtLink': typeof import("../../node_modules/nuxt/dist/app/components/nuxt-link")['default']
+    'NuxtLoadingIndicator': typeof import("../../node_modules/nuxt/dist/app/components/nuxt-loading-indicator")['default']
+    'NuxtRouteAnnouncer': typeof import("../../node_modules/nuxt/dist/app/components/nuxt-route-announcer")['default']
     'NuxtImg': typeof import("../../node_modules/@nuxt/image/dist/runtime/components/NuxtImg.vue")['default']
     'NuxtPicture': typeof import("../../node_modules/@nuxt/image/dist/runtime/components/NuxtPicture.vue")['default']
     'NuxtLinkLocale': typeof import("../../node_modules/@nuxtjs/i18n/dist/runtime/components/NuxtLinkLocale")['default']
     'SwitchLocalePathLink': typeof import("../../node_modules/@nuxtjs/i18n/dist/runtime/components/SwitchLocalePathLink")['default']
-    'MDC': typeof import("../node_modules/@nuxtjs/mdc/dist/runtime/components/MDC.vue")['default']
-    'MDCRenderer': typeof import("../node_modules/@nuxtjs/mdc/dist/runtime/components/MDCRenderer.vue")['default']
-    'MDCSlot': typeof import("../node_modules/@nuxtjs/mdc/dist/runtime/components/MDCSlot.vue")['default']
-    'NuxtPage': typeof import("../node_modules/nuxt/dist/pages/runtime/page")['default']
-    'NoScript': typeof import("../node_modules/nuxt/dist/head/runtime/components")['NoScript']
-    'Link': typeof import("../node_modules/nuxt/dist/head/runtime/components")['Link']
-    'Base': typeof import("../node_modules/nuxt/dist/head/runtime/components")['Base']
-    'Title': typeof import("../node_modules/nuxt/dist/head/runtime/components")['Title']
-    'Meta': typeof import("../node_modules/nuxt/dist/head/runtime/components")['Meta']
-    'Style': typeof import("../node_modules/nuxt/dist/head/runtime/components")['Style']
-    'Head': typeof import("../node_modules/nuxt/dist/head/runtime/components")['Head']
-    'Html': typeof import("../node_modules/nuxt/dist/head/runtime/components")['Html']
-    'Body': typeof import("../node_modules/nuxt/dist/head/runtime/components")['Body']
-    'NuxtIsland': typeof import("../node_modules/nuxt/dist/app/components/nuxt-island")['default']
-    'NuxtRouteAnnouncer': IslandComponent<typeof import("../node_modules/nuxt/dist/app/components/server-placeholder")['default']>
+    'MDC': typeof import("../../node_modules/@nuxtjs/mdc/dist/runtime/components/MDC.vue")['default']
+    'MDCRenderer': typeof import("../../node_modules/@nuxtjs/mdc/dist/runtime/components/MDCRenderer.vue")['default']
+    'MDCSlot': typeof import("../../node_modules/@nuxtjs/mdc/dist/runtime/components/MDCSlot.vue")['default']
+    'NuxtPage': typeof import("../../node_modules/nuxt/dist/pages/runtime/page")['default']
+    'NoScript': typeof import("../../node_modules/nuxt/dist/head/runtime/components")['NoScript']
+    'Link': typeof import("../../node_modules/nuxt/dist/head/runtime/components")['Link']
+    'Base': typeof import("../../node_modules/nuxt/dist/head/runtime/components")['Base']
+    'Title': typeof import("../../node_modules/nuxt/dist/head/runtime/components")['Title']
+    'Meta': typeof import("../../node_modules/nuxt/dist/head/runtime/components")['Meta']
+    'Style': typeof import("../../node_modules/nuxt/dist/head/runtime/components")['Style']
+    'Head': typeof import("../../node_modules/nuxt/dist/head/runtime/components")['Head']
+    'Html': typeof import("../../node_modules/nuxt/dist/head/runtime/components")['Html']
+    'Body': typeof import("../../node_modules/nuxt/dist/head/runtime/components")['Body']
+    'NuxtIsland': typeof import("../../node_modules/nuxt/dist/app/components/nuxt-island")['default']
+    'NuxtRouteAnnouncer': IslandComponent<typeof import("../../node_modules/nuxt/dist/app/components/server-placeholder")['default']>
       'LazyFooter': LazyComponent<typeof import("../components/Footer.vue")['default']>
     'LazyActionsExpandedItem': LazyComponent<typeof import("../../src/runtime/components/actions/ExpandedItem.vue")['default']>
     'LazyActionsRowsItem': LazyComponent<typeof import("../../src/runtime/components/actions/RowsItem.vue")['default']>
@@ -187,19 +194,24 @@ interface _GlobalComponents {
     'LazyFilesView': LazyComponent<typeof import("../../src/runtime/components/files/View.vue")['default']>
     'LazyListAtomsFiltersMenu': LazyComponent<typeof import("../../src/runtime/components/list/atoms/FiltersMenu.vue")['default']>
     'LazyListAtomsResetButton': LazyComponent<typeof import("../../src/runtime/components/list/atoms/ResetButton.vue")['default']>
+    'LazyListAtomsResultsList': LazyComponent<typeof import("../../src/runtime/components/list/atoms/ResultsList.vue")['default']>
     'LazyListAtomsSearchInput': LazyComponent<typeof import("../../src/runtime/components/list/atoms/SearchInput.vue")['default']>
     'LazyListAtomsSearchItem': LazyComponent<typeof import("../../src/runtime/components/list/atoms/SearchItem.vue")['default']>
     'LazyListAtomsSearchString': LazyComponent<typeof import("../../src/runtime/components/list/atoms/SearchString.vue")['default']>
     'LazyListAtomsSortMenu': LazyComponent<typeof import("../../src/runtime/components/list/atoms/SortMenu.vue")['default']>
     'LazyListAtomsViewMenu': LazyComponent<typeof import("../../src/runtime/components/list/atoms/ViewMenu.vue")['default']>
+    'LazyListAtomsItemsPerPage': LazyComponent<typeof import("../../src/runtime/components/list/atoms/itemsPerPage.vue")['default']>
     'LazyListInputsAutoComplete': LazyComponent<typeof import("../../src/runtime/components/list/inputs/AutoComplete.vue")['default']>
     'LazyListInputsBooleanSwitch': LazyComponent<typeof import("../../src/runtime/components/list/inputs/BooleanSwitch.vue")['default']>
     'LazyListInputsCheckbox': LazyComponent<typeof import("../../src/runtime/components/list/inputs/Checkbox.vue")['default']>
     'LazyListInputsSelect': LazyComponent<typeof import("../../src/runtime/components/list/inputs/Select.vue")['default']>
     'LazyListMoleculesFilters': LazyComponent<typeof import("../../src/runtime/components/list/molecules/Filters.vue")['default']>
+    'LazyListMoleculesGlobalSearchInput': LazyComponent<typeof import("../../src/runtime/components/list/molecules/GlobalSearchInput.vue")['default']>
     'LazyListMoleculesHeader': LazyComponent<typeof import("../../src/runtime/components/list/molecules/Header.vue")['default']>
     'LazyListMoleculesPagination': LazyComponent<typeof import("../../src/runtime/components/list/molecules/Pagination.vue")['default']>
+    'LazyListMoleculesResultsContainer': LazyComponent<typeof import("../../src/runtime/components/list/molecules/ResultsContainer.vue")['default']>
     'LazyListOrganismsList': LazyComponent<typeof import("../../src/runtime/components/list/organisms/List.vue")['default']>
+    'LazyListOrganismsResults': LazyComponent<typeof import("../../src/runtime/components/list/organisms/Results.vue")['default']>
     'LazyListOrganismsSlider': LazyComponent<typeof import("../../src/runtime/components/list/organisms/Slider.vue")['default']>
     'LazyListViewsDense': LazyComponent<typeof import("../../src/runtime/components/list/views/Dense.vue")['default']>
     'LazyListViewsExpanded': LazyComponent<typeof import("../../src/runtime/components/list/views/Expanded.vue")['default']>
@@ -230,10 +242,12 @@ interface _GlobalComponents {
     'LazyPeopleRelatedItem': LazyComponent<typeof import("../../src/runtime/components/people/RelatedItem.vue")['default']>
     'LazyPeopleRowsItem': LazyComponent<typeof import("../../src/runtime/components/people/RowsItem.vue")['default']>
     'LazyPeopleView': LazyComponent<typeof import("../../src/runtime/components/people/View.vue")['default']>
+    'LazyProjectsDenseItem': LazyComponent<typeof import("../../src/runtime/components/projects/DenseItem.vue")['default']>
     'LazyProjectsExpandedItem': LazyComponent<typeof import("../../src/runtime/components/projects/ExpandedItem.vue")['default']>
     'LazyProjectsRelatedItem': LazyComponent<typeof import("../../src/runtime/components/projects/RelatedItem.vue")['default']>
     'LazyProjectsRowsItem': LazyComponent<typeof import("../../src/runtime/components/projects/RowsItem.vue")['default']>
     'LazyProjectsView': LazyComponent<typeof import("../../src/runtime/components/projects/View.vue")['default']>
+    'LazyPublicationsDenseItem': LazyComponent<typeof import("../../src/runtime/components/publications/DenseItem.vue")['default']>
     'LazyPublicationsRelatedItem': LazyComponent<typeof import("../../src/runtime/components/publications/RelatedItem.vue")['default']>
     'LazyPublicationsRowsItem': LazyComponent<typeof import("../../src/runtime/components/publications/RowsItem.vue")['default']>
     'LazyPublicationsView': LazyComponent<typeof import("../../src/runtime/components/publications/View.vue")['default']>
@@ -243,59 +257,59 @@ interface _GlobalComponents {
     'LazyUsersExpandedItem': LazyComponent<typeof import("../../src/runtime/components/users/ExpandedItem.vue")['default']>
     'LazyUsersRowsItem': LazyComponent<typeof import("../../src/runtime/components/users/RowsItem.vue")['default']>
     'LazyUsersView': LazyComponent<typeof import("../../src/runtime/components/users/View.vue")['default']>
-    'LazyProseA': LazyComponent<typeof import("../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseA.vue")['default']>
-    'LazyProseBlockquote': LazyComponent<typeof import("../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseBlockquote.vue")['default']>
-    'LazyProseCode': LazyComponent<typeof import("../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseCode.vue")['default']>
-    'LazyProseEm': LazyComponent<typeof import("../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseEm.vue")['default']>
-    'LazyProseH1': LazyComponent<typeof import("../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseH1.vue")['default']>
-    'LazyProseH2': LazyComponent<typeof import("../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseH2.vue")['default']>
-    'LazyProseH3': LazyComponent<typeof import("../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseH3.vue")['default']>
-    'LazyProseH4': LazyComponent<typeof import("../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseH4.vue")['default']>
-    'LazyProseH5': LazyComponent<typeof import("../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseH5.vue")['default']>
-    'LazyProseH6': LazyComponent<typeof import("../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseH6.vue")['default']>
-    'LazyProseHr': LazyComponent<typeof import("../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseHr.vue")['default']>
-    'LazyProseImg': LazyComponent<typeof import("../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseImg.vue")['default']>
-    'LazyProseLi': LazyComponent<typeof import("../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseLi.vue")['default']>
-    'LazyProseOl': LazyComponent<typeof import("../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseOl.vue")['default']>
-    'LazyProseP': LazyComponent<typeof import("../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseP.vue")['default']>
-    'LazyProsePre': LazyComponent<typeof import("../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProsePre.vue")['default']>
-    'LazyProseScript': LazyComponent<typeof import("../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseScript.vue")['default']>
-    'LazyProseStrong': LazyComponent<typeof import("../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseStrong.vue")['default']>
-    'LazyProseTable': LazyComponent<typeof import("../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseTable.vue")['default']>
-    'LazyProseTbody': LazyComponent<typeof import("../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseTbody.vue")['default']>
-    'LazyProseTd': LazyComponent<typeof import("../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseTd.vue")['default']>
-    'LazyProseTh': LazyComponent<typeof import("../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseTh.vue")['default']>
-    'LazyProseThead': LazyComponent<typeof import("../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseThead.vue")['default']>
-    'LazyProseTr': LazyComponent<typeof import("../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseTr.vue")['default']>
-    'LazyProseUl': LazyComponent<typeof import("../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseUl.vue")['default']>
-    'LazyNuxtWelcome': LazyComponent<typeof import("../node_modules/nuxt/dist/app/components/welcome.vue")['default']>
-    'LazyNuxtLayout': LazyComponent<typeof import("../node_modules/nuxt/dist/app/components/nuxt-layout")['default']>
-    'LazyNuxtErrorBoundary': LazyComponent<typeof import("../node_modules/nuxt/dist/app/components/nuxt-error-boundary")['default']>
-    'LazyClientOnly': LazyComponent<typeof import("../node_modules/nuxt/dist/app/components/client-only")['default']>
-    'LazyDevOnly': LazyComponent<typeof import("../node_modules/nuxt/dist/app/components/dev-only")['default']>
-    'LazyServerPlaceholder': LazyComponent<typeof import("../node_modules/nuxt/dist/app/components/server-placeholder")['default']>
-    'LazyNuxtLink': LazyComponent<typeof import("../node_modules/nuxt/dist/app/components/nuxt-link")['default']>
-    'LazyNuxtLoadingIndicator': LazyComponent<typeof import("../node_modules/nuxt/dist/app/components/nuxt-loading-indicator")['default']>
-    'LazyNuxtRouteAnnouncer': LazyComponent<typeof import("../node_modules/nuxt/dist/app/components/nuxt-route-announcer")['default']>
+    'LazyProseA': LazyComponent<typeof import("../../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseA.vue")['default']>
+    'LazyProseBlockquote': LazyComponent<typeof import("../../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseBlockquote.vue")['default']>
+    'LazyProseCode': LazyComponent<typeof import("../../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseCode.vue")['default']>
+    'LazyProseEm': LazyComponent<typeof import("../../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseEm.vue")['default']>
+    'LazyProseH1': LazyComponent<typeof import("../../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseH1.vue")['default']>
+    'LazyProseH2': LazyComponent<typeof import("../../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseH2.vue")['default']>
+    'LazyProseH3': LazyComponent<typeof import("../../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseH3.vue")['default']>
+    'LazyProseH4': LazyComponent<typeof import("../../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseH4.vue")['default']>
+    'LazyProseH5': LazyComponent<typeof import("../../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseH5.vue")['default']>
+    'LazyProseH6': LazyComponent<typeof import("../../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseH6.vue")['default']>
+    'LazyProseHr': LazyComponent<typeof import("../../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseHr.vue")['default']>
+    'LazyProseImg': LazyComponent<typeof import("../../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseImg.vue")['default']>
+    'LazyProseLi': LazyComponent<typeof import("../../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseLi.vue")['default']>
+    'LazyProseOl': LazyComponent<typeof import("../../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseOl.vue")['default']>
+    'LazyProseP': LazyComponent<typeof import("../../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseP.vue")['default']>
+    'LazyProsePre': LazyComponent<typeof import("../../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProsePre.vue")['default']>
+    'LazyProseScript': LazyComponent<typeof import("../../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseScript.vue")['default']>
+    'LazyProseStrong': LazyComponent<typeof import("../../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseStrong.vue")['default']>
+    'LazyProseTable': LazyComponent<typeof import("../../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseTable.vue")['default']>
+    'LazyProseTbody': LazyComponent<typeof import("../../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseTbody.vue")['default']>
+    'LazyProseTd': LazyComponent<typeof import("../../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseTd.vue")['default']>
+    'LazyProseTh': LazyComponent<typeof import("../../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseTh.vue")['default']>
+    'LazyProseThead': LazyComponent<typeof import("../../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseThead.vue")['default']>
+    'LazyProseTr': LazyComponent<typeof import("../../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseTr.vue")['default']>
+    'LazyProseUl': LazyComponent<typeof import("../../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseUl.vue")['default']>
+    'LazyNuxtWelcome': LazyComponent<typeof import("../../node_modules/nuxt/dist/app/components/welcome.vue")['default']>
+    'LazyNuxtLayout': LazyComponent<typeof import("../../node_modules/nuxt/dist/app/components/nuxt-layout")['default']>
+    'LazyNuxtErrorBoundary': LazyComponent<typeof import("../../node_modules/nuxt/dist/app/components/nuxt-error-boundary")['default']>
+    'LazyClientOnly': LazyComponent<typeof import("../../node_modules/nuxt/dist/app/components/client-only")['default']>
+    'LazyDevOnly': LazyComponent<typeof import("../../node_modules/nuxt/dist/app/components/dev-only")['default']>
+    'LazyServerPlaceholder': LazyComponent<typeof import("../../node_modules/nuxt/dist/app/components/server-placeholder")['default']>
+    'LazyNuxtLink': LazyComponent<typeof import("../../node_modules/nuxt/dist/app/components/nuxt-link")['default']>
+    'LazyNuxtLoadingIndicator': LazyComponent<typeof import("../../node_modules/nuxt/dist/app/components/nuxt-loading-indicator")['default']>
+    'LazyNuxtRouteAnnouncer': LazyComponent<typeof import("../../node_modules/nuxt/dist/app/components/nuxt-route-announcer")['default']>
     'LazyNuxtImg': LazyComponent<typeof import("../../node_modules/@nuxt/image/dist/runtime/components/NuxtImg.vue")['default']>
     'LazyNuxtPicture': LazyComponent<typeof import("../../node_modules/@nuxt/image/dist/runtime/components/NuxtPicture.vue")['default']>
     'LazyNuxtLinkLocale': LazyComponent<typeof import("../../node_modules/@nuxtjs/i18n/dist/runtime/components/NuxtLinkLocale")['default']>
     'LazySwitchLocalePathLink': LazyComponent<typeof import("../../node_modules/@nuxtjs/i18n/dist/runtime/components/SwitchLocalePathLink")['default']>
-    'LazyMDC': LazyComponent<typeof import("../node_modules/@nuxtjs/mdc/dist/runtime/components/MDC.vue")['default']>
-    'LazyMDCRenderer': LazyComponent<typeof import("../node_modules/@nuxtjs/mdc/dist/runtime/components/MDCRenderer.vue")['default']>
-    'LazyMDCSlot': LazyComponent<typeof import("../node_modules/@nuxtjs/mdc/dist/runtime/components/MDCSlot.vue")['default']>
-    'LazyNuxtPage': LazyComponent<typeof import("../node_modules/nuxt/dist/pages/runtime/page")['default']>
-    'LazyNoScript': LazyComponent<typeof import("../node_modules/nuxt/dist/head/runtime/components")['NoScript']>
-    'LazyLink': LazyComponent<typeof import("../node_modules/nuxt/dist/head/runtime/components")['Link']>
-    'LazyBase': LazyComponent<typeof import("../node_modules/nuxt/dist/head/runtime/components")['Base']>
-    'LazyTitle': LazyComponent<typeof import("../node_modules/nuxt/dist/head/runtime/components")['Title']>
-    'LazyMeta': LazyComponent<typeof import("../node_modules/nuxt/dist/head/runtime/components")['Meta']>
-    'LazyStyle': LazyComponent<typeof import("../node_modules/nuxt/dist/head/runtime/components")['Style']>
-    'LazyHead': LazyComponent<typeof import("../node_modules/nuxt/dist/head/runtime/components")['Head']>
-    'LazyHtml': LazyComponent<typeof import("../node_modules/nuxt/dist/head/runtime/components")['Html']>
-    'LazyBody': LazyComponent<typeof import("../node_modules/nuxt/dist/head/runtime/components")['Body']>
-    'LazyNuxtIsland': LazyComponent<typeof import("../node_modules/nuxt/dist/app/components/nuxt-island")['default']>
-    'LazyNuxtRouteAnnouncer': LazyComponent<IslandComponent<typeof import("../node_modules/nuxt/dist/app/components/server-placeholder")['default']>>
+    'LazyMDC': LazyComponent<typeof import("../../node_modules/@nuxtjs/mdc/dist/runtime/components/MDC.vue")['default']>
+    'LazyMDCRenderer': LazyComponent<typeof import("../../node_modules/@nuxtjs/mdc/dist/runtime/components/MDCRenderer.vue")['default']>
+    'LazyMDCSlot': LazyComponent<typeof import("../../node_modules/@nuxtjs/mdc/dist/runtime/components/MDCSlot.vue")['default']>
+    'LazyNuxtPage': LazyComponent<typeof import("../../node_modules/nuxt/dist/pages/runtime/page")['default']>
+    'LazyNoScript': LazyComponent<typeof import("../../node_modules/nuxt/dist/head/runtime/components")['NoScript']>
+    'LazyLink': LazyComponent<typeof import("../../node_modules/nuxt/dist/head/runtime/components")['Link']>
+    'LazyBase': LazyComponent<typeof import("../../node_modules/nuxt/dist/head/runtime/components")['Base']>
+    'LazyTitle': LazyComponent<typeof import("../../node_modules/nuxt/dist/head/runtime/components")['Title']>
+    'LazyMeta': LazyComponent<typeof import("../../node_modules/nuxt/dist/head/runtime/components")['Meta']>
+    'LazyStyle': LazyComponent<typeof import("../../node_modules/nuxt/dist/head/runtime/components")['Style']>
+    'LazyHead': LazyComponent<typeof import("../../node_modules/nuxt/dist/head/runtime/components")['Head']>
+    'LazyHtml': LazyComponent<typeof import("../../node_modules/nuxt/dist/head/runtime/components")['Html']>
+    'LazyBody': LazyComponent<typeof import("../../node_modules/nuxt/dist/head/runtime/components")['Body']>
+    'LazyNuxtIsland': LazyComponent<typeof import("../../node_modules/nuxt/dist/app/components/nuxt-island")['default']>
+    'LazyNuxtRouteAnnouncer': LazyComponent<IslandComponent<typeof import("../../node_modules/nuxt/dist/app/components/server-placeholder")['default']>>
 }
 
 declare module 'vue' {
@@ -335,19 +349,24 @@ export const FilesRowsItem: typeof import("../../src/runtime/components/files/Ro
 export const FilesView: typeof import("../../src/runtime/components/files/View.vue")['default']
 export const ListAtomsFiltersMenu: typeof import("../../src/runtime/components/list/atoms/FiltersMenu.vue")['default']
 export const ListAtomsResetButton: typeof import("../../src/runtime/components/list/atoms/ResetButton.vue")['default']
+export const ListAtomsResultsList: typeof import("../../src/runtime/components/list/atoms/ResultsList.vue")['default']
 export const ListAtomsSearchInput: typeof import("../../src/runtime/components/list/atoms/SearchInput.vue")['default']
 export const ListAtomsSearchItem: typeof import("../../src/runtime/components/list/atoms/SearchItem.vue")['default']
 export const ListAtomsSearchString: typeof import("../../src/runtime/components/list/atoms/SearchString.vue")['default']
 export const ListAtomsSortMenu: typeof import("../../src/runtime/components/list/atoms/SortMenu.vue")['default']
 export const ListAtomsViewMenu: typeof import("../../src/runtime/components/list/atoms/ViewMenu.vue")['default']
+export const ListAtomsItemsPerPage: typeof import("../../src/runtime/components/list/atoms/itemsPerPage.vue")['default']
 export const ListInputsAutoComplete: typeof import("../../src/runtime/components/list/inputs/AutoComplete.vue")['default']
 export const ListInputsBooleanSwitch: typeof import("../../src/runtime/components/list/inputs/BooleanSwitch.vue")['default']
 export const ListInputsCheckbox: typeof import("../../src/runtime/components/list/inputs/Checkbox.vue")['default']
 export const ListInputsSelect: typeof import("../../src/runtime/components/list/inputs/Select.vue")['default']
 export const ListMoleculesFilters: typeof import("../../src/runtime/components/list/molecules/Filters.vue")['default']
+export const ListMoleculesGlobalSearchInput: typeof import("../../src/runtime/components/list/molecules/GlobalSearchInput.vue")['default']
 export const ListMoleculesHeader: typeof import("../../src/runtime/components/list/molecules/Header.vue")['default']
 export const ListMoleculesPagination: typeof import("../../src/runtime/components/list/molecules/Pagination.vue")['default']
+export const ListMoleculesResultsContainer: typeof import("../../src/runtime/components/list/molecules/ResultsContainer.vue")['default']
 export const ListOrganismsList: typeof import("../../src/runtime/components/list/organisms/List.vue")['default']
+export const ListOrganismsResults: typeof import("../../src/runtime/components/list/organisms/Results.vue")['default']
 export const ListOrganismsSlider: typeof import("../../src/runtime/components/list/organisms/Slider.vue")['default']
 export const ListViewsDense: typeof import("../../src/runtime/components/list/views/Dense.vue")['default']
 export const ListViewsExpanded: typeof import("../../src/runtime/components/list/views/Expanded.vue")['default']
@@ -378,10 +397,12 @@ export const PeopleGroupBadges: typeof import("../../src/runtime/components/peop
 export const PeopleRelatedItem: typeof import("../../src/runtime/components/people/RelatedItem.vue")['default']
 export const PeopleRowsItem: typeof import("../../src/runtime/components/people/RowsItem.vue")['default']
 export const PeopleView: typeof import("../../src/runtime/components/people/View.vue")['default']
+export const ProjectsDenseItem: typeof import("../../src/runtime/components/projects/DenseItem.vue")['default']
 export const ProjectsExpandedItem: typeof import("../../src/runtime/components/projects/ExpandedItem.vue")['default']
 export const ProjectsRelatedItem: typeof import("../../src/runtime/components/projects/RelatedItem.vue")['default']
 export const ProjectsRowsItem: typeof import("../../src/runtime/components/projects/RowsItem.vue")['default']
 export const ProjectsView: typeof import("../../src/runtime/components/projects/View.vue")['default']
+export const PublicationsDenseItem: typeof import("../../src/runtime/components/publications/DenseItem.vue")['default']
 export const PublicationsRelatedItem: typeof import("../../src/runtime/components/publications/RelatedItem.vue")['default']
 export const PublicationsRowsItem: typeof import("../../src/runtime/components/publications/RowsItem.vue")['default']
 export const PublicationsView: typeof import("../../src/runtime/components/publications/View.vue")['default']
@@ -391,59 +412,59 @@ export const TagsView: typeof import("../../src/runtime/components/tags/View.vue
 export const UsersExpandedItem: typeof import("../../src/runtime/components/users/ExpandedItem.vue")['default']
 export const UsersRowsItem: typeof import("../../src/runtime/components/users/RowsItem.vue")['default']
 export const UsersView: typeof import("../../src/runtime/components/users/View.vue")['default']
-export const ProseA: typeof import("../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseA.vue")['default']
-export const ProseBlockquote: typeof import("../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseBlockquote.vue")['default']
-export const ProseCode: typeof import("../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseCode.vue")['default']
-export const ProseEm: typeof import("../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseEm.vue")['default']
-export const ProseH1: typeof import("../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseH1.vue")['default']
-export const ProseH2: typeof import("../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseH2.vue")['default']
-export const ProseH3: typeof import("../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseH3.vue")['default']
-export const ProseH4: typeof import("../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseH4.vue")['default']
-export const ProseH5: typeof import("../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseH5.vue")['default']
-export const ProseH6: typeof import("../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseH6.vue")['default']
-export const ProseHr: typeof import("../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseHr.vue")['default']
-export const ProseImg: typeof import("../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseImg.vue")['default']
-export const ProseLi: typeof import("../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseLi.vue")['default']
-export const ProseOl: typeof import("../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseOl.vue")['default']
-export const ProseP: typeof import("../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseP.vue")['default']
-export const ProsePre: typeof import("../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProsePre.vue")['default']
-export const ProseScript: typeof import("../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseScript.vue")['default']
-export const ProseStrong: typeof import("../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseStrong.vue")['default']
-export const ProseTable: typeof import("../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseTable.vue")['default']
-export const ProseTbody: typeof import("../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseTbody.vue")['default']
-export const ProseTd: typeof import("../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseTd.vue")['default']
-export const ProseTh: typeof import("../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseTh.vue")['default']
-export const ProseThead: typeof import("../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseThead.vue")['default']
-export const ProseTr: typeof import("../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseTr.vue")['default']
-export const ProseUl: typeof import("../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseUl.vue")['default']
-export const NuxtWelcome: typeof import("../node_modules/nuxt/dist/app/components/welcome.vue")['default']
-export const NuxtLayout: typeof import("../node_modules/nuxt/dist/app/components/nuxt-layout")['default']
-export const NuxtErrorBoundary: typeof import("../node_modules/nuxt/dist/app/components/nuxt-error-boundary")['default']
-export const ClientOnly: typeof import("../node_modules/nuxt/dist/app/components/client-only")['default']
-export const DevOnly: typeof import("../node_modules/nuxt/dist/app/components/dev-only")['default']
-export const ServerPlaceholder: typeof import("../node_modules/nuxt/dist/app/components/server-placeholder")['default']
-export const NuxtLink: typeof import("../node_modules/nuxt/dist/app/components/nuxt-link")['default']
-export const NuxtLoadingIndicator: typeof import("../node_modules/nuxt/dist/app/components/nuxt-loading-indicator")['default']
-export const NuxtRouteAnnouncer: typeof import("../node_modules/nuxt/dist/app/components/nuxt-route-announcer")['default']
+export const ProseA: typeof import("../../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseA.vue")['default']
+export const ProseBlockquote: typeof import("../../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseBlockquote.vue")['default']
+export const ProseCode: typeof import("../../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseCode.vue")['default']
+export const ProseEm: typeof import("../../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseEm.vue")['default']
+export const ProseH1: typeof import("../../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseH1.vue")['default']
+export const ProseH2: typeof import("../../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseH2.vue")['default']
+export const ProseH3: typeof import("../../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseH3.vue")['default']
+export const ProseH4: typeof import("../../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseH4.vue")['default']
+export const ProseH5: typeof import("../../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseH5.vue")['default']
+export const ProseH6: typeof import("../../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseH6.vue")['default']
+export const ProseHr: typeof import("../../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseHr.vue")['default']
+export const ProseImg: typeof import("../../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseImg.vue")['default']
+export const ProseLi: typeof import("../../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseLi.vue")['default']
+export const ProseOl: typeof import("../../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseOl.vue")['default']
+export const ProseP: typeof import("../../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseP.vue")['default']
+export const ProsePre: typeof import("../../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProsePre.vue")['default']
+export const ProseScript: typeof import("../../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseScript.vue")['default']
+export const ProseStrong: typeof import("../../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseStrong.vue")['default']
+export const ProseTable: typeof import("../../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseTable.vue")['default']
+export const ProseTbody: typeof import("../../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseTbody.vue")['default']
+export const ProseTd: typeof import("../../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseTd.vue")['default']
+export const ProseTh: typeof import("../../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseTh.vue")['default']
+export const ProseThead: typeof import("../../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseThead.vue")['default']
+export const ProseTr: typeof import("../../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseTr.vue")['default']
+export const ProseUl: typeof import("../../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseUl.vue")['default']
+export const NuxtWelcome: typeof import("../../node_modules/nuxt/dist/app/components/welcome.vue")['default']
+export const NuxtLayout: typeof import("../../node_modules/nuxt/dist/app/components/nuxt-layout")['default']
+export const NuxtErrorBoundary: typeof import("../../node_modules/nuxt/dist/app/components/nuxt-error-boundary")['default']
+export const ClientOnly: typeof import("../../node_modules/nuxt/dist/app/components/client-only")['default']
+export const DevOnly: typeof import("../../node_modules/nuxt/dist/app/components/dev-only")['default']
+export const ServerPlaceholder: typeof import("../../node_modules/nuxt/dist/app/components/server-placeholder")['default']
+export const NuxtLink: typeof import("../../node_modules/nuxt/dist/app/components/nuxt-link")['default']
+export const NuxtLoadingIndicator: typeof import("../../node_modules/nuxt/dist/app/components/nuxt-loading-indicator")['default']
+export const NuxtRouteAnnouncer: typeof import("../../node_modules/nuxt/dist/app/components/nuxt-route-announcer")['default']
 export const NuxtImg: typeof import("../../node_modules/@nuxt/image/dist/runtime/components/NuxtImg.vue")['default']
 export const NuxtPicture: typeof import("../../node_modules/@nuxt/image/dist/runtime/components/NuxtPicture.vue")['default']
 export const NuxtLinkLocale: typeof import("../../node_modules/@nuxtjs/i18n/dist/runtime/components/NuxtLinkLocale")['default']
 export const SwitchLocalePathLink: typeof import("../../node_modules/@nuxtjs/i18n/dist/runtime/components/SwitchLocalePathLink")['default']
-export const MDC: typeof import("../node_modules/@nuxtjs/mdc/dist/runtime/components/MDC.vue")['default']
-export const MDCRenderer: typeof import("../node_modules/@nuxtjs/mdc/dist/runtime/components/MDCRenderer.vue")['default']
-export const MDCSlot: typeof import("../node_modules/@nuxtjs/mdc/dist/runtime/components/MDCSlot.vue")['default']
-export const NuxtPage: typeof import("../node_modules/nuxt/dist/pages/runtime/page")['default']
-export const NoScript: typeof import("../node_modules/nuxt/dist/head/runtime/components")['NoScript']
-export const Link: typeof import("../node_modules/nuxt/dist/head/runtime/components")['Link']
-export const Base: typeof import("../node_modules/nuxt/dist/head/runtime/components")['Base']
-export const Title: typeof import("../node_modules/nuxt/dist/head/runtime/components")['Title']
-export const Meta: typeof import("../node_modules/nuxt/dist/head/runtime/components")['Meta']
-export const Style: typeof import("../node_modules/nuxt/dist/head/runtime/components")['Style']
-export const Head: typeof import("../node_modules/nuxt/dist/head/runtime/components")['Head']
-export const Html: typeof import("../node_modules/nuxt/dist/head/runtime/components")['Html']
-export const Body: typeof import("../node_modules/nuxt/dist/head/runtime/components")['Body']
-export const NuxtIsland: typeof import("../node_modules/nuxt/dist/app/components/nuxt-island")['default']
-export const NuxtRouteAnnouncer: IslandComponent<typeof import("../node_modules/nuxt/dist/app/components/server-placeholder")['default']>
+export const MDC: typeof import("../../node_modules/@nuxtjs/mdc/dist/runtime/components/MDC.vue")['default']
+export const MDCRenderer: typeof import("../../node_modules/@nuxtjs/mdc/dist/runtime/components/MDCRenderer.vue")['default']
+export const MDCSlot: typeof import("../../node_modules/@nuxtjs/mdc/dist/runtime/components/MDCSlot.vue")['default']
+export const NuxtPage: typeof import("../../node_modules/nuxt/dist/pages/runtime/page")['default']
+export const NoScript: typeof import("../../node_modules/nuxt/dist/head/runtime/components")['NoScript']
+export const Link: typeof import("../../node_modules/nuxt/dist/head/runtime/components")['Link']
+export const Base: typeof import("../../node_modules/nuxt/dist/head/runtime/components")['Base']
+export const Title: typeof import("../../node_modules/nuxt/dist/head/runtime/components")['Title']
+export const Meta: typeof import("../../node_modules/nuxt/dist/head/runtime/components")['Meta']
+export const Style: typeof import("../../node_modules/nuxt/dist/head/runtime/components")['Style']
+export const Head: typeof import("../../node_modules/nuxt/dist/head/runtime/components")['Head']
+export const Html: typeof import("../../node_modules/nuxt/dist/head/runtime/components")['Html']
+export const Body: typeof import("../../node_modules/nuxt/dist/head/runtime/components")['Body']
+export const NuxtIsland: typeof import("../../node_modules/nuxt/dist/app/components/nuxt-island")['default']
+export const NuxtRouteAnnouncer: IslandComponent<typeof import("../../node_modules/nuxt/dist/app/components/server-placeholder")['default']>
 export const LazyFooter: LazyComponent<typeof import("../components/Footer.vue")['default']>
 export const LazyActionsExpandedItem: LazyComponent<typeof import("../../src/runtime/components/actions/ExpandedItem.vue")['default']>
 export const LazyActionsRowsItem: LazyComponent<typeof import("../../src/runtime/components/actions/RowsItem.vue")['default']>
@@ -477,19 +498,24 @@ export const LazyFilesRowsItem: LazyComponent<typeof import("../../src/runtime/c
 export const LazyFilesView: LazyComponent<typeof import("../../src/runtime/components/files/View.vue")['default']>
 export const LazyListAtomsFiltersMenu: LazyComponent<typeof import("../../src/runtime/components/list/atoms/FiltersMenu.vue")['default']>
 export const LazyListAtomsResetButton: LazyComponent<typeof import("../../src/runtime/components/list/atoms/ResetButton.vue")['default']>
+export const LazyListAtomsResultsList: LazyComponent<typeof import("../../src/runtime/components/list/atoms/ResultsList.vue")['default']>
 export const LazyListAtomsSearchInput: LazyComponent<typeof import("../../src/runtime/components/list/atoms/SearchInput.vue")['default']>
 export const LazyListAtomsSearchItem: LazyComponent<typeof import("../../src/runtime/components/list/atoms/SearchItem.vue")['default']>
 export const LazyListAtomsSearchString: LazyComponent<typeof import("../../src/runtime/components/list/atoms/SearchString.vue")['default']>
 export const LazyListAtomsSortMenu: LazyComponent<typeof import("../../src/runtime/components/list/atoms/SortMenu.vue")['default']>
 export const LazyListAtomsViewMenu: LazyComponent<typeof import("../../src/runtime/components/list/atoms/ViewMenu.vue")['default']>
+export const LazyListAtomsItemsPerPage: LazyComponent<typeof import("../../src/runtime/components/list/atoms/itemsPerPage.vue")['default']>
 export const LazyListInputsAutoComplete: LazyComponent<typeof import("../../src/runtime/components/list/inputs/AutoComplete.vue")['default']>
 export const LazyListInputsBooleanSwitch: LazyComponent<typeof import("../../src/runtime/components/list/inputs/BooleanSwitch.vue")['default']>
 export const LazyListInputsCheckbox: LazyComponent<typeof import("../../src/runtime/components/list/inputs/Checkbox.vue")['default']>
 export const LazyListInputsSelect: LazyComponent<typeof import("../../src/runtime/components/list/inputs/Select.vue")['default']>
 export const LazyListMoleculesFilters: LazyComponent<typeof import("../../src/runtime/components/list/molecules/Filters.vue")['default']>
+export const LazyListMoleculesGlobalSearchInput: LazyComponent<typeof import("../../src/runtime/components/list/molecules/GlobalSearchInput.vue")['default']>
 export const LazyListMoleculesHeader: LazyComponent<typeof import("../../src/runtime/components/list/molecules/Header.vue")['default']>
 export const LazyListMoleculesPagination: LazyComponent<typeof import("../../src/runtime/components/list/molecules/Pagination.vue")['default']>
+export const LazyListMoleculesResultsContainer: LazyComponent<typeof import("../../src/runtime/components/list/molecules/ResultsContainer.vue")['default']>
 export const LazyListOrganismsList: LazyComponent<typeof import("../../src/runtime/components/list/organisms/List.vue")['default']>
+export const LazyListOrganismsResults: LazyComponent<typeof import("../../src/runtime/components/list/organisms/Results.vue")['default']>
 export const LazyListOrganismsSlider: LazyComponent<typeof import("../../src/runtime/components/list/organisms/Slider.vue")['default']>
 export const LazyListViewsDense: LazyComponent<typeof import("../../src/runtime/components/list/views/Dense.vue")['default']>
 export const LazyListViewsExpanded: LazyComponent<typeof import("../../src/runtime/components/list/views/Expanded.vue")['default']>
@@ -520,10 +546,12 @@ export const LazyPeopleGroupBadges: LazyComponent<typeof import("../../src/runti
 export const LazyPeopleRelatedItem: LazyComponent<typeof import("../../src/runtime/components/people/RelatedItem.vue")['default']>
 export const LazyPeopleRowsItem: LazyComponent<typeof import("../../src/runtime/components/people/RowsItem.vue")['default']>
 export const LazyPeopleView: LazyComponent<typeof import("../../src/runtime/components/people/View.vue")['default']>
+export const LazyProjectsDenseItem: LazyComponent<typeof import("../../src/runtime/components/projects/DenseItem.vue")['default']>
 export const LazyProjectsExpandedItem: LazyComponent<typeof import("../../src/runtime/components/projects/ExpandedItem.vue")['default']>
 export const LazyProjectsRelatedItem: LazyComponent<typeof import("../../src/runtime/components/projects/RelatedItem.vue")['default']>
 export const LazyProjectsRowsItem: LazyComponent<typeof import("../../src/runtime/components/projects/RowsItem.vue")['default']>
 export const LazyProjectsView: LazyComponent<typeof import("../../src/runtime/components/projects/View.vue")['default']>
+export const LazyPublicationsDenseItem: LazyComponent<typeof import("../../src/runtime/components/publications/DenseItem.vue")['default']>
 export const LazyPublicationsRelatedItem: LazyComponent<typeof import("../../src/runtime/components/publications/RelatedItem.vue")['default']>
 export const LazyPublicationsRowsItem: LazyComponent<typeof import("../../src/runtime/components/publications/RowsItem.vue")['default']>
 export const LazyPublicationsView: LazyComponent<typeof import("../../src/runtime/components/publications/View.vue")['default']>
@@ -533,58 +561,58 @@ export const LazyTagsView: LazyComponent<typeof import("../../src/runtime/compon
 export const LazyUsersExpandedItem: LazyComponent<typeof import("../../src/runtime/components/users/ExpandedItem.vue")['default']>
 export const LazyUsersRowsItem: LazyComponent<typeof import("../../src/runtime/components/users/RowsItem.vue")['default']>
 export const LazyUsersView: LazyComponent<typeof import("../../src/runtime/components/users/View.vue")['default']>
-export const LazyProseA: LazyComponent<typeof import("../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseA.vue")['default']>
-export const LazyProseBlockquote: LazyComponent<typeof import("../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseBlockquote.vue")['default']>
-export const LazyProseCode: LazyComponent<typeof import("../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseCode.vue")['default']>
-export const LazyProseEm: LazyComponent<typeof import("../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseEm.vue")['default']>
-export const LazyProseH1: LazyComponent<typeof import("../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseH1.vue")['default']>
-export const LazyProseH2: LazyComponent<typeof import("../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseH2.vue")['default']>
-export const LazyProseH3: LazyComponent<typeof import("../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseH3.vue")['default']>
-export const LazyProseH4: LazyComponent<typeof import("../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseH4.vue")['default']>
-export const LazyProseH5: LazyComponent<typeof import("../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseH5.vue")['default']>
-export const LazyProseH6: LazyComponent<typeof import("../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseH6.vue")['default']>
-export const LazyProseHr: LazyComponent<typeof import("../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseHr.vue")['default']>
-export const LazyProseImg: LazyComponent<typeof import("../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseImg.vue")['default']>
-export const LazyProseLi: LazyComponent<typeof import("../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseLi.vue")['default']>
-export const LazyProseOl: LazyComponent<typeof import("../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseOl.vue")['default']>
-export const LazyProseP: LazyComponent<typeof import("../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseP.vue")['default']>
-export const LazyProsePre: LazyComponent<typeof import("../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProsePre.vue")['default']>
-export const LazyProseScript: LazyComponent<typeof import("../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseScript.vue")['default']>
-export const LazyProseStrong: LazyComponent<typeof import("../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseStrong.vue")['default']>
-export const LazyProseTable: LazyComponent<typeof import("../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseTable.vue")['default']>
-export const LazyProseTbody: LazyComponent<typeof import("../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseTbody.vue")['default']>
-export const LazyProseTd: LazyComponent<typeof import("../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseTd.vue")['default']>
-export const LazyProseTh: LazyComponent<typeof import("../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseTh.vue")['default']>
-export const LazyProseThead: LazyComponent<typeof import("../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseThead.vue")['default']>
-export const LazyProseTr: LazyComponent<typeof import("../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseTr.vue")['default']>
-export const LazyProseUl: LazyComponent<typeof import("../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseUl.vue")['default']>
-export const LazyNuxtWelcome: LazyComponent<typeof import("../node_modules/nuxt/dist/app/components/welcome.vue")['default']>
-export const LazyNuxtLayout: LazyComponent<typeof import("../node_modules/nuxt/dist/app/components/nuxt-layout")['default']>
-export const LazyNuxtErrorBoundary: LazyComponent<typeof import("../node_modules/nuxt/dist/app/components/nuxt-error-boundary")['default']>
-export const LazyClientOnly: LazyComponent<typeof import("../node_modules/nuxt/dist/app/components/client-only")['default']>
-export const LazyDevOnly: LazyComponent<typeof import("../node_modules/nuxt/dist/app/components/dev-only")['default']>
-export const LazyServerPlaceholder: LazyComponent<typeof import("../node_modules/nuxt/dist/app/components/server-placeholder")['default']>
-export const LazyNuxtLink: LazyComponent<typeof import("../node_modules/nuxt/dist/app/components/nuxt-link")['default']>
-export const LazyNuxtLoadingIndicator: LazyComponent<typeof import("../node_modules/nuxt/dist/app/components/nuxt-loading-indicator")['default']>
-export const LazyNuxtRouteAnnouncer: LazyComponent<typeof import("../node_modules/nuxt/dist/app/components/nuxt-route-announcer")['default']>
+export const LazyProseA: LazyComponent<typeof import("../../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseA.vue")['default']>
+export const LazyProseBlockquote: LazyComponent<typeof import("../../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseBlockquote.vue")['default']>
+export const LazyProseCode: LazyComponent<typeof import("../../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseCode.vue")['default']>
+export const LazyProseEm: LazyComponent<typeof import("../../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseEm.vue")['default']>
+export const LazyProseH1: LazyComponent<typeof import("../../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseH1.vue")['default']>
+export const LazyProseH2: LazyComponent<typeof import("../../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseH2.vue")['default']>
+export const LazyProseH3: LazyComponent<typeof import("../../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseH3.vue")['default']>
+export const LazyProseH4: LazyComponent<typeof import("../../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseH4.vue")['default']>
+export const LazyProseH5: LazyComponent<typeof import("../../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseH5.vue")['default']>
+export const LazyProseH6: LazyComponent<typeof import("../../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseH6.vue")['default']>
+export const LazyProseHr: LazyComponent<typeof import("../../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseHr.vue")['default']>
+export const LazyProseImg: LazyComponent<typeof import("../../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseImg.vue")['default']>
+export const LazyProseLi: LazyComponent<typeof import("../../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseLi.vue")['default']>
+export const LazyProseOl: LazyComponent<typeof import("../../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseOl.vue")['default']>
+export const LazyProseP: LazyComponent<typeof import("../../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseP.vue")['default']>
+export const LazyProsePre: LazyComponent<typeof import("../../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProsePre.vue")['default']>
+export const LazyProseScript: LazyComponent<typeof import("../../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseScript.vue")['default']>
+export const LazyProseStrong: LazyComponent<typeof import("../../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseStrong.vue")['default']>
+export const LazyProseTable: LazyComponent<typeof import("../../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseTable.vue")['default']>
+export const LazyProseTbody: LazyComponent<typeof import("../../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseTbody.vue")['default']>
+export const LazyProseTd: LazyComponent<typeof import("../../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseTd.vue")['default']>
+export const LazyProseTh: LazyComponent<typeof import("../../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseTh.vue")['default']>
+export const LazyProseThead: LazyComponent<typeof import("../../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseThead.vue")['default']>
+export const LazyProseTr: LazyComponent<typeof import("../../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseTr.vue")['default']>
+export const LazyProseUl: LazyComponent<typeof import("../../node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseUl.vue")['default']>
+export const LazyNuxtWelcome: LazyComponent<typeof import("../../node_modules/nuxt/dist/app/components/welcome.vue")['default']>
+export const LazyNuxtLayout: LazyComponent<typeof import("../../node_modules/nuxt/dist/app/components/nuxt-layout")['default']>
+export const LazyNuxtErrorBoundary: LazyComponent<typeof import("../../node_modules/nuxt/dist/app/components/nuxt-error-boundary")['default']>
+export const LazyClientOnly: LazyComponent<typeof import("../../node_modules/nuxt/dist/app/components/client-only")['default']>
+export const LazyDevOnly: LazyComponent<typeof import("../../node_modules/nuxt/dist/app/components/dev-only")['default']>
+export const LazyServerPlaceholder: LazyComponent<typeof import("../../node_modules/nuxt/dist/app/components/server-placeholder")['default']>
+export const LazyNuxtLink: LazyComponent<typeof import("../../node_modules/nuxt/dist/app/components/nuxt-link")['default']>
+export const LazyNuxtLoadingIndicator: LazyComponent<typeof import("../../node_modules/nuxt/dist/app/components/nuxt-loading-indicator")['default']>
+export const LazyNuxtRouteAnnouncer: LazyComponent<typeof import("../../node_modules/nuxt/dist/app/components/nuxt-route-announcer")['default']>
 export const LazyNuxtImg: LazyComponent<typeof import("../../node_modules/@nuxt/image/dist/runtime/components/NuxtImg.vue")['default']>
 export const LazyNuxtPicture: LazyComponent<typeof import("../../node_modules/@nuxt/image/dist/runtime/components/NuxtPicture.vue")['default']>
 export const LazyNuxtLinkLocale: LazyComponent<typeof import("../../node_modules/@nuxtjs/i18n/dist/runtime/components/NuxtLinkLocale")['default']>
 export const LazySwitchLocalePathLink: LazyComponent<typeof import("../../node_modules/@nuxtjs/i18n/dist/runtime/components/SwitchLocalePathLink")['default']>
-export const LazyMDC: LazyComponent<typeof import("../node_modules/@nuxtjs/mdc/dist/runtime/components/MDC.vue")['default']>
-export const LazyMDCRenderer: LazyComponent<typeof import("../node_modules/@nuxtjs/mdc/dist/runtime/components/MDCRenderer.vue")['default']>
-export const LazyMDCSlot: LazyComponent<typeof import("../node_modules/@nuxtjs/mdc/dist/runtime/components/MDCSlot.vue")['default']>
-export const LazyNuxtPage: LazyComponent<typeof import("../node_modules/nuxt/dist/pages/runtime/page")['default']>
-export const LazyNoScript: LazyComponent<typeof import("../node_modules/nuxt/dist/head/runtime/components")['NoScript']>
-export const LazyLink: LazyComponent<typeof import("../node_modules/nuxt/dist/head/runtime/components")['Link']>
-export const LazyBase: LazyComponent<typeof import("../node_modules/nuxt/dist/head/runtime/components")['Base']>
-export const LazyTitle: LazyComponent<typeof import("../node_modules/nuxt/dist/head/runtime/components")['Title']>
-export const LazyMeta: LazyComponent<typeof import("../node_modules/nuxt/dist/head/runtime/components")['Meta']>
-export const LazyStyle: LazyComponent<typeof import("../node_modules/nuxt/dist/head/runtime/components")['Style']>
-export const LazyHead: LazyComponent<typeof import("../node_modules/nuxt/dist/head/runtime/components")['Head']>
-export const LazyHtml: LazyComponent<typeof import("../node_modules/nuxt/dist/head/runtime/components")['Html']>
-export const LazyBody: LazyComponent<typeof import("../node_modules/nuxt/dist/head/runtime/components")['Body']>
-export const LazyNuxtIsland: LazyComponent<typeof import("../node_modules/nuxt/dist/app/components/nuxt-island")['default']>
-export const LazyNuxtRouteAnnouncer: LazyComponent<IslandComponent<typeof import("../node_modules/nuxt/dist/app/components/server-placeholder")['default']>>
+export const LazyMDC: LazyComponent<typeof import("../../node_modules/@nuxtjs/mdc/dist/runtime/components/MDC.vue")['default']>
+export const LazyMDCRenderer: LazyComponent<typeof import("../../node_modules/@nuxtjs/mdc/dist/runtime/components/MDCRenderer.vue")['default']>
+export const LazyMDCSlot: LazyComponent<typeof import("../../node_modules/@nuxtjs/mdc/dist/runtime/components/MDCSlot.vue")['default']>
+export const LazyNuxtPage: LazyComponent<typeof import("../../node_modules/nuxt/dist/pages/runtime/page")['default']>
+export const LazyNoScript: LazyComponent<typeof import("../../node_modules/nuxt/dist/head/runtime/components")['NoScript']>
+export const LazyLink: LazyComponent<typeof import("../../node_modules/nuxt/dist/head/runtime/components")['Link']>
+export const LazyBase: LazyComponent<typeof import("../../node_modules/nuxt/dist/head/runtime/components")['Base']>
+export const LazyTitle: LazyComponent<typeof import("../../node_modules/nuxt/dist/head/runtime/components")['Title']>
+export const LazyMeta: LazyComponent<typeof import("../../node_modules/nuxt/dist/head/runtime/components")['Meta']>
+export const LazyStyle: LazyComponent<typeof import("../../node_modules/nuxt/dist/head/runtime/components")['Style']>
+export const LazyHead: LazyComponent<typeof import("../../node_modules/nuxt/dist/head/runtime/components")['Head']>
+export const LazyHtml: LazyComponent<typeof import("../../node_modules/nuxt/dist/head/runtime/components")['Html']>
+export const LazyBody: LazyComponent<typeof import("../../node_modules/nuxt/dist/head/runtime/components")['Body']>
+export const LazyNuxtIsland: LazyComponent<typeof import("../../node_modules/nuxt/dist/app/components/nuxt-island")['default']>
+export const LazyNuxtRouteAnnouncer: LazyComponent<IslandComponent<typeof import("../../node_modules/nuxt/dist/app/components/server-placeholder")['default']>>
 
 export const componentNames: string[]
