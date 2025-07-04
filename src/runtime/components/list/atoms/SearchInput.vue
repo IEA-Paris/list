@@ -34,7 +34,7 @@
 <script setup>
 import { useDebounceFn } from "@vueuse/core";
 import { useRootStore } from "../../../stores/root";
-import { computed, useI18n, useRouter } from "#imports";
+import { computed, useI18n, useRouter, useLocalePath } from "#imports";
 // const { $router } = useNuxtApp()
 
 const router = useRouter();
