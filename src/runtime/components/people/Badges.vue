@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <span>
     <v-skeleton-loader
       v-if="rootStore.loading || $stores.people.loading"
       type="chip"
@@ -10,6 +10,7 @@
           <v-chip
             v-for="(vintage, index2) in item.groups.vintage"
             :key="index2"
+            :size="mdAndUp ? 'default' : 'small'"
             class="mt-3 mr-3"
             variant="outlined"
             tile
@@ -27,6 +28,7 @@
               !['vintage', '__typename'].includes(key))
           "
           class="mt-3 mr-3"
+          :size="mdAndUp ? 'default' : 'small'"
           color="black"
           style="background-color: white; color: black"
           tile
@@ -35,14 +37,31 @@
           {{ $t("list.filters.people.groups." + key) }}
         </v-chip>
       </template>
-    </template>
-  </div>
+      <template
+        v-for="(value, key, index) in item.disciplines"
+        :key="key + index"
+      >
+        <v-chip
+          v-if="value && index < 3"
+          class="mt-3 mr-3"
+          color="black"
+          :size="mdAndUp ? 'default' : 'small'"
+          style="background-color: white; color: black"
+          tile
+          variant="outlined"
+        >
+          {{ $t("disciplines." + key) }}
+        </v-chip>
+      </template>
+    </template></span
+  >
 </template>
 
 <script setup>
 import { useRootStore } from "../../stores/root"
 import { useNuxtApp } from "#imports"
-
+import { useDisplay } from "vuetify"
+const { mdAndUp } = useDisplay()
 const rootStore = useRootStore()
 const { $stores } = useNuxtApp()
 const props = defineProps({

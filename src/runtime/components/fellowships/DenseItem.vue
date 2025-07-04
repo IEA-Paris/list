@@ -4,7 +4,7 @@
     no-gutters
     class="cursor-pointer highlight-on-hover"
     @click="
-      $router.push(localePath('/activities/fellowships' + item.slug[locale]))
+      $router.push(localePath('/activities/fellowships/' + item.slug[locale]))
     "
   >
     <v-col align-self="center" cols="8" class="text-h5 dense">

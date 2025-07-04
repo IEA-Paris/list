@@ -218,7 +218,7 @@
         "disciplines": {
           "label": "Disciplines"
         },
-        "eventCategories": {
+        "category": {
           "label": "Event category",
           "COLLOQUIUM": "Colloquium",
           "CONFERENCE": "Conference",
@@ -346,5 +346,6 @@
   "list.by-vintage-from-recent-to-old": "By Year, from recent to old",
   "list.by-vintage-from-old-to-recent": "By Year, from old to recent",
   "no-biography": "No biography available",
-  "search": "Search"
+  "search": "Search",
+  "items-per-page": "Items per page"
 }

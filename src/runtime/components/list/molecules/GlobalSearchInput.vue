@@ -3,7 +3,11 @@
     <div class="d-flex align-center">
       <v-text-field
         v-model.trim="search"
-        :placeholder="$t('list.search-type', [$t('items.' + type, 2)])"
+        :placeholder="
+          type === 'all'
+            ? t('search')
+            : $t('list.search-type', [$t('items.' + type, 2)])
+        "
         prepend-inner-icon="mdi-magnify"
         single-line
         class="transition-swing flex-grow-1"
@@ -13,6 +17,7 @@
         tile
         type="search"
         :loading="rootStore.loading"
+        @keyup.enter="$router.push(localePath('/search'))"
       >
         <!--    :loading="$nuxt.loading || $store.state.loading" :class="{ 'mt-3':
         $store.state.scrolled }" -->
@@ -37,7 +42,7 @@
           <v-btn
             v-bind="menuProps"
             :rounded="0"
-            variant="outlined"
+            variant="text"
             size="large"
             height="56"
           >
@@ -45,6 +50,9 @@
             <v-icon class="ml-1" size="small">
               {{ filterMenuOpen ? "mdi-chevron-up" : "mdi-chevron-down" }}
             </v-icon>
+            <v-tooltip activator="parent" location="start">
+              {{ $t("filter-by-type") }}
+            </v-tooltip>
           </v-btn>
         </template>
 
@@ -67,6 +75,21 @@
           </v-list>
         </v-card>
       </v-menu>
+      <v-btn
+        v-bind="attrs"
+        :rounded="0"
+        variant="test"
+        size="large"
+        height="56"
+        v-on="on"
+        @keyup.enter="$router.push(localePath('/search'))"
+        @click="$router.push(localePath('/search'))"
+      >
+        <v-icon>mdi-magnify</v-icon>
+        <v-tooltip activator="parent" location="start">{{
+          $t("click-here-to-search")
+        }}</v-tooltip>
+      </v-btn>
     </div>
   </div>
 </template>
@@ -102,14 +125,14 @@ const props = defineProps({
 const filterMenuOpen = ref(false)
 
 // Filter options
-const filterOptions = [
+const filterOptions = computed(() => [
   { value: "people", label: capitalize(t("items.people", 2)) },
   { value: "events", label: capitalize(t("items.events", 2)) },
   { value: "news", label: capitalize(t("items.news", 2)) },
   { value: "publications", label: capitalize(t("items.publications", 2)) },
   { value: "fellowships", label: capitalize(t("items.fellowships", 2)) },
   { value: "projects", label: capitalize(t("items.projects", 2)) },
-]
+])
 
 // Toggle filter selection
 const toggleFilter = (option) => {

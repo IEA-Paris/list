@@ -7,6 +7,8 @@ query listPublications(
     items {
       date
       id
+      eventCategory
+      type
       image {
         alt
         backgroundColor

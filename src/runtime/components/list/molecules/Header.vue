@@ -16,6 +16,7 @@
           <ListMoleculesFilters :type="type" />
         </div>
       </v-expand-transition>
+
       <ListAtomsSearchInput :type="type" />
       <ListAtomsSearchString :type="type" />
     </v-col>
