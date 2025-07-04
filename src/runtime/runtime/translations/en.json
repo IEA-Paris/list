@@ -1,0 +1,350 @@
+{
+  "applications-closed-since-0": "Applications closed since {0}",
+  "back": "Back",
+  "biography": "Biography",
+  "date-et-heure": "Date and Time",
+  "details": "More details",
+  "details-0": "Details",
+  "document": "Documents",
+  "events": {
+    "key": "Events",
+    "register": "Register to this event",
+    "register-me": "Register",
+    "see-more": "See more events"
+  },
+  "filters": "Filters",
+  "from {0} to {1}": "From {0} to {1}",
+  "gallery": "Gallery",
+  "hybrid-event": "Hybrid event",
+  "inscription-gratuite-et-obligatoire": " Free and mandatory registration",
+  "inscription-ouverte": "Registration Open",
+  "items": {
+    "all": "all | all | all",
+    "activities": "activity | activity | activities",
+    "about": "about | about | about",
+    "events": "event | event | events",
+    "fellow": "fellow | fellow | fellows",
+    "fellowships": "fellowship | fellowship | fellowships",
+    "news": "news | news | news",
+    "people": "one | person | people",
+    "projects": "project | project | projects",
+    "publications": "publication | publication | publications"
+  },
+  "learn-more": "read more",
+  "list": {
+    "reset-filters": "Reset filters",
+    "0-items-found": "No {1} found. | One {1} found. | {0} {1} found. ",
+    "0-items-found-f": "No {1} found. | One {1} found. | {0} {1} found. ",
+    "0-items-found-searching-for": "No {1} found for \"{2}\". | One {1} found for \"{2}\". | {0} {1} found for \"{2}\". ",
+    "0-items-found-searching-for-f": "No {1} found for \"{2}\". | One {1} found for \"{2}\". | {0} {1} found for \"{2}\". ",
+    "0-items-found-searching-for-with-1-filter": "No {1} found for \"{2}\" with {3} {4}. | One {1} found for \"{2}\" with {3} {4}. | {0} {1} found for \"{2}\" with {3} {4}. ",
+    "0-items-found-searching-for-with-1-filter-f": "No {1} found for \"{2}\" with {3} {4}. | One {1} found for \"{2}\" with {3} {4}. | {0} {1} found for \"{2}\" with {3} {4}. ",
+    "0-items-found-with-1-filter": "No {1} found with {2} {3}. | One {1} found with {2} {3}. | {0} {1} found with {2} {3}. ",
+    "0-items-found-with-1-filter-f": "No {1} found with {2} {3}. | One {1} found with {2} {3}. | {0} {1} found with {2} {3}. ",
+    "by-date-most-recent-first": "Latest",
+    "by-date-oldest-first": "Oldest",
+    "by-name-from-a-to-z": "By Name, from A to Z",
+    "by-name-from-z-to-a": "By Name, from Z to A",
+    "dense": "Dense",
+    "expanded": "Expanded",
+    "filters": {
+      "events": {
+        "category": {
+          "label": "Category",
+          "COLLOQUIUM": "Colloquium",
+          "CONFERENCE": "Conference",
+          "FELLOW_PRESENTATION": "Fellow's presentation",
+          "FORUM": "Forum",
+          "LECTURE": "Lecture",
+          "MEETING": "Meeting",
+          "OTHER": "Other",
+          "PANEL": "Panel",
+          "ROUND_TABLE": "Round table",
+          "SEMINAR": "Seminar",
+          "SYMPOSIUM": "Symposium",
+          "EXHIBITION": "Exhibition",
+          "WEBINAR": "Webinar",
+          "WORKSHOP": "Workshop",
+          "CALL": "Call to propositions"
+        },
+        "fellowship": {
+          "cat": "Constructive Advanced Thinking",
+          "fias": "French Institutes for Advanced Study",
+          "paris-ias-ideas": "Paris IAS Ideas",
+          "pop": "Program Oxford-Paris",
+          "label": "Fellowship"
+        },
+        "online": {
+          "label": "Online"
+        },
+        "organiserCategory": {
+          "IAS": "PARIS IAS",
+          "MEMBER": "Our Members",
+          "FELLOW": "Our Fellows",
+          "EXTERNAL": "External",
+          "label": "Organizer type"
+        },
+        "tags": {
+          "label": "Tags",
+          "Socioscope": "Socioscope",
+          "WPRN": "WPRN",
+          "WPRN-2021": "WPRN 2021"
+        },
+        "outside": {
+          "label": "Outside"
+        },
+        "disciplines": {
+          "label": "Discipline"
+        },
+        "past": {
+          "label": "Past"
+        },
+        "status": {
+          "label": "Status",
+          "CANCELLED": "Cancelled",
+          "POSTPONED": "Postponed to {0}",
+          "PUBLISHED": "Published",
+          "RESCHEDULED": "Rescheduled"
+        }
+      },
+      "fellowships": {
+        "affiliation": {
+          "label": "Affiliation",
+          "paris-1": "Paris 1",
+          "paris-2": "Paris 2"
+        },
+        "fellowshipType": {
+          "label": "Type of fellowship",
+          "IN_GROUP": "In group",
+          "LONG_STAY": "Long stay",
+          "SHORT_STAY": "Short stay"
+        },
+        "status": {
+          "label": "Status",
+          "CANCELLED": "Cancelled",
+          "FINISHED": "Finished",
+          "ONGOING": "Ongoing",
+          "PLANNED": "Planned"
+        },
+        "discipline": {
+          "label": "Discipline"
+        }
+      },
+      "news": {
+        "category": {
+          "label": "Category",
+          "ANNOUNCEMENT": "Announcement",
+          "ARTICLE": "Article",
+          "AUDIO": "Audio",
+          "AWARD": "Award",
+          "BLOG": "Blog",
+          "DATA": "Data",
+          "EVENT": "Event",
+          "FELLOWSHIP": "Fellowship",
+          "GRANT": "Grant",
+          "INTERVIEW": "Interview",
+          "JOB": "Job",
+          "LIFE_AT_THE_INSTITUTE": "Life at the institute",
+          "OPINION": "Opinion",
+          "PRESS_RELEASE": "Press release",
+          "PROJECT": "Project",
+          "PUBLICATION": "Publication",
+          "REPORT": "Report",
+          "SOFTWARE": "Software",
+          "TOOL": "Tool",
+          "VIDEO": "Video",
+          "OTHER": "Other"
+        },
+        "tags": {
+          "label": "Tags",
+          "Socioscope": "Socioscope",
+          "WPRN": "WPRN",
+          "WPRN-2021": "WPRN 2021"
+        }
+      },
+      "people": {
+        "groups": {
+          "label": "Group",
+          "board": "Board of directors",
+          "fellows": "Fellows",
+          "sab": "Scientific Advisory Board",
+          "sponsor": "Sponsor",
+          "team": "Team"
+        },
+        "member": {
+          "label": "Member",
+          "paris-1": "Paris 1"
+        },
+        "programs": {
+          "label": "Program",
+          "cat": "Constructive Advanced Thinking",
+          "fias": "French Institutes for Advanced Study",
+          "paris-ias-ideas": "Paris IAS Ideas",
+          "pop": "Program Oxford-Paris"
+        },
+        "vintage": {
+          "label": "Vintage"
+        },
+        "disciplines": {
+          "label": "Discipline"
+        }
+      },
+      "projects": {
+        "status": {
+          "label": "Status",
+          "CANCELLED": "Cancelled",
+          "FINISHED": "Finished",
+          "IN_PROGRESS": "Ongoing",
+          "PLANNED": "Planned"
+        },
+        "tags": {
+          "label": "Tags",
+          "Socioscope": "Socioscope",
+          "WPRN": "WPRN",
+          "WPRN-2021": "WPRN 2021"
+        }
+      },
+      "publications": {
+        "affiliations": {
+          "label": "Affiliation",
+          "paris-1": "Paris 1"
+        },
+        "tags": {
+          "label": "Tags",
+          "Socioscope": "Socioscope",
+          "WPRN": "WPRN",
+          "WPRN-2021": "WPRN 2021"
+        },
+        "disciplines": {
+          "label": "Disciplines"
+        },
+        "eventCategories": {
+          "label": "Event category",
+          "COLLOQUIUM": "Colloquium",
+          "CONFERENCE": "Conference",
+          "FELLOW_PRESENTATION": "Fellow's presentation",
+          "FORUM": "Forum",
+          "LECTURE": "Lecture",
+          "MEETING": "Meeting",
+          "OTHER": "Other",
+          "PANEL": "Panel",
+          "ROUND_TABLE": "Round table",
+          "SEMINAR": "Seminar",
+          "SYMPOSIUM": "Symposium",
+          "WEBINAR": "Webinar",
+          "WORKSHOP": "Workshop",
+          "OTHERS": "Others"
+        },
+        "type": {
+          "label": "Type",
+          "ARTICLE": "Article",
+          "AUDIO": "Audio",
+          "BOOK": "Book",
+          "BOOK_CHAPTER": "Book chapter",
+          "CONFERENCE_PAPER": "Conference paper",
+          "DATA": "Data",
+          "PODCAST": "Podcast",
+          "REPORT": "Report",
+          "SOFTWARE": "Software",
+          "THESIS": "Thesis",
+          "VIDEO": "Video",
+          "OTHERS": "Others"
+        }
+      }
+    },
+    "list": "List",
+    "page-0-of-1": "Page {0} of {1}",
+    "pls-x-more": "+ {0} more",
+    "rows": "Rows",
+    "search-type": "Search {0}",
+    "sort-mode": "Sort mode: ",
+    "tiles": "Tiles",
+    "view-issues": "By issue",
+    "view-list": "List",
+    "view-mode": "View mode: ",
+    "view-text": "Text",
+    "view-tiles": "Quilted"
+  },
+  "live-stream-available": "Live stream available",
+  "location": "Location",
+  "no-result": "No result found",
+  "online": "Online",
+  "open-the-filter-panel": "Open the filter panel",
+  "organizers": "Organizers",
+  "our-members": "Our members",
+  "our-sponsors": "Our patrons",
+  "outside-event": "Outside event",
+  "page-not-found": "Page not found",
+  "paris-ias": "PARIS IAS",
+  "people": "People",
+  "positions-and-affiliations": "Positions and Affiliations",
+  "presentation": "Presentation",
+  "privacy-policy": "Privacy policy",
+  "projects": "Projects",
+  "publications": "Publications",
+  "read-more": "Read more",
+  "register": "Register",
+  "register-until-0": "Register until {0}",
+  "related": {
+    "events": "Related events",
+    "news": "Related news",
+    "people": "Related people",
+    "projects": "Related projects",
+    "publications": "Related publications"
+  },
+  "rules": {
+    "at-least-0-characters": "At least {0} characters",
+    "invalid-e-mail": "Invalid e-mail",
+    "invalid-url": "Invalid URL",
+    "invalid-youtube-url": "Invalid Youtube URL",
+    "max-0-characters": "Max {0} characters",
+    "numbers-and-special-characters-not-allowed": "Numbers and special characters not allowed",
+    "only-digits-allowed": "Numbers only",
+    "required": "Required"
+  },
+  "sab": "Scientific Advisory Board",
+  "scientific_policy": "Scientific Policy",
+  "scientific-advisory-board": "Scientific advisory board",
+  "see-more": "See more",
+  "share-on": "Share this on {network}",
+  "share-this-on": "Have a look at {1}",
+  "show-on-map": "Show on map",
+  "socials": {
+    "facebook": "Visit our Facebook page",
+    "github": "Visit our Github repositories",
+    "idRef": "Visit the author IdRef page",
+    "instagram": "Follow us on Instagram",
+    "researchgate": "Visit the author ResearchGate page",
+    "linkedin": "Get in touch on linkedin",
+    "orcid": "Visit the author Orcid page",
+    "ROR": "Visit the institution ROR page",
+    "rss": "RSS",
+    "scholar": "Visit the author google scholar page",
+    "twitter": "Follow us on Twitter",
+    "wikipedia": "Check the wikipedia page of the author",
+    "youtube": "Check out our Youtube channel",
+    "bluesky": "Visit our BlueSky page"
+  },
+  "subscribe": "Subscribe",
+  "subscribe-to-our-newsletter": "Subscribe to our newsletter",
+  "support": "Support us",
+  "tasks": "Tasks",
+  "team": "Team",
+  "this-fellowship-alumni": "This fellowship alumni",
+  "type": "Type",
+  "upcoming-events": "Upcoming events",
+  "videos": "Videos",
+  "view-larger-map": "View on a larger map",
+  "vintage": "{0} Fellow",
+  "visit": "Visit us",
+  "visit-the-project-website": "Visit the project website",
+  "watch-the-replay": "Watch the replay",
+  "present": "present",
+  "visit-this-project-website": "Visit this project website",
+  "visit-this-publications-website": "Visit this publication webpage",
+  "close-the-filter-panel": "Close the filter panel",
+  "list.by-vintage-from-recent-to-old": "By Year, from recent to old",
+  "list.by-vintage-from-old-to-recent": "By Year, from old to recent",
+  "no-biography": "No biography available",
+  "search": "Search"
+}

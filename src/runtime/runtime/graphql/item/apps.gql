@@ -1,0 +1,34 @@
+query getApp($appId: ID = "iea", $itemId: ID = "", $lang: String = "en") {
+  getApp(appId: $appId, itemId: $itemId, lang: $lang) {
+    appId
+    color
+    date
+    description
+    logo {
+      alt
+      backgroundColor
+      caption
+      copyright
+      license
+      licenseUrl
+      url
+    }
+    name
+    state
+    subtitle
+    summary
+    tags {
+      createdAt
+      description
+      icon
+      name
+      updatedAt
+      slug {
+        en
+        fr
+      }
+    }
+    url
+    slug
+  }
+}
