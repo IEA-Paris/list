@@ -97,15 +97,15 @@
 </template>
 
 <script setup>
-import { useDisplay } from "vuetify";
-import { useRootStore } from "../../stores/root";
-import { useNuxtApp, useI18n, useLocalePath } from "#imports";
+import { useDisplay } from "vuetify"
+import { useRootStore } from "../../stores/root"
+import { useNuxtApp, useI18n, useLocalePath } from "#imports"
 
-const { locale } = useI18n();
-const { name, mdAndDown, lgAndUp } = useDisplay();
-const localePath = useLocalePath();
-const rootStore = useRootStore();
-const { $stores } = useNuxtApp();
+const { locale } = useI18n()
+const { name, mdAndDown, lgAndUp } = useDisplay()
+const localePath = useLocalePath()
+const rootStore = useRootStore()
+const { $stores } = useNuxtApp()
 const props = defineProps({
   item: {
     type: Object,
@@ -115,5 +115,5 @@ const props = defineProps({
     type: Number,
     required: true,
   },
-});
+})
 </script>

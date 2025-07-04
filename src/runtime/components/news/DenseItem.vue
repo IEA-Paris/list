@@ -17,7 +17,7 @@
         width="80px"
       />
     </v-col>
-    <v-col align-self="top" class="text-h5 dense px-2 paragraph">
+    <v-col align-self="start" class="text-h5 dense px-2 paragraph">
       <v-skeleton-loader v-if="rootStore.loading" type="heading" />
       <template v-else>
         <v-skeleton-loader
@@ -33,13 +33,24 @@
           <v-chip
             class="ma-2"
             style="background-color: white; color: black"
-            :size="mdAndUp ? 'default' : 'small'"
+            size="small"
+            variant="outlined"
           >
             {{ $t(eventCategory) }}
           </v-chip>
           <MiscMoleculesChipContainer :items="item.tags" size="small" />
         </template>
-        {{ item.name }}
+        <div
+          v-html="
+            $rootStore.search.length
+              ? highlightAndTruncate(
+                  300,
+                  item.name,
+                  $rootStore.search.split(' '),
+                )
+              : item.name
+          "
+        />
       </template>
     </v-col>
   </v-row>

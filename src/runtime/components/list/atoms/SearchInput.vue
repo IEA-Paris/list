@@ -3,7 +3,7 @@
     <v-text-field
       v-model.trim="search"
       :placeholder="$t('list.search-type', [$t('items.' + type, 2)])"
-      :append-icon="type === 'all' ? 'mdi-magnify' : false"
+      :append-icon="type === 'all' ? 'mdi-magnify' : ''"
       prepend-inner-icon="mdi-magnify"
       single-line
       class="transition-swing"
@@ -13,9 +13,9 @@
       tile
       type="search"
       :loading="rootStore.loading"
-      @keyup.enter="type === 'all' ? null : $router.push(localePath('/search'))"
+      @keyup.enter="type === 'all' ? $router.push(localePath('/search')) : null"
       @click:append="
-        type === 'all' ? null : $router.push(localePath('/search'))
+        type === 'all' ? $router.push(localePath('/search')) : null
       "
     >
       <!--    :loading="$nuxt.loading || $store.state.loading" :class="{ 'mt-3':
