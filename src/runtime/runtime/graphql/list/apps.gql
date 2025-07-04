@@ -1,0 +1,42 @@
+query listApps(
+  $options: ListInput = {
+    skip: 0
+    limit: 9
+    sortBy: ["start"]
+    sortDesc: false
+    filters: "{}"
+  }
+  $lang: String = "en"
+  $appId: ID = "iea"
+) {
+  listApps(options: $options, appId: $appId, lang: $lang) {
+    items {
+      appId
+      color
+      date
+      description
+      logo {
+        alt
+        backgroundColor
+        caption
+        copyright
+        license
+        licenseUrl
+        url
+      }
+      name
+      state
+      subtitle
+      summary
+      tags {
+        createdAt
+        description
+        icon
+        name
+        updatedAt
+      }
+      url
+    }
+    total
+  }
+}
