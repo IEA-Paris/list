@@ -8,7 +8,13 @@
     "
   >
     <v-col align-self="center" cols="8" class="text-h5 dense">
-      {{ item.name }}
+      <div
+        v-html="
+          $rootStore.search.length
+            ? highlightAndTruncate(300, item.name, $rootStore.search.split(' '))
+            : item.name
+        "
+      />
       <FellowshipsBadges :item="item" />
     </v-col>
     <v-col align-self="center" cols="4">
@@ -26,8 +32,8 @@
 </template>
 
 <script setup>
-import { useLocalePath, useI18n } from "#imports"
-
+import { useLocalePath, useI18n, useNuxtApp } from "#imports"
+const { $rootStore } = useNuxtApp()
 const { locale } = useI18n()
 const localePath = useLocalePath()
 const props = defineProps({

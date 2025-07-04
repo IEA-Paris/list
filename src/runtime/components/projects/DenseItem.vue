@@ -26,12 +26,14 @@
     </v-col>
     <v-col align-self="center" class="text-h5 dense pl-2">
       <v-skeleton-loader v-if="rootStore.loading" type="heading" />
-      <template v-else>
-        {{ item.name }}
-      </template>
-    </v-col>
-
-    <v-col align-self="center" cols="5" class="dense">
+      <span
+        v-else
+        v-html="
+          rootStore.search.length
+            ? highlightAndTruncate(300, item.name, $rootStore.search.split(' '))
+            : item.name
+        "
+      />
       <v-skeleton-loader
         v-if="rootStore.loading"
         :type="
@@ -40,10 +42,12 @@
           ]
         "
       />
+      <MiscMoleculesChipContainer :items="item.tags" size="small" />
 
-      <template v-else>
-        <MiscMoleculesChipContainer :items="item.tags" size="small" />
-      </template>
+      <MDC
+        class="text-caption font-weight-light paragraph"
+        :value="`${highlightAndTruncate(150, item.summary, rootStore.search.split(' '))}`"
+      />
     </v-col>
   </v-row>
 </template>

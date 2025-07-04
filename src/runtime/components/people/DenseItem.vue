@@ -24,16 +24,36 @@
         width="80px"
       />
     </v-col>
-    <v-col align-self="top" class="text-h6 dense px-2">
+    <v-col align-self="start" class="text-h6 dense px-2">
       <v-skeleton-loader v-if="rootStore.loading" type="heading" />
       <div v-else class="d-flex text-h5 align-center">
-        {{ item.firstname + " " + item.lastname }}
+        <span
+          v-html="
+            rootStore.search.length
+              ? highlightAndTruncate(
+                  300,
+                  item.firstname + ' ' + item.lastname,
+                  $rootStore.search.split(' '),
+                )
+              : item.firstname + ' ' + item.lastname
+          "
+        />
         <v-spacer />
         <PeopleBadges :item="item" />
       </div>
-      <div class="text-body-1 font-weight-light paragraph">
-        {{ item.groups.vintage ? item.groups.vintage[0].theme : "" }}
-      </div>
+      <div
+        v-if="item.groups.vintage && item.groups.vintage[0].theme"
+        class="text-body-1 font-weight-light paragraph"
+        v-html="
+          rootStore.search.length
+            ? highlightAndTruncate(
+                300,
+                item.groups.vintage[0].theme,
+                $rootStore.search.split(' '),
+              )
+            : item.groups.vintage[0].theme
+        "
+      />
     </v-col>
   </v-row>
 </template>

@@ -11,9 +11,6 @@
 </template>
 
 <script setup>
-import { useRootStore } from "../../../stores/root"
-import { capitalize } from "../../../composables/useUtils"
-const rootStore = useRootStore()
 const props = defineProps({
   type: {
     type: String,

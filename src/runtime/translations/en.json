@@ -53,6 +53,7 @@
           "label": "Category",
           "COLLOQUIUM": "Colloquium",
           "CONFERENCE": "Conference",
+          "CONFERENCE_CYCLE": "Conference cycle",
           "FELLOW_PRESENTATION": "Fellow's presentation",
           "FORUM": "Forum",
           "LECTURE": "Lecture",
@@ -126,8 +127,8 @@
           "ONGOING": "Ongoing",
           "PLANNED": "Planned"
         },
-        "discipline": {
-          "label": "Discipline"
+        "disciplines": {
+          "label": "Disciplines"
         }
       },
       "news": {

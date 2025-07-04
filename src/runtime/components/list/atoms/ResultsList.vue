@@ -1,7 +1,7 @@
 <template>
   <component
     :is="itemTemplate"
-    v-for="(item, index) in $rootStore.results[type].items"
+    v-for="(item, index) in rootStore.results[type].items"
     :key="index"
     :item="item"
     :index="index"
@@ -9,9 +9,11 @@
 </template>
 <script setup>
 import { capitalize } from "../../../composables/useUtils"
+import { useRootStore } from "../../../stores/root"
 import { useNuxtApp, resolveComponent, computed } from "#imports"
-const { $stores, $rootStore } = useNuxtApp()
-console.log("rootStore: ", $rootStore)
+const { $stores } = useNuxtApp()
+const rootStore = useRootStore()
+console.log("rootStore: ", rootStore)
 const props = defineProps({
   type: {
     type: String,

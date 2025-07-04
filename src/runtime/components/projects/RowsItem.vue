@@ -83,27 +83,27 @@
 </template>
 
 <script setup>
-import { useDisplay } from "vuetify";
-import { useRootStore } from "../../stores/root";
-import { useRouter, useLocalePath, useI18n } from "#imports";
+import { useDisplay } from "vuetify"
+import { useRootStore } from "../../stores/root"
+import { useRouter, useLocalePath, useI18n } from "#imports"
 
-const { locale } = useI18n();
+const { locale } = useI18n()
 
-const { name } = useDisplay();
+const { name } = useDisplay()
 
-const rootStore = useRootStore();
-const router = useRouter();
-const localePath = useLocalePath();
+const rootStore = useRootStore()
+const router = useRouter()
+const localePath = useLocalePath()
 
 const props = defineProps({
   item: {
     type: Object,
     default: () => {
-      return {};
+      return {}
     },
     required: true,
   },
-});
+})
 </script>
 
 <style lang="scss"></style>

@@ -51,6 +51,7 @@
           "label": "Catégorie",
           "COLLOQUIUM": "Colloque",
           "CONFERENCE": "Conférence",
+          "CONFERENCE_CYCLE": "Cycle de conférences",
           "FELLOW_PRESENTATION": "Présentation de Fellow",
           "FORUM": "Forum",
           "LECTURE": "Conférence",
@@ -95,7 +96,7 @@
           "label": "Passé"
         },
         "disciplines": {
-          "label": "Discipline"
+          "label": "Disciplines"
         },
         "status": {
           "label": "Statut",
@@ -185,7 +186,7 @@
           "label": "Année"
         },
         "disciplines": {
-          "label": "Discipline"
+          "label": "Disciplines"
         }
       },
       "projects": {

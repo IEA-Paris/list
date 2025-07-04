@@ -9,7 +9,7 @@
         icon
         class="ml-auto"
         v-bind="tooltip"
-        @click="rootStore.resetState(type, locale)"
+        @click="rootStore.resetState(props.type, locale)"
       >
         <v-icon>mdi-restore</v-icon>
       </v-btn>
@@ -18,10 +18,10 @@
   </v-tooltip>
 </template>
 <script setup>
-import { useRootStore } from "../../../stores/root";
-import { useI18n } from "#imports";
-const rootStore = useRootStore();
-const { locale } = useI18n();
+import { useRootStore } from "../../../stores/root"
+import { useI18n } from "#imports"
+const { locale } = useI18n()
+const rootStore = useRootStore()
 
 const props = defineProps({
   type: {
@@ -29,6 +29,6 @@ const props = defineProps({
     default: "articles",
     required: true,
   },
-});
+})
 </script>
 <style lang="scss"></style>

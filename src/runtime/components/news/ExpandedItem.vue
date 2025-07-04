@@ -15,7 +15,7 @@
               localePath({
                 name: 'news-slug',
                 params: { slug: item.slug[locale] },
-              })
+              }),
             )
           : null
       "
@@ -36,7 +36,7 @@
                 localePath({
                   name: 'news-slug',
                   params: { slug: item.slug[locale] },
-                })
+                }),
               )
             : null
         "
@@ -71,7 +71,7 @@
               localePath({
                 name: 'news-slug',
                 params: { slug: item.slug[locale] },
-              })
+              }),
             )
           "
         >
@@ -83,17 +83,17 @@
 </template>
 
 <script setup>
-import { useDisplay } from "vuetify";
-import { useRootStore } from "../../stores/root";
-import { useRouter, useI18n, useLocalePath } from "#imports";
+import { useDisplay } from "vuetify"
+import { useRootStore } from "../../stores/root"
+import { useRouter, useI18n, useLocalePath } from "#imports"
 
-const localePath = useLocalePath();
+const localePath = useLocalePath()
 
-const router = useRouter();
-const rootStore = useRootStore();
-const expanded = ref(false);
-const { name, lgAndUp } = useDisplay();
-const { locale } = useI18n();
+const router = useRouter()
+const rootStore = useRootStore()
+const expanded = ref(false)
+const { name, lgAndUp } = useDisplay()
+const { locale } = useI18n()
 const props = defineProps({
   item: {
     type: Object,
@@ -103,7 +103,7 @@ const props = defineProps({
     type: Number,
     required: true,
   },
-});
+})
 </script>
 
 <style lang="scss" scoped>
@@ -136,7 +136,9 @@ const props = defineProps({
   }
 
   .animated-col {
-    transition: flex 0.3s ease-in-out, max-width 0.3s ease-in-out;
+    transition:
+      flex 0.3s ease-in-out,
+      max-width 0.3s ease-in-out;
   }
 }
 

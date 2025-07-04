@@ -27,21 +27,39 @@
       />
     </v-col>
 
-    <v-col align-self="top" class="pl-2">
+    <v-col align-self="start" class="pl-2">
       <v-chip
         class="mr-3"
         color="black"
-        :size="mdAndUp ? 'default' : 'small'"
+        size="small"
         style="background-color: white; color: black"
         tile
         variant="outlined"
       >
         {{ $t("list.filters.events.category." + item.category) }}
       </v-chip>
+      <span v-if="smAndDown" class="text-overline">
+        {{
+          new Date(item.start).toLocaleDateString(locale, {
+            year: "numeric",
+            month: "numeric",
+            day: "numeric",
+          })
+        }}
+      </span>
 
-      <div class="text-h5 dense paragraph">
-        {{ item.name }}
-      </div>
+      <div
+        class="text-h5 dense paragraph mt-2"
+        v-html="
+          $rootStore.search.length
+            ? highlightAndTruncate(300, item.name, $rootStore.search.split(' '))
+            : item.name
+        "
+      />
+      <MDC
+        class="text-body-1 font-weight-light paragraph"
+        :value="`${highlightAndTruncate(85, item.summary, $rootStore.search.split(' '))}`"
+      />
     </v-col>
 
     <v-col align-self="center" cols="auto">
@@ -51,9 +69,10 @@
 </template>
 
 <script setup>
-import { useLocalePath, useI18n } from "#imports"
+import { useLocalePath, useI18n, useNuxtApp } from "#imports"
 import { useDisplay } from "vuetify"
-const { mdAndUp } = useDisplay()
+const { $rootStore } = useNuxtApp()
+const { smAndDown, mdAndUp, lgAndUp } = useDisplay()
 
 const { locale } = useI18n()
 const localePath = useLocalePath()

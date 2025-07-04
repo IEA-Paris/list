@@ -10,7 +10,7 @@
           <v-chip
             v-for="(vintage, index2) in item.groups.vintage"
             :key="index2"
-            :size="mdAndUp ? 'default' : 'small'"
+            size="small"
             class="mt-3 mr-3"
             variant="outlined"
             tile
@@ -28,7 +28,7 @@
               !['vintage', '__typename'].includes(key))
           "
           class="mt-3 mr-3"
-          :size="mdAndUp ? 'default' : 'small'"
+          size="small"
           color="black"
           style="background-color: white; color: black"
           tile
@@ -45,7 +45,7 @@
           v-if="value && index < 3"
           class="mt-3 mr-3"
           color="black"
-          :size="mdAndUp ? 'default' : 'small'"
+          size="small"
           style="background-color: white; color: black"
           tile
           variant="outlined"
