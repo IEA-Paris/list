@@ -2,7 +2,7 @@
   <v-row
     v-ripple
     no-gutters
-    class="cursor-pointer highlight-on-hover my-3"
+    class="cursor-pointer highlight-on-hover my-2"
     @click="
       $router.push(
         localePath({
@@ -12,7 +12,7 @@
       )
     "
   >
-    <v-col v-if="mdAndUp" align-self="center" cols="1">
+    <v-col v-if="mdAndUp" cols="1">
       <MiscAtomsImageContainer
         cover
         :loading="$stores.people.loading"
@@ -24,17 +24,16 @@
         width="80px"
       />
     </v-col>
-    <v-col align-self="center" class="text-h6 dense px-2">
+    <v-col align-self="top" class="text-h6 dense px-2">
       <v-skeleton-loader v-if="rootStore.loading" type="heading" />
-      <div v-else class="text-h5">
+      <div v-else class="d-flex text-h5 align-center">
         {{ item.firstname + " " + item.lastname }}
+        <v-spacer />
+        <PeopleBadges :item="item" />
       </div>
-      <div class="mt-2 text-body-1 font-weight-light">
+      <div class="text-body-1 font-weight-light paragraph">
         {{ item.groups.vintage ? item.groups.vintage[0].theme : "" }}
       </div>
-    </v-col>
-    <v-col align-self="center" cols="auto">
-      <PeopleGroupBadges :item="item" />
     </v-col>
   </v-row>
 </template>
@@ -59,3 +58,8 @@ const props = defineProps({
   },
 })
 </script>
+<style>
+.paragraph {
+  max-width: 83ch !important;
+}
+</style>

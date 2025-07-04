@@ -10,7 +10,11 @@
     />
   </component>
   <div class="text-center">
-    <ListAtomsPerPage :type="type" class="float-right" />
+    <ListAtomsPerPage
+      v-if="numberOfPages > 1"
+      :type="type"
+      class="float-right"
+    />
 
     <ListMoleculesPagination
       v-if="numberOfPages > 1"

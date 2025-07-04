@@ -2,10 +2,19 @@
   <v-row
     v-ripple
     no-gutters
-    class="cursor-pointer highlight-on-hover"
+    class="cursor-pointer highlight-on-hover my-2"
     @click="$router.push(localePath('/activities/events/' + item.slug[locale]))"
   >
-    <v-col v-if="mdAndUp" align-self="center" cols="1">
+    <v-col v-if="mdAndUp" cols="1">
+      <MiscAtomsDateStamp
+        v-if="item.start"
+        :loading="$stores['events'].loading"
+        :date-start="item.start"
+        :date-stop="item.stop"
+        class="pr-6 mt-md-2"
+      />
+    </v-col>
+    <v-col v-if="mdAndUp" cols="1">
       <MiscAtomsImageContainer
         cover
         :loading="$stores.events.loading"
@@ -18,19 +27,19 @@
       />
     </v-col>
 
-    <v-col align-self="center" class="pl-2">
-      <div class="text-h5 dense text-overline font-weight-black">
-        {{
-          $t("list.filters.events.category." + item.category) +
-          " / " +
-          new Date(item.start).toLocaleDateString(locale, {
-            year: "numeric",
-            month: "numeric",
-            day: "numeric",
-          })
-        }}
-      </div>
-      <div class="text-h5 dense">
+    <v-col align-self="top" class="pl-2">
+      <v-chip
+        class="mr-3"
+        color="black"
+        :size="mdAndUp ? 'default' : 'small'"
+        style="background-color: white; color: black"
+        tile
+        variant="outlined"
+      >
+        {{ $t("list.filters.events.category." + item.category) }}
+      </v-chip>
+
+      <div class="text-h5 dense paragraph">
         {{ item.name }}
       </div>
     </v-col>

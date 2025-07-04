@@ -56,7 +56,7 @@
             </div>
             <!-- GROUPS -->
             <div class="mt-6 align-self-center">
-              <PeopleGroupBadges v-if="item && item.groups" :item="item" />
+              <PeopleBadges v-if="item && item.groups" :item="item" />
             </div>
           </template>
         </v-col>

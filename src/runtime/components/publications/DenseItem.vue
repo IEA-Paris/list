@@ -23,10 +23,8 @@
       <v-skeleton-loader v-if="rootStore.loading" type="heading" />
       <template v-else>
         {{ item.name }}
-        <div class="text-body-2">
-          {{ item.summary }}
-        </div>
       </template>
+      <MDC class="text-caption" :value="item.summary" />
     </v-col>
 
     <v-col align-self="center">
@@ -40,9 +38,18 @@
       />
 
       <template v-else>
-        <v-chip class="ma-2" style="background-color: white; color: black">
+        <v-chip
+          v-if="eventCategory"
+          class="ma-2"
+          style="background-color: white; color: black"
+        >
           {{ $t(eventCategory) }} </v-chip
-        ><v-chip class="ma-2" style="background-color: white; color: black">
+        ><v-chip
+          v-if="eventType"
+          c
+          class="ma-2"
+          style="background-color: white; color: black"
+        >
           {{ $t(eventType) }}
         </v-chip>
         <MiscMoleculesChipContainer :items="item.tags" size="small" />
@@ -77,7 +84,7 @@ const eventCategory = computed(() => {
     console.log("props.item.category: ", props.item.category)
     return "list.filters.publications.category." + props.item.category
   } else {
-    return "list.filters.publications.category.OTHERS"
+    return false
   }
 })
 const eventType = computed(() => {
@@ -85,7 +92,7 @@ const eventType = computed(() => {
     console.log("props.item.type: ", props.item.type)
     return "list.filters.publications.type." + props.item.type
   } else {
-    return "list.filters.publications.type.OTHERS"
+    return false
   }
 })
 </script>

@@ -13,8 +13,10 @@
       tile
       type="search"
       :loading="rootStore.loading"
-      @keyup.enter="$router.push(localePath('/search'))"
-      @click:append="$router.push(localePath('/search'))"
+      @keyup.enter="type === 'all' ? null : $router.push(localePath('/search'))"
+      @click:append="
+        type === 'all' ? null : $router.push(localePath('/search'))
+      "
     >
       <!--    :loading="$nuxt.loading || $store.state.loading" :class="{ 'mt-3':
       $store.state.scrolled }" -->
