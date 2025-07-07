@@ -10,6 +10,9 @@ query listPeople(
       biography
       firstname
       summary
+      disciplines {
+        name
+      }
       groups {
         board
         fellows
