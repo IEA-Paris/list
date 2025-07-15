@@ -18,6 +18,7 @@
         type="search"
         :loading="rootStore.loading"
         @keyup.enter="$router.push(localePath('/search'))"
+        @click:append="$router.push(localePath('/search'))"
       >
         <!--    :loading="$nuxt.loading || $store.state.loading" :class="{ 'mt-3':
         $store.state.scrolled }" -->
@@ -95,16 +96,16 @@
 </template>
 
 <script setup>
-import { useDebounceFn } from "@vueuse/core"
-import { useRootStore } from "../../../stores/root"
-import { computed, useI18n, ref } from "#imports"
-const { locale, t } = useI18n()
-const rootStore = useRootStore()
+import { useDebounceFn } from "@vueuse/core";
+import { useRootStore } from "../../../stores/root";
+import { computed, useI18n, ref } from "#imports";
+const { locale, t } = useI18n();
+const rootStore = useRootStore();
 
 // Utility function to capitalize first letter
-const capitalize = (str) => str.charAt(0).toUpperCase() + str.slice(1)
+const capitalize = (str) => str.charAt(0).toUpperCase() + str.slice(1);
 
-const emit = defineEmits(["filter-change"])
+const emit = defineEmits(["filter-change"]);
 
 const props = defineProps({
   type: {
@@ -119,10 +120,10 @@ const props = defineProps({
     type: Array,
     default: () => [],
   },
-})
+});
 
 // Filter dropdown state
-const filterMenuOpen = ref(false)
+const filterMenuOpen = ref(false);
 
 // Filter options
 const filterOptions = computed(() => [
@@ -132,38 +133,38 @@ const filterOptions = computed(() => [
   { value: "publications", label: capitalize(t("items.publications", 2)) },
   { value: "fellowships", label: capitalize(t("items.fellowships", 2)) },
   { value: "projects", label: capitalize(t("items.projects", 2)) },
-])
+]);
 
 // Toggle filter selection
 const toggleFilter = (option) => {
-  const currentCategories = [...props.categories]
-  const index = currentCategories.indexOf(option.value)
+  const currentCategories = [...props.categories];
+  const index = currentCategories.indexOf(option.value);
 
   if (index > -1) {
-    currentCategories.splice(index, 1)
+    currentCategories.splice(index, 1);
   } else {
-    currentCategories.push(option.value)
+    currentCategories.push(option.value);
   }
 
   emit("filter-change", {
     name: option.value,
     value: currentCategories.includes(option.value),
     categories: currentCategories,
-  })
-}
+  });
+};
 
 const search = computed({
   get() {
-    return rootStore.search
+    return rootStore.search;
   },
   set: await useDebounceFn(async function (v) {
     await rootStore.updateSearch({
       type: props.type,
       search: v || "",
       lang: locale.value,
-    })
+    });
   }, 300),
-})
+});
 </script>
 
 <style lang="scss" scoped></style>
