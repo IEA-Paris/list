@@ -32,8 +32,9 @@
 </template>
 
 <script setup>
-import { useRootStore } from "../../../stores/root"
-import { capitalize } from "../../../composables/useUtils"
+import { nextTick } from "vue";
+import { useRootStore } from "../../../stores/root";
+import { capitalize } from "../../../composables/useUtils";
 import {
   useNuxtApp,
   resolveComponent,
@@ -42,11 +43,11 @@ import {
   onMounted,
   useI18n,
   useRoute,
-} from "#imports"
-const { $stores } = useNuxtApp()
-const { locale } = useI18n()
-const route = useRoute()
-const rootStore = useRootStore()
+} from "#imports";
+const { $stores } = useNuxtApp();
+const { locale } = useI18n();
+const route = useRoute();
+const rootStore = useRootStore();
 const props = defineProps({
   addBtn: {
     type: Boolean,
@@ -65,14 +66,14 @@ const props = defineProps({
       return {
         cols: 12,
         xl: 12,
-      }
+      };
     },
   },
   pagination: {
     type: Object,
     required: false,
     default: () => {
-      return {}
+      return {};
     },
   },
   addButton: {
@@ -81,48 +82,79 @@ const props = defineProps({
     default: false,
   },
   items: [Object],
-})
+});
 
 const view = computed(() =>
   props.customView
     ? resolveComponent("ListViews" + capitalize(props.customView))
-    : resolveComponent("ListViews" + capitalize($stores[props.type].view.name)),
-)
+    : resolveComponent("ListViews" + capitalize($stores[props.type].view.name))
+);
 const itemTemplate = computed(() =>
   resolveComponent(
     (
       capitalize(props.type) +
       capitalize($stores[props.type].view.name) +
       "Item"
-    ).toString(),
-  ),
-)
-const numberOfPages = computed(() => $stores[props.type].numberOfPages)
+    ).toString()
+  )
+);
+const numberOfPages = computed(() => $stores[props.type].numberOfPages);
 
-const page = computed(() => +$stores[props.type].page)
+const page = computed(() => {
+  const p = parseInt(route.query.page, 10);
+  return !isNaN(p) && p > 0 ? p : 1;
+});
 
-const items = computed(() => $stores[props.type].items)
-console.log("setup list")
-onMounted(() => {
-  // Initialize the page from the route
-  console.log("mounted list")
-})
-rootStore.loadRouteQuery(props.type)
+const items = computed(() => $stores[props.type].items);
+console.log("setup list");
+
+// On mounted: load filters and data
+onMounted(async () => {
+  // Load any route filters
+  rootStore.loadRouteQuery(props.type);
+  // Initialize store page from URL
+  const pageParam = parseInt(route.query.page, 10);
+  if (!isNaN(pageParam) && pageParam > 1) {
+    await rootStore.updatePage({
+      page: pageParam,
+      type: props.type,
+      lang: locale.value,
+    });
+  }
+  // Fetch initial items
+  try {
+    await rootStore.update(props.type, locale.value);
+  } catch (e) {
+    console.error("Error fetching list:", e);
+  }
+});
 try {
-  await rootStore.update(props.type, locale.value)
+  await rootStore.update(props.type, locale.value);
 } catch (error) {
-  console.log("error fetching update list: ", error)
+  console.log("error fetching update list: ", error);
 }
+
+watch(
+  () => page.value,
+  async (newPage) => {
+    const query = {
+      ...route.query,
+      page: newPage > 1 ? String(newPage) : undefined,
+    };
+    navigateTo({ query }, { replace: true });
+    await nextTick();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+);
 onBeforeUnmount(() => {
-  rootStore.resetState(props.type, locale.value)
-})
+  rootStore.resetState(props.type, locale.value);
+});
 
-const onPageChange = (newPage) => {
-  rootStore.updatePage({ page: newPage, type: props.type, lang: locale.value })
-
-  window.scrollTo({
-    top: 0,
-    behavior: "smooth",
-  })
+async function onPageChange(newPage) {
+  await rootStore.updatePage({
+    page: newPage,
+    type: props.type,
+    lang: locale.value,
+  });
 }
 </script>
