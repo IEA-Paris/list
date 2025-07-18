@@ -33,6 +33,7 @@
       </v-text-field>
 
       <v-menu
+        v-if="filter"
         v-model="filterMenuOpen"
         :close-on-content-click="false"
         location="bottom end"
@@ -118,6 +119,10 @@ const props = defineProps({
   categories: {
     type: Array,
     default: () => [],
+  },
+  filter: {
+    type: Boolean,
+    default: false,
   },
 })
 

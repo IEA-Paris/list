@@ -13,6 +13,9 @@ query listPeople(
       disciplines {
         name
       }
+      tags {
+        name
+      }
       groups {
         board
         fellows
