@@ -1,14 +1,14 @@
-import type { AppConfig } from "nuxt/schema"
-import { createDynamicStore } from "../stores/factory"
-import { useRootStore } from "../stores/root"
-import { defineNuxtPlugin, useAppConfig } from "#app"
+import type { AppConfig } from "nuxt/schema";
+import { createDynamicStore } from "../stores/factory";
+import { useRootStore } from "../stores/root";
+import { defineNuxtPlugin, useAppConfig } from "#app";
 
 export default defineNuxtPlugin(async (nuxtApp) => {
   const appConfig = useAppConfig() as AppConfig & {
     list: {
-      modules: string[]
-    }
-  }
+      modules: string[];
+    };
+  };
 
   // Define module imports
   const moduleImports = {
@@ -64,7 +64,7 @@ export default defineNuxtPlugin(async (nuxtApp) => {
     }),
 
     affiliations: () => ({
-      model: import("@paris-ias/data/dist/list/affiliations.js"),
+      model: import("@paris-ias/data/dist/list/affiliation.js"),
       queries: {
         list: import("../graphql/list/affiliations.gql"),
         get: import("../graphql/item/affiliations.gql"),
@@ -118,40 +118,41 @@ export default defineNuxtPlugin(async (nuxtApp) => {
     }),
 
     // Add other modules similarly...
-  }
+  };
 
   // Initialize empty stores object
-  const stores: Record<string, unknown> = {}
-  const queries: Record<string, { list: unknown; get: unknown }> = {}
-  const models: Record<string, unknown> = {}
+  const stores: Record<string, unknown> = {};
+  const queries: Record<string, { list: unknown; get: unknown }> = {};
+  const models: Record<string, unknown> = {};
 
   // Import filters from remote JSON
-  const builtFilters = await import("../public/filters.json")
+  const builtFilters = await import("../public/filters.json");
 
-  console.log("INITIALIZING STORES")
+  console.log("INITIALIZING STORES");
   // Preload all required modules
   await Promise.all(
     appConfig.list.modules.map(async (type) => {
       try {
-        const imports =
-          await moduleImports[type as keyof typeof moduleImports]()
-        const model = (await imports.model).default
+        const imports = await moduleImports[
+          type as keyof typeof moduleImports
+        ]();
+        const model = (await imports.model).default;
         queries[type] = {
           list: (await imports.queries.list).default,
           get: (await imports.queries.get).default,
-        }
-        models[type] = model
-        stores[type] = createDynamicStore(type, model)()
+        };
+        models[type] = model;
+        stores[type] = createDynamicStore(type, model)();
       } catch (error) {
-        console.error(`Failed to initialize ${type} store:`, error)
+        console.error(`Failed to initialize ${type} store:`, error);
       }
-    }),
-  )
-  const rootStore = useRootStore()
+    })
+  );
+  const rootStore = useRootStore();
   // Provide synchronous access to stores and queries
-  nuxtApp.provide("models", models)
-  nuxtApp.provide("rootStore", rootStore)
-  nuxtApp.provide("stores", stores)
-  nuxtApp.provide("queries", queries)
-  nuxtApp.provide("filters", builtFilters)
-})
+  nuxtApp.provide("models", models);
+  nuxtApp.provide("rootStore", rootStore);
+  nuxtApp.provide("stores", stores);
+  nuxtApp.provide("queries", queries);
+  nuxtApp.provide("filters", builtFilters);
+});
