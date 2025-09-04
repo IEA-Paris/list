@@ -64,7 +64,7 @@ export default defineNuxtPlugin(async (nuxtApp) => {
     }),
 
     affiliations: () => ({
-      model: import("@paris-ias/data/dist/list/affiliation.js"),
+      model: import("@paris-ias/data/dist/list/affiliations.js"),
       queries: {
         list: import("../graphql/list/affiliations.gql"),
         get: import("../graphql/item/affiliations.gql"),
