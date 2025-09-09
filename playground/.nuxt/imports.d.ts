@@ -30,7 +30,7 @@ export { requestIdleCallback, cancelIdleCallback } from '#app/compat/idle-callba
 export { setInterval } from '#app/compat/interval';
 export { useFetchItem } from '../../src/runtime/composables/useFetchItem';
 export { default as useIcons } from '../../src/runtime/composables/useIcons';
-export { formatDate, getLocalizedDate, getDetailedFormatedDate, capitalize, slugify, formatDateValue } from '../../src/runtime/composables/useUtils';
+export { formatDate, getLocalizedDate, getDetailedFormatedDate, capitalize, slugify, formatDateValue, highlightAndTruncate } from '../../src/runtime/composables/useUtils';
 export { useImage } from '../../node_modules/@nuxt/image/dist/runtime/composables';
 export { useI18n } from '../../node_modules/vue-i18n/dist/vue-i18n';
 export { useRouteBaseName, useLocalePath, useLocaleRoute, useSwitchLocalePath, useLocaleHead, useBrowserLocale, useCookieLocale, useSetI18nParams, defineI18nRoute, defineI18nLocale, defineI18nConfig } from '../../node_modules/@nuxtjs/i18n/dist/runtime/composables/index';

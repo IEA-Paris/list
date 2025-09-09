@@ -41,6 +41,7 @@ declare global {
   const gql: typeof import('../../../node_modules/graphql-tag/main')['gql']
   const h: typeof import('../../../node_modules/vue')['h']
   const hasInjectionContext: typeof import('../../../node_modules/vue')['hasInjectionContext']
+  const highlightAndTruncate: typeof import('../../../src/runtime/composables/useUtils')['highlightAndTruncate']
   const inject: typeof import('../../../node_modules/vue')['inject']
   const injectHead: typeof import('../../../node_modules/nuxt/dist/app/composables/head')['injectHead']
   const isNuxtError: typeof import('../../../node_modules/nuxt/dist/app/composables/error')['isNuxtError']
@@ -264,6 +265,7 @@ declare module 'vue' {
     readonly gql: UnwrapRef<typeof import('../../../node_modules/graphql-tag/main')['gql']>
     readonly h: UnwrapRef<typeof import('../../../node_modules/vue')['h']>
     readonly hasInjectionContext: UnwrapRef<typeof import('../../../node_modules/vue')['hasInjectionContext']>
+    readonly highlightAndTruncate: UnwrapRef<typeof import('../../../src/runtime/composables/useUtils')['highlightAndTruncate']>
     readonly inject: UnwrapRef<typeof import('../../../node_modules/vue')['inject']>
     readonly injectHead: UnwrapRef<typeof import('../../../node_modules/nuxt/dist/app/composables/head')['injectHead']>
     readonly isNuxtError: UnwrapRef<typeof import('../../../node_modules/nuxt/dist/app/composables/error')['isNuxtError']>

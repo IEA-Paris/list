@@ -32,7 +32,7 @@
 </template>
 
 <script setup>
-import { nextTick } from "vue";
+import { nextTick, watch } from "vue";
 import { useRootStore } from "../../../stores/root";
 import { capitalize } from "../../../composables/useUtils";
 import {

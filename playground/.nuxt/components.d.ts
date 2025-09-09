@@ -16,9 +16,9 @@ interface _GlobalComponents {
     'ActionsExpandedItem': typeof import("../../src/runtime/components/actions/ExpandedItem.vue")['default']
     'ActionsRowsItem': typeof import("../../src/runtime/components/actions/RowsItem.vue")['default']
     'ActionsView': typeof import("../../src/runtime/components/actions/View.vue")['default']
-    'AffiliationsExpandedItem': typeof import("../../src/runtime/components/affiliations/ExpandedItem.vue")['default']
-    'AffiliationsRowsItem': typeof import("../../src/runtime/components/affiliations/RowsItem.vue")['default']
-    'AffiliationsView': typeof import("../../src/runtime/components/affiliations/View.vue")['default']
+    'AffiliationExpandedItem': typeof import("../../src/runtime/components/affiliation/ExpandedItem.vue")['default']
+    'AffiliationRowsItem': typeof import("../../src/runtime/components/affiliation/RowsItem.vue")['default']
+    'AffiliationView': typeof import("../../src/runtime/components/affiliation/View.vue")['default']
     'AppsExpandedItem': typeof import("../../src/runtime/components/apps/ExpandedItem.vue")['default']
     'AppsRowsItem': typeof import("../../src/runtime/components/apps/RowsItem.vue")['default']
     'AppsView': typeof import("../../src/runtime/components/apps/View.vue")['default']
@@ -44,6 +44,7 @@ interface _GlobalComponents {
     'FilesRowsItem': typeof import("../../src/runtime/components/files/RowsItem.vue")['default']
     'FilesView': typeof import("../../src/runtime/components/files/View.vue")['default']
     'ListAtomsFiltersMenu': typeof import("../../src/runtime/components/list/atoms/FiltersMenu.vue")['default']
+    'ListAtomsPerPage': typeof import("../../src/runtime/components/list/atoms/PerPage.vue")['default']
     'ListAtomsResetButton': typeof import("../../src/runtime/components/list/atoms/ResetButton.vue")['default']
     'ListAtomsResultsList': typeof import("../../src/runtime/components/list/atoms/ResultsList.vue")['default']
     'ListAtomsSearchInput': typeof import("../../src/runtime/components/list/atoms/SearchInput.vue")['default']
@@ -51,7 +52,6 @@ interface _GlobalComponents {
     'ListAtomsSearchString': typeof import("../../src/runtime/components/list/atoms/SearchString.vue")['default']
     'ListAtomsSortMenu': typeof import("../../src/runtime/components/list/atoms/SortMenu.vue")['default']
     'ListAtomsViewMenu': typeof import("../../src/runtime/components/list/atoms/ViewMenu.vue")['default']
-    'ListAtomsItemsPerPage': typeof import("../../src/runtime/components/list/atoms/itemsPerPage.vue")['default']
     'ListInputsAutoComplete': typeof import("../../src/runtime/components/list/inputs/AutoComplete.vue")['default']
     'ListInputsBooleanSwitch': typeof import("../../src/runtime/components/list/inputs/BooleanSwitch.vue")['default']
     'ListInputsCheckbox': typeof import("../../src/runtime/components/list/inputs/Checkbox.vue")['default']
@@ -87,9 +87,9 @@ interface _GlobalComponents {
     'NewsRelatedItem': typeof import("../../src/runtime/components/news/RelatedItem.vue")['default']
     'NewsRowsItem': typeof import("../../src/runtime/components/news/RowsItem.vue")['default']
     'NewsView': typeof import("../../src/runtime/components/news/View.vue")['default']
+    'PeopleBadges': typeof import("../../src/runtime/components/people/Badges.vue")['default']
     'PeopleDenseItem': typeof import("../../src/runtime/components/people/DenseItem.vue")['default']
     'PeopleExpandedItem': typeof import("../../src/runtime/components/people/ExpandedItem.vue")['default']
-    'PeopleGroupBadges': typeof import("../../src/runtime/components/people/GroupBadges.vue")['default']
     'PeopleRelatedItem': typeof import("../../src/runtime/components/people/RelatedItem.vue")['default']
     'PeopleRowsItem': typeof import("../../src/runtime/components/people/RowsItem.vue")['default']
     'PeopleView': typeof import("../../src/runtime/components/people/View.vue")['default']
@@ -165,9 +165,9 @@ interface _GlobalComponents {
     'LazyActionsExpandedItem': LazyComponent<typeof import("../../src/runtime/components/actions/ExpandedItem.vue")['default']>
     'LazyActionsRowsItem': LazyComponent<typeof import("../../src/runtime/components/actions/RowsItem.vue")['default']>
     'LazyActionsView': LazyComponent<typeof import("../../src/runtime/components/actions/View.vue")['default']>
-    'LazyAffiliationsExpandedItem': LazyComponent<typeof import("../../src/runtime/components/affiliations/ExpandedItem.vue")['default']>
-    'LazyAffiliationsRowsItem': LazyComponent<typeof import("../../src/runtime/components/affiliations/RowsItem.vue")['default']>
-    'LazyAffiliationsView': LazyComponent<typeof import("../../src/runtime/components/affiliations/View.vue")['default']>
+    'LazyAffiliationExpandedItem': LazyComponent<typeof import("../../src/runtime/components/affiliation/ExpandedItem.vue")['default']>
+    'LazyAffiliationRowsItem': LazyComponent<typeof import("../../src/runtime/components/affiliation/RowsItem.vue")['default']>
+    'LazyAffiliationView': LazyComponent<typeof import("../../src/runtime/components/affiliation/View.vue")['default']>
     'LazyAppsExpandedItem': LazyComponent<typeof import("../../src/runtime/components/apps/ExpandedItem.vue")['default']>
     'LazyAppsRowsItem': LazyComponent<typeof import("../../src/runtime/components/apps/RowsItem.vue")['default']>
     'LazyAppsView': LazyComponent<typeof import("../../src/runtime/components/apps/View.vue")['default']>
@@ -193,6 +193,7 @@ interface _GlobalComponents {
     'LazyFilesRowsItem': LazyComponent<typeof import("../../src/runtime/components/files/RowsItem.vue")['default']>
     'LazyFilesView': LazyComponent<typeof import("../../src/runtime/components/files/View.vue")['default']>
     'LazyListAtomsFiltersMenu': LazyComponent<typeof import("../../src/runtime/components/list/atoms/FiltersMenu.vue")['default']>
+    'LazyListAtomsPerPage': LazyComponent<typeof import("../../src/runtime/components/list/atoms/PerPage.vue")['default']>
     'LazyListAtomsResetButton': LazyComponent<typeof import("../../src/runtime/components/list/atoms/ResetButton.vue")['default']>
     'LazyListAtomsResultsList': LazyComponent<typeof import("../../src/runtime/components/list/atoms/ResultsList.vue")['default']>
     'LazyListAtomsSearchInput': LazyComponent<typeof import("../../src/runtime/components/list/atoms/SearchInput.vue")['default']>
@@ -200,7 +201,6 @@ interface _GlobalComponents {
     'LazyListAtomsSearchString': LazyComponent<typeof import("../../src/runtime/components/list/atoms/SearchString.vue")['default']>
     'LazyListAtomsSortMenu': LazyComponent<typeof import("../../src/runtime/components/list/atoms/SortMenu.vue")['default']>
     'LazyListAtomsViewMenu': LazyComponent<typeof import("../../src/runtime/components/list/atoms/ViewMenu.vue")['default']>
-    'LazyListAtomsItemsPerPage': LazyComponent<typeof import("../../src/runtime/components/list/atoms/itemsPerPage.vue")['default']>
     'LazyListInputsAutoComplete': LazyComponent<typeof import("../../src/runtime/components/list/inputs/AutoComplete.vue")['default']>
     'LazyListInputsBooleanSwitch': LazyComponent<typeof import("../../src/runtime/components/list/inputs/BooleanSwitch.vue")['default']>
     'LazyListInputsCheckbox': LazyComponent<typeof import("../../src/runtime/components/list/inputs/Checkbox.vue")['default']>
@@ -236,9 +236,9 @@ interface _GlobalComponents {
     'LazyNewsRelatedItem': LazyComponent<typeof import("../../src/runtime/components/news/RelatedItem.vue")['default']>
     'LazyNewsRowsItem': LazyComponent<typeof import("../../src/runtime/components/news/RowsItem.vue")['default']>
     'LazyNewsView': LazyComponent<typeof import("../../src/runtime/components/news/View.vue")['default']>
+    'LazyPeopleBadges': LazyComponent<typeof import("../../src/runtime/components/people/Badges.vue")['default']>
     'LazyPeopleDenseItem': LazyComponent<typeof import("../../src/runtime/components/people/DenseItem.vue")['default']>
     'LazyPeopleExpandedItem': LazyComponent<typeof import("../../src/runtime/components/people/ExpandedItem.vue")['default']>
-    'LazyPeopleGroupBadges': LazyComponent<typeof import("../../src/runtime/components/people/GroupBadges.vue")['default']>
     'LazyPeopleRelatedItem': LazyComponent<typeof import("../../src/runtime/components/people/RelatedItem.vue")['default']>
     'LazyPeopleRowsItem': LazyComponent<typeof import("../../src/runtime/components/people/RowsItem.vue")['default']>
     'LazyPeopleView': LazyComponent<typeof import("../../src/runtime/components/people/View.vue")['default']>
@@ -320,9 +320,9 @@ export const Footer: typeof import("../components/Footer.vue")['default']
 export const ActionsExpandedItem: typeof import("../../src/runtime/components/actions/ExpandedItem.vue")['default']
 export const ActionsRowsItem: typeof import("../../src/runtime/components/actions/RowsItem.vue")['default']
 export const ActionsView: typeof import("../../src/runtime/components/actions/View.vue")['default']
-export const AffiliationsExpandedItem: typeof import("../../src/runtime/components/affiliations/ExpandedItem.vue")['default']
-export const AffiliationsRowsItem: typeof import("../../src/runtime/components/affiliations/RowsItem.vue")['default']
-export const AffiliationsView: typeof import("../../src/runtime/components/affiliations/View.vue")['default']
+export const AffiliationExpandedItem: typeof import("../../src/runtime/components/affiliation/ExpandedItem.vue")['default']
+export const AffiliationRowsItem: typeof import("../../src/runtime/components/affiliation/RowsItem.vue")['default']
+export const AffiliationView: typeof import("../../src/runtime/components/affiliation/View.vue")['default']
 export const AppsExpandedItem: typeof import("../../src/runtime/components/apps/ExpandedItem.vue")['default']
 export const AppsRowsItem: typeof import("../../src/runtime/components/apps/RowsItem.vue")['default']
 export const AppsView: typeof import("../../src/runtime/components/apps/View.vue")['default']
@@ -348,6 +348,7 @@ export const FilesExpandedItem: typeof import("../../src/runtime/components/file
 export const FilesRowsItem: typeof import("../../src/runtime/components/files/RowsItem.vue")['default']
 export const FilesView: typeof import("../../src/runtime/components/files/View.vue")['default']
 export const ListAtomsFiltersMenu: typeof import("../../src/runtime/components/list/atoms/FiltersMenu.vue")['default']
+export const ListAtomsPerPage: typeof import("../../src/runtime/components/list/atoms/PerPage.vue")['default']
 export const ListAtomsResetButton: typeof import("../../src/runtime/components/list/atoms/ResetButton.vue")['default']
 export const ListAtomsResultsList: typeof import("../../src/runtime/components/list/atoms/ResultsList.vue")['default']
 export const ListAtomsSearchInput: typeof import("../../src/runtime/components/list/atoms/SearchInput.vue")['default']
@@ -355,7 +356,6 @@ export const ListAtomsSearchItem: typeof import("../../src/runtime/components/li
 export const ListAtomsSearchString: typeof import("../../src/runtime/components/list/atoms/SearchString.vue")['default']
 export const ListAtomsSortMenu: typeof import("../../src/runtime/components/list/atoms/SortMenu.vue")['default']
 export const ListAtomsViewMenu: typeof import("../../src/runtime/components/list/atoms/ViewMenu.vue")['default']
-export const ListAtomsItemsPerPage: typeof import("../../src/runtime/components/list/atoms/itemsPerPage.vue")['default']
 export const ListInputsAutoComplete: typeof import("../../src/runtime/components/list/inputs/AutoComplete.vue")['default']
 export const ListInputsBooleanSwitch: typeof import("../../src/runtime/components/list/inputs/BooleanSwitch.vue")['default']
 export const ListInputsCheckbox: typeof import("../../src/runtime/components/list/inputs/Checkbox.vue")['default']
@@ -391,9 +391,9 @@ export const NewsHeader: typeof import("../../src/runtime/components/news/Header
 export const NewsRelatedItem: typeof import("../../src/runtime/components/news/RelatedItem.vue")['default']
 export const NewsRowsItem: typeof import("../../src/runtime/components/news/RowsItem.vue")['default']
 export const NewsView: typeof import("../../src/runtime/components/news/View.vue")['default']
+export const PeopleBadges: typeof import("../../src/runtime/components/people/Badges.vue")['default']
 export const PeopleDenseItem: typeof import("../../src/runtime/components/people/DenseItem.vue")['default']
 export const PeopleExpandedItem: typeof import("../../src/runtime/components/people/ExpandedItem.vue")['default']
-export const PeopleGroupBadges: typeof import("../../src/runtime/components/people/GroupBadges.vue")['default']
 export const PeopleRelatedItem: typeof import("../../src/runtime/components/people/RelatedItem.vue")['default']
 export const PeopleRowsItem: typeof import("../../src/runtime/components/people/RowsItem.vue")['default']
 export const PeopleView: typeof import("../../src/runtime/components/people/View.vue")['default']
@@ -469,9 +469,9 @@ export const LazyFooter: LazyComponent<typeof import("../components/Footer.vue")
 export const LazyActionsExpandedItem: LazyComponent<typeof import("../../src/runtime/components/actions/ExpandedItem.vue")['default']>
 export const LazyActionsRowsItem: LazyComponent<typeof import("../../src/runtime/components/actions/RowsItem.vue")['default']>
 export const LazyActionsView: LazyComponent<typeof import("../../src/runtime/components/actions/View.vue")['default']>
-export const LazyAffiliationsExpandedItem: LazyComponent<typeof import("../../src/runtime/components/affiliations/ExpandedItem.vue")['default']>
-export const LazyAffiliationsRowsItem: LazyComponent<typeof import("../../src/runtime/components/affiliations/RowsItem.vue")['default']>
-export const LazyAffiliationsView: LazyComponent<typeof import("../../src/runtime/components/affiliations/View.vue")['default']>
+export const LazyAffiliationExpandedItem: LazyComponent<typeof import("../../src/runtime/components/affiliation/ExpandedItem.vue")['default']>
+export const LazyAffiliationRowsItem: LazyComponent<typeof import("../../src/runtime/components/affiliation/RowsItem.vue")['default']>
+export const LazyAffiliationView: LazyComponent<typeof import("../../src/runtime/components/affiliation/View.vue")['default']>
 export const LazyAppsExpandedItem: LazyComponent<typeof import("../../src/runtime/components/apps/ExpandedItem.vue")['default']>
 export const LazyAppsRowsItem: LazyComponent<typeof import("../../src/runtime/components/apps/RowsItem.vue")['default']>
 export const LazyAppsView: LazyComponent<typeof import("../../src/runtime/components/apps/View.vue")['default']>
@@ -497,6 +497,7 @@ export const LazyFilesExpandedItem: LazyComponent<typeof import("../../src/runti
 export const LazyFilesRowsItem: LazyComponent<typeof import("../../src/runtime/components/files/RowsItem.vue")['default']>
 export const LazyFilesView: LazyComponent<typeof import("../../src/runtime/components/files/View.vue")['default']>
 export const LazyListAtomsFiltersMenu: LazyComponent<typeof import("../../src/runtime/components/list/atoms/FiltersMenu.vue")['default']>
+export const LazyListAtomsPerPage: LazyComponent<typeof import("../../src/runtime/components/list/atoms/PerPage.vue")['default']>
 export const LazyListAtomsResetButton: LazyComponent<typeof import("../../src/runtime/components/list/atoms/ResetButton.vue")['default']>
 export const LazyListAtomsResultsList: LazyComponent<typeof import("../../src/runtime/components/list/atoms/ResultsList.vue")['default']>
 export const LazyListAtomsSearchInput: LazyComponent<typeof import("../../src/runtime/components/list/atoms/SearchInput.vue")['default']>
@@ -504,7 +505,6 @@ export const LazyListAtomsSearchItem: LazyComponent<typeof import("../../src/run
 export const LazyListAtomsSearchString: LazyComponent<typeof import("../../src/runtime/components/list/atoms/SearchString.vue")['default']>
 export const LazyListAtomsSortMenu: LazyComponent<typeof import("../../src/runtime/components/list/atoms/SortMenu.vue")['default']>
 export const LazyListAtomsViewMenu: LazyComponent<typeof import("../../src/runtime/components/list/atoms/ViewMenu.vue")['default']>
-export const LazyListAtomsItemsPerPage: LazyComponent<typeof import("../../src/runtime/components/list/atoms/itemsPerPage.vue")['default']>
 export const LazyListInputsAutoComplete: LazyComponent<typeof import("../../src/runtime/components/list/inputs/AutoComplete.vue")['default']>
 export const LazyListInputsBooleanSwitch: LazyComponent<typeof import("../../src/runtime/components/list/inputs/BooleanSwitch.vue")['default']>
 export const LazyListInputsCheckbox: LazyComponent<typeof import("../../src/runtime/components/list/inputs/Checkbox.vue")['default']>
@@ -540,9 +540,9 @@ export const LazyNewsHeader: LazyComponent<typeof import("../../src/runtime/comp
 export const LazyNewsRelatedItem: LazyComponent<typeof import("../../src/runtime/components/news/RelatedItem.vue")['default']>
 export const LazyNewsRowsItem: LazyComponent<typeof import("../../src/runtime/components/news/RowsItem.vue")['default']>
 export const LazyNewsView: LazyComponent<typeof import("../../src/runtime/components/news/View.vue")['default']>
+export const LazyPeopleBadges: LazyComponent<typeof import("../../src/runtime/components/people/Badges.vue")['default']>
 export const LazyPeopleDenseItem: LazyComponent<typeof import("../../src/runtime/components/people/DenseItem.vue")['default']>
 export const LazyPeopleExpandedItem: LazyComponent<typeof import("../../src/runtime/components/people/ExpandedItem.vue")['default']>
-export const LazyPeopleGroupBadges: LazyComponent<typeof import("../../src/runtime/components/people/GroupBadges.vue")['default']>
 export const LazyPeopleRelatedItem: LazyComponent<typeof import("../../src/runtime/components/people/RelatedItem.vue")['default']>
 export const LazyPeopleRowsItem: LazyComponent<typeof import("../../src/runtime/components/people/RowsItem.vue")['default']>
 export const LazyPeopleView: LazyComponent<typeof import("../../src/runtime/components/people/View.vue")['default']>
