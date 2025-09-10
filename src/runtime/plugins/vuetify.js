@@ -19,3 +19,8 @@ export default defineNuxtPlugin((nuxtApp) => {
 
   nuxtApp.vueApp.use(vuetify);
 });
+
+// Inernationalisation des champs de Vuetify -> changement de langue
+// import { createI18n } from "vue-i18n";
+// import { aliases, mdi } from "vuetify/iconsets/mdi";
+// import { loadFonts } from "../plugins/webfontloader";
