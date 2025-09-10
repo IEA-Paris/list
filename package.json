@@ -1,16 +1,18 @@
 {
   "license": "AGPL-3.0-only",
   "main": "./dist/module.mjs",
-  "version": "1.0.125",
+  "version": "1.0.126",
   "name": "@paris-ias/list",
   "repository": {
     "url": "git+https://github.com/IEA-Paris/list.git",
     "type": "git"
   },
-  "dependencies": {},
+  "dependencies": {
+    "@paris-ias/data": "^1.8.52"
+  },
   "description": "Paris IAS List Module",
   "peerDependencies": {
-    "@nuxt/eslint": "1.3.0",
+    "@nuxt/eslint": "^1.3.0",
     "@nuxt/eslint-config": "^1.3.0",
     "@nuxt/image": "1.10.0",
     "@nuxt/kit": "^3.16.2",
@@ -20,7 +22,6 @@
     "@nuxtjs/apollo": "^5.0.0-alpha.14",
     "@nuxtjs/i18n": "^9.5.2",
     "@nuxtjs/mdc": "0.16.1",
-    "@paris-ias/data": "^1.8.47",
     "@pinia/nuxt": "^0.5.4",
     "@types/node": "latest",
     "@urql/exchange-execute": "2.3.1",
