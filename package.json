@@ -1,7 +1,7 @@
 {
   "license": "AGPL-3.0-only",
   "main": "./dist/module.mjs",
-  "version": "1.0.124",
+  "version": "1.0.125",
   "name": "@paris-ias/list",
   "repository": {
     "url": "git+https://github.com/IEA-Paris/list.git",
