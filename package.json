@@ -13,7 +13,7 @@
   "description": "Paris IAS List Module",
   "peerDependencies": {
     "@nuxt/eslint": "^1.3.0",
-    "@nuxt/eslint-config": "^1.3.0",
+    "@nuxt/eslint-config": "^0.5.7",
     "@nuxt/image": "1.10.0",
     "@nuxt/kit": "^3.16.2",
     "@nuxt/module-builder": "^1.0.0",
