@@ -3,7 +3,6 @@ import type { Views } from "@paris-ias/data";
 import SEARCH from "../graphql/list/search.gql";
 import { useNuxtApp, useRouter, useAsyncQuery } from "#imports";
 
-// Improved TypeScript interfaces
 interface SearchResults {
   events: Record<string, unknown>;
   news: Record<string, unknown>;
@@ -209,42 +208,65 @@ export const useRootStore = defineStore("rootStore", {
         $stores: Record<string, ModuleStore>;
       };
 
+      const filters = $stores[type]?.filters ?? {};
+      console.log("Filters for type:", type, filters);
+
       const routeQuery: Record<string, string> = {
         ...(this.search ? { search: this.search } : {}),
         ...(this.page > 1 ? { page: this.page.toString() } : {}),
-        ...Object.entries($stores[type]?.filters ?? {}).reduce(
-          (acc, [key, filter]) => {
-            const value = filter?.value;
-            const isEmpty =
-              value === undefined ||
-              value === null ||
-              value === false ||
-              (Array.isArray(value) && value.length === 0) ||
-              (typeof value === "string" && value.trim() === "");
+        ...Object.entries(filters).reduce((acc, [key, filter]) => {
+          const value = filter?.value;
+          const isEmpty =
+            value === undefined ||
+            value === null ||
+            value === false ||
+            (Array.isArray(value) && value.length === 0) ||
+            (typeof value === "string" && value.trim() === "");
 
-            if (isEmpty) return acc;
+          if (isEmpty) {
+            console.log(`Filter ${key} is empty, skipping.`);
+            return acc;
+          }
 
-            return {
-              ...acc,
-              [key]: Array.isArray(value)
-                ? JSON.stringify(value)
-                : String(value),
-            };
-          },
-          {} as Record<string, string>
-        ),
+          console.log(`Adding filter ${key} with value:`, value);
+          return {
+            ...acc,
+            [key]: Array.isArray(value) ? JSON.stringify(value) : String(value),
+          };
+        }, {} as Record<string, string>),
       };
 
+      const currentQuery = router.currentRoute.value.query;
+      console.log("Current URL query:", currentQuery);
+
+      Object.keys(currentQuery).forEach((key) => {
+        if (filters[key]) {
+          const queryValue = currentQuery[key];
+          console.log(
+            `Updating filter ${key} from URL with value:`,
+            queryValue
+          );
+
+          filters[key].value = filters[key].multiple
+            ? JSON.parse(queryValue as string)
+            : queryValue;
+        } else {
+          console.log(`Filter ${key} not found in $stores[type]?.filters`);
+        }
+      });
+
+      console.log("Final route query:", routeQuery);
       router.replace({ query: routeQuery });
     },
 
-    async resetState(type: string, lang: string): void {
+    async resetState(type: string, lang: string): Promise<void> {
       console.log("resetState", { type, lang });
-      const { $stores, $models } = useNuxtApp() as NuxtAppExtended;
+      const { $stores, $models } = useNuxtApp() as unknown as NuxtAppExtended;
       console.log("$models[type]: ", $models[type]);
       console.log("$stores[type]: ", $stores[type]);
 
       if ($models[type] && $stores[type]) {
+        // Réinitialiser les filtres
         const filters = $stores[type].filters;
         if (filters) {
           Object.keys(filters).forEach((key) => {
@@ -396,15 +418,15 @@ export const useRootStore = defineStore("rootStore", {
       search: string;
       lang: string;
     }): Promise<void> {
-      /*   const { $stores } = useNuxtApp() as NuxtAppExtended */
+      const { $stores } = useNuxtApp();
       console.log("updateSearch", { type, search, lang });
-      /*  if (type === "all") { */
-      this.search = search;
-      /*     } else {
+      if (type === "all") {
+        this.search = search;
+      } else {
         if ($stores[type]) {
-          $stores[type].search = search
+          $stores[type].search = search;
         }
-      } */
+      }
 
       await this.update(type, lang);
     },
@@ -463,8 +485,12 @@ export const useRootStore = defineStore("rootStore", {
             // add the store module filters
             filters,
           },
-          ...((this.search as string)?.length &&
-            type === "all" && { search: this.search }),
+          ...(type === "all" &&
+            (this.search as string)?.length && { search: this.search }),
+          ...(type !== "all" &&
+            ($stores[type].search as string)?.length && {
+              search: $stores[type].search,
+            }),
           appId: "iea",
           lang,
         })
