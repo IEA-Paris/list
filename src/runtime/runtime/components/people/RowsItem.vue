@@ -7,7 +7,7 @@
         localePath({
           name: 'people-slug',
           params: { slug: item.slug },
-        })
+        }),
       )
     "
   >
@@ -15,7 +15,9 @@
       <MiscAtomsImageContainer
         cover
         :loading="$stores.people.loading"
-        :src="item.image.url ? item.image : '/default.png'"
+        :src="
+          item && item.image && item.image.url ? item.image.url : '/default.png'
+        "
         :ratio="1 / 1"
         :name="item.lastname + ' ' + item.firstname"
         :slug="item.slug"
@@ -69,11 +71,11 @@
 </template>
 
 <script setup>
-import { useDisplay } from "vuetify";
-import { useLocalePath, computed } from "#imports";
+import { useDisplay } from "vuetify"
+import { useLocalePath, computed } from "#imports"
 
-const { name, mdAndUp } = useDisplay();
-const localePath = useLocalePath();
+const { name, mdAndUp } = useDisplay()
+const localePath = useLocalePath()
 const props = defineProps({
   item: {
     type: Object,
@@ -83,19 +85,19 @@ const props = defineProps({
     type: Number,
     required: true,
   },
-});
+})
 const lineClamp = computed(() => {
   let base = [5, 6, 3, 6, 8, 10][
     ["xs", "sm", "md", "lg", "xl", "xxl"].indexOf(name.value || "md")
-  ];
+  ]
   if (props.item?.socials && Object.keys(props.item.socials).length > 0) {
     base =
       base -
       [0, 0, 1, 1, 1, 2][
         ["xs", "sm", "md", "lg", "xl", "xxl"].indexOf(name.value || "md")
-      ];
+      ]
   }
 
-  return base;
-});
+  return base
+})
 </script>

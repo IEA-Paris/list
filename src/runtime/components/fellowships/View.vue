@@ -45,7 +45,7 @@
               :items="[
                 $t(
                   'list.filters.fellowships.fellowshipType.' +
-                    item.fellowshipType
+                    item.fellowshipType,
                 ),
                 ...(props.item && props.item.disciplines
                   ? props.item.disciplines.map((discipline) => discipline.name)
@@ -149,10 +149,10 @@
 </template>
 
 <script setup>
-import { useDisplay } from "vuetify";
-import { ref } from "#imports";
-const { name } = useDisplay();
-const accordeon = ref(-1);
+import { useDisplay } from "vuetify"
+import { ref } from "#imports"
+const { name } = useDisplay()
+const accordeon = ref(-1)
 const props = defineProps({
   item: {
     type: Object,
@@ -163,9 +163,9 @@ const props = defineProps({
     default: false,
     required: true,
   },
-});
+})
 
-const view = ref(true);
+const view = ref(true)
 
 const renderedDetails = {
   ...(props.item?.fellowshipDetails?.type && {
@@ -201,7 +201,7 @@ const renderedDetails = {
   ...(props.item?.fellowshipDetails?.researchProcess && {
     researchProcess: props.item?.fellowshipDetails?.researchProcess,
   }),
-};
+}
 </script>
 
 <style lang="scss" scoped></style>

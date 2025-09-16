@@ -306,14 +306,14 @@
 </template>
 
 <script setup>
-import { useDisplay } from "vuetify";
-import { useRouter } from "vue-router";
-import getFileIcon from "../../composables/useIcons";
-import { getLocalizedDate } from "../../composables/useUtils";
-import { ref } from "#imports";
+import { useDisplay } from "vuetify"
+import { useRouter } from "vue-router"
+import getFileIcon from "../../composables/useIcons"
+import { getLocalizedDate } from "../../composables/useUtils"
+import { ref } from "#imports"
 
-const { name, mdAndUp, sm, xs } = useDisplay();
-const router = useRouter();
+const { name, mdAndUp, sm, xs } = useDisplay()
+const router = useRouter()
 const props = defineProps({
   item: {
     type: Object,
@@ -324,14 +324,15 @@ const props = defineProps({
     required: false,
     default: false,
   },
-});
+})
 
+console.log("item", props.item)
 // UI components models
-const panel = ref(["presentation"]);
+const panel = ref(["presentation"])
 
 function redirectToMap(long, lat) {
   router.push(
-    `https://www.openstreetmap.org/?mlat=${lat}&amp;mlon=${long}#map=19/${lat}/${long}`
-  );
+    `https://www.openstreetmap.org/?mlat=${lat}&amp;mlon=${long}#map=19/${lat}/${long}`,
+  )
 }
 </script>

@@ -112,12 +112,12 @@
 </template>
 
 <script setup>
-import { useDisplay } from "vuetify";
-import { useNuxtApp, useI18n } from "#imports";
+import { useDisplay } from "vuetify"
+import { useNuxtApp, useI18n } from "#imports"
 
-const { $stores } = useNuxtApp();
-const { name } = useDisplay();
-const { locale } = useI18n();
+const { $stores } = useNuxtApp()
+const { name } = useDisplay()
+const { locale } = useI18n()
 const props = defineProps({
   item: {
     type: Object,
@@ -128,12 +128,12 @@ const props = defineProps({
     required: false,
     default: false,
   },
-});
+})
 
 /* const { data: action } = await useAsyncData("actions", () =>
   queryContent("/actions/" + locale.value)
     .limit(1)
     .find()
 ) */
-$stores.publications.loading = false;
+$stores.publications.loading = false
 </script>

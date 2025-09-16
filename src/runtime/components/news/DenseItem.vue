@@ -9,10 +9,12 @@
       <MiscAtomsImageContainer
         cover
         :loading="$stores.news.loading"
-        :src="item.image.url ? item.image : '/default.png'"
+        :src="
+          item && item.image && item.image.url ? item.image.url : '/default.png'
+        "
         :ratio="1 / 1"
         :name="item.slug"
-        :slug="item.slug"
+        :slug="item.slug && item.slug[locale]"
         link="news-slug"
         width="80px"
       />
