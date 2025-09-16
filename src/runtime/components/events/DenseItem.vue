@@ -23,7 +23,7 @@
         :name="item.name"
         :slug="item.slug"
         link="events-slug"
-        width="80px"
+        :width="80"
       />
     </v-col>
 
@@ -58,7 +58,11 @@
       />
       <MDC
         class="text-body-1 font-weight-light paragraph"
-        :value="`${highlightAndTruncate(85, item.summary, $rootStore.search.split(' '))}`"
+        :value="`${highlightAndTruncate(
+          85,
+          item.summary,
+          $rootStore.search.split(' ')
+        )}`"
       />
     </v-col>
 

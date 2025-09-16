@@ -19,13 +19,13 @@ export const getLocalizedDate = (dateIso: string): string => {
       year: "numeric",
       month: "long",
       day: "numeric",
-    },
+    }
   )
 }
 
 export const getDetailedFormatedDate = (
   dateStr: string,
-  locale: string,
+  locale: string
 ): {
   day: number
   month: string
@@ -70,7 +70,7 @@ export const slugify = (str: string) => {
 
 export const formatDateValue = (
   date: string | Date,
-  locale: string,
+  locale: string
 ): string => {
   const formattedDate = new Date(date)
   return formattedDate.toLocaleDateString(locale)
@@ -78,9 +78,8 @@ export const formatDateValue = (
 export const highlightAndTruncate = (
   stop: number,
   text: string,
-  query: string[],
+  query: string[]
 ): string => {
-  console.log("highlightAndTruncate", stop, text, query)
   try {
     // check that query exists, has an array and has elements inside
     if (query?.length && query[0]?.length) {

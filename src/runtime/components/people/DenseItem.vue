@@ -8,7 +8,7 @@
         localePath({
           name: 'people-slug',
           params: { slug: item.slug },
-        }),
+        })
       )
     "
   >
@@ -21,7 +21,7 @@
         :name="item.lastname + ' ' + item.firstname"
         :slug="item.slug"
         link="people-slug"
-        width="80px"
+        :width="80"
       />
     </v-col>
     <v-col align-self="start" class="text-h6 dense px-2">
@@ -33,7 +33,7 @@
               ? highlightAndTruncate(
                   300,
                   item.firstname + ' ' + item.lastname,
-                  $rootStore.search.split(' '),
+                  $rootStore.search.split(' ')
                 )
               : item.firstname + ' ' + item.lastname
           "
@@ -49,7 +49,7 @@
             ? highlightAndTruncate(
                 300,
                 item.groups.vintage[0].theme,
-                $rootStore.search.split(' '),
+                $rootStore.search.split(' ')
               )
             : item.groups.vintage[0].theme
         "
