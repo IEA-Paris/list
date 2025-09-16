@@ -16,10 +16,12 @@
       <MiscAtomsImageContainer
         cover
         :loading="$stores.projects.loading"
-        :src="item.image.url ? item.image : '/default.png'"
+        :src="
+          item && item.image && item.image.url ? item.image.url : '/default.png'
+        "
         :ratio="1 / 1"
         :name="item.name"
-        :slug="item.slug[locale]"
+        :slug="item.slug && item.slug[locale]"
         link="activities-projects-slug"
         width="50"
       />

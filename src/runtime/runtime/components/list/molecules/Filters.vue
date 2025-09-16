@@ -91,9 +91,9 @@ const getItems = (name) => {
       value: item,
     }))
 }
-onMounted(() => {
-  rootStore.loadRouteQuery(props.type)
-})
+// onMounted(() => {
+//   rootStore.loadRouteQuery(props.type)
+// })
 
 const computeVisibility = (filterItem) => {
   return (
