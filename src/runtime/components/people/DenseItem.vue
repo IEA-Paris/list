@@ -16,7 +16,9 @@
       <MiscAtomsImageContainer
         cover
         :loading="$stores.people.loading"
-        :src="item.image.url ? item.image : '/default.png'"
+        :src="
+          item && item.image && item.image.url ? item.image.url : '/default.png'
+        "
         :ratio="1 / 1"
         :name="item.lastname + ' ' + item.firstname"
         :slug="item.slug"
@@ -42,7 +44,7 @@
         <PeopleBadges :item="item" />
       </div>
       <div
-        v-if="item.groups.vintage && item.groups.vintage[0].theme"
+        v-if="item.group && item.groups.vintage && item.groups.vintage[0].theme"
         class="text-body-1 font-weight-light paragraph"
         v-html="
           rootStore.search.length

@@ -40,12 +40,12 @@
 </template>
 
 <script setup>
-import { useDisplay } from "vuetify";
-import { useLocalePath, useI18n } from "#imports";
+import { useDisplay } from "vuetify"
+import { useLocalePath, useI18n } from "#imports"
 
-const { name } = useDisplay();
-const localePath = useLocalePath();
-const { locale } = useI18n();
+const { name } = useDisplay()
+const localePath = useLocalePath()
+const { locale } = useI18n()
 
 const props = defineProps({
   item: {
@@ -56,7 +56,9 @@ const props = defineProps({
     type: Number,
     required: true,
   },
-});
+})
+
+console.log("itemLocal", props.item.slug)
 </script>
 
 <style lang="scss"></style>
