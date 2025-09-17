@@ -12,14 +12,11 @@ export default defineNuxtConfig({
   imports: {
     autoImport: false,
   },
-  css: [
-    "vuetify/lib/styles/main.sass",
-    "@mdi/font/css/materialdesignicons.min.css",
-  ],
+  css: ["@mdi/font/css/materialdesignicons.min.css"],
   build: {
-    transpile: ["vuetify", "@paris-ias/list"],
+    transpile: ["@paris-ias/list"],
   },
   pinia: {
     autoImports: ["defineStore", ["defineStore", "definePiniaStore"]],
   },
-});
+})

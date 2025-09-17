@@ -18,12 +18,14 @@
       <MiscAtomsImageContainer
         cover
         :loading="$stores.events.loading"
-        :src="item.image.url ? item.image : '/default.png'"
+        :src="
+          item && item.image && item.image.url ? item.image.url : '/default.png'
+        "
         :ratio="1 / 1"
         :name="item.name"
-        :slug="item.slug"
+        :slug="item.slug && item.slug[locale]"
         link="events-slug"
-        width="80px"
+        :width="80"
       />
     </v-col>
 
@@ -58,7 +60,11 @@
       />
       <MDC
         class="text-body-1 font-weight-light paragraph"
-        :value="`${highlightAndTruncate(85, item.summary, $rootStore.search.split(' '))}`"
+        :value="`${highlightAndTruncate(
+          85,
+          item.summary,
+          $rootStore.search.split(' ')
+        )}`"
       />
     </v-col>
 

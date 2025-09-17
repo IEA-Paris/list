@@ -17,7 +17,7 @@
     </v-col>
     <v-col cols="12" md="8" lg="4" class="pl-md-6">
       <v-skeleton-loader
-        v-if="rootStore.loading || $stores.news.loading"
+        v-if="rootStore.loading || $stores['news'].loading"
         :type="
           [
             'heading, subtitle, text@5, ossein, button',

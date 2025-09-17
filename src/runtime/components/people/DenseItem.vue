@@ -8,7 +8,7 @@
         localePath({
           name: 'people-slug',
           params: { slug: item.slug },
-        }),
+        })
       )
     "
   >
@@ -16,12 +16,14 @@
       <MiscAtomsImageContainer
         cover
         :loading="$stores.people.loading"
-        :src="item.image.url ? item.image : '/default.png'"
+        :src="
+          item && item.image && item.image.url ? item.image.url : '/default.png'
+        "
         :ratio="1 / 1"
         :name="item.lastname + ' ' + item.firstname"
         :slug="item.slug"
         link="people-slug"
-        width="80px"
+        :width="80"
       />
     </v-col>
     <v-col align-self="start" class="text-h6 dense px-2">
@@ -33,7 +35,7 @@
               ? highlightAndTruncate(
                   300,
                   item.firstname + ' ' + item.lastname,
-                  $rootStore.search.split(' '),
+                  $rootStore.search.split(' ')
                 )
               : item.firstname + ' ' + item.lastname
           "
@@ -42,14 +44,14 @@
         <PeopleBadges :item="item" />
       </div>
       <div
-        v-if="item.groups.vintage && item.groups.vintage[0].theme"
+        v-if="item.group && item.groups.vintage && item.groups.vintage[0].theme"
         class="text-body-1 font-weight-light paragraph"
         v-html="
           rootStore.search.length
             ? highlightAndTruncate(
                 300,
                 item.groups.vintage[0].theme,
-                $rootStore.search.split(' '),
+                $rootStore.search.split(' ')
               )
             : item.groups.vintage[0].theme
         "

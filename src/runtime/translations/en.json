@@ -251,6 +251,30 @@
           "VIDEO": "Video",
           "OTHERS": "Others"
         }
+      },
+      "affiliation": {
+        "label": "Affiliations"
+      },
+      "disciplines": {
+        "label": "Discipline"
+      },
+      "tags": {
+        "label": "Tags"
+      },
+      "actions": {
+        "label": "Actions"
+      },
+      "apps": {
+        "label": "Applications"
+      },
+      "files": {
+        "label": "Documents"
+      },
+      "mailing": {
+        "label": "Mailing"
+      },
+      "users": {
+        "label": "Users"
       }
     },
     "list": "List",
