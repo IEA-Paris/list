@@ -21,7 +21,7 @@
         :name="item.name"
         :slug="item.slug[locale]"
         link="activities-projects-slug"
-        width="50"
+        :width="50"
       />
     </v-col>
     <v-col align-self="center" class="text-h5 dense pl-2">

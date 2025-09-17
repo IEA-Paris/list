@@ -80,13 +80,12 @@ export const highlightAndTruncate = (
   text: string,
   query: string[],
 ): string => {
-  console.log("highlightAndTruncate", stop, text, query)
   try {
     // check that query exists, has an array and has elements inside
     if (query?.length && query[0]?.length) {
       // check if the text length is greater than the stop value
       if (text.length > stop) {
-        console.log("text bigger than stop, truncate", text.length, stop)
+        /*      console.log("text bigger than stop, truncate", text.length, stop) */
         // map each query element to its matching index (if it exists)
         const indexes: number[] = query
           .map((element: string) => text.indexOf(element))
