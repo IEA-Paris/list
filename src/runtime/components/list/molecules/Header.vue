@@ -7,18 +7,18 @@
           @open="filtersOpen = $event"
         />
         <v-spacer />
-        <ListAtomsResetButton v-if="$stores[type].filtersCount" :type="type" />
-        <ListAtomsViewMenu :type="type" />
-        <ListAtomsSortMenu :type="type" />
+        <ListAtomsResetButton v-if="$stores[type].filtersCount" :type />
+        <ListAtomsViewMenu :type />
+        <ListAtomsSortMenu :type />
       </div>
       <v-expand-transition>
         <div v-show="filtersOpen" class="mb-7">
-          <ListMoleculesFilters :type="type" />
+          <ListMoleculesFilters :type />
         </div>
       </v-expand-transition>
 
-      <ListAtomsSearchInput :type="type" />
-      <ListAtomsSearchString :type="type" />
+      <ListAtomsSearchInput :type />
+      <ListAtomsSearchString :type />
     </v-col>
   </v-row>
 </template>

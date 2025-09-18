@@ -30,16 +30,13 @@
 </template>
 
 <script setup>
-import { useDebounceFn } from "@vueuse/core";
-import { useRootStore } from "../../../stores/root";
-import { computed, useI18n, useRouter, useLocalePath } from "#imports";
-// const { $router } = useNuxtApp()
+import { useDebounceFn } from "@vueuse/core"
+import { useRootStore } from "../../../stores/root"
+import { computed, useI18n } from "#imports"
+const { $stores } = useNuxtApp()
 
-const router = useRouter();
-const localePath = useLocalePath();
-
-const { locale } = useI18n();
-const rootStore = useRootStore();
+const { locale } = useI18n()
+const rootStore = useRootStore()
 const props = defineProps({
   type: {
     type: String,
@@ -49,19 +46,21 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
-});
+})
 const search = computed({
   get() {
-    return rootStore.search;
+    return props.type === "all"
+      ? rootStore.search
+      : $stores[props.type]?.search || ""
   },
   set: await useDebounceFn(async function (v) {
     await rootStore.updateSearch({
       type: props.type,
       search: v || "",
       lang: locale.value,
-    });
+    })
   }, 300),
-});
+})
 </script>
 
 <style lang="scss" scoped></style>

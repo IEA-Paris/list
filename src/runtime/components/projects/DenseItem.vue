@@ -47,6 +47,7 @@
       <MiscMoleculesChipContainer :items="item.tags" size="small" />
 
       <MDC
+        v-if="item.summary"
         class="text-caption font-weight-light paragraph"
         :value="`${highlightAndTruncate(150, item.summary, rootStore.search.split(' '))}`"
       />

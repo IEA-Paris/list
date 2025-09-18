@@ -440,7 +440,7 @@ export const useRootStore = defineStore("rootStore", {
         this.search = search
       } else {
         if ($stores[type]) {
-          $stores[type].search = search
+          $stores[type].$patch({ search })
         }
       }
 
