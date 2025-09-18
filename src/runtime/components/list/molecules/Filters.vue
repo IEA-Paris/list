@@ -26,14 +26,6 @@
           style="min-width: 150px"
           class="transition-swing pb-1"
         />
-        <!--    <template
-      v-else
-      v-for="filterItem in Object.keys(rootStore[type].list.filters).slice()"
-    >
-      <div v-if="computeVisibility(filterItem)">
-        {{ filterItem }}
-      </div>
-    </template> -->
       </v-col>
     </template>
   </v-row>
@@ -41,20 +33,18 @@
 
 <script setup>
 import { useDisplay } from "vuetify"
-import { useRootStore } from "../../../stores/root"
 import { capitalize } from "../../../composables/useUtils"
-import { useNuxtApp, onMounted, resolveComponent, useI18n } from "#imports"
+import { useNuxtApp, resolveComponent, useI18n } from "#imports"
 
 const { smAndDown } = useDisplay()
 const i18n = useI18n()
 const { locale, messages } = useI18n()
 const { $stores, $filters } = useNuxtApp()
-const rootStore = useRootStore()
 const props = defineProps(["type", "expanded"])
 
 const ComponentName = (name) => {
   return resolveComponent(
-    "ListInputs" + capitalize($stores[props.type].filters[name].type),
+    "ListInputs" + capitalize($stores[props.type].filters[name].type)
   )
 }
 const getItems = (name) => {
@@ -70,7 +60,7 @@ const getItems = (name) => {
         title: i18n.t(
           props.type === "people" && name === "vintage"
             ? item
-            : `list.filters.${props.type}.${name}.${item}`,
+            : `list.filters.${props.type}.${name}.${item}`
         ),
         value: item,
       }))
@@ -83,7 +73,7 @@ const getItems = (name) => {
   }
   // TODO replace with package based values
   return Object.keys(
-    messages.value[locale.value].list.filters[props.type][name],
+    messages.value[locale.value].list.filters[props.type][name]
   )
     .filter((key) => key !== "label")
     .map((item) => ({
@@ -91,9 +81,6 @@ const getItems = (name) => {
       value: item,
     }))
 }
-// onMounted(() => {
-//   rootStore.loadRouteQuery(props.type)
-// })
 
 const computeVisibility = (filterItem) => {
   return (
@@ -104,13 +91,13 @@ const computeVisibility = (filterItem) => {
       // for each of the rules set in the switchIf key
       (rule) => {
         // we check if each of the condition are fulfilled
-        return Object.keys(rule).find((value, index, obj) => {
+        return Object.keys(rule).find((value, _index, _obj) => {
           return $stores[props.type].filters[value].multiple
             ? $stores[props.type].filters[value]?.value &&
                 $stores[props.type].filters[value]?.value.includes(rule[value])
             : $stores[props.type].filters[value]?.value === rule[value]
         })
-      },
+      }
     )
   )
 }
