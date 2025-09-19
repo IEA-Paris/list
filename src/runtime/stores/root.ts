@@ -1,7 +1,7 @@
 import { defineStore } from "pinia"
 import type { Views } from "@paris-ias/data"
 import SEARCH from "../graphql/list/search.gql"
-import { useNuxtApp, useRouter, useAsyncQuery } from "#imports"
+import { useNuxtApp, useRouter } from "#imports"
 
 // Improved TypeScript interfaces
 interface SearchResults {
@@ -99,7 +99,7 @@ export const useRootStore = defineStore("rootStore", {
 
   actions: {
     setLoading(value: boolean, type: string = ""): void {
-      console.log("setLoading", { value, type })
+      console.log("X - setLoading", { value, type })
       const { $stores } = useNuxtApp() as {
         $stores: Record<string, ModuleStore>
       }
@@ -116,7 +116,7 @@ export const useRootStore = defineStore("rootStore", {
     },
 
     loadRouteQuery(type: string): void {
-      console.log("loadRouteQuery", type)
+      console.log("0 - loadRouteQuery", type)
       const { $stores } = useNuxtApp() as {
         $stores: Record<string, ModuleStore>
       }
@@ -144,7 +144,7 @@ export const useRootStore = defineStore("rootStore", {
     },
 
     setFiltersCount(type: string): void {
-      console.log("setFiltersCount", type)
+      console.log("6- setFiltersCount", type)
       const { $stores } = useNuxtApp() as {
         $stores: Record<string, ModuleStore>
       }
@@ -166,7 +166,7 @@ export const useRootStore = defineStore("rootStore", {
     },
 
     updateRouteQuery(type: string): void {
-      console.log("updateRouteQuery", type)
+      console.log("5- updateRouteQuery", type)
       const router = useRouter()
       const { $stores } = useNuxtApp() as {
         $stores: Record<string, ModuleStore>
@@ -194,35 +194,37 @@ export const useRootStore = defineStore("rootStore", {
                 : String(value),
             }
           },
-          {} as Record<string, string>
+          {} as Record<string, string>,
         ),
       }
 
       router.replace({ query: routeQuery })
     },
 
-    async resetState(type: string, lang: string = "en"): Promise<void> {
+    resetState(type: string, lang: string = "en"): Promise<void> {
+      console.log("Y - resetState", { type, lang })
       const { $stores, $models } = useNuxtApp() as NuxtAppExtended
 
       const moduleState = $stores[type]
       const model = $models[type] as Partial<ModuleStore> | undefined
 
       if (moduleState && model) {
-        const clone = <T>(o: T): T =>
-          typeof structuredClone === "function"
-            ? structuredClone(o)
-            : JSON.parse(JSON.stringify(o))
-
         moduleState.search = ""
-        moduleState.filters = clone(model.filters ?? {})
+        moduleState.filters = structuredClone(model.filters ?? {})
         moduleState.view = model.views
           ? {
-              ...clone(model.views[Object.keys(model.views)[0]] as Views),
+              ...structuredClone(
+                model.views[Object.keys(model.views)[0]] as Views,
+              ),
               name: Object.keys(model.views)[0],
             }
           : undefined
-        moduleState.sortBy = clone((model.sortBy as string[]) ?? ["date"])
-        moduleState.sortDesc = clone((model.sortDesc as number[]) ?? [0])
+        moduleState.sortBy = structuredClone(
+          (model.sortBy as string[]) ?? ["date"],
+        )
+        moduleState.sortDesc = structuredClone(
+          (model.sortDesc as number[]) ?? [0],
+        )
         moduleState.itemsPerPage = (model.itemsPerPage as number) ?? 10
         moduleState.items = []
         moduleState.total = 0
@@ -239,10 +241,7 @@ export const useRootStore = defineStore("rootStore", {
         skip: 0,
         numberOfPages: 0,
       })
-
-      this.updateRouteQuery(type)
-
-      await this.update(type, lang)
+      this.update(type, lang)
     },
     async updateSort({
       value,
@@ -253,7 +252,7 @@ export const useRootStore = defineStore("rootStore", {
       type: string
       lang?: string
     }): Promise<void> {
-      console.log("updateSort", {
+      console.log("Z - updateSort", {
         value,
         type,
       })
@@ -278,7 +277,7 @@ export const useRootStore = defineStore("rootStore", {
       type: string
       lang?: string
     }): Promise<void> {
-      console.log("updateView", { value, type })
+      console.log("W - updateView", { value, type })
       const { $stores } = useNuxtApp() as {
         $stores: Record<string, ModuleStore>
       }
@@ -302,12 +301,12 @@ export const useRootStore = defineStore("rootStore", {
       key: string,
       val: unknown,
       type: string,
-      lang: string
+      lang: string,
     ): Promise<void> {
       const { $stores } = useNuxtApp() as {
         $stores: Record<string, ModuleStore>
       }
-      console.log("update filter: ", { key, val, type })
+      console.log("R - update filter: ", { key, val, type })
 
       if ($stores[type]?.filters?.[key]) {
         $stores[type].filters![key].value = val
@@ -326,7 +325,7 @@ export const useRootStore = defineStore("rootStore", {
       type: string
       lang?: string
     }): Promise<void> {
-      console.log("updateItemsPerPage", { value, type })
+      console.log("H - updateItemsPerPage", { value, type })
       const { $stores } = useNuxtApp() as {
         $stores: Record<string, ModuleStore>
       }
@@ -388,9 +387,9 @@ export const useRootStore = defineStore("rootStore", {
       await this.update(type, lang)
     },
 
-    async update(type: string, lang: string = "en"): Promise<boolean> {
+    update(type: string, lang: string = "en"): Promise<boolean> {
       const { $stores, $queries } = useNuxtApp() as NuxtAppExtended
-      console.log("update", { type, lang })
+      console.log("2 - update", { type, lang })
 
       this.setLoading(true)
 
@@ -418,50 +417,46 @@ export const useRootStore = defineStore("rootStore", {
         }
       }
 
-      const args = JSON.parse(
-        JSON.stringify({
-          options: {
-            // skip
-            skip: +this.page === 1 ? 0 : (+this.page - 1) * itemsPerPage,
-            // limit
-            limit: itemsPerPage,
-            // sort, array of keys and array of directions - to have x tie breakers if necessary
-            sortBy:
-              type === "all"
-                ? "searchScore"
-                : $stores[type]?.sortBy || ["created"],
-            sortDesc:
-              type === "all"
-                ? -1
-                : ($stores[type]?.sortDesc?.[0] || 0) > 0
+      const args = structuredClone({
+        options: {
+          // skip
+          skip: +this.page === 1 ? 0 : (+this.page - 1) * itemsPerPage,
+          // limit
+          limit: itemsPerPage,
+          // sort, array of keys and array of directions - to have x tie breakers if necessary
+          sortBy:
+            type === "all"
+              ? "searchScore"
+              : $stores[type]?.sortBy || ["created"],
+          sortDesc:
+            type === "all"
+              ? -1
+              : ($stores[type]?.sortDesc?.[0] || 0) > 0
                 ? true
                 : false,
-            // search (if set)
-            ...((this.search as string)?.length &&
-              type !== "all" && { search: this.search }),
-            // add the store module filters
-            filters,
-          },
-          ...(type === "all" &&
-            (this.search as string)?.length && { search: this.search }),
-          ...(type !== "all" &&
-            ($stores[type].search as string)?.length && {
-              search: $stores[type].search,
-            }),
-          appId: "iea",
-          lang,
-        })
-      )
+          // search (if set)
+          ...((this.search as string)?.length &&
+            type !== "all" && { search: this.search }),
+          // add the store module filters
+          filters,
+        },
+        ...(type === "all" &&
+          (this.search as string)?.length && { search: this.search }),
+        ...(type !== "all" &&
+          ($stores[type].search as string)?.length && {
+            search: $stores[type].search,
+          }),
+        appId: "iea",
+        lang,
+      })
 
       args.options.filters = JSON.stringify(args.options.filters)
       console.log("args: ", args)
-      /* 
-      console.log(`Fetching ${type}`) */
 
-      const { data, error } = (await useAsyncQuery(
+      const { data, error } = useQuery(
         type === "all" ? SEARCH : $queries[type]?.list,
-        args
-      )) as GraphQLResult
+        args,
+      ) as GraphQLResult
 
       console.log("data: ", data)
       if (error.value) console.log(error.value)

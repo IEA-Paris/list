@@ -71,11 +71,6 @@ const props = defineProps({
       }
     },
   },
-  pathPrefix: {
-    type: String,
-    required: true,
-    default: "/",
-  },
   pagination: {
     type: Object,
     required: false,
