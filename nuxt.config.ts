@@ -13,7 +13,9 @@ export default defineNuxtConfig({
     autoImport: false,
   },
   css: ["@mdi/font/css/materialdesignicons.min.css"],
-
+  build: {
+    transpile: ["@paris-ias/list"],
+  },
   pinia: {
     autoImports: ["defineStore", ["defineStore", "definePiniaStore"]],
   },
