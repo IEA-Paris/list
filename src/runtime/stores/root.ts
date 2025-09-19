@@ -1,7 +1,7 @@
 import { defineStore } from "pinia"
 import type { Views } from "@paris-ias/data"
 import SEARCH from "../graphql/list/search.gql"
-import { useNuxtApp, useRouter, useAsyncQuery } from "#imports"
+import { useNuxtApp, useRouter } from "#imports"
 
 // Improved TypeScript interfaces
 interface SearchResults {
@@ -123,7 +123,6 @@ export const useRootStore = defineStore("rootStore", {
       const { currentRoute } = useRouter()
       const query = currentRoute.value.query
       const filters = $stores[type]?.filters ?? {}
-      console.log("filters: ", filters)
 
       if (Object.keys(query)?.length) {
         Object.keys(query).forEach((filter) => {
@@ -194,7 +193,7 @@ export const useRootStore = defineStore("rootStore", {
                 : String(value),
             }
           },
-          {} as Record<string, string>
+          {} as Record<string, string>,
         ),
       }
 
@@ -302,7 +301,7 @@ export const useRootStore = defineStore("rootStore", {
       key: string,
       val: unknown,
       type: string,
-      lang: string
+      lang: string,
     ): Promise<void> {
       const { $stores } = useNuxtApp() as {
         $stores: Record<string, ModuleStore>
@@ -434,8 +433,8 @@ export const useRootStore = defineStore("rootStore", {
               type === "all"
                 ? -1
                 : ($stores[type]?.sortDesc?.[0] || 0) > 0
-                ? true
-                : false,
+                  ? true
+                  : false,
             // search (if set)
             ...((this.search as string)?.length &&
               type !== "all" && { search: this.search }),
@@ -450,7 +449,7 @@ export const useRootStore = defineStore("rootStore", {
             }),
           appId: "iea",
           lang,
-        })
+        }),
       )
 
       args.options.filters = JSON.stringify(args.options.filters)
@@ -460,7 +459,7 @@ export const useRootStore = defineStore("rootStore", {
 
       const { data, error } = (await useAsyncQuery(
         type === "all" ? SEARCH : $queries[type]?.list,
-        args
+        args,
       )) as GraphQLResult
 
       console.log("data: ", data)
