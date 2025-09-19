@@ -57,8 +57,6 @@ const props = defineProps({
     required: true,
   },
 })
-
-console.log("itemLocal", props.item.slug)
 </script>
 
 <style lang="scss"></style>

@@ -13,7 +13,7 @@ import { useRootStore } from "../../../stores/root"
 import { useNuxtApp, resolveComponent, computed } from "#imports"
 const { $stores } = useNuxtApp()
 const rootStore = useRootStore()
-console.log("rootStore: ", rootStore)
+
 const props = defineProps({
   type: {
     type: String,
@@ -27,7 +27,7 @@ const itemTemplate = computed(() =>
       capitalize(props.type) +
       capitalize($stores[props.type].view.name) +
       "Item"
-    ).toString(),
-  ),
+    ).toString()
+  )
 )
 </script>

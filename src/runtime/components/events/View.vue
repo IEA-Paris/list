@@ -326,13 +326,11 @@ const props = defineProps({
   },
 })
 
-console.log("item", props.item)
-// UI components models
 const panel = ref(["presentation"])
 
 function redirectToMap(long, lat) {
   router.push(
-    `https://www.openstreetmap.org/?mlat=${lat}&amp;mlon=${long}#map=19/${lat}/${long}`,
+    `https://www.openstreetmap.org/?mlat=${lat}&amp;mlon=${long}#map=19/${lat}/${long}`
   )
 }
 </script>
