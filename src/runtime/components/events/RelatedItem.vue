@@ -1,12 +1,5 @@
 <template>
-  <v-sheet
-    :to="
-      localePath({
-        name: 'activities-events-slug',
-        params: { slug: item.name },
-      })
-    "
-  >
+  <v-sheet :to="pathPrefix">
     <v-row>
       <v-col v-if="lgAndUp" cols="3">
         <MiscAtomsImageContainer
@@ -36,11 +29,15 @@
 <script setup>
 import { useDisplay } from "vuetify"
 import { useRootStore } from "../../stores/root"
-import { useLocalePath } from "#imports"
 
-const localePath = useLocalePath()
 const rootStore = useRootStore()
 const { lgAndUp } = useDisplay()
 
-const props = defineProps({ item: { type: Object, required: true } })
+const props = defineProps({
+  item: { type: Object, required: true },
+  pathPrefix: {
+    type: String,
+    required: true,
+  },
+})
 </script>

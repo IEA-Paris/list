@@ -23,29 +23,33 @@
 </template>
 
 <script setup>
-import { getLocalizedDate } from "../../composables/useUtils";
-import { computed } from "#imports";
+import { getLocalizedDate } from "../../composables/useUtils"
+import { computed } from "#imports"
 
 const props = defineProps({
   item: { type: Object, required: true },
   view: { type: Boolean, required: false, default: false },
-});
+  pathPrefix: {
+    type: String,
+    required: true,
+  },
+})
 
 const registrationStatus = computed(() => {
-  const currentDate = new Date();
-  const startDate = new Date(props.item.applicationStart);
-  const endDate = new Date(props.item.applicationStop);
+  const currentDate = new Date()
+  const startDate = new Date(props.item.applicationStart)
+  const endDate = new Date(props.item.applicationStop)
   switch (true) {
     case currentDate < startDate:
-      return 0;
+      return 0
     case currentDate > startDate && currentDate < endDate:
-      return 1;
+      return 1
     case currentDate > startDate && currentDate > endDate:
-      return 2;
+      return 2
     default:
-      return false;
+      return false
   }
-});
+})
 </script>
 
 <style lang="scss" scoped></style>

@@ -8,46 +8,7 @@
     <v-skeleton-loader v-if="loading" height="100%" type="image" />
 
     <template v-else>
-      <nuxt-link
-        v-if="link"
-        v-slot="{ navigate, isActive }"
-        :to="
-          localePath({
-            name: link,
-            params: { slug },
-          })
-        "
-        custom
-      >
-        <div class="overflow-hidden mw-100">
-          <!--  TODO debug why the picture is not displaying/sizing properly -->
-          <v-img
-            v-if="src"
-            :aspect-ratio="ratio"
-            :active="isActive"
-            :class="{ 'img-animation': animate }"
-            :lazy-src="
-              img(computedSrc, {
-                width,
-                quality: 70,
-              })
-            "
-            :src="
-              img(computedSrc, {
-                width,
-                quality: 70,
-              })
-            "
-            :srcset="_srcset.srcset"
-            :sizes="_srcset.sizes"
-            :title="caption"
-            v-bind="$attrs"
-            @click="navigate"
-          >
-            <slot />
-          </v-img></div
-      ></nuxt-link>
-      <div v-else class="overflow-hidden mw-100">
+      <div class="overflow-hidden mw-100">
         <!--  TODO debug why the picture is not displaying/sizing properly -->
         <v-img
           v-if="src"
@@ -78,8 +39,7 @@
 </template>
 
 <script setup>
-import { computed, useImage, useLocalePath } from "#imports"
-const localePath = useLocalePath()
+import { computed, useImage } from "#imports"
 const img = useImage()
 
 const computedSrc = computed(() => {
@@ -105,8 +65,6 @@ const props = defineProps({
   width: { type: Number, default: 0 },
   ratio: { type: Number, required: true, default: 1 },
   caption: { type: String, default: "" },
-  slug: { type: [Object, String], default: "" },
-  link: { type: String, default: "" },
   animate: { type: Boolean, default: true },
 })
 const _srcset = computed(() => {
@@ -119,7 +77,7 @@ const _srcset = computed(() => {
         quality: 70,
         ...(props.width && { width: props.width }),
       },
-    }
+    },
   )
 })
 </script>

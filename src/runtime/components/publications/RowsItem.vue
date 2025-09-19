@@ -6,8 +6,6 @@
       :loading="$stores.publications.loading"
       :ratio="1 / 1"
       :title="item.name"
-      link="activities-publications-slug"
-      :slug="item.slug[locale]"
     />
   </v-col>
   <v-col
@@ -18,9 +16,7 @@
     lg="9"
     xl="10"
     class="px-6 cursor-pointer"
-    @click="
-      router.push(localePath('/activities/publications/' + item.slug[locale]))
-    "
+    @click="router.push(pathPrefix)"
   >
     <div>
       <v-skeleton-loader
@@ -49,12 +45,7 @@
           class="mt-4"
           variant="outlined"
           tile
-          :to="
-            localePath({
-              name: 'publications-slug',
-              params: { slug: item.slug[locale] },
-            })
-          "
+          :to="pathPrefix"
           :size="
             ['small', 'small', 'small', 'default', 'default', 'large'][
               ['xs', 'sm', 'md', 'lg', 'xl', 'xxl'].indexOf(name || 'md')
@@ -87,19 +78,21 @@
 
 <script setup>
 import { useDisplay } from "vuetify"
-import { useNuxtApp, useI18n, useLocalePath, useRouter } from "#imports"
+import { useNuxtApp, useI18n, useRouter } from "#imports"
 
 const { name } = useDisplay()
-const { locale } = useI18n()
 const { $stores } = useNuxtApp()
 const router = useRouter()
-const localePath = useLocalePath()
 const props = defineProps({
   item: {
     type: Object,
     default: () => {
       return {}
     },
+    required: true,
+  },
+  pathPrefix: {
+    type: String,
     required: true,
   },
 })

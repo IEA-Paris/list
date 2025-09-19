@@ -1,19 +1,11 @@
 <template>
   <v-col cols="12" md="6" class="highlight-on-hover">
     <div v-ripple class="border-thin pa-6">
-      <FellowshipsBadges :item="item" />
+      <FellowshipsBadges :item :pathPrefix />
       <div class="d-flex">
-        <nuxt-link
-          :to="
-            localePath({
-              name: 'activities-fellowships-slug',
-              params: { slug: item.slug[locale] },
-            })
-          "
-          class="text-h4 text-black text-wrap mt-4 pb-4"
-        >
+        <div class="text-h4 text-black text-wrap mt-4 pb-4">
           {{ item.name }}
-        </nuxt-link>
+        </div>
       </div>
       <div
         class="text-wrap clamped-text d-flex"
@@ -41,11 +33,8 @@
 
 <script setup>
 import { useDisplay } from "vuetify"
-import { useLocalePath, useI18n } from "#imports"
 
 const { name } = useDisplay()
-const localePath = useLocalePath()
-const { locale } = useI18n()
 
 const props = defineProps({
   item: {
@@ -54,6 +43,10 @@ const props = defineProps({
   },
   index: {
     type: Number,
+    required: true,
+  },
+  pathPrefix: {
+    type: String,
     required: true,
   },
 })

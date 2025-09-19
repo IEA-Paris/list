@@ -3,9 +3,9 @@
 </template>
 
 <script setup>
-import { useNuxtApp } from "#imports";
+import { useNuxtApp } from "#imports"
 
-const { $stores } = useNuxtApp();
+const { $stores } = useNuxtApp()
 defineProps({
   item: {
     type: Object,
@@ -16,7 +16,11 @@ defineProps({
     required: false,
     default: false,
   },
-});
+  pathPrefix: {
+    type: String,
+    required: true,
+  },
+})
 
-$stores.apps.loading = false;
+$stores.apps.loading = false
 </script>

@@ -19,9 +19,7 @@
       lg="9"
       xl="10"
       class="px-6 cursor-pointer"
-      @click="
-        router.push(localePath('/activities/projects/' + item.slug[locale]))
-      "
+      @click="router.push(pathPrefix)"
     >
       <v-skeleton-loader
         v-if="rootStore.loading"
@@ -49,12 +47,7 @@
           class="mt-4"
           variant="outlined"
           tile
-          :to="
-            localePath({
-              name: 'project-slug',
-              params: { slug: item.slug[locale] },
-            })
-          "
+          :to="pathPrefix"
           :size="
             ['small', 'small', 'small', 'default', 'default', 'large'][
               ['xs', 'sm', 'md', 'lg', 'xl', 'xxl'].indexOf(name || 'md')
@@ -85,7 +78,7 @@
 <script setup>
 import { useDisplay } from "vuetify"
 import { useRootStore } from "../../stores/root"
-import { useRouter, useLocalePath, useI18n } from "#imports"
+import { useRouter, useI18n } from "#imports"
 
 const { locale } = useI18n()
 
@@ -93,7 +86,6 @@ const { name } = useDisplay()
 
 const rootStore = useRootStore()
 const router = useRouter()
-const localePath = useLocalePath()
 
 const props = defineProps({
   item: {
@@ -101,6 +93,10 @@ const props = defineProps({
     default: () => {
       return {}
     },
+    required: true,
+  },
+  pathPrefix: {
+    type: String,
     required: true,
   },
 })

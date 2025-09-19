@@ -7,7 +7,12 @@
       :key="index"
       :item="item"
       :index="index"
-      :pathPrefix
+      :pathPrefix="
+        localePath({
+          name: pathPrefix,
+          params: { slug: null },
+        })
+      "
     />
   </component>
   <div class="text-center">
@@ -45,11 +50,14 @@ import {
   useI18n,
   useRoute,
   navigateTo,
+  useLocalePath,
 } from "#imports"
 const { $stores } = useNuxtApp()
 const { locale } = useI18n()
 const route = useRoute()
 const rootStore = useRootStore()
+const localePath = useLocalePath()
+
 const props = defineProps({
   addBtn: {
     type: Boolean,
@@ -74,7 +82,6 @@ const props = defineProps({
   pathPrefix: {
     type: String,
     required: true,
-    default: "/",
   },
   pagination: {
     type: Object,
@@ -159,4 +166,6 @@ async function onPageChange(newPage) {
     lang: locale.value,
   })
 }
+
+console.log("pathPrefix", itemTemplate.value)
 </script>
