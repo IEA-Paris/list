@@ -7,6 +7,7 @@
       :key="index"
       :item="item"
       :index="index"
+      :pathPrefix
     />
   </component>
   <div class="text-center">
@@ -70,6 +71,11 @@ const props = defineProps({
       }
     },
   },
+  pathPrefix: {
+    type: String,
+    required: true,
+    default: "/",
+  },
   pagination: {
     type: Object,
     required: false,
@@ -88,7 +94,7 @@ const props = defineProps({
 const view = computed(() =>
   props.customView
     ? resolveComponent("ListViews" + capitalize(props.customView))
-    : resolveComponent("ListViews" + capitalize($stores[props.type].view.name))
+    : resolveComponent("ListViews" + capitalize($stores[props.type].view.name)),
 )
 const itemTemplate = computed(() =>
   resolveComponent(
@@ -96,8 +102,8 @@ const itemTemplate = computed(() =>
       capitalize(props.type) +
       capitalize($stores[props.type].view.name) +
       "Item"
-    ).toString()
-  )
+    ).toString(),
+  ),
 )
 const numberOfPages = computed(() => $stores[props.type].numberOfPages)
 
@@ -140,7 +146,7 @@ watch(
     navigateTo({ query }, { replace: true })
     await nextTick()
     window.scrollTo({ top: 0, behavior: "smooth" })
-  }
+  },
 )
 onBeforeUnmount(() => {
   rootStore.resetState(props.type, locale.value)
