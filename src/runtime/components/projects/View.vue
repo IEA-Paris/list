@@ -111,11 +111,11 @@
 </template>
 
 <script setup>
-import { useDisplay } from "vuetify";
-import { useNuxtApp } from "#imports";
+import { useDisplay } from "vuetify"
+import { useNuxtApp } from "#imports"
 
-const { $stores } = useNuxtApp();
-const { name } = useDisplay();
+const { $stores } = useNuxtApp()
+const { name } = useDisplay()
 const props = defineProps({
   item: {
     type: Object,
@@ -126,6 +126,6 @@ const props = defineProps({
     required: false,
     default: false,
   },
-});
-$stores.projects.loading = false;
+})
+$stores.projects.loading = false
 </script>

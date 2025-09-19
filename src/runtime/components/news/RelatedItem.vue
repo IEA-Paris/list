@@ -1,5 +1,5 @@
 <template>
-  <v-sheet :to="pathPrefix">
+  <v-sheet>
     <v-row>
       <v-col v-if="lgAndUp" cols="3">
         <MiscAtomsImageContainer
@@ -33,9 +33,5 @@ const { lgAndUp } = useDisplay()
 
 const props = defineProps({
   item: { type: Object, required: true },
-  pathPrefix: {
-    type: String,
-    required: true,
-  },
 })
 </script>

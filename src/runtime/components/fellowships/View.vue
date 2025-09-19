@@ -163,10 +163,6 @@ const props = defineProps({
     default: false,
     required: true,
   },
-  pathPrefix: {
-    type: String,
-    required: true,
-  },
 })
 
 const view = ref(true)

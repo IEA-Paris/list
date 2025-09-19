@@ -16,10 +16,6 @@ defineProps({
     required: false,
     default: false,
   },
-  pathPrefix: {
-    type: String,
-    required: true,
-  },
 })
 
 $stores.affiliations.loading = false

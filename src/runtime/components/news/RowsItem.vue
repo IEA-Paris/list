@@ -7,8 +7,6 @@
         :src="item.image.url ? item.image : '/default.png'"
         :ratio="1 / 1"
         :loading="$stores.news.loading"
-        link="news-slug"
-        :slug="item._path && item._path.split('/').pop()"
       >
         <v-chip class="ma-2" style="background-color: white; color: black">
           {{ $t(eventCategory) }}

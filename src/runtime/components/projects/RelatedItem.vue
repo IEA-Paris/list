@@ -33,9 +33,5 @@ const { lgAndUp } = useDisplay()
 
 const props = defineProps({
   item: { type: Object, required: true },
-  pathPrefix: {
-    type: String,
-    required: true,
-  },
 })
 </script>

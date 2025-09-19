@@ -6,9 +6,6 @@
         :src="item.image"
         :loading="$stores.projects.loading"
         :ratio="1 / 1"
-        :title="item.name"
-        link="activities-projects-slug"
-        :slug="item.slug[locale]"
       />
     </v-col>
     <v-col

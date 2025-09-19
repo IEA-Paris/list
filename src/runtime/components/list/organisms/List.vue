@@ -10,7 +10,7 @@
       :pathPrefix="
         localePath({
           name: pathPrefix,
-          params: { slug: null },
+          params: { slug: item.slug },
         })
       "
     />

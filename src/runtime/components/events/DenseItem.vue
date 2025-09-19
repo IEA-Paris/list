@@ -17,8 +17,6 @@
           item && item.image && item.image.url ? item.image.url : '/default.png'
         "
         :ratio="1 / 1"
-        :name="item.name"
-        link="events-slug"
         :width="80"
       />
     </v-col>

@@ -1,14 +1,12 @@
 <template>
-  <v-sheet :to="pathPrefix">
+  <v-sheet>
     <v-row>
       <v-col v-if="lgAndUp" cols="3">
         <MiscAtomsImageContainer
           cover
           :src="item.image"
           :ratio="1 / 1"
-          :link="item.name"
           :loading="rootStore.loading"
-          name="activities-events-slug"
         />
       </v-col>
       <v-col cols="12" lg="9">
@@ -35,9 +33,5 @@ const { lgAndUp } = useDisplay()
 
 const props = defineProps({
   item: { type: Object, required: true },
-  pathPrefix: {
-    type: String,
-    required: true,
-  },
 })
 </script>

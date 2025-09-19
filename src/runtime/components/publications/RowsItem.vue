@@ -5,7 +5,6 @@
       :src="item.image.url ? item.image : '/default.png'"
       :loading="$stores.publications.loading"
       :ratio="1 / 1"
-      :title="item.name"
     />
   </v-col>
   <v-col
