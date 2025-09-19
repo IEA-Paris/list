@@ -43,6 +43,7 @@ import {
   onMounted,
   useI18n,
   useRoute,
+  navigateTo,
 } from "#imports"
 const { $stores } = useNuxtApp()
 const { locale } = useI18n()
@@ -87,7 +88,7 @@ const props = defineProps({
 const view = computed(() =>
   props.customView
     ? resolveComponent("ListViews" + capitalize(props.customView))
-    : resolveComponent("ListViews" + capitalize($stores[props.type].view.name)),
+    : resolveComponent("ListViews" + capitalize($stores[props.type].view.name))
 )
 const itemTemplate = computed(() =>
   resolveComponent(
@@ -95,8 +96,8 @@ const itemTemplate = computed(() =>
       capitalize(props.type) +
       capitalize($stores[props.type].view.name) +
       "Item"
-    ).toString(),
-  ),
+    ).toString()
+  )
 )
 const numberOfPages = computed(() => $stores[props.type].numberOfPages)
 
@@ -128,11 +129,6 @@ onMounted(async () => {
     console.error("Error fetching list:", e)
   }
 })
-// try {
-//   await rootStore.update(props.type, locale.value);
-// } catch (error) {
-//   console.log("error fetching update list: ", error);
-// }
 
 watch(
   () => page.value,
@@ -144,7 +140,7 @@ watch(
     navigateTo({ query }, { replace: true })
     await nextTick()
     window.scrollTo({ top: 0, behavior: "smooth" })
-  },
+  }
 )
 onBeforeUnmount(() => {
   rootStore.resetState(props.type, locale.value)

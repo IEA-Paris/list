@@ -15,10 +15,6 @@ const { $stores } = useNuxtApp()
 const props = defineProps(["type", "items", "name"])
 const val = computed({
   get() {
-    console.log(
-      "$stores[props.type].filters[props.name]?.value: ",
-      $stores[props.type].filters[props.name]?.value,
-    )
     return $stores[props.type].filters[props.name]?.value || []
   },
   set(value) {
