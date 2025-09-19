@@ -32,7 +32,7 @@
 <script setup>
 import { useDebounceFn } from "@vueuse/core"
 import { useRootStore } from "../../../stores/root"
-import { computed, useI18n } from "#imports"
+import { computed, useI18n, useNuxtApp } from "#imports"
 const { $stores } = useNuxtApp()
 
 const { locale } = useI18n()
