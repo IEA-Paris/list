@@ -7,6 +7,12 @@
       :key="index"
       :item="item"
       :index="index"
+      :pathPrefix="
+        localePath({
+          name: pathPrefix,
+          params: { slug: item.slug },
+        })
+      "
     />
   </component>
   <div class="text-center">
@@ -43,11 +49,15 @@ import {
   onMounted,
   useI18n,
   useRoute,
+  navigateTo,
+  useLocalePath,
 } from "#imports"
 const { $stores } = useNuxtApp()
 const { locale } = useI18n()
 const route = useRoute()
 const rootStore = useRootStore()
+const localePath = useLocalePath()
+
 const props = defineProps({
   addBtn: {
     type: Boolean,
@@ -68,6 +78,10 @@ const props = defineProps({
         xl: 12,
       }
     },
+  },
+  pathPrefix: {
+    type: String,
+    required: true,
   },
   pagination: {
     type: Object,
@@ -128,11 +142,6 @@ onMounted(async () => {
     console.error("Error fetching list:", e)
   }
 })
-// try {
-//   await rootStore.update(props.type, locale.value);
-// } catch (error) {
-//   console.log("error fetching update list: ", error);
-// }
 
 watch(
   () => page.value,
@@ -157,4 +166,6 @@ async function onPageChange(newPage) {
     lang: locale.value,
   })
 }
+
+console.log("pathPrefix", itemTemplate.value)
 </script>

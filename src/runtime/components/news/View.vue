@@ -154,11 +154,11 @@
 </template>
 
 <script setup>
-import { useDisplay } from "vuetify";
-import { useNuxtApp } from "#imports";
+import { useDisplay } from "vuetify"
+import { useNuxtApp } from "#imports"
 
-const { $stores } = useNuxtApp();
-const { name, mdAndUp, smAndDown } = useDisplay();
+const { $stores } = useNuxtApp()
+const { name, mdAndUp, smAndDown } = useDisplay()
 const props = defineProps({
   item: {
     type: Object,
@@ -169,9 +169,9 @@ const props = defineProps({
     required: false,
     default: false,
   },
-});
+})
 
-const today = new Date();
+const today = new Date()
 /* const academicYear = ref(
    today.getMonth() > 6
     ? today.getFullYear() + "-" + (today.getFullYear() + 1)
@@ -179,5 +179,5 @@ const today = new Date();
 )
 
 ) */
-$stores.news.loading = false;
+$stores.news.loading = false
 </script>

@@ -1,10 +1,5 @@
 <template>
-  <v-row
-    v-ripple
-    no-gutters
-    class="cursor-pointer highlight-on-hover my-2"
-    @click="$router.push(localePath('/activities/news/' + item.slug[locale]))"
-  >
+  <v-row v-ripple no-gutters class="cursor-pointer highlight-on-hover my-2">
     <v-col v-if="mdAndUp" align-self="center" cols="1">
       <MiscAtomsImageContainer
         cover
@@ -13,9 +8,6 @@
           item && item.image && item.image.url ? item.image.url : '/default.png'
         "
         :ratio="1 / 1"
-        :name="item.slug"
-        :slug="item.slug && item.slug[locale]"
-        link="news-slug"
         width="80px"
       />
     </v-col>
@@ -61,11 +53,10 @@
 <script setup>
 import { useDisplay } from "vuetify"
 import { useRootStore } from "../../stores/root"
-import { computed, useNuxtApp, useI18n, useLocalePath } from "#imports"
+import { computed, useNuxtApp, useI18n } from "#imports"
 
 const { $stores } = useNuxtApp()
 const { name, mdAndUp } = useDisplay()
-const localePath = useLocalePath()
 const { locale } = useI18n()
 
 const rootStore = useRootStore()
@@ -76,6 +67,10 @@ const props = defineProps({
   },
   index: {
     type: Number,
+    required: true,
+  },
+  pathPrefix: {
+    type: String,
     required: true,
   },
 })

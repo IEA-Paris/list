@@ -1,21 +1,12 @@
 <template>
-  <v-sheet
-    :to="
-      localePath({
-        name: 'activities-events-slug',
-        params: { slug: item.name },
-      })
-    "
-  >
+  <v-sheet>
     <v-row>
       <v-col v-if="lgAndUp" cols="3">
         <MiscAtomsImageContainer
           cover
           :src="item.image"
           :ratio="1 / 1"
-          :link="item.name"
           :loading="rootStore.loading"
-          name="activities-events-slug"
         />
       </v-col>
       <v-col cols="12" lg="9">
@@ -36,11 +27,11 @@
 <script setup>
 import { useDisplay } from "vuetify"
 import { useRootStore } from "../../stores/root"
-import { useLocalePath } from "#imports"
 
-const localePath = useLocalePath()
 const rootStore = useRootStore()
 const { lgAndUp } = useDisplay()
 
-const props = defineProps({ item: { type: Object, required: true } })
+const props = defineProps({
+  item: { type: Object, required: true },
+})
 </script>

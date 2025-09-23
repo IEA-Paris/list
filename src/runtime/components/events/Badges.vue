@@ -25,12 +25,7 @@
       prepend-icon="mdi-television-play"
       size="small"
       class="my-xs-2"
-      :to="
-        localePath({
-          name: 'activities-events-slug',
-          params: { slug: item.slug[locale] },
-        })
-      "
+      :to="prefixPath"
     >
       {{ $t("live-stream-available") }}
     </v-btn>
@@ -62,15 +57,16 @@
 </template>
 
 <script setup>
-import { useLocalePath, useI18n } from "#imports";
-import { useDisplay } from "vuetify";
-const localePath = useLocalePath();
+import { useDisplay } from "vuetify"
 
-const { smAndUp } = useDisplay();
-const { locale } = useI18n();
+const { smAndUp } = useDisplay()
 const props = defineProps({
   item: { type: Object, required: true },
-});
+  pathPrefix: {
+    type: String,
+    required: true,
+  },
+})
 </script>
 
 <style lang="scss" scoped></style>

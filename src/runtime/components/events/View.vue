@@ -326,8 +326,6 @@ const props = defineProps({
   },
 })
 
-console.log("item", props.item)
-// UI components models
 const panel = ref(["presentation"])
 
 function redirectToMap(long, lat) {

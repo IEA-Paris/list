@@ -7,7 +7,13 @@
           @open="filtersOpen = $event"
         />
         <v-spacer />
-        <ListAtomsResetButton v-if="$stores[type].filtersCount" :type />
+        <ListAtomsResetButton
+          v-if="
+            $stores[type].filtersCount ||
+            ($stores[type].search && $stores[type].search.trim() !== '')
+          "
+          :type
+        />
         <ListAtomsViewMenu :type />
         <ListAtomsSortMenu :type />
       </div>
@@ -32,16 +38,16 @@ const filtersOpen = ref(false)
 const visible = computed(() => {
   console.log(
     "$stores[props.type]?.filtersCount > 0: ",
-    $stores[props.type]?.filtersCount > 0,
+    $stores[props.type]?.filtersCount > 0
   )
   console.log(
     "$stores[props.type]?.filtersCount: ",
-    $stores[props.type]?.filtersCount,
+    $stores[props.type]?.filtersCount
   )
   console.log(
     !!(
       $stores[props.type]?.filtersCount && $stores[props.type]?.filtersCount > 0
-    ),
+    )
   )
   return !!(
     $stores[props.type]?.filtersCount && $stores[props.type]?.filtersCount > 0

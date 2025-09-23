@@ -3,14 +3,7 @@
     v-ripple
     no-gutters
     class="cursor-pointer highlight-on-hover my-2"
-    @click="
-      $router.push(
-        localePath({
-          name: 'people-slug',
-          params: { slug: item.slug },
-        })
-      )
-    "
+    @click="$router.push(pathPrefix)"
   >
     <v-col v-if="mdAndUp" cols="1">
       <MiscAtomsImageContainer
@@ -20,9 +13,6 @@
           item && item.image && item.image.url ? item.image.url : '/default.png'
         "
         :ratio="1 / 1"
-        :name="item.lastname + ' ' + item.firstname"
-        :slug="item.slug"
-        link="people-slug"
         :width="80"
       />
     </v-col>
@@ -35,7 +25,7 @@
               ? highlightAndTruncate(
                   300,
                   item.firstname + ' ' + item.lastname,
-                  $rootStore.search.split(' ')
+                  $rootStore.search.split(' '),
                 )
               : item.firstname + ' ' + item.lastname
           "
@@ -51,7 +41,7 @@
             ? highlightAndTruncate(
                 300,
                 item.groups.vintage[0].theme,
-                $rootStore.search.split(' ')
+                $rootStore.search.split(' '),
               )
             : item.groups.vintage[0].theme
         "
@@ -76,6 +66,10 @@ const props = defineProps({
   },
   index: {
     type: Number,
+    required: true,
+  },
+  pathPrefix: {
+    type: String,
     required: true,
   },
 })

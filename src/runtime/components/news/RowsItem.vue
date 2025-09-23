@@ -7,8 +7,6 @@
         :src="item.image.url ? item.image : '/default.png'"
         :ratio="1 / 1"
         :loading="$stores.news.loading"
-        link="news-slug"
-        :slug="item._path && item._path.split('/').pop()"
       >
         <v-chip class="ma-2" style="background-color: white; color: black">
           {{ $t(eventCategory) }}
@@ -38,17 +36,9 @@
           <br />
         </template>
 
-        <NuxtLink
-          :to="
-            localePath({
-              name: 'news-slug',
-              params: { slug: item.slug[locale] },
-            })
-          "
-          class="text-wrap text-h5 text-md-h4 text-black"
-        >
+        <div class="text-wrap text-h5 text-md-h4 text-black">
           {{ item.name }}
-        </NuxtLink>
+        </div>
         <div class="tex-overline mt-3">
           {{ formatDateValue(item.date, locale) }}
         </div>
@@ -75,12 +65,7 @@
             variant="outlined"
             tile
             size="small"
-            :to="
-              localePath({
-                name: 'activities-news-slug',
-                params: { slug: item.slug[locale] },
-              })
-            "
+            :to="pathPrefix"
           >
             {{ $t("read-more") }}
           </v-btn>
@@ -112,12 +97,7 @@
           class="mt-4"
           variant="outlined"
           tile
-          :to="
-            localePath({
-              name: 'activities-news-slug',
-              params: { slug: item.slug[locale] },
-            })
-          "
+          :to="pathPrefix"
           :size="
             ['small', 'small', 'small', 'default', 'default', 'large'][
               ['xs', 'sm', 'md', 'lg', 'xl', 'xxl'].indexOf(name || 'md')
@@ -129,17 +109,15 @@
       </template>
     </v-col>
   </v-row>
-  <!-- <MiscMoleculesSearchItem></MiscMoleculesSearchItem> -->
 </template>
 
 <script setup>
 import { useDisplay } from "vuetify"
 import { useRootStore } from "../../stores/root"
-import { useNuxtApp, useI18n, useLocalePath, computed } from "#imports"
+import { useNuxtApp, useI18n, computed } from "#imports"
 
 const { $stores } = useNuxtApp()
 const { locale } = useI18n()
-const localePath = useLocalePath()
 const rootStore = useRootStore()
 const { name, smAndDown, mdAndDown, mdAndUp, lgAndUp } = useDisplay()
 const eventCategory = computed(() => {
@@ -158,19 +136,16 @@ const props = defineProps({
     type: Number,
     required: true,
   },
+  pathPrefix: {
+    type: String,
+    required: true,
+  },
 })
 
 const processedSummary = computed(() => {
   const raw = props.item.summary || ""
 
-  const slugPath = localePath({
-    name: "news-slug",
-    params: { slug: props.item.slug[locale.value] },
-  })
-
-  /*   console.log("Raw summary:", raw);
-  console.log("Slug path:", slugPath); */
-  return replaceMarkdownLinksWithSlug(raw, slugPath)
+  return replaceMarkdownLinksWithSlug(raw, props.pathPrefix)
 })
 
 function replaceMarkdownLinksWithSlug(markdownText, slugPath) {

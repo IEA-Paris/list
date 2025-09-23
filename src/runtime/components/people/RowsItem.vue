@@ -2,14 +2,7 @@
   <v-divider v-if="index > 0" />
   <v-row
     class="my-6 ml-md-1 px-3 px-md-0 highlight-on-hover"
-    @click="
-      $router.push(
-        localePath({
-          name: 'people-slug',
-          params: { slug: item.slug },
-        }),
-      )
-    "
+    @click="$router.push(pathPrefix)"
   >
     <v-col v-if="mdAndUp" cols="12" md="3">
       <MiscAtomsImageContainer
@@ -17,9 +10,6 @@
         :loading="$stores.people.loading"
         :src="item.image.url ? item.image : '/default.png'"
         :ratio="1 / 1"
-        :name="item.lastname + ' ' + item.firstname"
-        :slug="item.slug"
-        link="people-slug"
       />
     </v-col>
 
@@ -39,17 +29,9 @@
       />
 
       <div v-else class="ml-md-8">
-        <NuxtLink
-          :to="
-            localePath({
-              name: 'people-slug',
-              params: { slug: item.slug },
-            })
-          "
-          class="text-wrap text-h5 text-md-h4 text-black"
-        >
+        <div class="text-wrap text-h5 text-md-h4 text-black">
           {{ item.firstname + " " + item.lastname }}
-        </NuxtLink>
+        </div>
         <MiscAtomsSocials v-if="item.socials" :socials="item.socials" />
         <PeoplepBadges :item="item" />
         <div

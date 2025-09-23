@@ -1,12 +1,5 @@
 <template>
-  <v-row
-    v-ripple
-    no-gutters
-    class="cursor-pointer highlight-on-hover"
-    @click="
-      $router.push(localePath('/activities/fellowships/' + item.slug[locale]))
-    "
-  >
+  <v-row v-ripple no-gutters class="cursor-pointer highlight-on-hover">
     <v-col align-self="center" cols="8" class="text-h5 dense">
       <div
         v-html="
@@ -32,10 +25,9 @@
 </template>
 
 <script setup>
-import { useLocalePath, useI18n, useNuxtApp } from "#imports"
+import { useNuxtApp } from "#imports"
 const { $rootStore } = useNuxtApp()
-const { locale } = useI18n()
-const localePath = useLocalePath()
+
 const props = defineProps({
   item: {
     type: Object,
@@ -43,6 +35,11 @@ const props = defineProps({
   },
   index: {
     type: Number,
+    required: true,
+  },
+
+  pathPrefix: {
+    type: String,
     required: true,
   },
 })

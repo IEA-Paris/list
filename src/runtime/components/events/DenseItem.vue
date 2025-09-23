@@ -1,10 +1,5 @@
 <template>
-  <v-row
-    v-ripple
-    no-gutters
-    class="cursor-pointer highlight-on-hover my-2"
-    @click="$router.push(localePath('/activities/events/' + item.slug[locale]))"
-  >
+  <v-row v-ripple no-gutters class="cursor-pointer highlight-on-hover my-2">
     <v-col v-if="mdAndUp" cols="1">
       <MiscAtomsDateStamp
         v-if="item.start"
@@ -22,9 +17,6 @@
           item && item.image && item.image.url ? item.image.url : '/default.png'
         "
         :ratio="1 / 1"
-        :name="item.name"
-        :slug="item.slug && item.slug[locale]"
-        link="events-slug"
         :width="80"
       />
     </v-col>
@@ -63,25 +55,24 @@
         :value="`${highlightAndTruncate(
           85,
           item.summary,
-          $rootStore.search.split(' ')
+          $rootStore.search.split(' '),
         )}`"
       />
     </v-col>
 
     <v-col align-self="center" cols="auto">
-      <EventsBadges :item />
+      <EventsBadges :item :pathPrefix />
     </v-col>
   </v-row>
 </template>
 
 <script setup>
-import { useLocalePath, useI18n, useNuxtApp } from "#imports"
+import { useI18n, useNuxtApp } from "#imports"
 import { useDisplay } from "vuetify"
 const { $rootStore } = useNuxtApp()
-const { smAndDown, mdAndUp, lgAndUp } = useDisplay()
+const { smAndDown, mdAndUp } = useDisplay()
 
 const { locale } = useI18n()
-const localePath = useLocalePath()
 const props = defineProps({
   item: {
     type: Object,
@@ -91,5 +82,15 @@ const props = defineProps({
     type: Number,
     required: true,
   },
+  pathPrefix: {
+    type: String,
+    required: true,
+  },
 })
 </script>
+<!-- <NuxtLink
+    v-if="item && item.slug"
+    :to="pathPrefix"
+    class="text-decoration-none text-black"
+  >
+  </NuxtLink> -->

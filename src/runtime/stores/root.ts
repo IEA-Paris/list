@@ -1,8 +1,7 @@
 import { defineStore } from "pinia"
 import type { Views } from "@paris-ias/data"
 import SEARCH from "../graphql/list/search.gql"
-import { useNuxtApp, useRouter, useAsyncQuery } from "#imports"
-import { NuxtApp } from "#app"
+import { useNuxtApp, useRouter } from "#imports"
 
 // Improved TypeScript interfaces
 interface SearchResults {
@@ -116,20 +115,6 @@ export const useRootStore = defineStore("rootStore", {
       }
     },
 
-    /*     saveFiltersToLocalStorage(type: string): void {
-      const { $stores } = useNuxtApp() as {
-        $stores: Record<string, ModuleStore>;
-      };
-      const filters = $stores[type]?.filters ?? {};
-      const values = Object.fromEntries(
-        Object.entries(filters).map(([key, filter]) => [key, filter.value])
-      );
-
-      const local = JSON.parse(localStorage.getItem("PARIS_IAS") || "{}");
-      local[`${type}_filters`] = values;
-      localStorage.setItem("PARIS_IAS", JSON.stringify(local));
-    }, */
-
     loadRouteQuery(type: string): void {
       console.log("loadRouteQuery", type)
       const { $stores } = useNuxtApp() as {
@@ -158,18 +143,11 @@ export const useRootStore = defineStore("rootStore", {
       console.log("query loaded")
     },
 
-    /*  loadFiltersFromLocalStorage(type: string): void {
+    /*     setFiltersCount(type: string): void {
+      console.log("setFiltersCount", type)
       const { $stores } = useNuxtApp() as {
         $stores: Record<string, ModuleStore>
       }
-      const local = JSON.parse(localStorage.getItem("PARIS_IAS") || "{}")
-      const saved = local[`${type}_filters`] ?? null
-
-      if (!saved) {
-        console.log(`[${type}] No data to restore.`)
-        return
-      }
-
       const filters = $stores[type]?.filters ?? {}
       for (const [key, value] of Object.entries(saved)) {
         if (filters[key]) {
@@ -180,7 +158,7 @@ export const useRootStore = defineStore("rootStore", {
       this.setFiltersCount(type)
       this.updateRouteQuery(type)
       console.log(`[${type}] Filters restored from localStorage`, saved)
-    }, */
+    },  */
 
     setFiltersCount(type: string): void {
       console.log("setFiltersCount", type)
@@ -239,27 +217,6 @@ export const useRootStore = defineStore("rootStore", {
 
       router.replace({ query: routeQuery })
     },
-
-    // async resetState(type: string, lang: string): void {
-    //   console.log("resetState", { type, lang })
-    //   const { $stores, $models } = useNuxtApp() as NuxtAppExtended
-    //   console.log("$models[type]: ", $models[type])
-    //   console.log("$stores[type]: ", $stores[type])
-
-    //   if ($models[type] && $stores[type]) {
-    //     $stores[type].filters = $models[type].filters
-    //   }
-
-    //   console.log("resetState")
-    //   this.search = ""
-    //   this.page = 1
-    //   this.scrolled = false
-    //   this.loading = false
-    //   this.total = 0
-    //   this.skip = 0
-    //   this.numberOfPages = 0
-    //   await this.update(type, lang)
-    // },
 
     async resetState(type: string, lang: string = "en"): Promise<void> {
       const { $stores, $models } = useNuxtApp() as NuxtAppExtended
@@ -349,7 +306,6 @@ export const useRootStore = defineStore("rootStore", {
         }
       }
       /* this.updateLocalStorage(type + "_view", value) */
-      await this.update(type, lang)
     },
 
     /*     updateLocalStorage(key: string, value: string): void {

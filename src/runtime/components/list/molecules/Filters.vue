@@ -44,7 +44,7 @@ const props = defineProps(["type", "expanded"])
 
 const ComponentName = (name) => {
   return resolveComponent(
-    "ListInputs" + capitalize($stores[props.type].filters[name].type)
+    "ListInputs" + capitalize($stores[props.type].filters[name].type),
   )
 }
 const getItems = (name) => {
@@ -53,14 +53,14 @@ const getItems = (name) => {
   }
 
   if ($filters?.[props.type]?.[name]) {
-    console.log("filters found for ", name, $filters[props.type][name])
+    /*  console.log("filters found for ", name, $filters[props.type][name]) */
     return $filters[props.type][name]
       .filter((key) => key !== "label")
       .map((item) => ({
         title: i18n.t(
           props.type === "people" && name === "vintage"
             ? item
-            : `list.filters.${props.type}.${name}.${item}`
+            : `list.filters.${props.type}.${name}.${item}`,
         ),
         value: item,
       }))
@@ -73,7 +73,7 @@ const getItems = (name) => {
   }
   // TODO replace with package based values
   return Object.keys(
-    messages.value[locale.value].list.filters[props.type][name]
+    messages.value[locale.value].list.filters[props.type][name],
   )
     .filter((key) => key !== "label")
     .map((item) => ({
@@ -97,7 +97,7 @@ const computeVisibility = (filterItem) => {
                 $stores[props.type].filters[value]?.value.includes(rule[value])
             : $stores[props.type].filters[value]?.value === rule[value]
         })
-      }
+      },
     )
   )
 }
