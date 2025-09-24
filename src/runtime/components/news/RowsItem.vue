@@ -6,7 +6,7 @@
         cover
         :src="item.image.url ? item.image : '/default.png'"
         :ratio="1 / 1"
-        :loading="$stores.news.loading"
+        :loading="isLoading"
       >
         <v-chip class="ma-2" style="background-color: white; color: black">
           {{ $t(eventCategory) }}
@@ -15,7 +15,7 @@
     </v-col>
     <v-col cols="12" md="8" lg="4" class="pl-md-6">
       <v-skeleton-loader
-        v-if="rootStore.loading || $stores['news'].loading"
+        v-if="isLoading"
         :type="
           [
             'heading, subtitle, text@5, ossein, button',
@@ -74,10 +74,7 @@
     </v-col>
 
     <v-col v-if="lgAndUp" cols="12" lg="5">
-      <v-skeleton-loader
-        v-if="rootStore.loading || $stores.news.loading"
-        type="text@8, ossein, button"
-      />
+      <v-skeleton-loader v-if="isLoading" type="text@8, ossein, button" />
 
       <template v-else>
         <div
@@ -140,6 +137,11 @@ const props = defineProps({
     type: String,
     required: true,
   },
+  loading: {
+    type: Boolean,
+    required: false,
+    default: false,
+  },
 })
 
 const processedSummary = computed(() => {
@@ -155,6 +157,8 @@ function replaceMarkdownLinksWithSlug(markdownText, slugPath) {
     return `[${text}](${slugPath}?redirect=${encodedUrl})`
   })
 }
+
+const isLoading = computed(() => rootStore.loading || props.loading)
 </script>
 
 <style></style>

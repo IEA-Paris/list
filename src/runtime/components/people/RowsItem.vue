@@ -7,7 +7,7 @@
     <v-col v-if="mdAndUp" cols="12" md="3">
       <MiscAtomsImageContainer
         cover
-        :loading="$stores.people.loading"
+        :loading="isLoading"
         :src="item.image.url ? item.image : '/default.png'"
         :ratio="1 / 1"
       />
@@ -15,7 +15,7 @@
 
     <v-col cols="12" md="8">
       <v-skeleton-loader
-        v-if="$stores.people.loading"
+        v-if="isLoading"
         :type="
           [
             'heading, subtitle, text@5',
@@ -53,9 +53,11 @@
 <script setup>
 import { useDisplay } from "vuetify"
 import { useLocalePath, computed } from "#imports"
+import { useRootStore } from "../../stores/root"
 
 const { name, mdAndUp } = useDisplay()
 const localePath = useLocalePath()
+const rootStore = useRootStore()
 const props = defineProps({
   item: {
     type: Object,
@@ -64,6 +66,11 @@ const props = defineProps({
   index: {
     type: Number,
     required: true,
+  },
+  loading: {
+    type: Boolean,
+    required: false,
+    default: false,
   },
 })
 const lineClamp = computed(() => {
@@ -80,4 +87,6 @@ const lineClamp = computed(() => {
 
   return base
 })
+
+const isLoading = computed(() => rootStore.loading || props.loading)
 </script>

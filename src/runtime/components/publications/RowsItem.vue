@@ -3,7 +3,7 @@
     <MiscAtomsImageContainer
       contain
       :src="item.image.url ? item.image : '/default.png'"
-      :loading="$stores.publications.loading"
+      :loading="isLoading"
       :ratio="1 / 1"
     />
   </v-col>
@@ -19,7 +19,7 @@
   >
     <div>
       <v-skeleton-loader
-        v-if="$stores.publications.loading"
+        v-if="isLoading"
         type="heading,ossein,text@8,ossein,button,button"
       />
 
@@ -77,10 +77,11 @@
 
 <script setup>
 import { useDisplay } from "vuetify"
-import { useNuxtApp, useI18n, useRouter } from "#imports"
+import { useRouter, computed } from "#imports"
+import { useRootStore } from "../../stores/root"
 
 const { name } = useDisplay()
-const { $stores } = useNuxtApp()
+const rootStore = useRootStore()
 const router = useRouter()
 const props = defineProps({
   item: {
@@ -94,7 +95,14 @@ const props = defineProps({
     type: String,
     required: true,
   },
+  loading: {
+    type: Boolean,
+    required: false,
+    default: false,
+  },
 })
+
+const isLoading = computed(() => rootStore.loading || props.loading)
 </script>
 
 <style lang="scss"></style>

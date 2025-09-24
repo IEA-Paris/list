@@ -8,7 +8,7 @@
     <v-col v-if="mdAndUp" align-self="center" cols="1">
       <MiscAtomsImageContainer
         cover
-        :loading="$stores.projects.loading"
+        :loading="isLoading"
         :src="
           item && item.image && item.image.url ? item.image.url : '/default.png'
         "
@@ -17,7 +17,7 @@
       />
     </v-col>
     <v-col align-self="center" class="text-h5 dense pl-2">
-      <v-skeleton-loader v-if="rootStore.loading" type="heading" />
+      <v-skeleton-loader v-if="isLoading" type="heading" />
       <span
         v-else
         v-html="
@@ -27,7 +27,7 @@
         "
       />
       <v-skeleton-loader
-        v-if="rootStore.loading"
+        v-if="isLoading"
         :type="
           ['chip', 'chip@2', 'chip@3', 'chip@4', 'chip@4', 'chip@4'][
             ['xs', 'sm', 'md', 'lg', 'xl', 'xxl'].indexOf(name || 'md')
@@ -68,6 +68,11 @@ const props = defineProps({
     type: String,
     required: true,
   },
+  loading: {
+    type: Boolean,
+    required: false,
+    default: false,
+  },
 })
 const eventCategory = computed(() => {
   if (props.item.category) {
@@ -76,4 +81,6 @@ const eventCategory = computed(() => {
     return "list.filters.news.category.others"
   }
 })
+
+const isLoading = computed(() => rootStore.loading || props.loading)
 </script>

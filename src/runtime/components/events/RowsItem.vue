@@ -5,7 +5,7 @@
     <v-col cols="12" md="1">
       <MiscAtomsDateStamp
         v-if="item.start"
-        :loading="$stores['events'].loading"
+        :loading="isLoading"
         :date-start="item.start"
         :date-stop="item.stop"
         class="pr-6 mt-md-2"
@@ -15,7 +15,7 @@
       <v-row no-gutters>
         <v-col cols="12" class="pr-lg-6">
           <v-skeleton-loader
-            v-if="rootStore.loading || $stores['events'].loading"
+            v-if="isLoading"
             :type="
               [
                 'heading, subtitle, text@6,subtitle, text,  ossein,  button, button',
@@ -61,7 +61,7 @@
       >
         <v-col cols="12">
           <v-skeleton-loader
-            v-if="rootStore.loading || $stores['events'].loading"
+            v-if="isLoading"
             :type="
               ['article, heading, text, heading, text, button, button'][
                 ['md'].indexOf(name || 'md')
@@ -78,7 +78,7 @@
     <v-col cols="12" md="4">
       <MiscAtomsImageContainer
         cover
-        :loading="$stores['events'].loading"
+        :loading="isLoading"
         :src="item.image && item.image.url ? item.image : '/default.png'"
         :ratio="1 / 1"
       />
@@ -89,7 +89,7 @@
 <script setup>
 import { useDisplay } from "vuetify"
 import { useRootStore } from "../../stores/root"
-import { useNuxtApp } from "#imports"
+import { useNuxtApp, computed } from "#imports"
 
 const { name, mdAndDown, lgAndUp } = useDisplay()
 
@@ -108,5 +108,12 @@ const props = defineProps({
     type: String,
     required: true,
   },
+  loading: {
+    type: Boolean,
+    required: false,
+    default: false,
+  },
 })
+
+const isLoading = computed(() => rootStore.loading || props.loading)
 </script>

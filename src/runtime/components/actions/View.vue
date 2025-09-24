@@ -1,22 +1,10 @@
 <template>
-  {{ item }}
+  <v-row no-gutters>
+    <slot />
+  </v-row>
+  <v-divider />
 </template>
 
 <script setup>
-import { useNuxtApp } from "#imports"
-
-const { $stores } = useNuxtApp()
-defineProps({
-  item: {
-    type: Object,
-    required: true,
-  },
-  loading: {
-    type: Boolean,
-    required: false,
-    default: false,
-  },
-})
-
-$stores.actions.loading = false
+defineProps({ loading: { type: Boolean, default: false } })
 </script>

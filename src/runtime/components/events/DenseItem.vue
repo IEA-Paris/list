@@ -3,7 +3,7 @@
     <v-col v-if="mdAndUp" cols="1">
       <MiscAtomsDateStamp
         v-if="item.start"
-        :loading="$stores['events'].loading"
+        :loading="isLoading"
         :date-start="item.start"
         :date-stop="item.stop"
         class="pr-6 mt-md-2"
@@ -12,7 +12,7 @@
     <v-col v-if="mdAndUp" cols="1">
       <MiscAtomsImageContainer
         cover
-        :loading="$stores.events.loading"
+        :loading="isLoading"
         :src="
           item && item.image && item.image.url ? item.image.url : '/default.png'
         "
@@ -67,12 +67,14 @@
 </template>
 
 <script setup>
-import { useI18n, useNuxtApp } from "#imports"
+import { useI18n, useNuxtApp, computed } from "#imports"
 import { useDisplay } from "vuetify"
+import { useRootStore } from "../../stores/root"
 const { $rootStore } = useNuxtApp()
 const { smAndDown, mdAndUp } = useDisplay()
 
 const { locale } = useI18n()
+const rootStore = useRootStore()
 const props = defineProps({
   item: {
     type: Object,
@@ -86,7 +88,14 @@ const props = defineProps({
     type: String,
     required: true,
   },
+  loading: {
+    type: Boolean,
+    required: false,
+    default: false,
+  },
 })
+
+const isLoading = computed(() => rootStore.loading || props.loading)
 </script>
 <!-- <NuxtLink
     v-if="item && item.slug"

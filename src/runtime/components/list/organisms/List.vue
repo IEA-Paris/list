@@ -1,18 +1,14 @@
 <template>
   <ListMoleculesHeader :type="type" />
-  <component :is="view">
+  <component :is="view" :loading="$stores[type] && $stores[type].loading">
     <component
       :is="itemTemplate"
-      v-for="(item, index) in items"
+      v-for="(item, index) in displayItems"
       :key="index"
       :item="item"
       :index="index"
-      :pathPrefix="
-        localePath({
-          name: pathPrefix,
-          params: { slug: item.slug },
-        })
-      "
+      :loading="$stores[type] && $stores[type].loading"
+      :pathPrefix="resolveItemPath(item)"
     />
   </component>
   <div class="text-center">
@@ -38,20 +34,27 @@
 </template>
 
 <script setup>
-import { nextTick, watch } from "vue"
+import {
+  computed,
+  ref,
+  unref,
+  onUpdated,
+  onMounted,
+  nextTick,
+  watch,
+} from "vue"
 import { useRootStore } from "../../../stores/root"
 import { capitalize } from "../../../composables/useUtils"
 import {
   useNuxtApp,
   resolveComponent,
-  computed,
   onBeforeUnmount,
-  onMounted,
   useI18n,
   useRoute,
-  navigateTo,
   useLocalePath,
+  useAsyncQuery,
 } from "#imports"
+// Removed incorrect default import of useAsyncQuery from @nuxtjs/apollo
 const { $stores } = useNuxtApp()
 const { locale } = useI18n()
 const route = useRoute()
@@ -112,60 +115,141 @@ const itemTemplate = computed(() =>
     ).toString(),
   ),
 )
-const numberOfPages = computed(() => $stores[props.type].numberOfPages)
+// Initial route -> store (single source-of-truth on first load)
+rootStore.loadRouteQuery(props.type)
+const initialPage = Number.parseInt(route.query.page, 10)
+if (!Number.isNaN(initialPage) && initialPage > 1) rootStore.page = initialPage
 
-const page = computed(() => {
-  const p = parseInt(route.query.page, 10)
-  return !isNaN(p) && p > 0 ? p : 1
-})
-
-const items = computed(() => $stores[props.type].items)
+// Items and pagination will be derived from the Apollo result
+const page = computed(() => rootStore.page)
+let listItems = computed(() => [])
+let displayItems = computed(() => [])
+let numberOfPages = computed(() => 0)
 console.log("setup list")
 
-// On mounted: load filters and data
+// Loading strategy:
+// - Global loader for initial mount and on route.path changes
+// - Skeleton (module-only) loader for in-list refreshes (variables changes)
+const isInitial = ref(true)
+// Defer initial loader changes to client mount to avoid hydration issues
 onMounted(async () => {
-  // Load any route filters
-  rootStore.loadRouteQuery(props.type)
-  // Initialize store page from URL
-  const pageParam = parseInt(route.query.page, 10)
-  if (!isNaN(pageParam) && pageParam > 1) {
-    await rootStore.updatePage({
-      page: pageParam,
-      type: props.type,
-      lang: locale.value,
-    })
-  }
-  // Fetch initial items
-  try {
-    await rootStore.update(props.type, locale.value)
-  } catch (e) {
-    console.error("Error fetching list:", e)
-  }
+  // 1) Show global loader first
+  rootStore.setLoading(true)
+  if ($stores[props.type]) $stores[props.type].loading = false
+
+  // 2) After first paint, switch to local skeleton and hide global
+  await nextTick()
+  if ($stores[props.type]) $stores[props.type].loading = true
+  rootStore.setLoading(false)
+  isInitial.value = false
 })
 
-watch(
-  () => page.value,
-  async (newPage) => {
-    const query = {
-      ...route.query,
-      page: newPage > 1 ? String(newPage) : undefined,
-    }
-    navigateTo({ query }, { replace: true })
-    await nextTick()
-    window.scrollTo({ top: 0, behavior: "smooth" })
-  },
-)
 onBeforeUnmount(() => {
   rootStore.resetState(props.type, locale.value)
 })
 
 async function onPageChange(newPage) {
+  console.log("OnPageChange")
   await rootStore.updatePage({
     page: newPage,
     type: props.type,
     lang: locale.value,
   })
+  if (typeof window !== "undefined") {
+    console.log("Scolling top")
+    window.scrollTo({ top: 0, behavior: "smooth" })
+  }
 }
 
 console.log("pathPrefix", itemTemplate.value)
+
+// Apollo: reactive query using variables computed from store
+const { $queries } = useNuxtApp()
+
+const variables = computed(() =>
+  rootStore.buildListVariables(props.type, locale.value),
+)
+
+const rawDoc = unref($queries[props.type]?.list)
+const documentNode = typeof rawDoc === "function" ? rawDoc() : rawDoc
+const queryState = documentNode
+  ? useAsyncQuery(documentNode, variables, { fetchPolicy: "network-only" })
+  : { data: ref(null), pending: ref(false), error: ref(null) }
+const { data, pending, error } = queryState
+
+const listReady = computed(() =>
+  Boolean(data.value && data.value[resultKey.value]),
+)
+
+onUpdated(() => {
+  if (!isInitial.value && $stores[props.type]) {
+    $stores[props.type].loading = !!pending.value
+  }
+})
+// Derive items and pagination directly from the query result
+const resultKey = computed(
+  () => "list" + props.type.charAt(0).toUpperCase() + props.type.slice(1),
+)
+
+listItems = computed(() => {
+  const list = data.value?.[resultKey.value]
+  const arr = Array.isArray(list?.items) ? list.items : []
+  return arr.map((it) => {
+    if (it && typeof it === "object" && "id" in it) {
+      const { id, ...rest } = it
+      return { ...rest, _path: `/${id}` }
+    }
+    return it
+  })
+})
+
+numberOfPages = computed(() => {
+  const list = data.value?.[resultKey.value]
+  const total = Number(list?.total || 0)
+  const perPage = Number(variables.value?.options?.limit || 10)
+  return total > 0 && perPage > 0 ? Math.ceil(total / perPage) : 0
+})
+
+// Items to render in the view: real items if available, otherwise placeholders
+displayItems = computed(() => {
+  const items = listItems.value
+  if (Array.isArray(items) && items.length) return items
+  if ($stores[props.type]?.loading) {
+    const count = Number($stores[props.type]?.itemsPerPage || 8)
+    return Array.from({ length: count }, () => ({ slug: "" }))
+  }
+  return []
+})
+
+// Keep module store's total and numberOfPages in sync with results
+const total = computed(() => {
+  const list = data.value?.[resultKey.value]
+  return Number(list?.total || 0)
+})
+
+watch(
+  total,
+  (t) => {
+    const st = $stores[props.type]
+    if (st) {
+      st.total = Number.isFinite(t) ? t : 0
+      st.numberOfPages = numberOfPages.value
+    }
+  },
+  { immediate: true },
+)
+
+if (process.dev) {
+  if (error.value) console.error("List query error:", error.value)
+}
+
+function resolveItemPath(item) {
+  try {
+    const slug = item && item.slug
+    if (slug) {
+      return localePath({ name: props.pathPrefix, params: { slug } })
+    }
+  } catch (_) {}
+  return route.path
+}
 </script>

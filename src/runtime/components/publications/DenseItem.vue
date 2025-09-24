@@ -8,7 +8,7 @@
     <v-col v-if="mdAndUp" cols="1" class="align-center">
       <MiscAtomsImageContainer
         cover
-        :loading="$stores.people.loading"
+        :loading="isLoading"
         :src="
           item && item.image && item.image.url ? item.image.url : '/default.png'
         "
@@ -19,7 +19,7 @@
     <v-col class="pl-2">
       <div class="inline-flex flex-row flex-wrap">
         <v-skeleton-loader
-          v-if="rootStore.loading"
+          v-if="isLoading"
           :type="
             ['chip', 'chip@2', 'chip@3', 'chip@4', 'chip@4', 'chip@4'][
               ['xs', 'sm', 'md', 'lg', 'xl', 'xxl'].indexOf(name || 'md')
@@ -51,7 +51,7 @@
             size="small"
           />
         </template>
-        <v-skeleton-loader v-if="rootStore.loading" type="heading" />
+        <v-skeleton-loader v-if="isLoading" type="heading" />
         <span
           v-else
           class="text-h5 dense paragraph"
@@ -76,10 +76,9 @@
 <script setup>
 import { useDisplay } from "vuetify"
 import { useRootStore } from "../../stores/root"
-import { computed, useNuxtApp, useI18n } from "#imports"
+import { computed, useI18n } from "#imports"
 const rootStore = useRootStore()
 
-const { $stores } = useNuxtApp()
 const { name, mdAndUp } = useDisplay()
 const { locale } = useI18n()
 const props = defineProps({
@@ -94,6 +93,11 @@ const props = defineProps({
   pathPrefix: {
     type: String,
     required: true,
+  },
+  loading: {
+    type: Boolean,
+    required: false,
+    default: false,
   },
 })
 
@@ -113,4 +117,6 @@ const eventType = computed(() => {
     return false
   }
 })
+
+const isLoading = computed(() => rootStore.loading || props.loading)
 </script>
