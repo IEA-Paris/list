@@ -98,7 +98,6 @@ export const useRootStore = defineStore("rootStore", {
 
   actions: {
     setLoading(value: boolean, type: string = ""): void {
-      console.log("setLoading", { value, type })
       const { $stores } = useNuxtApp() as {
         $stores: Record<string, ModuleStore>
       }
@@ -115,19 +114,17 @@ export const useRootStore = defineStore("rootStore", {
     },
 
     loadRouteQuery(type: string): void {
-      console.log("loadRouteQuery", type)
       const { $stores } = useNuxtApp() as {
         $stores: Record<string, ModuleStore>
       }
       const { currentRoute } = useRouter()
       const query = currentRoute.value.query
       const filters = $stores[type]?.filters ?? {}
-      console.log("filters: ", filters)
 
       if (Object.keys(query)?.length) {
         Object.keys(query).forEach((filter) => {
           if (filter in filters) {
-            console.log("filter: ", filter, query[filter])
+            // set filter from query
             const queryValue = query[filter]
             if (typeof queryValue === "string") {
               filters[filter].value = filters[filter].multiple
@@ -135,15 +132,15 @@ export const useRootStore = defineStore("rootStore", {
                 : queryValue
             }
           } else {
-            console.log("unknown filter: ", filter)
+            // unknown filter key
           }
         })
       }
-      console.log("query loaded")
+      // query loaded
     },
 
     /*     setFiltersCount(type: string): void {
-      console.log("setFiltersCount", type)
+  // setFiltersCount
       const { $stores } = useNuxtApp() as {
         $stores: Record<string, ModuleStore>
       }
@@ -156,11 +153,10 @@ export const useRootStore = defineStore("rootStore", {
 
       this.setFiltersCount(type)
       this.updateRouteQuery(type)
-      console.log(`[${type}] Filters restored from localStorage`, saved)
+  // filters restored from localStorage
     },  */
 
     setFiltersCount(type: string): void {
-      console.log("setFiltersCount", type)
       const { $stores } = useNuxtApp() as {
         $stores: Record<string, ModuleStore>
       }
@@ -182,7 +178,6 @@ export const useRootStore = defineStore("rootStore", {
     },
 
     updateRouteQuery(type: string): void {
-      console.log("updateRouteQuery", type)
       const router = useRouter()
       const { $stores } = useNuxtApp() as {
         $stores: Record<string, ModuleStore>
@@ -267,10 +262,7 @@ export const useRootStore = defineStore("rootStore", {
       type: string
       lang?: string
     }): Promise<void> {
-      console.log("updateSort", {
-        value,
-        type,
-      })
+      // update sort
       const { $stores } = useNuxtApp() as {
         $stores: Record<string, ModuleStore>
       }
@@ -298,7 +290,7 @@ export const useRootStore = defineStore("rootStore", {
       type: string
       lang?: string
     }): Promise<void> {
-      console.log("updateView", { value, type })
+      // update view
       const { $stores } = useNuxtApp() as {
         $stores: Record<string, ModuleStore>
       }
@@ -327,7 +319,7 @@ export const useRootStore = defineStore("rootStore", {
       const { $stores } = useNuxtApp() as {
         $stores: Record<string, ModuleStore>
       }
-      console.log("update filter: ", { key, val, type })
+      // update filter value
 
       if ($stores[type]?.filters?.[key]) {
         $stores[type].filters![key].value = val
@@ -353,7 +345,7 @@ export const useRootStore = defineStore("rootStore", {
       type: string
       lang?: string
     }): Promise<void> {
-      console.log("updateItemsPerPage", { value, type })
+      // update items per page
       const { $stores } = useNuxtApp() as {
         $stores: Record<string, ModuleStore>
       }
@@ -379,7 +371,7 @@ export const useRootStore = defineStore("rootStore", {
       type: string
       lang?: string
     }): Promise<void> {
-      console.log("updatePage", { page, type })
+      // update page
       const router = useRouter()
       const currentQuery = router.currentRoute.value.query
 
@@ -418,7 +410,7 @@ export const useRootStore = defineStore("rootStore", {
       lang: string
     }): Promise<void> {
       const { $stores } = useNuxtApp()
-      console.log("updateSearch", { type, search, lang })
+      // update search
       if (type === "all") {
         this.search = search
       } else {

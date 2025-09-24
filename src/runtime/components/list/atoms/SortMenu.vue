@@ -1,27 +1,29 @@
 <template>
-  <v-menu :disabled="$stores[type] && $stores[type].loading">
+  <v-menu :disabled="showSkeleton">
     <template #activator="{ props: menu }">
       <v-tooltip location="top">
         <template #activator="{ props: tooltip }">
-          <v-btn
-            x-large
-            outlined
-            tile
-            flat
-            icon
-            :class="{
-              'mt-3': isXsDisplay,
-            }"
-            v-bind="mergeProps(menu, tooltip)"
-            :loading="$stores[type] && $stores[type].loading"
-          >
-            <v-icon>mdi-{{ current?.icon || defaultSort?.icon }}</v-icon>
-          </v-btn>
+          <template v-if="showSkeleton">
+            <v-skeleton-loader type="button" :class="{ 'mt-3': isXsDisplay }" />
+          </template>
+          <template v-else>
+            <v-btn
+              x-large
+              outlined
+              tile
+              flat
+              icon
+              :class="{ 'mt-3': isXsDisplay }"
+              v-bind="mergeProps(menu, tooltip)"
+            >
+              <v-icon>mdi-{{ current?.icon || defaultSort?.icon }}</v-icon>
+            </v-btn>
+          </template>
         </template>
         <div
           v-html="
             $t('list.sort-mode') +
-            $t('list.' + current.text || defaultSort.text)
+            $t('list.' + (current?.text || defaultSort?.text))
           "
         />
       </v-tooltip>
@@ -31,7 +33,7 @@
         <v-list-item
           v-if="item.text !== current.text"
           :key="index"
-          :disabled="$stores[type] && $stores[type].loading"
+          :disabled="showSkeleton"
           @click="updateSort(item.value)"
         >
           <template #prepend>
@@ -87,6 +89,21 @@ const current = computed(() => {
     return items[Object.keys(items).find((item) => item.default)]
   }
 })
+
+const isLoading = computed(() =>
+  Boolean($stores[props.type] && $stores[props.type].loading),
+)
+const isCurrentDefault = computed(() => {
+  try {
+    return (
+      current.value?.value?.[0] === defaultSort.value?.value?.[0] &&
+      current.value?.value?.[1] === defaultSort.value?.value?.[1]
+    )
+  } catch (e) {
+    return false
+  }
+})
+const showSkeleton = computed(() => isLoading.value && isCurrentDefault.value)
 
 const updateSort = async (value) => {
   await rootStore.updateSort({ value, type: props.type, lang: locale.value })

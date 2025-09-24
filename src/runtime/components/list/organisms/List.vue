@@ -4,7 +4,7 @@
     <component
       :is="itemTemplate"
       v-for="(item, index) in displayItems"
-      :key="index"
+      :key="itemKey(item, index)"
       :item="item"
       :index="index"
       :loading="$stores[type] && $stores[type].loading"
@@ -125,7 +125,6 @@ const page = computed(() => rootStore.page)
 let listItems = computed(() => [])
 let displayItems = computed(() => [])
 let numberOfPages = computed(() => 0)
-console.log("setup list")
 
 // Loading strategy:
 // - Global loader for initial mount and on route.path changes
@@ -149,19 +148,15 @@ onBeforeUnmount(() => {
 })
 
 async function onPageChange(newPage) {
-  console.log("OnPageChange")
   await rootStore.updatePage({
     page: newPage,
     type: props.type,
     lang: locale.value,
   })
   if (typeof window !== "undefined") {
-    console.log("Scolling top")
     window.scrollTo({ top: 0, behavior: "smooth" })
   }
 }
-
-console.log("pathPrefix", itemTemplate.value)
 
 // Apollo: reactive query using variables computed from store
 const { $queries } = useNuxtApp()
@@ -216,7 +211,8 @@ numberOfPages = computed(() => {
 displayItems = computed(() => {
   const items = listItems.value
   if (Array.isArray(items) && items.length) return items
-  if ($stores[props.type]?.loading) {
+  const isClient = typeof window !== "undefined"
+  if (isClient && $stores[props.type]?.loading) {
     const count = Number($stores[props.type]?.itemsPerPage || 8)
     return Array.from({ length: count }, () => ({ slug: "" }))
   }
@@ -253,5 +249,12 @@ function resolveItemPath(item) {
     }
   } catch (_) {}
   return route.path
+}
+
+function itemKey(item, index) {
+  if (item && typeof item === "object") {
+    return item._path || item.slug || item.id || index
+  }
+  return index
 }
 </script>

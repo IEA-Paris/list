@@ -47,7 +47,7 @@
           </v-chip>
           <MiscMoleculesChipContainer
             v-if="item.tags && item.tags.length"
-            :items="item.tags"
+            :items="item.tags || []"
             size="small"
           />
         </template>
@@ -103,7 +103,6 @@ const props = defineProps({
 
 const eventCategory = computed(() => {
   if (props.item.category) {
-    console.log("props.item.category: ", props.item.category)
     return "list.filters.publications.category." + props.item.category
   } else {
     return false
@@ -111,7 +110,6 @@ const eventCategory = computed(() => {
 })
 const eventType = computed(() => {
   if (props.item.type) {
-    console.log("props.item.type: ", props.item.type)
     return "list.filters.publications.type." + props.item.type
   } else {
     return false

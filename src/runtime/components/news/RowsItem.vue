@@ -44,7 +44,7 @@
         </div>
         <MiscMoleculesChipContainer
           v-if="item.tags && item.tags.length"
-          :items="item.tags"
+          :items="item.tags || []"
           class="mt-4"
         />
         <template v-if="mdAndDown">
