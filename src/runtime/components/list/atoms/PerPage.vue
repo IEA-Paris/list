@@ -6,7 +6,7 @@
     variant="outlined"
     :items="itemsPerPageArray"
     hide-details
-    :loading="$rootStore.loading"
+    :loading="$stores[type] && $stores[type].loading"
     @update:model-value="
       $rootStore.updateItemsPerPage({
         value: $event,

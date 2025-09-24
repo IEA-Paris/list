@@ -1,7 +1,11 @@
 <template>
   <div class="mt-4 font-weight-light">
+    <v-skeleton-loader
+      v-if="$stores[type] && $stores[type].loading"
+      type="text@2"
+    />
     <template
-      v-if="
+      v-else-if="
         (!$stores[type].search || $stores[type].search.length === 0) &&
         $stores[type].filtersCount === 0
       "

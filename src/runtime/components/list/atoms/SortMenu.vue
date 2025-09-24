@@ -1,5 +1,5 @@
 <template>
-  <v-menu>
+  <v-menu :disabled="$stores[type] && $stores[type].loading">
     <template #activator="{ props: menu }">
       <v-tooltip location="top">
         <template #activator="{ props: tooltip }">
@@ -13,6 +13,7 @@
               'mt-3': isXsDisplay,
             }"
             v-bind="mergeProps(menu, tooltip)"
+            :loading="$stores[type] && $stores[type].loading"
           >
             <v-icon>mdi-{{ current?.icon || defaultSort?.icon }}</v-icon>
           </v-btn>
@@ -30,6 +31,7 @@
         <v-list-item
           v-if="item.text !== current.text"
           :key="index"
+          :disabled="$stores[type] && $stores[type].loading"
           @click="updateSort(item.value)"
         >
           <template #prepend>

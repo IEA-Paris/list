@@ -177,6 +177,11 @@ const queryState = documentNode
   : { data: ref(null), pending: ref(false), error: ref(null) }
 const { data, pending, error } = queryState
 
+// Key of the list result in the GraphQL response
+const resultKey = computed(
+  () => "list" + props.type.charAt(0).toUpperCase() + props.type.slice(1),
+)
+
 const listReady = computed(() =>
   Boolean(data.value && data.value[resultKey.value]),
 )
@@ -187,9 +192,6 @@ onUpdated(() => {
   }
 })
 // Derive items and pagination directly from the query result
-const resultKey = computed(
-  () => "list" + props.type.charAt(0).toUpperCase() + props.type.slice(1),
-)
 
 listItems = computed(() => {
   const list = data.value?.[resultKey.value]

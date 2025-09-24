@@ -12,7 +12,7 @@
       clearable
       tile
       type="search"
-      :loading="rootStore.loading"
+      :loading="isLoading"
     >
       <!--    :loading="$nuxt.loading || $store.state.loading" :class="{ 'mt-3':
       $store.state.scrolled }" -->
@@ -61,6 +61,12 @@ const search = computed({
     })
   }, 300),
 })
+
+const isLoading = computed(() =>
+  props.type === "all"
+    ? rootStore.loading
+    : Boolean($stores[props.type]?.loading),
+)
 </script>
 
 <style lang="scss" scoped></style>

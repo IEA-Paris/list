@@ -1,5 +1,5 @@
 <template>
-  <v-menu>
+  <v-menu :disabled="$stores[type] && $stores[type].loading">
     <template #activator="{ props: menu }">
       <v-tooltip location="top">
         <template #activator="{ props: tooltip }">
@@ -12,6 +12,7 @@
               'mt-3': isXsDisplay,
             }"
             v-bind="mergeProps(menu, tooltip)"
+            :loading="$stores[type] && $stores[type].loading"
           />
         </template>
         <div
@@ -26,6 +27,7 @@
       <v-list-item
         v-for="(value, key, index) in items"
         :key="index"
+        :disabled="$stores[type] && $stores[type].loading"
         @click="updateView(value.name || key)"
       >
         <template #prepend>

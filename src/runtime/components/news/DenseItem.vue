@@ -32,7 +32,7 @@
           >
             {{ $t(eventCategory) }}
           </v-chip>
-          <MiscMoleculesChipContainer :items="item.tags" size="small" />
+          <MiscMoleculesChipContainer :items="item.tags || []" size="small" />
         </template>
         <div
           v-html="

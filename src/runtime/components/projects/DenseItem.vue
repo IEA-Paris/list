@@ -34,7 +34,7 @@
           ]
         "
       />
-      <MiscMoleculesChipContainer :items="item.tags" size="small" />
+      <MiscMoleculesChipContainer :items="item.tags || []" size="small" />
 
       <MDC
         v-if="item.summary"
