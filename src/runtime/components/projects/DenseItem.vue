@@ -3,31 +3,21 @@
     v-ripple
     no-gutters
     class="cursor-pointer highlight-on-hover"
-    @click="
-      $router.push(
-        localePath({
-          name: 'activities-projects-slug',
-          params: { slug: item.slug[locale] },
-        }),
-      )
-    "
+    @click="$router.push(pathPrefix)"
   >
     <v-col v-if="mdAndUp" align-self="center" cols="1">
       <MiscAtomsImageContainer
         cover
-        :loading="$stores.projects.loading"
+        :loading="isLoading"
         :src="
           item && item.image && item.image.url ? item.image.url : '/default.png'
         "
         :ratio="1 / 1"
-        :name="item.name"
-        :slug="item.slug && item.slug[locale]"
-        link="activities-projects-slug"
         :width="50"
       />
     </v-col>
     <v-col align-self="center" class="text-h5 dense pl-2">
-      <v-skeleton-loader v-if="rootStore.loading" type="heading" />
+      <v-skeleton-loader v-if="isLoading" type="heading" />
       <span
         v-else
         v-html="
@@ -37,14 +27,14 @@
         "
       />
       <v-skeleton-loader
-        v-if="rootStore.loading"
+        v-if="isLoading"
         :type="
           ['chip', 'chip@2', 'chip@3', 'chip@4', 'chip@4', 'chip@4'][
             ['xs', 'sm', 'md', 'lg', 'xl', 'xxl'].indexOf(name || 'md')
           ]
         "
       />
-      <MiscMoleculesChipContainer :items="item.tags" size="small" />
+      <MiscMoleculesChipContainer :items="item.tags || []" size="small" />
 
       <MDC
         v-if="item.summary"
@@ -58,11 +48,10 @@
 <script setup>
 import { useDisplay } from "vuetify"
 import { useRootStore } from "../../stores/root"
-import { computed, useNuxtApp, useI18n, useLocalePath } from "#imports"
+import { computed, useNuxtApp, useI18n } from "#imports"
 
 const { $stores } = useNuxtApp()
 const { name, mdAndUp } = useDisplay()
-const localePath = useLocalePath()
 const { locale } = useI18n()
 
 const rootStore = useRootStore()
@@ -75,6 +64,15 @@ const props = defineProps({
     type: Number,
     required: true,
   },
+  pathPrefix: {
+    type: String,
+    required: true,
+  },
+  loading: {
+    type: Boolean,
+    required: false,
+    default: false,
+  },
 })
 const eventCategory = computed(() => {
   if (props.item.category) {
@@ -83,4 +81,6 @@ const eventCategory = computed(() => {
     return "list.filters.news.category.others"
   }
 })
+
+const isLoading = computed(() => props.loading)
 </script>

@@ -6,9 +6,7 @@
         cover
         :src="item.image.url ? item.image : '/default.png'"
         :ratio="1 / 1"
-        :loading="$stores.news.loading"
-        link="news-slug"
-        :slug="item._path && item._path.split('/').pop()"
+        :loading="isLoading"
       >
         <v-chip class="ma-2" style="background-color: white; color: black">
           {{ $t(eventCategory) }}
@@ -17,7 +15,7 @@
     </v-col>
     <v-col cols="12" md="8" lg="4" class="pl-md-6">
       <v-skeleton-loader
-        v-if="rootStore.loading || $stores['news'].loading"
+        v-if="isLoading"
         :type="
           [
             'heading, subtitle, text@5, ossein, button',
@@ -38,23 +36,15 @@
           <br />
         </template>
 
-        <NuxtLink
-          :to="
-            localePath({
-              name: 'news-slug',
-              params: { slug: item.slug[locale] },
-            })
-          "
-          class="text-wrap text-h5 text-md-h4 text-black"
-        >
+        <div class="text-wrap text-h5 text-md-h4 text-black">
           {{ item.name }}
-        </NuxtLink>
+        </div>
         <div class="tex-overline mt-3">
           {{ formatDateValue(item.date, locale) }}
         </div>
         <MiscMoleculesChipContainer
           v-if="item.tags && item.tags.length"
-          :items="item.tags"
+          :items="item.tags || []"
           class="mt-4"
         />
         <template v-if="mdAndDown">
@@ -75,12 +65,7 @@
             variant="outlined"
             tile
             size="small"
-            :to="
-              localePath({
-                name: 'activities-news-slug',
-                params: { slug: item.slug[locale] },
-              })
-            "
+            :to="pathPrefix"
           >
             {{ $t("read-more") }}
           </v-btn>
@@ -89,10 +74,7 @@
     </v-col>
 
     <v-col v-if="lgAndUp" cols="12" lg="5">
-      <v-skeleton-loader
-        v-if="rootStore.loading || $stores.news.loading"
-        type="text@8, ossein, button"
-      />
+      <v-skeleton-loader v-if="isLoading" type="text@8, ossein, button" />
 
       <template v-else>
         <div
@@ -112,12 +94,7 @@
           class="mt-4"
           variant="outlined"
           tile
-          :to="
-            localePath({
-              name: 'activities-news-slug',
-              params: { slug: item.slug[locale] },
-            })
-          "
+          :to="pathPrefix"
           :size="
             ['small', 'small', 'small', 'default', 'default', 'large'][
               ['xs', 'sm', 'md', 'lg', 'xl', 'xxl'].indexOf(name || 'md')
@@ -129,17 +106,15 @@
       </template>
     </v-col>
   </v-row>
-  <!-- <MiscMoleculesSearchItem></MiscMoleculesSearchItem> -->
 </template>
 
 <script setup>
 import { useDisplay } from "vuetify"
 import { useRootStore } from "../../stores/root"
-import { useNuxtApp, useI18n, useLocalePath, computed } from "#imports"
+import { useNuxtApp, useI18n, computed } from "#imports"
 
 const { $stores } = useNuxtApp()
 const { locale } = useI18n()
-const localePath = useLocalePath()
 const rootStore = useRootStore()
 const { name, smAndDown, mdAndDown, mdAndUp, lgAndUp } = useDisplay()
 const eventCategory = computed(() => {
@@ -158,19 +133,21 @@ const props = defineProps({
     type: Number,
     required: true,
   },
+  pathPrefix: {
+    type: String,
+    required: true,
+  },
+  loading: {
+    type: Boolean,
+    required: false,
+    default: false,
+  },
 })
 
 const processedSummary = computed(() => {
   const raw = props.item.summary || ""
 
-  const slugPath = localePath({
-    name: "news-slug",
-    params: { slug: props.item.slug[locale.value] },
-  })
-
-  /*   console.log("Raw summary:", raw);
-  console.log("Slug path:", slugPath); */
-  return replaceMarkdownLinksWithSlug(raw, slugPath)
+  return replaceMarkdownLinksWithSlug(raw, props.pathPrefix)
 })
 
 function replaceMarkdownLinksWithSlug(markdownText, slugPath) {
@@ -180,6 +157,8 @@ function replaceMarkdownLinksWithSlug(markdownText, slugPath) {
     return `[${text}](${slugPath}?redirect=${encodedUrl})`
   })
 }
+
+const isLoading = computed(() => rootStore.loading || props.loading)
 </script>
 
 <style></style>

@@ -1,14 +1,9 @@
 <template>
-  <v-row
-    v-ripple
-    no-gutters
-    class="cursor-pointer highlight-on-hover my-2"
-    @click="$router.push(localePath('/activities/events/' + item.slug[locale]))"
-  >
+  <v-row v-ripple no-gutters class="cursor-pointer highlight-on-hover my-2">
     <v-col v-if="mdAndUp" cols="1">
       <MiscAtomsDateStamp
         v-if="item.start"
-        :loading="$stores['events'].loading"
+        :loading="isLoading"
         :date-start="item.start"
         :date-stop="item.stop"
         class="pr-6 mt-md-2"
@@ -17,14 +12,11 @@
     <v-col v-if="mdAndUp" cols="1">
       <MiscAtomsImageContainer
         cover
-        :loading="$stores.events.loading"
+        :loading="isLoading"
         :src="
           item && item.image && item.image.url ? item.image.url : '/default.png'
         "
         :ratio="1 / 1"
-        :name="item.name"
-        :slug="item.slug && item.slug[locale]"
-        link="events-slug"
         :width="80"
       />
     </v-col>
@@ -69,19 +61,20 @@
     </v-col>
 
     <v-col align-self="center" cols="auto">
-      <EventsBadges :item />
+      <EventsBadges :item :pathPrefix />
     </v-col>
   </v-row>
 </template>
 
 <script setup>
-import { useLocalePath, useI18n, useNuxtApp } from "#imports"
+import { useI18n, useNuxtApp, computed } from "#imports"
 import { useDisplay } from "vuetify"
+import { useRootStore } from "../../stores/root"
 const { $rootStore } = useNuxtApp()
-const { smAndDown, mdAndUp, lgAndUp } = useDisplay()
+const { smAndDown, mdAndUp } = useDisplay()
 
 const { locale } = useI18n()
-const localePath = useLocalePath()
+const rootStore = useRootStore()
 const props = defineProps({
   item: {
     type: Object,
@@ -91,5 +84,22 @@ const props = defineProps({
     type: Number,
     required: true,
   },
+  pathPrefix: {
+    type: String,
+    required: true,
+  },
+  loading: {
+    type: Boolean,
+    required: false,
+    default: false,
+  },
 })
+
+const isLoading = computed(() => props.loading)
 </script>
+<!-- <NuxtLink
+    v-if="item && item.slug"
+    :to="pathPrefix"
+    class="text-decoration-none text-black"
+  >
+  </NuxtLink> -->

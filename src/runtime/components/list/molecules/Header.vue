@@ -34,25 +34,6 @@ import { ref, computed } from "vue"
 import { useNuxtApp } from "#imports"
 const { $stores } = useNuxtApp()
 
-const filtersOpen = ref(false)
-const visible = computed(() => {
-  console.log(
-    "$stores[props.type]?.filtersCount > 0: ",
-    $stores[props.type]?.filtersCount > 0
-  )
-  console.log(
-    "$stores[props.type]?.filtersCount: ",
-    $stores[props.type]?.filtersCount
-  )
-  console.log(
-    !!(
-      $stores[props.type]?.filtersCount && $stores[props.type]?.filtersCount > 0
-    )
-  )
-  return !!(
-    $stores[props.type]?.filtersCount && $stores[props.type]?.filtersCount > 0
-  )
-})
 const props = defineProps({
   type: {
     type: String,
@@ -60,4 +41,14 @@ const props = defineProps({
     default: "",
   },
 })
+const visible = computed(() => {
+  console.log(
+    "SHOULD DISPLAY FILTERS:",
+    $stores[props.type]?.filtersCount && $stores[props.type]?.filtersCount > 0,
+  )
+  return !!(
+    $stores[props.type]?.filtersCount && $stores[props.type]?.filtersCount > 0
+  )
+})
+const filtersOpen = ref(unref(visible))
 </script>

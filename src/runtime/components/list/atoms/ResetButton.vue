@@ -9,7 +9,7 @@
         icon
         class="ml-auto"
         v-bind="tooltip"
-        @click="rootStore.resetState(props.type, locale)"
+        @click="resetState(props.type)"
       >
         <v-icon>mdi-restore</v-icon>
       </v-btn>
@@ -30,5 +30,9 @@ const props = defineProps({
     required: true,
   },
 })
+const resetState = (type) => {
+  rootStore.resetState(type, locale.value)
+  rootStore.updateRouteQuery(type)
+}
 </script>
 <style lang="scss"></style>

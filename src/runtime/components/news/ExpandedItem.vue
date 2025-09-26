@@ -12,10 +12,7 @@
       @click.prevent="
         expanded
           ? router.push(
-              localePath({
-                name: 'news-slug',
-                params: { slug: item.slug[locale] },
-              }),
+              pathPrefix
             )
           : null
       "
@@ -33,10 +30,7 @@
         @click.prevent="
           expanded
             ? router.push(
-                localePath({
-                  name: 'news-slug',
-                  params: { slug: item.slug[locale] },
-                }),
+                pathPrefix
               )
             : null
         "
@@ -66,12 +60,8 @@
           class="mt-4"
           variant="outlined"
           tile
-          @click.prevent="
-            router.push(
-              localePath({
-                name: 'news-slug',
-                params: { slug: item.slug[locale] },
-              }),
+          :to="pathPrefix"
+          
             )
           "
         >
@@ -85,15 +75,15 @@
 <script setup>
 import { useDisplay } from "vuetify"
 import { useRootStore } from "../../stores/root"
-import { useRouter, useI18n, useLocalePath } from "#imports"
+import { useRouter  } from "#imports"
 
-const localePath = useLocalePath()
+
 
 const router = useRouter()
 const rootStore = useRootStore()
 const expanded = ref(false)
 const { name, lgAndUp } = useDisplay()
-const { locale } = useI18n()
+
 const props = defineProps({
   item: {
     type: Object,
@@ -101,6 +91,10 @@ const props = defineProps({
   },
   index: {
     type: Number,
+    required: true,
+  },
+  pathPrefix: {
+    type: String,
     required: true,
   },
 })

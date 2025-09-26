@@ -1,10 +1,11 @@
 <template>
   <v-divider v-if="index > 0" />
+
   <v-row class="py-8 px-6 highlight-on-hover" no-gutters>
     <v-col cols="12" md="1">
       <MiscAtomsDateStamp
         v-if="item.start"
-        :loading="$stores['events'].loading"
+        :loading="isLoading"
         :date-start="item.start"
         :date-stop="item.stop"
         class="pr-6 mt-md-2"
@@ -14,7 +15,7 @@
       <v-row no-gutters>
         <v-col cols="12" class="pr-lg-6">
           <v-skeleton-loader
-            v-if="rootStore.loading || $stores['events'].loading"
+            v-if="isLoading"
             :type="
               [
                 'heading, subtitle, text@6,subtitle, text,  ossein,  button, button',
@@ -28,18 +29,9 @@
           />
 
           <div v-else>
-            <nuxt-link
-              v-if="item.name"
-              :to="
-                localePath({
-                  name: 'activities-events-slug',
-                  params: { slug: item.slug[locale] },
-                })
-              "
-              class="text-h4 text-black text-wrap mt-4"
-            >
+            <div v-if="item.name" class="text-h4 text-black text-wrap mt-4">
               {{ item.name }}
-            </nuxt-link>
+            </div>
             <div class="mt-2 text-h6 text-overline font-weight-black">
               {{ $t("list.filters.events.category." + item.category) }}
             </div>
@@ -69,7 +61,7 @@
       >
         <v-col cols="12">
           <v-skeleton-loader
-            v-if="rootStore.loading || $stores['events'].loading"
+            v-if="isLoading"
             :type="
               ['article, heading, text, heading, text, button, button'][
                 ['md'].indexOf(name || 'md')
@@ -86,9 +78,7 @@
     <v-col cols="12" md="4">
       <MiscAtomsImageContainer
         cover
-        :slug="item.slug[locale]"
-        link="activities-events-slug"
-        :loading="$stores['events'].loading"
+        :loading="isLoading"
         :src="item.image && item.image.url ? item.image : '/default.png'"
         :ratio="1 / 1"
       />
@@ -99,11 +89,10 @@
 <script setup>
 import { useDisplay } from "vuetify"
 import { useRootStore } from "../../stores/root"
-import { useNuxtApp, useI18n, useLocalePath } from "#imports"
+import { useNuxtApp, computed } from "#imports"
 
-const { locale } = useI18n()
 const { name, mdAndDown, lgAndUp } = useDisplay()
-const localePath = useLocalePath()
+
 const rootStore = useRootStore()
 const { $stores } = useNuxtApp()
 const props = defineProps({
@@ -115,5 +104,16 @@ const props = defineProps({
     type: Number,
     required: true,
   },
+  pathPrefix: {
+    type: String,
+    required: true,
+  },
+  loading: {
+    type: Boolean,
+    required: false,
+    default: false,
+  },
 })
+
+const isLoading = computed(() => rootStore.loading || props.loading)
 </script>

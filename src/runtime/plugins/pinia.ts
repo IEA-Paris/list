@@ -1,7 +1,7 @@
 import type { AppConfig } from "nuxt/schema"
 import { createDynamicStore } from "../stores/factory"
 import { useRootStore } from "../stores/root"
-import { defineNuxtPlugin, useAppConfig } from "#app"
+import { defineNuxtPlugin, useAppConfig } from "#imports"
 
 export default defineNuxtPlugin(async (nuxtApp) => {
   const appConfig = useAppConfig() as AppConfig & {
@@ -124,7 +124,8 @@ export default defineNuxtPlugin(async (nuxtApp) => {
   const stores: Record<string, unknown> = {}
   const queries: Record<string, { list: unknown; get: unknown }> = {}
   const models: Record<string, unknown> = {}
-
+  const rootStore = useRootStore()
+  rootStore.setLoading(true)
   // Import filters from remote JSON
   const builtFilters = await import("../public/filters.json")
 
@@ -133,9 +134,8 @@ export default defineNuxtPlugin(async (nuxtApp) => {
   await Promise.all(
     appConfig.list.modules.map(async (type) => {
       try {
-        const imports = await moduleImports[
-          type as keyof typeof moduleImports
-        ]()
+        const imports =
+          await moduleImports[type as keyof typeof moduleImports]()
         const model = (await imports.model).default
         queries[type] = {
           list: (await imports.queries.list).default,
@@ -146,9 +146,12 @@ export default defineNuxtPlugin(async (nuxtApp) => {
       } catch (error) {
         console.error(`Failed to initialize ${type} store:`, error)
       }
-    })
+    }),
   )
-  const rootStore = useRootStore()
+  console.log(" STORES LOADED")
+
+  rootStore.setLoading(false)
+
   // Provide synchronous access to stores and queries
   nuxtApp.provide("models", models)
   nuxtApp.provide("rootStore", rootStore)

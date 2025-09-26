@@ -3,28 +3,23 @@
     v-ripple
     no-gutters
     class="cursor-pointer highlight-on-hover my-2"
-    @click="
-      $router.push(localePath('/activities/publications/' + item.slug[locale]))
-    "
+    @click="$router.push(pathPrefix)"
   >
     <v-col v-if="mdAndUp" cols="1" class="align-center">
       <MiscAtomsImageContainer
         cover
-        :loading="$stores.people.loading"
+        :loading="isLoading"
         :src="
           item && item.image && item.image.url ? item.image.url : '/default.png'
         "
         :ratio="1 / 1"
-        :name="item.lastname + ' ' + item.firstname"
-        :slug="item.slug && item.slug[locale]"
-        link="activities-publications-slug"
         width="80px"
       />
     </v-col>
     <v-col class="pl-2">
       <div class="inline-flex flex-row flex-wrap">
         <v-skeleton-loader
-          v-if="rootStore.loading"
+          v-if="isLoading"
           :type="
             ['chip', 'chip@2', 'chip@3', 'chip@4', 'chip@4', 'chip@4'][
               ['xs', 'sm', 'md', 'lg', 'xl', 'xxl'].indexOf(name || 'md')
@@ -52,11 +47,11 @@
           </v-chip>
           <MiscMoleculesChipContainer
             v-if="item.tags && item.tags.length"
-            :items="item.tags"
+            :items="item.tags || []"
             size="small"
           />
         </template>
-        <v-skeleton-loader v-if="rootStore.loading" type="heading" />
+        <v-skeleton-loader v-if="isLoading" type="heading" />
         <span
           v-else
           class="text-h5 dense paragraph"
@@ -81,12 +76,10 @@
 <script setup>
 import { useDisplay } from "vuetify"
 import { useRootStore } from "../../stores/root"
-import { computed, useNuxtApp, useI18n, useLocalePath } from "#imports"
+import { computed, useI18n } from "#imports"
 const rootStore = useRootStore()
 
-const { $stores } = useNuxtApp()
 const { name, mdAndUp } = useDisplay()
-const localePath = useLocalePath()
 const { locale } = useI18n()
 const props = defineProps({
   item: {
@@ -96,6 +89,15 @@ const props = defineProps({
   index: {
     type: Number,
     required: true,
+  },
+  pathPrefix: {
+    type: String,
+    required: true,
+  },
+  loading: {
+    type: Boolean,
+    required: false,
+    default: false,
   },
 })
 
@@ -113,4 +115,6 @@ const eventType = computed(() => {
     return false
   }
 })
+
+const isLoading = computed(() => props.loading)
 </script>

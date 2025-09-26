@@ -1,35 +1,39 @@
 <template>
-  <v-menu>
+  <v-menu :disabled="$stores[type].loading">
     <template #activator="{ props: menu }">
       <v-tooltip location="top">
         <template #activator="{ props: tooltip }">
-          <v-btn
-            x-large
-            outlined
-            tile
-            flat
-            icon
-            :class="{
-              'mt-3': isXsDisplay,
-            }"
-            v-bind="mergeProps(menu, tooltip)"
-          >
-            <v-icon>mdi-{{ current?.icon || defaultSort?.icon }}</v-icon>
-          </v-btn>
+          <template v-if="$stores[type].loading">
+            <v-skeleton-loader type="button" :class="{ 'mt-3': isXsDisplay }" />
+          </template>
+          <template v-else>
+            <v-btn
+              x-large
+              outlined
+              tile
+              flat
+              icon
+              :class="{ 'mt-3': isXsDisplay }"
+              v-bind="mergeProps(menu, tooltip)"
+            >
+              <v-icon>mdi-{{ current?.icon || defaultSort?.icon }}</v-icon>
+            </v-btn>
+          </template>
         </template>
         <div
           v-html="
             $t('list.sort-mode') +
-            $t('list.' + current.text || defaultSort.text)
+            $t('list.' + (current?.text || defaultSort?.text))
           "
         />
       </v-tooltip>
     </template>
     <v-list density="compact">
-      <template v-for="(item, index) in items">
+      <template v-for="(item, index) in $stores[props.type].sort">
         <v-list-item
           v-if="item.text !== current.text"
           :key="index"
+          :disabled="$stores[type].loading"
           @click="updateSort(item.value)"
         >
           <template #prepend>
@@ -59,7 +63,7 @@ const props = defineProps({
     required: true,
   },
 })
-const items = ref($stores[props.type].sort)
+const items = ref()
 const defaultSort = ref(
   $stores[props.type].sort[
     Object.keys($stores[props.type].sort).find(
@@ -87,7 +91,7 @@ const current = computed(() => {
 })
 
 const updateSort = async (value) => {
-  await rootStore.updateSort({ value, type: props.type, lang: locale.value })
+  rootStore.updateSort({ value, type: props.type, lang: locale.value })
 }
 </script>
 

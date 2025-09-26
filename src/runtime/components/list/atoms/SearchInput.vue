@@ -2,6 +2,7 @@
   <div class="d-flex flex-grow-1 flex-column">
     <v-text-field
       v-model.trim="search"
+      :id="inputId"
       :placeholder="$t('list.search-type', [$t('items.' + type, 2)])"
       :append-icon="type === 'all' ? 'mdi-magnify' : ''"
       prepend-inner-icon="mdi-magnify"
@@ -12,7 +13,7 @@
       clearable
       tile
       type="search"
-      :loading="rootStore.loading"
+      :loading="isLoading"
     >
       <!--    :loading="$nuxt.loading || $store.state.loading" :class="{ 'mt-3':
       $store.state.scrolled }" -->
@@ -46,14 +47,20 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
+  id: {
+    type: String,
+    required: false,
+    default: "",
+  },
 })
+const inputId = computed(() => props.id || `search-input-${props.type}`)
 const search = computed({
   get() {
     return props.type === "all"
       ? rootStore.search
       : $stores[props.type]?.search || ""
   },
-  set: await useDebounceFn(async function (v) {
+  set: useDebounceFn(async (v) => {
     await rootStore.updateSearch({
       type: props.type,
       search: v || "",
@@ -61,6 +68,12 @@ const search = computed({
     })
   }, 300),
 })
+
+const isLoading = computed(() =>
+  props.type === "all"
+    ? rootStore.loading
+    : Boolean($stores[props.type]?.loading),
+)
 </script>
 
 <style lang="scss" scoped></style>

@@ -82,7 +82,7 @@ export const highlightAndTruncate = (
 ): string => {
   try {
     if (!text) {
-      return "toto"
+      return ""
     }
     // check that query exists, has an array and has elements inside
     if (query?.length && query[0]?.length) {

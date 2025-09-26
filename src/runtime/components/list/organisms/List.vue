@@ -1,29 +1,30 @@
 <template>
   <ListMoleculesHeader :type="type" />
-  <component :is="view">
+  <component
+    :is="view"
+    :loading="$stores[type] && $stores[type].loading && pending"
+  >
     <component
       :is="itemTemplate"
       v-for="(item, index) in items"
-      :key="index"
-      :item="item"
-      :index="index"
-      :pathPrefix
+      :key="(item.name || item.lastname) + type + index"
+      :item
+      :index
+      :loading="$stores[type] && $stores[type].loading && pending"
+      :pathPrefix="
+        localePath({ name: pathPrefix, params: { slug: item.slug } })
+      "
     />
   </component>
   <div class="text-center">
-    <ListAtomsPerPage
-      v-if="numberOfPages > 1"
-      :type="type"
-      class="float-right"
-    />
+    <ListAtomsPerPage :type="type" class="float-right" />
 
     <ListMoleculesPagination
-      v-if="numberOfPages > 1"
-      :type="type"
-      color="black"
+      v-if="$stores[type].numberOfPages > 1"
+      :type
       large
-      :current-page="page"
-      :total-pages="numberOfPages"
+      :current-page="$stores[type].page"
+      :total-pages="$stores[type].numberOfPages"
       :page-padding="1"
       :page-gap="2"
       :hide-prev-next="false"
@@ -33,23 +34,25 @@
 </template>
 
 <script setup>
-import { nextTick, watch } from "vue"
+import { computed, onUpdated, onMounted, watch } from "vue"
 import { useRootStore } from "../../../stores/root"
 import { capitalize } from "../../../composables/useUtils"
 import {
   useNuxtApp,
   resolveComponent,
-  computed,
   onBeforeUnmount,
-  onMounted,
   useI18n,
   useRoute,
-  navigateTo,
+  useLocalePath,
+  useAsyncQuery,
 } from "#imports"
-const { $stores } = useNuxtApp()
+
+const { $stores, $queries } = useNuxtApp()
 const { locale } = useI18n()
 const route = useRoute()
 const rootStore = useRootStore()
+const localePath = useLocalePath()
+
 const props = defineProps({
   addBtn: {
     type: Boolean,
@@ -61,7 +64,7 @@ const props = defineProps({
     default: "people",
     required: true,
   },
-  layout: {
+  /*   layout: {
     type: Object,
     required: false,
     default: () => {
@@ -70,88 +73,119 @@ const props = defineProps({
         xl: 12,
       }
     },
+  }, */
+  pathPrefix: {
+    type: String,
+    required: true,
   },
-  pagination: {
-    type: Object,
-    required: false,
-    default: () => {
-      return {}
-    },
-  },
+
   addButton: {
     type: Boolean,
     required: false,
     default: false,
   },
-  items: [Object],
 })
 
+// Initialize loading state
+console.log("start llocal loading from setup")
+rootStore.setLoading(true, props.type)
+
+// Initial route -> store (single source-of-truth on first load)
+rootStore.loadRouteQuery(props.type)
+
+// Computed properties for dynamic components
 const view = computed(() =>
   props.customView
     ? resolveComponent("ListViews" + capitalize(props.customView))
-    : resolveComponent("ListViews" + capitalize($stores[props.type].view.name)),
+    : resolveComponent(
+        "ListViews" + capitalize($stores[props.type]?.view?.name || "list"),
+      ),
 )
 const itemTemplate = computed(() =>
   resolveComponent(
     (
       capitalize(props.type) +
-      capitalize($stores[props.type].view.name) +
+      capitalize($stores[props.type]?.view?.name || "list") +
       "Item"
     ).toString(),
   ),
 )
-const numberOfPages = computed(() => $stores[props.type].numberOfPages)
 
-const page = computed(() => {
-  const p = parseInt(route.query.page, 10)
-  return !isNaN(p) && p > 0 ? p : 1
+// Apollo: reactive query using variables computed from store
+const variables = computed(() => {
+  console.log("computed variables loop")
+  return rootStore.buildListVariables(props.type, locale.value)
 })
+console.log("Starting query for type: ", props.type)
+console.log("Using variables: ", variables.value)
 
-const items = computed(() => $stores[props.type].items)
-console.log("setup list")
-
-// On mounted: load filters and data
-onMounted(async () => {
-  // Load any route filters
-  rootStore.loadRouteQuery(props.type)
-  // Initialize store page from URL
-  const pageParam = parseInt(route.query.page, 10)
-  if (!isNaN(pageParam) && pageParam > 1) {
-    await rootStore.updatePage({
-      page: pageParam,
-      type: props.type,
-      lang: locale.value,
-    })
-  }
-  // Fetch initial items
-  try {
-    await rootStore.update(props.type, locale.value)
-  } catch (e) {
-    console.error("Error fetching list:", e)
-  }
-})
-
-watch(
-  () => page.value,
-  async (newPage) => {
-    const query = {
-      ...route.query,
-      page: newPage > 1 ? String(newPage) : undefined,
-    }
-    navigateTo({ query }, { replace: true })
-    await nextTick()
-    window.scrollTo({ top: 0, behavior: "smooth" })
+// Apollo GraphQL query with proper reactivity
+const { data, pending, error, refresh } = await useAsyncQuery(
+  $queries[props.type]?.list,
+  variables, // Pass the reactive computed, not its value
+  {
+    key: `list-${props.type}`, // Unique key for caching
+    server: true, // Enable SSR
   },
 )
+if (error.value) {
+  console.error("GraphQL query error: ", error.value)
+} else {
+  console.log("Query result data: ", data.value.items?.length)
+}
+
+// Apply data to store immediately if available
+if (data.value) {
+  console.log("Applying data to store directly [first load scenario]")
+  rootStore.applyListResult(props.type, data.value)
+}
+
+// Watch for variable changes to refresh and apply new data
+watch(
+  variables,
+  async (newVars, oldVars) => {
+    if (newVars && JSON.stringify(newVars) !== JSON.stringify(oldVars)) {
+      console.log("Variables changed, refreshing query, newVars: ", newVars)
+      console.log("start local loading from computed")
+      rootStore.setLoading(true, props.type)
+      await refresh()
+      if (data.value) {
+        console.log("Applying refreshed data to store")
+        rootStore.applyListResult(props.type, data.value)
+      }
+      rootStore.setLoading(false, props.type)
+    }
+  },
+  { deep: true },
+)
+
+// Reactive items computed from the store (single source of truth)
+const items = computed(() => $stores[props.type]?.items || [])
+
+onMounted(() => {
+  // On initial mount: clear loading state
+  console.log("STOP local loading from mounted")
+  rootStore.setLoading(false, props.type)
+})
+
 onBeforeUnmount(() => {
   rootStore.resetState(props.type, locale.value)
 })
 
 async function onPageChange(newPage) {
-  await rootStore.updatePage({
+  console.log("onPageChange: ", newPage)
+  rootStore.updatePage({
     page: newPage,
     type: props.type,
     lang: locale.value,
   })
+  if (typeof window !== "undefined") {
+    window.scrollTo({ top: 0, behavior: "smooth" })
+  }
 }
+/* 
+onUpdated(() => {
+  console.log("STOP local loading from updated")
+  rootStore.setLoading(false, props.type)
+}) */
 </script>

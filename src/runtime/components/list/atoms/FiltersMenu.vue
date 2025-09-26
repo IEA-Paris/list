@@ -12,6 +12,8 @@
         v-bind="tooltip"
         prepend-icon="mdi-tune-variant"
         :append-icon="open ? 'mdi-chevron-down' : 'mdi-chevron-up'"
+        :loading="$stores[type] && $stores[type].loading"
+        :disabled="$stores[type] && $stores[type].loading"
         @click="$emit('open', !open)"
       >
         <!--     <v-icon>mdi-tune-variant</v-icon> -->
@@ -26,6 +28,8 @@
 
 <script setup>
 import { useDisplay } from "vuetify"
+import { useNuxtApp } from "#imports"
+const { $stores } = useNuxtApp()
 const {
   name: nameDisplay,
   xs: isXsDisplay,
@@ -39,6 +43,11 @@ const props = defineProps({
     type: Boolean,
     required: false,
     default: false,
+  },
+  type: {
+    type: String,
+    required: false,
+    default: "",
   },
 })
 </script>

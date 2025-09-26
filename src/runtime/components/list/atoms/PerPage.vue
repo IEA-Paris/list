@@ -1,12 +1,13 @@
 <template>
   <v-select
+    :id="'per-page-select' + type"
     v-model="itemsPerPage"
     class="perPageSelect"
-    density="compact"
     variant="outlined"
     :items="itemsPerPageArray"
     hide-details
-    :loading="$rootStore.loading"
+    density="compact"
+    :loading="$stores[type] && $stores[type].loading"
     @update:model-value="
       $rootStore.updateItemsPerPage({
         value: $event,

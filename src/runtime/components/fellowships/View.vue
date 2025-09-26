@@ -10,7 +10,7 @@
           <!--   FELLOWSHIP IMAGE -->
           <MiscAtomsImageContainer
             contain
-            :loading
+            :loading="loading"
             :src="item.image"
             :ratio="1 / 1"
           />
@@ -131,7 +131,7 @@
               :items="item.fellows || []"
               type="people"
               lazy
-              :loading
+              :loading="loading"
             >
               <div :class="mdAndUp ? 'text-h5' : 'text-h6'">
                 {{ $t("this-fellowship-alumni") }}

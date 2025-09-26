@@ -1,34 +1,34 @@
 <template>
   <v-row
-    class="highlight-on-hover pa-3"
+    class="my-2 highlight-on-hover"
     no-gutters
     @click="$router.push(pathPrefix)"
   >
-    <v-col v-if="mdAndUp" cols="12" md="3">
+    <v-col v-if="mdAndUp" cols="12" md="2">
       <MiscAtomsImageContainer
-        cover
+        :loading="isLoading"
         :src="imageSrc"
         :ratio="1 / 1"
-        :loading="isLoading"
+        cover
       />
     </v-col>
-    <v-col cols="12" :md="mdAndUp ? 9 : 12" class="px-6">
+    <v-col cols="12" :md="mdAndUp ? 10 : 12" class="px-4">
       <v-skeleton-loader
         v-if="isLoading"
         :type="
           [
-            'heading, ossein, text@6, button',
-            'heading, ossein, text@6, button',
-            'heading, ossein, text@4, button',
-            'heading, ossein, text@4, button',
-            'heading, ossein, text@4, button',
-            'heading, ossein, text@4, button',
+            'heading, subtitle, text@6',
+            'heading, subtitle, text@6',
+            'heading, subtitle, text@4',
+            'heading, subtitle, text@4',
+            'heading, subtitle, text@4',
+            'heading, subtitle, text@4',
           ][['xs', 'sm', 'md', 'lg', 'xl', 'xxl'].indexOf(name || 'md')]
         "
       />
       <template v-else>
-        <div class="text-h5 text-wrap">{{ item.name }}</div>
-        <div v-if="item.summary" class="mt-2">
+        <div class="text-h5">{{ item.name }}</div>
+        <div v-if="item.summary" class="text-body-1 mt-2">
           <MDC :value="item.summary" />
         </div>
       </template>

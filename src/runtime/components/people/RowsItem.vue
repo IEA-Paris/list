@@ -2,30 +2,20 @@
   <v-divider v-if="index > 0" />
   <v-row
     class="my-6 ml-md-1 px-3 px-md-0 highlight-on-hover"
-    @click="
-      $router.push(
-        localePath({
-          name: 'people-slug',
-          params: { slug: item.slug },
-        }),
-      )
-    "
+    @click="$router.push(pathPrefix)"
   >
     <v-col v-if="mdAndUp" cols="12" md="3">
       <MiscAtomsImageContainer
         cover
-        :loading="$stores.people.loading"
+        :loading="isLoading"
         :src="item.image.url ? item.image : '/default.png'"
         :ratio="1 / 1"
-        :name="item.lastname + ' ' + item.firstname"
-        :slug="item.slug"
-        link="people-slug"
       />
     </v-col>
 
     <v-col cols="12" md="8">
       <v-skeleton-loader
-        v-if="$stores.people.loading"
+        v-if="isLoading"
         :type="
           [
             'heading, subtitle, text@5',
@@ -39,17 +29,9 @@
       />
 
       <div v-else class="ml-md-8">
-        <NuxtLink
-          :to="
-            localePath({
-              name: 'people-slug',
-              params: { slug: item.slug },
-            })
-          "
-          class="text-wrap text-h5 text-md-h4 text-black"
-        >
+        <div class="text-wrap text-h5 text-md-h4 text-black">
           {{ item.firstname + " " + item.lastname }}
-        </NuxtLink>
+        </div>
         <MiscAtomsSocials v-if="item.socials" :socials="item.socials" />
         <PeoplepBadges :item="item" />
         <div
@@ -71,9 +53,11 @@
 <script setup>
 import { useDisplay } from "vuetify"
 import { useLocalePath, computed } from "#imports"
+import { useRootStore } from "../../stores/root"
 
 const { name, mdAndUp } = useDisplay()
 const localePath = useLocalePath()
+const rootStore = useRootStore()
 const props = defineProps({
   item: {
     type: Object,
@@ -82,6 +66,11 @@ const props = defineProps({
   index: {
     type: Number,
     required: true,
+  },
+  loading: {
+    type: Boolean,
+    required: false,
+    default: false,
   },
 })
 const lineClamp = computed(() => {
@@ -98,4 +87,6 @@ const lineClamp = computed(() => {
 
   return base
 })
+
+const isLoading = computed(() => rootStore.loading || props.loading)
 </script>

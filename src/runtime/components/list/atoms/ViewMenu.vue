@@ -1,23 +1,26 @@
 <template>
-  <v-menu>
+  <v-menu :disabled="$stores[type].loading">
     <template #activator="{ props: menu }">
       <v-tooltip location="top">
         <template #activator="{ props: tooltip }">
-          <v-btn
-            x-large
-            tile
-            flat
-            :icon="'mdi-' + current?.icon || defaultView?.icon"
-            :class="{
-              'mt-3': isXsDisplay,
-            }"
-            v-bind="mergeProps(menu, tooltip)"
-          />
+          <template v-if="$stores[type].loading">
+            <v-skeleton-loader type="button" :class="{ 'mt-3': isXsDisplay }" />
+          </template>
+          <template v-else>
+            <v-btn
+              x-large
+              tile
+              flat
+              :icon="'mdi-' + (current?.icon || defaultView?.icon)"
+              :class="{ 'mt-3': isXsDisplay }"
+              v-bind="mergeProps(menu, tooltip)"
+            />
+          </template>
         </template>
         <div
           v-html="
             $t('list.view-mode') +
-            $t('list.' + current.name || defaultView.name)
+            $t('list.' + (current?.name || defaultView?.name))
           "
         />
       </v-tooltip>
@@ -26,6 +29,7 @@
       <v-list-item
         v-for="(value, key, index) in items"
         :key="index"
+        :disabled="$stores[type].loading"
         @click="updateView(value.name || key)"
       >
         <template #prepend>
@@ -43,7 +47,7 @@
 import { mergeProps } from "vue"
 import { useDisplay } from "vuetify"
 import { useRootStore } from "../../../stores/root"
-import { useNuxtApp, ref, useI18n } from "#imports"
+import { useNuxtApp, ref, useI18n, computed } from "#imports"
 const { locale } = useI18n()
 const { $stores } = useNuxtApp()
 
@@ -61,8 +65,16 @@ const items = ref($stores[props.type].views)
 
 const current = ref($stores[props.type].view)
 
+const defaultView = ref(
+  $stores[props.type].views[
+    Object.keys($stores[props.type].views).find(
+      (k) => $stores[props.type].views[k]?.default === true,
+    )
+  ] || { name: "list", icon: "view-list" },
+)
+
 const updateView = async (value) => {
-  await rootStore.updateView({ value, type: props.type, lang: locale.value })
+  rootStore.updateView({ value, type: props.type, lang: locale.value })
 }
 </script>
 

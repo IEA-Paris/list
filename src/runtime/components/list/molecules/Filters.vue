@@ -1,15 +1,16 @@
 <template>
   <v-row>
-    <template v-for="filterItem in Object.keys($stores[type].filters)">
+    <template v-for="(filterItem, index) in Object.keys($stores[type].filters)">
       <v-col
         v-if="computeVisibility(filterItem)"
-        :key="type + filterItem"
+        :key="type + index + filterItem"
         cols="12"
         sm="6"
         md="4"
       >
         <component
           :is="ComponentName(filterItem)"
+          :id="type + index + filterItem"
           tile
           :name="filterItem"
           hide-details

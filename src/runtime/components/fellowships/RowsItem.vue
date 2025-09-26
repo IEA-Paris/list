@@ -1,19 +1,12 @@
 <template>
   <v-col cols="12" md="6" class="highlight-on-hover">
     <div v-ripple class="border-thin pa-6">
-      <FellowshipsBadges :item="item" />
+      <FellowshipsBadges :item :pathPrefix />
       <div class="d-flex">
-        <nuxt-link
-          :to="
-            localePath({
-              name: 'activities-fellowships-slug',
-              params: { slug: item.slug[locale] },
-            })
-          "
-          class="text-h4 text-black text-wrap mt-4 pb-4"
-        >
+        <v-skeleton-loader v-if="isLoading" type="heading" />
+        <div v-else class="text-h4 text-black text-wrap mt-4 pb-4">
           {{ item.name }}
-        </nuxt-link>
+        </div>
       </div>
       <div
         class="text-wrap clamped-text d-flex"
@@ -24,9 +17,12 @@
           ]
         "
       >
-        <MDC v-if="item.description" :value="item.description" />
+        <v-skeleton-loader v-if="isLoading" type="text@4" />
+        <MDC v-else-if="item.description" :value="item.description" />
       </div>
+      <v-skeleton-loader v-if="isLoading" type="chip@3" class="mt-2" />
       <MiscMoleculesChipContainer
+        v-else
         :items="[
           $t('list.filters.fellowships.fellowshipType.' + item.fellowshipType),
           ...(props.item && props.item.disciplines
@@ -41,11 +37,10 @@
 
 <script setup>
 import { useDisplay } from "vuetify"
-import { useLocalePath, useI18n } from "#imports"
+import { computed } from "#imports"
+import { useRootStore } from "../../stores/root"
 
 const { name } = useDisplay()
-const localePath = useLocalePath()
-const { locale } = useI18n()
 
 const props = defineProps({
   item: {
@@ -56,7 +51,19 @@ const props = defineProps({
     type: Number,
     required: true,
   },
+  pathPrefix: {
+    type: String,
+    required: true,
+  },
+  loading: {
+    type: Boolean,
+    required: false,
+    default: false,
+  },
 })
+
+const rootStore = useRootStore()
+const isLoading = computed(() => rootStore.loading || props.loading)
 </script>
 
 <style lang="scss"></style>
