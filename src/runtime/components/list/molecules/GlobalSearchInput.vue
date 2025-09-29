@@ -2,6 +2,7 @@
   <div class="d-flex flex-grow-1 flex-column">
     <div class="d-flex align-center">
       <v-text-field
+        :id="`global-search-input-${type}`"
         v-model.trim="search"
         :placeholder="
           type === 'all'

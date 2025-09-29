@@ -30,7 +30,7 @@
 </template>
 
 <script setup>
-import { ref, computed } from "vue"
+import { ref, unref, computed } from "vue"
 import { useNuxtApp } from "#imports"
 const { $stores } = useNuxtApp()
 

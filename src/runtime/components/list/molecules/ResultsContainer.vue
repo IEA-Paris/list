@@ -6,6 +6,7 @@
         size="large"
         class=""
         @click="$emit('toggle', type)"
+        :disabled="$rootStore.results[type]?.total === 0"
       >
         <v-icon size="large">{{
           open ? "mdi-chevron-down" : "mdi-chevron-right"
@@ -53,6 +54,7 @@
       color="default"
       variant="text"
       rounded="0"
+      v-if="$rootStore.results[type]?.total > 0"
       :to="localePath(type === 'people' ? '/people' : '/activities/' + type)"
     >
       {{ $t("list.pls-x-more", [$rootStore.results[type].total]) }}

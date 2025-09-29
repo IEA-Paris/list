@@ -31,8 +31,9 @@ import {
   useAppConfig,
   ref,
   computed,
+  watch,
 } from "#imports"
-
+import SEARCH from "../../../graphql/list/search.gql"
 // Component name for linting
 defineOptions({
   name: "SearchResults",
@@ -70,24 +71,44 @@ const filteredSortedModules = computed(() => {
   )
 })
 
-onMounted(async () => {
-  // Initialize the page from the route
-  console.log("mounted list")
+// Apollo GraphQL query with proper reactivity
+const { data, pending, error, refresh } = await useAsyncQuery(
+  SEARCH,
+  { search: $rootStore.search }, // Pass the reactive computed, not its value
+  {
+    key: `search`, // Unique key for caching
+    server: true, // Enable SSR
+  },
+)
+if (error.value) {
+  console.error("GraphQL query error: ", error.value)
+} else {
+  console.log("Query result data: ", data.value.items?.length)
+}
 
-  try {
-    await $rootStore.update("all", locale.value)
-
-    // Set all types to be expanded by default when they have results
-    appConfig.list.modules.forEach((type) => {
-      if ($rootStore.results[type]?.total > 0) {
-        open.value[type] = true
+// Apply data to store immediately if available
+if (data.value) {
+  console.log("Applying data to store directly [first load scenario]")
+  $rootStore.applyListResult("all", data.value)
+}
+// Watch for variable changes to refresh and apply new data
+watch(
+  $rootStore.search,
+  async (newVars, oldVars) => {
+    if (newVars && JSON.stringify(newVars) !== JSON.stringify(oldVars)) {
+      console.log("Variables changed, refreshing query, newVars: ", newVars)
+      console.log("start local loading from computed")
+      rootStore.setLoading(true, props.type)
+      await refresh()
+      if (data.value) {
+        console.log("Applying refreshed data to store")
+        rootStore.applyListResult("all", data.value)
       }
-    })
-  } catch (error) {
-    console.log("error fetching update list: ", error)
-  }
-})
-
+      rootStore.setLoading(false, props.type)
+    }
+  },
+  { deep: true },
+)
 onBeforeUnmount(() => {
   /* rootStore.resetState("all", locale.value) */
 })
