@@ -25,11 +25,7 @@
         $store.state.scrolled }" -->
         <template v-if="!search" #label>
           <div class="searchLabel">
-            {{
-              type === "all"
-                ? $t("search")
-                : $t("list.search-type", [$t("items." + type, 2)])
-            }}
+            {{ $t("search") }}
           </div>
         </template>
       </v-text-field>
@@ -79,16 +75,14 @@
         </v-card>
       </v-menu>
       <v-btn
-        v-bind="attrs"
         :rounded="0"
-        variant="test"
+        variant="outlined"
         size="large"
         height="56"
-        v-on="on"
         @keyup.enter="$router.push(localePath('/search'))"
         @click="$router.push(localePath('/search'))"
       >
-        <v-icon>mdi-magnify</v-icon>
+        <v-icon size="large">mdi-magnify</v-icon>
         <v-tooltip activator="parent" location="start">{{
           $t("click-here-to-search")
         }}</v-tooltip>
@@ -100,15 +94,14 @@
 <script setup>
 import { useDebounceFn } from "@vueuse/core"
 import { useRootStore } from "../../../stores/root"
-import { computed, useI18n, ref } from "#imports"
+import { computed, useI18n, ref, useLocalePath } from "#imports"
+const localePath = useLocalePath()
 const { locale, t } = useI18n()
 const rootStore = useRootStore()
 
 // Utility function to capitalize first letter
 const capitalize = (str) => str.charAt(0).toUpperCase() + str.slice(1)
-
 const emit = defineEmits(["filter-change"])
-
 const props = defineProps({
   type: {
     type: String,
@@ -163,8 +156,12 @@ const search = computed({
   get() {
     return rootStore.search
   },
-  set: await useDebounceFn(async function (v) {
-    await rootStore.updateSearch({
+  set: useDebounceFn(function (v) {
+    emit("change", {
+      name: "search",
+      value: v,
+    })
+    rootStore.updateSearch({
       type: props.type,
       search: v || "",
       lang: locale.value,

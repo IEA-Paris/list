@@ -4,6 +4,7 @@
     :placeholder="$t('search')"
     variant="outlined"
     :categories="selectedCategories"
+    @change="updateSearch($event)"
     @filter-change="handleFilterChange"
   />
   <ListMoleculesResultsContainer
@@ -74,9 +75,9 @@ const filteredSortedModules = computed(() => {
 // Apollo GraphQL query with proper reactivity
 const { data, pending, error, refresh } = await useAsyncQuery(
   SEARCH,
-  { search: $rootStore.search }, // Pass the reactive computed, not its value
+  { search: $rootStore.search, appId: "iea", locale: locale.value },
   {
-    key: `search`, // Unique key for caching
+    key: `search-${$rootStore.search}`, // Unique key for caching
     server: true, // Enable SSR
   },
 )
@@ -91,24 +92,16 @@ if (data.value) {
   console.log("Applying data to store directly [first load scenario]")
   $rootStore.applyListResult("all", data.value)
 }
-// Watch for variable changes to refresh and apply new data
-watch(
-  $rootStore.search,
-  async (newVars, oldVars) => {
-    if (newVars && JSON.stringify(newVars) !== JSON.stringify(oldVars)) {
-      console.log("Variables changed, refreshing query, newVars: ", newVars)
-      console.log("start local loading from computed")
-      rootStore.setLoading(true, props.type)
-      await refresh()
-      if (data.value) {
-        console.log("Applying refreshed data to store")
-        rootStore.applyListResult("all", data.value)
-      }
-      rootStore.setLoading(false, props.type)
+const updateSearch = async (newSearch) => {
+  console.log("update search")
+  if (newSearch !== $rootStore.search) {
+    await refresh()
+    if (data.value) {
+      console.log("Applying data to store directly [first load scenario]")
+      $rootStore.applyListResult("all", data.value)
     }
-  },
-  { deep: true },
-)
+  }
+}
 onBeforeUnmount(() => {
   /* rootStore.resetState("all", locale.value) */
 })

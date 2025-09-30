@@ -17,9 +17,9 @@
         @click="$emit('toggle', type)"
       >
         <div
-          class="text-h4"
+          class="text-h5 font-weight-medium"
           :class="
-            $rootStore.results[type].total > 0 ? '' : 'text-grey darken-2'
+            $rootStore.results[type].total > 0 ? 'black' : 'text-grey darken-2'
           "
         >
           {{ capitalize($t("items." + props.type, 2)) }}
@@ -60,6 +60,7 @@
       {{ $t("list.pls-x-more", [$rootStore.results[type].total]) }}
     </v-btn>
   </div>
+  <v-divider></v-divider>
 </template>
 <script setup>
 import { useNuxtApp, useLocalePath } from "#imports"
