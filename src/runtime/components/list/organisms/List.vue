@@ -171,17 +171,28 @@ onMounted(() => {
 onBeforeUnmount(() => {
   rootStore.resetState(props.type, locale.value)
 })
-
 async function onPageChange(newPage) {
   console.log("onPageChange: ", newPage)
+
+  // Set loading state first
+  rootStore.setLoading(true, props.type)
+
+  // Update the page in the store
   rootStore.updatePage({
     page: newPage,
     type: props.type,
     lang: locale.value,
   })
-  if (typeof window !== "undefined") {
-    window.scrollTo({ top: 0, behavior: "smooth" })
-  }
+
+  // Wait for the next tick to ensure DOM updates
+  await nextTick()
+
+  // Use setTimeout to ensure the scroll happens after route transition completes
+  setTimeout(() => {
+    if (typeof window !== "undefined") {
+      window.scrollTo({ top: 0, behavior: "smooth" })
+    }
+  }, 0)
 }
 /* 
 onUpdated(() => {
