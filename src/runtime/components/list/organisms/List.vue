@@ -34,13 +34,17 @@
 </template>
 
 <script setup>
-import { computed, onUpdated, onMounted, watch } from "vue"
 import { useRootStore } from "../../../stores/root"
 import { capitalize } from "../../../composables/useUtils"
 import {
   useNuxtApp,
   resolveComponent,
+  computed,
+  onUpdated,
+  onMounted,
+  watch,
   onBeforeUnmount,
+  nextTick,
   useI18n,
   useRoute,
   useLocalePath,
@@ -194,7 +198,7 @@ async function onPageChange(newPage) {
     }
   }, 0)
 }
-/* 
+/*
 onUpdated(() => {
   console.log("STOP local loading from updated")
   rootStore.setLoading(false, props.type)
