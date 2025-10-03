@@ -4,7 +4,6 @@ query getFellowship(
   $lang: String = "en"
 ) {
   getFellowship(appId: $appId, itemId: $itemId, lang: $lang) {
-    id
     action
     applicationStart
     fellowshipStart
@@ -20,7 +19,7 @@ query getFellowship(
     summary
     description
     fellows {
-      id
+  
       firstname
       lastname
       image {
@@ -39,7 +38,6 @@ query getFellowship(
       file
       fileType
       hash
-      id
       image {
         alt
         caption

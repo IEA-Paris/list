@@ -5,7 +5,6 @@ query listPeople(
 ) {
   listPeople(options: $options, appId: $appId, lang: $lang) {
     items {
-      id
       slug
       biography
       firstname

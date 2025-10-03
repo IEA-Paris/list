@@ -10,7 +10,6 @@ query listNews(
         fr
         en
       }
-      id
       category
       color
       date

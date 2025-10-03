@@ -13,7 +13,6 @@ query listEvents(
       eventType
       summary
       subtitle
-      id
       image {
         alt
         backgroundColor
@@ -27,7 +26,6 @@ query listEvents(
       outside
       place {
         address
-        id
         name
         url
       }
