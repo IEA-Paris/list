@@ -3,7 +3,6 @@ query search($appId: ID = "", $search: String = "", $lang: String = "en") {
     people {
       items {
         firstname
-        id
         groups {
           board
           fellows
@@ -34,7 +33,6 @@ query search($appId: ID = "", $search: String = "", $lang: String = "en") {
     projects {
       items {
         date
-        id
         featured
         name
         image {

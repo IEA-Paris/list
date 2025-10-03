@@ -6,7 +6,6 @@ query listPublications(
   listPublications(options: $options, appId: $appId, lang: $lang) {
     items {
       date
-      id
       eventCategory
       type
       image {
