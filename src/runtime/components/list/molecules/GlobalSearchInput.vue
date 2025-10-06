@@ -1,93 +1,91 @@
 <template>
-  <div class="d-flex flex-grow-1 flex-column">
-    <div class="d-flex align-center">
-      <v-text-field
-        :id="`global-search-input-${type}`"
-        v-model.trim="search"
-        :placeholder="
-          type === 'all'
-            ? t('search')
-            : $t('list.search-type', [$t('items.' + type, 2)])
-        "
-        prepend-inner-icon="mdi-magnify"
-        single-line
-        class="transition-swing flex-grow-1"
-        variant="outlined"
-        hide-details
-        clearable
-        tile
-        type="search"
-        :loading="rootStore.loading"
-        @keyup.enter="$router.push(localePath('/search'))"
-        @click:append="$router.push(localePath('/search'))"
-      >
-        <!--    :loading="$nuxt.loading || $store.state.loading" :class="{ 'mt-3':
+  <div class="d-flex align-center">
+    <v-text-field
+      :id="`global-search-input-${type}`"
+      v-model.trim="search"
+      :placeholder="
+        type === 'all'
+          ? t('search')
+          : $t('list.search-type', [$t('items.' + type, 2)])
+      "
+      prepend-inner-icon="mdi-magnify"
+      single-line
+      class="transition-swing flex-grow-1"
+      variant="outlined"
+      hide-details
+      clearable
+      tile
+      type="search"
+      :loading="rootStore.loading"
+      @keyup.enter="$router.push(localePath('/search'))"
+      @click:append="$router.push(localePath('/search'))"
+    >
+      <!--    :loading="$nuxt.loading || $store.state.loading" :class="{ 'mt-3':
         $store.state.scrolled }" -->
-        <template v-if="!search" #label>
-          <div class="searchLabel">
-            {{ $t("search") }}
-          </div>
-        </template>
-      </v-text-field>
+      <template v-if="!search" #label>
+        <div class="searchLabel">
+          {{ $t("search") }}
+        </div>
+      </template>
+    </v-text-field>
 
-      <v-menu
-        v-if="filter"
-        v-model="filterMenuOpen"
-        :close-on-content-click="false"
-        location="bottom end"
-        offset="4"
-      >
-        <template #activator="{ props: menuProps }">
-          <v-btn
-            v-bind="menuProps"
-            :rounded="0"
-            variant="text"
-            size="large"
-            height="56"
+    <v-menu
+      v-if="filter"
+      v-model="filterMenuOpen"
+      :close-on-content-click="false"
+      location="bottom end"
+      offset="4"
+    >
+      <template #activator="{ props: menuProps }">
+        <v-btn
+          v-bind="menuProps"
+          :rounded="0"
+          variant="text"
+          size="large"
+          height="56"
+        >
+          <v-icon>mdi-filter</v-icon>
+          <v-icon class="ml-1" size="small">
+            {{ filterMenuOpen ? "mdi-chevron-up" : "mdi-chevron-down" }}
+          </v-icon>
+          <v-tooltip activator="parent" location="start">
+            {{ $t("filter-by-type") }}
+          </v-tooltip>
+        </v-btn>
+      </template>
+
+      <v-card min-width="200">
+        <v-list density="compact">
+          <v-list-item
+            v-for="option in filterOptions"
+            :key="option.value"
+            @click="toggleFilter(option)"
           >
-            <v-icon>mdi-filter</v-icon>
-            <v-icon class="ml-1" size="small">
-              {{ filterMenuOpen ? "mdi-chevron-up" : "mdi-chevron-down" }}
-            </v-icon>
-            <v-tooltip activator="parent" location="start">
-              {{ $t("filter-by-type") }}
-            </v-tooltip>
-          </v-btn>
-        </template>
-
-        <v-card min-width="200">
-          <v-list density="compact">
-            <v-list-item
-              v-for="option in filterOptions"
-              :key="option.value"
-              @click="toggleFilter(option)"
-            >
-              <template #prepend>
-                <v-checkbox
-                  hide-details
-                  :model-value="categories.includes(option.value)"
-                  @update:model-value="toggleFilter(option)"
-                />
-              </template>
-              <v-list-item-title>{{ option.label }}</v-list-item-title>
-            </v-list-item>
-          </v-list>
-        </v-card>
-      </v-menu>
-      <v-btn
-        :rounded="0"
-        variant="outlined"
-        size="large"
-        height="56"
-        @keyup.enter="$router.push(localePath('/search'))"
-        @click="$router.push(localePath('/search'))"
-      >
-        <v-icon size="large">mdi-magnify</v-icon>
-        <v-tooltip activator="parent" location="start">{{
-          $t("click-here-to-search")
-        }}</v-tooltip>
-      </v-btn>
-    </div>
+            <template #prepend>
+              <v-checkbox
+                hide-details
+                :model-value="categories.includes(option.value)"
+                @update:model-value="toggleFilter(option)"
+              />
+            </template>
+            <v-list-item-title>{{ option.label }}</v-list-item-title>
+          </v-list-item>
+        </v-list>
+      </v-card>
+    </v-menu>
+    <v-btn
+      :rounded="0"
+      variant="outlined"
+      size="large"
+      height="56"
+      @keyup.enter="$router.push(localePath('/search'))"
+      @click="$router.push(localePath('/search'))"
+    >
+      <v-icon size="large">mdi-magnify</v-icon>
+      <v-tooltip activator="parent" location="start">{{
+        $t("click-here-to-search")
+      }}</v-tooltip>
+    </v-btn>
   </div>
 </template>
 
