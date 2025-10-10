@@ -10,110 +10,169 @@ export default defineNuxtPlugin(async (nuxtApp) => {
     }
   }
 
-  // Define module imports
+  // Define module imports using the GraphQL client structure from @paris-ias/data
+  // This imports GraphQL operations from the centralized types package
+  // Only modules specified in appConfig.list.modules will be actually imported and initialized
   const moduleImports = {
     events: () => ({
       model: import("@paris-ias/data/dist/list/events.js"),
       queries: {
-        list: import("../graphql/list/events.gql"),
-        get: import("../graphql/item/events.gql"),
+        list: import(
+          "@paris-ias/data/dist/graphql/client/events/query.list.events.gql"
+        ),
+        get: import(
+          "@paris-ias/data/dist/graphql/client/events/query.get.events.gql"
+        ),
       },
     }),
     news: () => ({
       model: import("@paris-ias/data/dist/list/news.js"),
       queries: {
-        list: import("../graphql/list/news.gql"),
-        get: import("../graphql/item/news.gql"),
+        list: import(
+          "@paris-ias/data/dist/graphql/client/news/query.list.news.gql"
+        ),
+        get: import(
+          "@paris-ias/data/dist/graphql/client/news/query.get.news.gql"
+        ),
       },
     }),
     people: () => ({
       model: import("@paris-ias/data/dist/list/people.js"),
       queries: {
-        list: import("../graphql/list/people.gql"),
-        get: import("../graphql/item/people.gql"),
+        list: import(
+          "@paris-ias/data/dist/graphql/client/people/query.list.people.gql"
+        ),
+        get: import(
+          "@paris-ias/data/dist/graphql/client/people/query.get.people.gql"
+        ),
       },
     }),
     projects: () => ({
       model: import("@paris-ias/data/dist/list/projects.js"),
       queries: {
-        list: import("../graphql/list/projects.gql"),
-        get: import("../graphql/item/projects.gql"),
+        list: import(
+          "@paris-ias/data/dist/graphql/client/projects/query.list.projects.gql"
+        ),
+        get: import(
+          "@paris-ias/data/dist/graphql/client/projects/query.get.projects.gql"
+        ),
       },
     }),
     fellowships: () => ({
       model: import("@paris-ias/data/dist/list/fellowships.js"),
       queries: {
-        list: import("../graphql/list/fellowships.gql"),
-        get: import("../graphql/item/fellowships.gql"),
+        list: import(
+          "@paris-ias/data/dist/graphql/client/fellowships/query.list.fellowships.gql"
+        ),
+        get: import(
+          "@paris-ias/data/dist/graphql/client/fellowships/query.get.fellowships.gql"
+        ),
       },
     }),
     publications: () => ({
       model: import("@paris-ias/data/dist/list/publications.js"),
       queries: {
-        list: import("../graphql/list/publications.gql"),
-        get: import("../graphql/item/publications.gql"),
+        list: import(
+          "@paris-ias/data/dist/graphql/client/publications/query.list.publications.gql"
+        ),
+        get: import(
+          "@paris-ias/data/dist/graphql/client/publications/query.get.publications.gql"
+        ),
       },
     }),
 
-    actions: () => ({
+    // Fixed: changed 'actions' to 'action' to match the actual module name
+    action: () => ({
       model: import("@paris-ias/data/dist/list/action.js"),
       queries: {
-        list: import("../graphql/list/action.gql"),
-        get: import("../graphql/item/action.gql"),
+        list: import(
+          "@paris-ias/data/dist/graphql/client/action/query.list.action.gql"
+        ),
+        get: import(
+          "@paris-ias/data/dist/graphql/client/action/query.get.action.gql"
+        ),
       },
     }),
 
     affiliation: () => ({
       model: import("@paris-ias/data/dist/list/affiliation.js"),
       queries: {
-        list: import("../graphql/list/affiliations.gql"),
-        get: import("../graphql/item/affiliations.gql"),
+        list: import(
+          "@paris-ias/data/dist/graphql/client/affiliation/query.list.affiliations.gql"
+        ),
+        get: import(
+          "@paris-ias/data/dist/graphql/client/affiliation/query.get.affiliations.gql"
+        ),
       },
     }),
     disciplines: () => ({
       model: import("@paris-ias/data/dist/list/disciplines.js"),
       queries: {
-        list: import("../graphql/list/disciplines.gql"),
-        get: import("../graphql/item/disciplines.gql"),
+        list: import(
+          "@paris-ias/data/dist/graphql/client/misc/query.list.disciplines.gql"
+        ),
+        get: import(
+          "@paris-ias/data/dist/graphql/client/misc/query.get.disciplines.gql"
+        ),
       },
     }),
     files: () => ({
       model: import("@paris-ias/data/dist/list/files.js"),
       queries: {
-        list: import("../graphql/list/files.gql"),
-        get: import("../graphql/item/files.gql"),
+        list: import(
+          "@paris-ias/data/dist/graphql/client/files/query.list.files.gql"
+        ),
+        get: import(
+          "@paris-ias/data/dist/graphql/client/files/query.get.files.gql"
+        ),
       },
     }),
 
     mailing: () => ({
       model: import("@paris-ias/data/dist/list/mailing.js"),
       queries: {
-        list: import("../graphql/list/mailing.gql"),
-        get: import("../graphql/item/mailing.gql"),
+        list: import(
+          "@paris-ias/data/dist/graphql/client/mailing/query.list.mailing.gql"
+        ),
+        get: import(
+          "@paris-ias/data/dist/graphql/client/mailing/query.get.mailing.gql"
+        ),
       },
     }),
 
     tags: () => ({
       model: import("@paris-ias/data/dist/list/tags.js"),
       queries: {
-        list: import("../graphql/list/tags.gql"),
-        get: import("../graphql/item/tags.gql"),
+        list: import(
+          "@paris-ias/data/dist/graphql/client/misc/query.list.tags.gql"
+        ),
+        get: import(
+          "@paris-ias/data/dist/graphql/client/misc/query.get.tags.gql"
+        ),
       },
     }),
 
     apps: () => ({
       model: import("@paris-ias/data/dist/list/apps.js"),
       queries: {
-        list: import("../graphql/list/apps.gql"),
-        get: import("../graphql/item/apps.gql"),
+        list: import(
+          "@paris-ias/data/dist/graphql/client/apps/query.list.apps.gql"
+        ),
+        get: import(
+          "@paris-ias/data/dist/graphql/client/apps/query.get.apps.gql"
+        ),
       },
     }),
 
     users: () => ({
       model: import("@paris-ias/data/dist/list/users.js"),
       queries: {
-        list: import("../graphql/list/users.gql"),
-        get: import("../graphql/item/users.gql"),
+        list: import(
+          "@paris-ias/data/dist/graphql/client/people/query.list.users.gql"
+        ),
+        get: import(
+          "@paris-ias/data/dist/graphql/client/people/query.get.users.gql"
+        ),
       },
     }),
 
@@ -130,12 +189,13 @@ export default defineNuxtPlugin(async (nuxtApp) => {
   const builtFilters = await import("../public/filters.json")
 
   console.log("INITIALIZING STORES")
-  // Preload all required modules
+  // Preload all required modules - only modules in appConfig.list.modules are loaded
   await Promise.all(
-    appConfig.list.modules.map(async (type) => {
+    appConfig.list.modules.map(async (type: string) => {
       try {
-        const imports =
-          await moduleImports[type as keyof typeof moduleImports]()
+        const imports = await moduleImports[
+          type as keyof typeof moduleImports
+        ]()
         const model = (await imports.model).default
         queries[type] = {
           list: (await imports.queries.list).default,
@@ -146,7 +206,7 @@ export default defineNuxtPlugin(async (nuxtApp) => {
       } catch (error) {
         console.error(`Failed to initialize ${type} store:`, error)
       }
-    }),
+    })
   )
   console.log(" STORES LOADED")
 
