@@ -83,19 +83,19 @@ export default defineNuxtPlugin(async (nuxtApp) => {
 
     // Fixed: changed 'actions' to 'action' to match the actual module name
     action: () => ({
-      model: import("@paris-ias/data/dist/list/action.js"),
+      model: import("@paris-ias/data/dist/list/actions.js"),
       queries: {
         list: import(
-          "@paris-ias/data/dist/graphql/client/action/query.list.action.gql"
+          "@paris-ias/data/dist/graphql/client/action/query.list.actions.gql"
         ),
         get: import(
-          "@paris-ias/data/dist/graphql/client/action/query.get.action.gql"
+          "@paris-ias/data/dist/graphql/client/action/query.get.actions.gql"
         ),
       },
     }),
 
     affiliation: () => ({
-      model: import("@paris-ias/data/dist/list/affiliation.js"),
+      model: import("@paris-ias/data/dist/list/affiliations.js"),
       queries: {
         list: import(
           "@paris-ias/data/dist/graphql/client/affiliation/query.list.affiliations.gql"
