@@ -86,10 +86,10 @@ export default defineNuxtPlugin(async (nuxtApp) => {
       model: import("@paris-ias/data/dist/list/actions.js"),
       queries: {
         list: import(
-          "@paris-ias/data/dist/graphql/client/action/query.list.actions.gql"
+          "@paris-ias/data/dist/graphql/client/actions/query.list.actions.gql"
         ),
         get: import(
-          "@paris-ias/data/dist/graphql/client/action/query.get.actions.gql"
+          "@paris-ias/data/dist/graphql/client/actions/query.get.actions.gql"
         ),
       },
     }),
