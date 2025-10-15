@@ -104,10 +104,7 @@ const props = defineProps({
     type: Number,
     required: true,
   },
-  pathPrefix: {
-    type: String,
-    required: true,
-  },
+
   loading: {
     type: Boolean,
     required: false,

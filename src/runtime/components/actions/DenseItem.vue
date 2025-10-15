@@ -1,9 +1,5 @@
 <template>
-  <v-row
-    class="my-2 highlight-on-hover"
-    no-gutters
-    @click="$router.push(pathPrefix)"
-  >
+  <v-row class="my-2 highlight-on-hover" no-gutters>
     <v-col v-if="mdAndUp" cols="12" md="2">
       <MiscAtomsImageContainer
         :loading="isLoading"
@@ -47,7 +43,6 @@ const rootStore = useRootStore()
 const props = defineProps({
   item: { type: Object, required: true },
   index: { type: Number, required: false, default: 0 },
-  pathPrefix: { type: String, required: true },
   loading: { type: Boolean, required: false, default: false },
 })
 

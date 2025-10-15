@@ -1,9 +1,5 @@
 <template>
-  <v-row
-    class="highlight-on-hover pa-3"
-    no-gutters
-    @click="$router.push(pathPrefix)"
-  >
+  <v-row class="highlight-on-hover pa-3" no-gutters>
     <v-col v-if="mdAndUp" cols="12" md="3">
       <MiscAtomsImageContainer
         cover
@@ -47,7 +43,6 @@ const rootStore = useRootStore()
 const props = defineProps({
   item: { type: Object, required: true },
   index: { type: Number, required: false, default: 0 },
-  pathPrefix: { type: String, required: true },
   loading: { type: Boolean, required: false, default: false },
 })
 

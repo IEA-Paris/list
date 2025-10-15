@@ -60,13 +60,7 @@
           >
             <MDC :value="processedSummary" />
           </div>
-          <v-btn
-            class="mt-4"
-            variant="outlined"
-            tile
-            size="small"
-            :to="pathPrefix"
-          >
+          <v-btn class="mt-4" variant="outlined" tile size="small">
             {{ $t("read-more") }}
           </v-btn>
         </template>
@@ -94,7 +88,6 @@
           class="mt-4"
           variant="outlined"
           tile
-          :to="pathPrefix"
           :size="
             ['small', 'small', 'small', 'default', 'default', 'large'][
               ['xs', 'sm', 'md', 'lg', 'xl', 'xxl'].indexOf(name || 'md')
@@ -133,7 +126,7 @@ const props = defineProps({
     type: Number,
     required: true,
   },
-  pathPrefix: {
+  path: {
     type: String,
     required: true,
   },
@@ -147,7 +140,7 @@ const props = defineProps({
 const processedSummary = computed(() => {
   const raw = props.item.summary || ""
 
-  return replaceMarkdownLinksWithSlug(raw, props.pathPrefix)
+  return replaceMarkdownLinksWithSlug(raw, props.path)
 })
 
 function replaceMarkdownLinksWithSlug(markdownText, slugPath) {

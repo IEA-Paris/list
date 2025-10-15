@@ -55,13 +55,13 @@
         :value="`${highlightAndTruncate(
           85,
           item.summary,
-          $rootStore.search.split(' '),
+          $rootStore.search.split(' ')
         )}`"
       />
     </v-col>
 
     <v-col align-self="center" cols="auto">
-      <EventsBadges :item :pathPrefix />
+      <EventsBadges />
     </v-col>
   </v-row>
 </template>
@@ -84,10 +84,7 @@ const props = defineProps({
     type: Number,
     required: true,
   },
-  pathPrefix: {
-    type: String,
-    required: true,
-  },
+
   loading: {
     type: Boolean,
     required: false,
@@ -97,9 +94,3 @@ const props = defineProps({
 
 const isLoading = computed(() => props.loading)
 </script>
-<!-- <NuxtLink
-    v-if="item && item.slug"
-    :to="pathPrefix"
-    class="text-decoration-none text-black"
-  >
-  </NuxtLink> -->

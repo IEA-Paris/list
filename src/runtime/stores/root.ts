@@ -60,17 +60,17 @@ interface RootStoreState {
   results: SearchResults
 }
 
-interface GraphQLResult {
-  data: {
-    value?: {
-      [key: string]: {
-        items?: Array<{ id: string; [key: string]: unknown }>
-        total?: number
-      }
-    }
-  }
-  error: { value?: unknown }
-}
+// interface GraphQLResult {
+//   data: {
+//     value?: {
+//       [key: string]: {
+//         items?: Array<{ id: string; [key: string]: unknown }>
+//         total?: number
+//       }
+//     }
+//   }
+//   error: { value?: unknown }
+// }
 
 export const useRootStore = defineStore("rootStore", {
   state: (): RootStoreState => ({
@@ -195,7 +195,7 @@ export const useRootStore = defineStore("rootStore", {
                 : String(value),
             }
           },
-          {} as Record<string, string>,
+          {} as Record<string, string>
         ),
       }
 
@@ -405,8 +405,8 @@ export const useRootStore = defineStore("rootStore", {
               type === "all"
                 ? -1
                 : ($stores[type]?.sortDesc?.[0] || 0) > 0
-                  ? true
-                  : false,
+                ? true
+                : false,
             ...((this.search as string)?.length &&
               type !== "all" && { search: this.search }),
             filters,
@@ -419,7 +419,7 @@ export const useRootStore = defineStore("rootStore", {
             }),
           appId: "iea",
           lang,
-        }),
+        })
       )
       args.options.filters = JSON.stringify(args.options.filters)
       return args
@@ -428,7 +428,7 @@ export const useRootStore = defineStore("rootStore", {
     applyListResult(
       type: string,
       data: Record<string, any>,
-      itemsPerPageOverride?: number,
+      itemsPerPageOverride?: number
     ) {
       const { $stores } = useNuxtApp() as NuxtAppExtended
       const key =

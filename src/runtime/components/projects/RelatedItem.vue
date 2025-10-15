@@ -1,5 +1,5 @@
 <template>
-  <v-sheet :to="pathPrefix">
+  <v-sheet>
     <v-row>
       <v-col v-if="lgAndUp" cols="3">
         <MiscAtomsImageContainer

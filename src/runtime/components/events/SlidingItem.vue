@@ -1,9 +1,5 @@
 <template>
-  <NuxtLink
-    v-if="item && item.slug"
-    :to="pathPrefix"
-    class="text-decoration-none text-black"
-  >
+  <NuxtLink v-if="item && item.slug" class="text-decoration-none text-black">
     <v-sheet v-motion class="d-flex sliding-item flex-md-row flex-column px-6">
       <MiscAtomsDateStamp
         :date-start="item.start"
@@ -48,10 +44,6 @@ const { name } = useDisplay()
 defineProps({
   item: { type: Object, required: true },
   loading: { type: Boolean, required: true, default: false },
-  pathPrefix: {
-    type: String,
-    required: true,
-  },
 })
 </script>
 <style lang="scss"></style>

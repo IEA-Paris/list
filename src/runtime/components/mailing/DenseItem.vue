@@ -8,10 +8,6 @@ defineProps({
     type: Object,
     required: true,
   },
-  pathPrefix: {
-    type: String,
-    required: true,
-  },
 })
 </script>
 
