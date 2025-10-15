@@ -98,10 +98,10 @@ export default defineNuxtPlugin(async (nuxtApp) => {
       model: import("@paris-ias/data/dist/list/affiliations.js"),
       queries: {
         list: import(
-          "@paris-ias/data/dist/graphql/client/affiliation/query.list.affiliations.gql"
+          "@paris-ias/data/dist/graphql/client/affiliations/query.list.affiliations.gql"
         ),
         get: import(
-          "@paris-ias/data/dist/graphql/client/affiliation/query.get.affiliations.gql"
+          "@paris-ias/data/dist/graphql/client/affiliations/query.get.affiliations.gql"
         ),
       },
     }),
