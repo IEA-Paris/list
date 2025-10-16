@@ -9,13 +9,7 @@
       cols="12"
       :md="expanded ? '4' : '2'"
       class="animated-col"
-      @click.prevent="
-        expanded
-          ? router.push(
-              pathPrefix
-            )
-          : null
-      "
+      
     >
       <MiscAtomsImageContainer
         cover
@@ -27,13 +21,7 @@
     <v-col class="text-h5" cols="12" :md="expanded ? '8' : '9'">
       <div
         :class="expanded ? 'text-h4' : 'text-h5'"
-        @click.prevent="
-          expanded
-            ? router.push(
-                pathPrefix
-              )
-            : null
-        "
+        
       >
         <MDC v-if="item.name" :value="item.name" />
       </div>
@@ -60,7 +48,7 @@
           class="mt-4"
           variant="outlined"
           tile
-          :to="pathPrefix"
+          
           
             )
           "
@@ -93,10 +81,7 @@ const props = defineProps({
     type: Number,
     required: true,
   },
-  pathPrefix: {
-    type: String,
-    required: true,
-  },
+
 })
 </script>
 

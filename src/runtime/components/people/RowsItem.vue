@@ -1,9 +1,6 @@
 <template>
   <v-divider v-if="index > 0" />
-  <v-row
-    class="my-6 ml-md-1 px-3 px-md-0 highlight-on-hover"
-    @click="$router.push(pathPrefix)"
-  >
+  <v-row class="my-6 ml-md-1 px-3 px-md-0 highlight-on-hover">
     <v-col v-if="mdAndUp" cols="12" md="3">
       <MiscAtomsImageContainer
         cover

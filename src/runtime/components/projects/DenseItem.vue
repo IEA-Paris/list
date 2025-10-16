@@ -1,10 +1,5 @@
 <template>
-  <v-row
-    v-ripple
-    no-gutters
-    class="cursor-pointer highlight-on-hover"
-    @click="$router.push(pathPrefix)"
-  >
+  <v-row v-ripple no-gutters class="cursor-pointer highlight-on-hover">
     <v-col v-if="mdAndUp" align-self="center" cols="1">
       <MiscAtomsImageContainer
         cover
@@ -39,7 +34,11 @@
       <MDC
         v-if="item.summary"
         class="text-caption font-weight-light paragraph"
-        :value="`${highlightAndTruncate(150, item.summary, rootStore.search.split(' '))}`"
+        :value="`${highlightAndTruncate(
+          150,
+          item.summary,
+          rootStore.search.split(' ')
+        )}`"
       />
     </v-col>
   </v-row>
@@ -64,10 +63,7 @@ const props = defineProps({
     type: Number,
     required: true,
   },
-  pathPrefix: {
-    type: String,
-    required: true,
-  },
+
   loading: {
     type: Boolean,
     required: false,

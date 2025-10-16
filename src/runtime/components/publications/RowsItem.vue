@@ -15,7 +15,6 @@
     lg="9"
     xl="10"
     class="px-6 cursor-pointer"
-    @click="router.push(pathPrefix)"
   >
     <div>
       <v-skeleton-loader
@@ -44,7 +43,6 @@
           class="mt-4"
           variant="outlined"
           tile
-          :to="pathPrefix"
           :size="
             ['small', 'small', 'small', 'default', 'default', 'large'][
               ['xs', 'sm', 'md', 'lg', 'xl', 'xxl'].indexOf(name || 'md')
@@ -91,10 +89,7 @@ const props = defineProps({
     },
     required: true,
   },
-  pathPrefix: {
-    type: String,
-    required: true,
-  },
+
   loading: {
     type: Boolean,
     required: false,

@@ -16,7 +16,6 @@
       lg="9"
       xl="10"
       class="px-6 cursor-pointer"
-      @click="router.push(pathPrefix)"
     >
       <v-skeleton-loader
         v-if="isLoading"
@@ -92,10 +91,7 @@ const props = defineProps({
     },
     required: true,
   },
-  pathPrefix: {
-    type: String,
-    required: true,
-  },
+
   loading: {
     type: Boolean,
     required: false,

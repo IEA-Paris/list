@@ -15,7 +15,6 @@ import { useRootStore } from "../../stores/root"
 const rootStore = useRootStore()
 const props = defineProps({
   item: { type: Object, required: true },
-  pathPrefix: { type: String, required: true },
   loading: { type: Boolean, default: false },
 })
 

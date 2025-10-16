@@ -60,17 +60,17 @@ interface RootStoreState {
   results: SearchResults
 }
 
-interface GraphQLResult {
-  data: {
-    value?: {
-      [key: string]: {
-        items?: Array<{ id: string; [key: string]: unknown }>
-        total?: number
-      }
-    }
-  }
-  error: { value?: unknown }
-}
+// interface GraphQLResult {
+//   data: {
+//     value?: {
+//       [key: string]: {
+//         items?: Array<{ id: string; [key: string]: unknown }>
+//         total?: number
+//       }
+//     }
+//   }
+//   error: { value?: unknown }
+// }
 
 export const useRootStore = defineStore("rootStore", {
   state: (): RootStoreState => ({

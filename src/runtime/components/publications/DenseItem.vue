@@ -1,10 +1,5 @@
 <template>
-  <v-row
-    v-ripple
-    no-gutters
-    class="cursor-pointer highlight-on-hover my-2"
-    @click="$router.push(pathPrefix)"
-  >
+  <v-row v-ripple no-gutters class="cursor-pointer highlight-on-hover my-2">
     <v-col v-if="mdAndUp" cols="1" class="align-center">
       <MiscAtomsImageContainer
         cover
@@ -60,14 +55,18 @@
               ? highlightAndTruncate(
                   300,
                   item.name,
-                  $rootStore.search.split(' '),
+                  $rootStore.search.split(' ')
                 )
               : item.name
           "
         />
         <MDC
           class="text-body-1 font-weight-light paragraph"
-          :value="`${highlightAndTruncate(150, item.summary, rootStore.search.split(' '))}`"
+          :value="`${highlightAndTruncate(
+            150,
+            item.summary,
+            rootStore.search.split(' ')
+          )}`"
         />
       </div> </v-col
   ></v-row>
@@ -90,10 +89,7 @@ const props = defineProps({
     type: Number,
     required: true,
   },
-  pathPrefix: {
-    type: String,
-    required: true,
-  },
+
   loading: {
     type: Boolean,
     required: false,
