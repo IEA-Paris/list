@@ -336,7 +336,7 @@ export const useRootStore = defineStore("rootStore", {
       } else {
         delete (newQuery as any).page
       }
-      router.replace({ query: newQuery })
+      router.push({ query: newQuery })
     },
 
     updateSearch({
