@@ -10,168 +10,168 @@ export default defineNuxtPlugin(async (nuxtApp) => {
     }
   }
 
-  // Define module imports using the GraphQL client structure from @paris-ias/data
+  // Define module imports using the GraphQL client structure from @paris-ias/trees
   // This imports GraphQL operations from the centralized types package
   // Only modules specified in appConfig.list.modules will be actually imported and initialized
   const moduleImports = {
     events: () => ({
-      model: import("@paris-ias/data/dist/list/events.js"),
+      model: import("@paris-ias/trees/list/events"),
       queries: {
         list: import(
-          "@paris-ias/data/dist/graphql/client/events/query.list.events.gql"
+          "@paris-ias/trees/dist/graphql/client/events/query.list.events.gql"
         ),
         get: import(
-          "@paris-ias/data/dist/graphql/client/events/query.get.events.gql"
+          "@paris-ias/trees/dist/graphql/client/events/query.get.events.gql"
         ),
       },
     }),
     news: () => ({
-      model: import("@paris-ias/data/dist/list/news.js"),
+      model: import("@paris-ias/trees/list/news"),
       queries: {
         list: import(
-          "@paris-ias/data/dist/graphql/client/news/query.list.news.gql"
+          "@paris-ias/trees/dist/graphql/client/news/query.list.news.gql"
         ),
         get: import(
-          "@paris-ias/data/dist/graphql/client/news/query.get.news.gql"
+          "@paris-ias/trees/dist/graphql/client/news/query.get.news.gql"
         ),
       },
     }),
     people: () => ({
-      model: import("@paris-ias/data/dist/list/people.js"),
+      model: import("@paris-ias/trees/list/people"),
       queries: {
         list: import(
-          "@paris-ias/data/dist/graphql/client/people/query.list.people.gql"
+          "@paris-ias/trees/dist/graphql/client/people/query.list.people.gql"
         ),
         get: import(
-          "@paris-ias/data/dist/graphql/client/people/query.get.people.gql"
+          "@paris-ias/trees/dist/graphql/client/people/query.get.people.gql"
         ),
       },
     }),
     projects: () => ({
-      model: import("@paris-ias/data/dist/list/projects.js"),
+      model: import("@paris-ias/trees/list/projects"),
       queries: {
         list: import(
-          "@paris-ias/data/dist/graphql/client/projects/query.list.projects.gql"
+          "@paris-ias/trees/dist/graphql/client/projects/query.list.projects.gql"
         ),
         get: import(
-          "@paris-ias/data/dist/graphql/client/projects/query.get.projects.gql"
+          "@paris-ias/trees/dist/graphql/client/projects/query.get.projects.gql"
         ),
       },
     }),
     fellowships: () => ({
-      model: import("@paris-ias/data/dist/list/fellowships.js"),
+      model: import("@paris-ias/trees/list/fellowships"),
       queries: {
         list: import(
-          "@paris-ias/data/dist/graphql/client/fellowships/query.list.fellowships.gql"
+          "@paris-ias/trees/dist/graphql/client/fellowships/query.list.fellowships.gql"
         ),
         get: import(
-          "@paris-ias/data/dist/graphql/client/fellowships/query.get.fellowships.gql"
+          "@paris-ias/trees/dist/graphql/client/fellowships/query.get.fellowships.gql"
         ),
       },
     }),
     publications: () => ({
-      model: import("@paris-ias/data/dist/list/publications.js"),
+      model: import("@paris-ias/trees/list/publications"),
       queries: {
         list: import(
-          "@paris-ias/data/dist/graphql/client/publications/query.list.publications.gql"
+          "@paris-ias/trees/dist/graphql/client/publications/query.list.publications.gql"
         ),
         get: import(
-          "@paris-ias/data/dist/graphql/client/publications/query.get.publications.gql"
+          "@paris-ias/trees/dist/graphql/client/publications/query.get.publications.gql"
         ),
       },
     }),
 
     // Fixed: changed 'actions' to 'action' to match the actual module name
-    action: () => ({
-      model: import("@paris-ias/data/dist/list/action.js"),
+    actions: () => ({
+      model: import("@paris-ias/trees/list/actions"),
       queries: {
         list: import(
-          "@paris-ias/data/dist/graphql/client/action/query.list.action.gql"
+          "@paris-ias/trees/dist/graphql/client/actions/query.list.actions.gql"
         ),
         get: import(
-          "@paris-ias/data/dist/graphql/client/action/query.get.action.gql"
+          "@paris-ias/trees/dist/graphql/client/actions/query.get.actions.gql"
         ),
       },
     }),
 
-    affiliation: () => ({
-      model: import("@paris-ias/data/dist/list/affiliation.js"),
+    affiliations: () => ({
+      model: import("@paris-ias/trees/list/affiliations"),
       queries: {
         list: import(
-          "@paris-ias/data/dist/graphql/client/affiliation/query.list.affiliations.gql"
+          "@paris-ias/trees/dist/graphql/client/affiliations/query.list.affiliations.gql"
         ),
         get: import(
-          "@paris-ias/data/dist/graphql/client/affiliation/query.get.affiliations.gql"
+          "@paris-ias/trees/dist/graphql/client/affiliations/query.get.affiliations.gql"
         ),
       },
     }),
     disciplines: () => ({
-      model: import("@paris-ias/data/dist/list/disciplines.js"),
+      model: import("@paris-ias/trees/list/disciplines"),
       queries: {
         list: import(
-          "@paris-ias/data/dist/graphql/client/misc/query.list.disciplines.gql"
+          "@paris-ias/trees/dist/graphql/client/misc/query.list.disciplines.gql"
         ),
         get: import(
-          "@paris-ias/data/dist/graphql/client/misc/query.get.disciplines.gql"
+          "@paris-ias/trees/dist/graphql/client/misc/query.get.disciplines.gql"
         ),
       },
     }),
     files: () => ({
-      model: import("@paris-ias/data/dist/list/files.js"),
+      model: import("@paris-ias/trees/list/files"),
       queries: {
         list: import(
-          "@paris-ias/data/dist/graphql/client/files/query.list.files.gql"
+          "@paris-ias/trees/dist/graphql/client/files/query.list.files.gql"
         ),
         get: import(
-          "@paris-ias/data/dist/graphql/client/files/query.get.files.gql"
+          "@paris-ias/trees/dist/graphql/client/files/query.get.files.gql"
         ),
       },
     }),
 
     mailing: () => ({
-      model: import("@paris-ias/data/dist/list/mailing.js"),
+      model: import("@paris-ias/trees/list/mailing"),
       queries: {
         list: import(
-          "@paris-ias/data/dist/graphql/client/mailing/query.list.mailing.gql"
+          "@paris-ias/trees/dist/graphql/client/mailing/query.list.mailing.gql"
         ),
         get: import(
-          "@paris-ias/data/dist/graphql/client/mailing/query.get.mailing.gql"
+          "@paris-ias/trees/dist/graphql/client/mailing/query.get.mailing.gql"
         ),
       },
     }),
 
     tags: () => ({
-      model: import("@paris-ias/data/dist/list/tags.js"),
+      model: import("@paris-ias/trees/list/tags"),
       queries: {
         list: import(
-          "@paris-ias/data/dist/graphql/client/misc/query.list.tags.gql"
+          "@paris-ias/trees/dist/graphql/client/misc/query.list.tags.gql"
         ),
         get: import(
-          "@paris-ias/data/dist/graphql/client/misc/query.get.tags.gql"
+          "@paris-ias/trees/dist/graphql/client/misc/query.get.tags.gql"
         ),
       },
     }),
 
     apps: () => ({
-      model: import("@paris-ias/data/dist/list/apps.js"),
+      model: import("@paris-ias/trees/list/apps"),
       queries: {
         list: import(
-          "@paris-ias/data/dist/graphql/client/apps/query.list.apps.gql"
+          "@paris-ias/trees/dist/graphql/client/apps/query.list.apps.gql"
         ),
         get: import(
-          "@paris-ias/data/dist/graphql/client/apps/query.get.apps.gql"
+          "@paris-ias/trees/dist/graphql/client/apps/query.get.apps.gql"
         ),
       },
     }),
 
     users: () => ({
-      model: import("@paris-ias/data/dist/list/users.js"),
+      model: import("@paris-ias/trees/list/users"),
       queries: {
         list: import(
-          "@paris-ias/data/dist/graphql/client/people/query.list.users.gql"
+          "@paris-ias/trees/dist/graphql/client/people/query.list.users.gql"
         ),
         get: import(
-          "@paris-ias/data/dist/graphql/client/people/query.get.users.gql"
+          "@paris-ias/trees/dist/graphql/client/people/query.get.users.gql"
         ),
       },
     }),

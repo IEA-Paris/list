@@ -1,5 +1,5 @@
 import { defineStore } from "pinia"
-import type { Views } from "@paris-ias/data"
+import type { Views } from "@paris-ias/trees"
 import { useNuxtApp, useRouter } from "#imports"
 
 // Improved TypeScript interfaces
@@ -195,7 +195,7 @@ export const useRootStore = defineStore("rootStore", {
                 : String(value),
             }
           },
-          {} as Record<string, string>,
+          {} as Record<string, string>
         ),
       }
 
@@ -405,8 +405,8 @@ export const useRootStore = defineStore("rootStore", {
               type === "all"
                 ? -1
                 : ($stores[type]?.sortDesc?.[0] || 0) > 0
-                  ? true
-                  : false,
+                ? true
+                : false,
             ...((this.search as string)?.length &&
               type !== "all" && { search: this.search }),
             filters,
@@ -414,12 +414,13 @@ export const useRootStore = defineStore("rootStore", {
           ...(type === "all" &&
             (this.search as string)?.length && { search: this.search }),
           ...(type !== "all" &&
+            $stores[type] &&
             ($stores[type].search as string)?.length && {
               search: $stores[type].search,
             }),
           appId: "iea",
           lang,
-        }),
+        })
       )
       args.options.filters = JSON.stringify(args.options.filters)
       return args
@@ -428,7 +429,7 @@ export const useRootStore = defineStore("rootStore", {
     applyListResult(
       type: string,
       data: Record<string, any>,
-      itemsPerPageOverride?: number,
+      itemsPerPageOverride?: number
     ) {
       const { $stores } = useNuxtApp() as NuxtAppExtended
       const key =
