@@ -27,14 +27,12 @@
 import {
   useNuxtApp,
   onBeforeUnmount,
-  onMounted,
   useI18n,
   useAppConfig,
   ref,
   computed,
-  watch,
 } from "#imports"
-import SEARCH from "../../../graphql/list/search.gql"
+import SEARCH from "@paris-ias/trees/dist/graphql/client/misc/query.search.all.gql"
 // Component name for linting
 defineOptions({
   name: "SearchResults",
@@ -68,7 +66,7 @@ const sortedModules = computed(() => {
 // Computed property to filter and sort modules based on selected categories
 const filteredSortedModules = computed(() => {
   return sortedModules.value.filter((type) =>
-    selectedCategories.value.includes(type),
+    selectedCategories.value.includes(type)
   )
 })
 
@@ -79,7 +77,7 @@ const { data, pending, error, refresh } = await useAsyncQuery(
   {
     key: `search-${$rootStore.search}`, // Unique key for caching
     server: true, // Enable SSR
-  },
+  }
 )
 if (error.value) {
   console.error("GraphQL query error: ", error.value)
