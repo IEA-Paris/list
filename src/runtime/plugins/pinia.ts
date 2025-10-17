@@ -192,6 +192,7 @@ export default defineNuxtPlugin(async (nuxtApp) => {
   // Preload all required modules - only modules in appConfig.list.modules are loaded
   await Promise.all(
     appConfig.list.modules.map(async (type: string) => {
+      console.log("importing modules", type)
       try {
         const imports = await moduleImports[
           type as keyof typeof moduleImports
