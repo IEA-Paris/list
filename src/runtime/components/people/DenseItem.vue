@@ -47,12 +47,10 @@
 
 <script setup>
 import { useRootStore } from "../../stores/root"
-import { useNuxtApp, useLocalePath, computed } from "#imports"
+import { computed } from "#imports"
 import { useDisplay } from "vuetify"
 
 const { mdAndUp } = useDisplay()
-const { $stores } = useNuxtApp()
-const localePath = useLocalePath()
 const rootStore = useRootStore()
 const props = defineProps({
   item: {
