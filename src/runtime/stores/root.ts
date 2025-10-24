@@ -450,10 +450,7 @@ export const useRootStore = defineStore("rootStore", {
         $stores[type].total = data?.[key]?.total || 0
         const result = {
           ...data?.[key],
-          items: items.map(({ id, ...rest }: any) => ({
-            ...rest,
-            _path: `/${id}`,
-          })),
+          items,
         }
         $stores[type].items = result.items
         const lastPage = Math.ceil((result.total || 0) / itemsPerPage)
