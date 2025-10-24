@@ -30,6 +30,7 @@ import {
   useI18n,
   useAppConfig,
   ref,
+  useAsyncQuery,
   computed,
 } from "#imports"
 import SEARCH from "@paris-ias/trees/dist/graphql/client/misc/query.search.all.gql"
