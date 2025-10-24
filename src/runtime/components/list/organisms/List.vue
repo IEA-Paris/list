@@ -132,8 +132,8 @@ const view = computed(() =>
   props.customView
     ? resolveComponent("ListViews" + capitalize(props.customView))
     : resolveComponent(
-        "ListViews" + capitalize($stores[props.type]?.view?.name || "list")
-      )
+        "ListViews" + capitalize($stores[props.type]?.view?.name || "list"),
+      ),
 )
 const itemTemplate = computed(() =>
   resolveComponent(
@@ -141,8 +141,8 @@ const itemTemplate = computed(() =>
       capitalize(props.type) +
       capitalize($stores[props.type]?.view?.name || "list") +
       "Item"
-    ).toString()
-  )
+    ).toString(),
+  ),
 )
 
 // Apollo: reactive query using variables computed from store
@@ -160,12 +160,12 @@ const { data, pending, error, refresh } = await useAsyncQuery(
   {
     key: `list-${props.type}`, // Unique key for caching
     server: true, // Enable SSR
-  }
+  },
 )
 if (error.value) {
   console.error("GraphQL query error: ", error.value)
 } else {
-  console.log("Query result data: ", data.value.items?.length)
+  console.log("Query result data: ", data.value)
 }
 
 // Apply data to store immediately if available
@@ -190,7 +190,7 @@ watch(
       rootStore.setLoading(false, props.type)
     }
   },
-  { deep: true }
+  { deep: true },
 )
 
 // Reactive items computed from the store (single source of truth)

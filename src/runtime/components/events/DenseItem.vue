@@ -55,13 +55,13 @@
         :value="`${highlightAndTruncate(
           85,
           item.summary,
-          $rootStore.search.split(' ')
+          $rootStore.search.split(' '),
         )}`"
       />
     </v-col>
 
     <v-col align-self="center" cols="auto">
-      <EventsBadges />
+      <EventsBadges :item />
     </v-col>
   </v-row>
 </template>
