@@ -11,6 +11,7 @@
 </template>
 
 <script setup>
+import { capitalize } from "../../../composables/useUtils"
 const props = defineProps({
   type: {
     type: String,
