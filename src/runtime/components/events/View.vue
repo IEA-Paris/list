@@ -210,7 +210,7 @@
             >
               <v-expansion-panel
                 v-if="item.description"
-                :value="panel[0]"
+                :value="presentation"
                 class="border-thin text-black"
                 :color="key === accordeon ? 'light-grey' : 'white'"
               >
@@ -326,11 +326,11 @@ const props = defineProps({
   },
 })
 
-const panel = ref(["presentation"])
+const panel = ref("presentation")
 
 function redirectToMap(long, lat) {
   router.push(
-    `https://www.openstreetmap.org/?mlat=${lat}&amp;mlon=${long}#map=19/${lat}/${long}`,
+    `https://www.openstreetmap.org/?mlat=${lat}&amp;mlon=${long}#map=19/${lat}/${long}`
   )
 }
 </script>
