@@ -12,11 +12,12 @@
     :key="type"
     :feminine="type === 'people'"
     :type
-    :open="$rootStore.results[type]?.total > 0 || open[type]"
+    :open="$rootStore.results[type]?.total > 0 ?? open[type]"
     @toggle="open[$event] = !open[$event]"
   >
+    {{ $rootStore.results[type]?.total }}
     <v-expand-transition class="results-container">
-      <div v-show="open[type]">
+      <div v-show="$rootStore.results[type]?.total > 0 || open[type]">
         <ListAtomsResultsList :type />
       </div>
     </v-expand-transition>
@@ -67,7 +68,7 @@ const sortedModules = computed(() => {
 // Computed property to filter and sort modules based on selected categories
 const filteredSortedModules = computed(() => {
   return sortedModules.value.filter((type) =>
-    selectedCategories.value.includes(type)
+    selectedCategories.value.includes(type),
   )
 })
 
@@ -78,7 +79,7 @@ const { data, pending, error, refresh } = await useAsyncQuery(
   {
     key: `search-${$rootStore.search}`, // Unique key for caching
     server: true, // Enable SSR
-  }
+  },
 )
 if (error.value) {
   console.error("GraphQL query error: ", error.value)
@@ -90,7 +91,14 @@ if (error.value) {
 if (data.value) {
   console.log("Applying data to store directly [first load scenario]")
   $rootStore.applyListResult("all", data.value)
+  // Initialize open state for types with results
+  appConfig.list.modules.forEach((type) => {
+    if ($rootStore.results[type]?.total > 0) {
+      open.value[type] = true
+    }
+  })
 }
+
 const updateSearch = async (newSearch) => {
   console.log("update search")
   if (newSearch !== $rootStore.search) {
@@ -98,6 +106,12 @@ const updateSearch = async (newSearch) => {
     if (data.value) {
       console.log("Applying data to store directly [first load scenario]")
       $rootStore.applyListResult("all", data.value)
+      // Initialize open state for types with results
+      appConfig.list.modules.forEach((type) => {
+        if ($rootStore.results[type]?.total > 0) {
+          open.value[type] = true
+        }
+      })
     }
   }
 }
