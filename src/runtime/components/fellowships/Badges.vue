@@ -29,10 +29,6 @@ import { computed } from "#imports"
 const props = defineProps({
   item: { type: Object, required: true },
   view: { type: Boolean, required: false, default: false },
-  pathPrefix: {
-    type: String,
-    required: true,
-  },
 })
 
 const registrationStatus = computed(() => {

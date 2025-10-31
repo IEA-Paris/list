@@ -381,6 +381,7 @@ export const useRootStore = defineStore("rootStore", {
           const filterValue = storeFilters[filter]?.value
           if (
             typeof filterValue !== "undefined" &&
+            filterValue !== "" &&
             filterValue !== null &&
             (Array.isArray(filterValue) ? filterValue.length > 0 : true)
           ) {

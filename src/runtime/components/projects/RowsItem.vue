@@ -43,7 +43,6 @@
           class="mt-4"
           variant="outlined"
           tile
-          :to="pathPrefix"
           :size="
             ['small', 'small', 'small', 'default', 'default', 'large'][
               ['xs', 'sm', 'md', 'lg', 'xl', 'xxl'].indexOf(name || 'md')
