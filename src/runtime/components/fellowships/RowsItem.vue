@@ -1,7 +1,7 @@
 <template>
   <v-col cols="12" md="6" class="highlight-on-hover">
     <div v-ripple class="border-thin pa-6">
-      <FellowshipsBadges />
+      <FellowshipsBadges :item />
       <div class="d-flex">
         <v-skeleton-loader v-if="isLoading" type="heading" />
         <div v-else class="text-h4 text-black text-wrap mt-4 pb-4">
