@@ -121,14 +121,25 @@ export const highlightAndTruncate = (
         }
 
         // highlight each query string in the text
+        // query.forEach((element: string) => {
+        //   const check = new RegExp(element, "gi")
+        //   text = text.replace(check, function (matchedText: string) {
+        //     return (
+        //       '<strong style="color: white;background-color: black;">' +
+        //       matchedText +
+        //       "</strong>"
+        //     )
+        //   })
+        // })
         query.forEach((element: string) => {
-          const check = new RegExp(element, "gi")
-          text = text.replace(check, function (matchedText: string) {
-            return (
-              '<strong style="color: white;background-color: black;">' +
-              matchedText +
-              "</strong>"
-            )
+          const regex = new RegExp(element, "gi")
+          text = text.replace(regex, (matchedText: string) => {
+            return `<span style="
+            text-decoration: underline;
+            text-decoration-color: black;   
+            text-decoration-thickness: 2px;
+            text-underline-offset: 2px;
+          ">${matchedText}</span>`
           })
         })
       } else {

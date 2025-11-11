@@ -195,7 +195,7 @@ export const useRootStore = defineStore("rootStore", {
                 : String(value),
             }
           },
-          {} as Record<string, string>
+          {} as Record<string, string>,
         ),
       }
 
@@ -256,7 +256,6 @@ export const useRootStore = defineStore("rootStore", {
           ...$stores[type].views![value],
           name: value,
         }
-        $stores[type].loading = true
       }
       /* this.updateLocalStorage(type + "_view", value) */
       this.updateRouteQuery(type)
@@ -406,8 +405,8 @@ export const useRootStore = defineStore("rootStore", {
               type === "all"
                 ? -1
                 : ($stores[type]?.sortDesc?.[0] || 0) > 0
-                ? true
-                : false,
+                  ? true
+                  : false,
             ...((this.search as string)?.length &&
               type !== "all" && { search: this.search }),
             filters,
@@ -421,7 +420,7 @@ export const useRootStore = defineStore("rootStore", {
             }),
           appId: "iea",
           lang,
-        })
+        }),
       )
       args.options.filters = JSON.stringify(args.options.filters)
       return args
@@ -430,7 +429,7 @@ export const useRootStore = defineStore("rootStore", {
     applyListResult(
       type: string,
       data: Record<string, any>,
-      itemsPerPageOverride?: number
+      itemsPerPageOverride?: number,
     ) {
       const { $stores } = useNuxtApp() as NuxtAppExtended
       const key =

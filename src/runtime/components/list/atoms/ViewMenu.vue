@@ -11,18 +11,13 @@
               x-large
               tile
               flat
-              :icon="'mdi-' + (current?.icon || defaultView?.icon)"
+              :icon="'mdi-' + currentIcon"
               :class="{ 'mt-3': isXsDisplay }"
               v-bind="mergeProps(menu, tooltip)"
             />
           </template>
         </template>
-        <div
-          v-html="
-            $t('list.view-mode') +
-            $t('list.' + (current?.name || defaultView?.name))
-          "
-        />
+        <div v-html="$t('list.view-mode') + $t('list.' + currentName)" />
       </v-tooltip>
     </template>
     <v-list density="compact">
@@ -61,16 +56,24 @@ const props = defineProps({
 const { xs: isXsDisplay } = useDisplay()
 
 const rootStore = useRootStore()
-const items = ref($stores[props.type].views)
 
-const current = ref($stores[props.type].view)
+const store = computed(() => $stores[props.type])
 
-const defaultView = ref(
-  $stores[props.type].views[
-    Object.keys($stores[props.type].views).find(
-      (k) => $stores[props.type].views[k]?.default === true,
-    )
-  ] || { name: "list", icon: "view-list" },
+const items = computed(() => store.value?.views ?? {})
+
+const current = computed(() => store.value?.view ?? null)
+
+const defaultView = computed(() => {
+  const views = store.value?.views ?? {}
+  const key = Object.keys(views).find((k) => views[k]?.default === true)
+  return key ? views[key] : { name: "list", icon: "view-list" }
+})
+
+const currentIcon = computed(
+  () => current.value?.icon ?? defaultView.value.icon,
+)
+const currentName = computed(
+  () => current.value?.name ?? defaultView.value.name,
 )
 
 const updateView = async (value) => {
