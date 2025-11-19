@@ -1,21 +1,5 @@
 <template>
   <ListMoleculesHeader :type="type" />
-  <!-- <component
-    :is="view"
-    :loading="$stores[type] && $stores[type].loading && pending"
-  >
-    <component
-      :is="itemTemplate"
-      v-for="(item, index) in items"
-      :key="(item.name || item.lastname) + type + index"
-      :item
-      :index
-      :loading="$stores[type] && $stores[type].loading && pending"
-      :pathPrefix="
-        localePath({ name: pathPrefix, params: { slug: item.slug } })
-      "
-    />
-  </component> -->
 
   <component
     :is="view"
@@ -30,7 +14,7 @@
           params: { slug: JSON.parse(item.slug) },
         })
       "
-      class="no-decoration"
+      class="text-decoration-none text-black"
     >
       <component
         :is="itemTemplate"
@@ -136,8 +120,8 @@ const variables = computed(() => {
 // Computed properties for dynamic components
 const view = computed(() =>
   resolveComponent(
-    "ListViews" + capitalize($stores[props.type]?.view?.name || "list")
-  )
+    "ListViews" + capitalize($stores[props.type]?.view?.name || "list"),
+  ),
 )
 const itemTemplate = computed(() =>
   resolveComponent(
@@ -145,8 +129,8 @@ const itemTemplate = computed(() =>
       capitalize(props.type) +
       capitalize($stores[props.type]?.view?.name || "list") +
       "Item"
-    ).toString()
-  )
+    ).toString(),
+  ),
 )
 console.log("Starting query for type: ", props.type)
 console.log("Using variables: ", variables.value)
@@ -158,7 +142,7 @@ const { data, pending, error, refresh } = await useAsyncQuery(
   {
     key: `list-${props.type}`, // Unique key for caching
     server: true, // Enable SSR
-  }
+  },
 )
 if (error.value) {
   console.error("GraphQL query error: ", error.value)
@@ -188,7 +172,7 @@ watch(
       rootStore.setLoading(false, props.type)
     }
   },
-  { deep: true }
+  { deep: true },
 )
 
 // Reactive items computed from the store (single source of truth)
