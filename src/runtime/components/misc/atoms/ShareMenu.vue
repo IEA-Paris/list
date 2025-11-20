@@ -16,6 +16,21 @@
         :key="network"
         :value="network"
       >
+        <!-- TODO: Injecter dynamiquement l'url -->
+        <SocialShare
+          :key="network"
+          class="text-black"
+          :network="network"
+          :title="$t('share-this-on', { item: item.name })"
+          :aria-label="$t('share-on', { network: network })"
+          :image="item.image"
+          :url="'https://www.paris-iea.fr/fr' + route.fullPath"
+        >
+          <template #label>
+            {{ network }}
+          </template>
+        </SocialShare>
+
         <!--         <SocialShare
           :key="network"
           class="text-black"
@@ -36,11 +51,11 @@
 </template>
 
 <script setup>
-import { mergeProps } from "vue";
-import { useRoute } from "#imports";
+import { mergeProps } from "vue"
+import { useRoute } from "#imports"
 /* import config from "~/static.config"; */
 
-const route = useRoute();
+const route = useRoute()
 
 const props = defineProps({
   networks: {
@@ -60,7 +75,7 @@ const props = defineProps({
     type: Object,
     required: true,
   },
-});
+})
 
 /* console.log("PRPOS", props.item) */
 </script>
