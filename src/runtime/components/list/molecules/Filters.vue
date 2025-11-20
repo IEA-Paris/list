@@ -66,6 +66,7 @@ const getItems = (name) => {
       }))
   }
   if (
+    !messages.value[locale.value].list.filters[props.type] ||
     messages.value[locale.value].list.filters[props.type][name] === undefined
   ) {
     console.log("name not found, no item for this filter: ", name)
