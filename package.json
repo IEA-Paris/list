@@ -1,14 +1,14 @@
 {
   "license": "AGPL-3.0-only",
   "main": "./dist/module.mjs",
-  "version": "1.0.157",
+  "version": "1.0.162",
   "name": "@paris-ias/list",
   "repository": {
     "url": "git+https://github.com/IEA-Paris/list.git",
     "type": "git"
   },
   "dependencies": {
-    "@paris-ias/trees": "^2.0.16"
+    "@paris-ias/trees": "^2.0.29"
   },
   "description": "Paris IAS List Module",
   "peerDependencies": {

@@ -45,7 +45,9 @@
     </v-responsive>
   </v-expand-transition>
   <br />
+  <!-- TODO: cabler par la bonne url iea et l'injecter dynamiquement -->
   <v-btn
+    v-if="item.url && !item.url.startsWith('https://www.paris-iea.fr/fr')"
     variant="text"
     class="ml-n4"
     size="small"
@@ -75,6 +77,7 @@ const startDay = ref(
 const startTime = ref(detailedStart.hours)
 const detailedStop = getDetailedFormatedDate(props.item.stop, locale.value)
 const stopTime = ref(detailedStop.hours)
+console.log("locale", props.item)
 </script>
 
 <style lang="scss" scoped></style>
