@@ -26,7 +26,15 @@
     "news": "actualité | actualités | actualités",
     "people": "personne | personne | personnes",
     "projects": "projet | projet | projets",
-    "publications": "publication | publications | publications"
+    "publications": "publication | publications | publications",
+    "activities": "activité | activité | activités",
+    "affiliations": "affiliation | affiliation | affiliations",
+    "app": "application | application | applications",
+    "disciplines": "discipline | discipline | disciplines",
+    "file": "document | document | documents",
+    "mailing": "mailing | mailing | mailings",
+    "tags": "tag | tag | tags",
+    "user": "utilisateur | utilisateur | utilisateurs"
   },
   "learn-more": "En savoir plus",
   "list": {
@@ -251,8 +259,14 @@
           "OTHERS": "Autres"
         }
       },
-      "affiliation": {
-        "label": "Affiliations"
+      "affiliations": {
+        "label": "Affiliations",
+        "category": {
+          "MEMBER": "Members",
+          "SPONSOR": "Sponsors",
+          "PARTNER": "Partners",
+          "OTHER": "Others"
+        }
       },
       "disciplines": {
         "label": "Discipline"

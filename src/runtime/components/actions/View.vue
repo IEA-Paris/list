@@ -1,10 +1,13 @@
 <template>
   <v-row no-gutters>
-    <slot />
+    {{ item }}
   </v-row>
   <v-divider />
 </template>
 
 <script setup>
-defineProps({ loading: { type: Boolean, default: false } })
+defineProps({
+  loading: { type: Boolean, default: false },
+  item: { type: Object, required: true },
+})
 </script>

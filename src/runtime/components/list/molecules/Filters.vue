@@ -65,10 +65,11 @@ const getItems = (name) => {
         value: item,
       }))
   }
-  if (
-    messages.value[locale.value].list.filters[props.type][name] === undefined
-  ) {
-    console.log("name not found, no item for this filter: ", name)
+
+  if (!messages.value[locale.value].list.filters[props.type]?.[name]) {
+    console.log(
+      `translations missing for the filter ${name} of the type ${props.type}`
+    )
     return []
   }
   // TODO replace with package based values

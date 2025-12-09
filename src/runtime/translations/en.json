@@ -7,7 +7,6 @@
   "details-0": "Details",
   "document": "Documents",
   "events": {
-    "key": "Events",
     "register": "Register to this event",
     "register-me": "Register",
     "see-more": "See more events"
@@ -19,16 +18,23 @@
   "inscription-gratuite-et-obligatoire": " Free and mandatory registration",
   "inscription-ouverte": "Registration Open",
   "items": {
-    "all": "all | all | all",
-    "activities": "activity | activity | activities",
     "about": "about | about | about",
+    "activities": "activity | activity | activities",
+    "affiliations": "affiliation | affiliation | affiliations",
+    "all": "all | all | all",
+    "app": "application | application | applications",
+    "disciplines": "discipline | discipline | disciplines",
     "events": "event | event | events",
     "fellow": "fellow | fellow | fellows",
     "fellowships": "fellowship | fellowship | fellowships",
+    "file": "document | document | documents",
+    "mailing": "mailing | mailing | mailings",
     "news": "news | news | news",
     "people": "one | person | people",
     "projects": "project | project | projects",
-    "publications": "publication | publication | publications"
+    "publications": "publication | publication | publications",
+    "tags": "tag | tag | tags",
+    "user": "user | user | users"
   },
   "learn-more": "read more",
   "list": {
@@ -252,8 +258,14 @@
           "OTHERS": "Others"
         }
       },
-      "affiliation": {
-        "label": "Affiliations"
+      "affiliations": {
+        "label": "Affiliations",
+        "category": {
+          "MEMBER": "Members",
+          "SPONSOR": "Sponsors",
+          "PARTNER": "Partners",
+          "OTHER": "Others"
+        }
       },
       "disciplines": {
         "label": "Discipline"
