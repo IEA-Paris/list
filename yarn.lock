@@ -150,10 +150,10 @@
     jiti "^2.5.1"
     ohash "^2.0.11"
 
-"@paris-ias/trees@^2.0.31":
-  version "2.0.31"
-  resolved "https://registry.yarnpkg.com/@paris-ias/trees/-/trees-2.0.31.tgz#e6725ed7be0b51f4f40c22eab3ffc899a8cd8a4c"
-  integrity sha512-0zNZ/6vXPokJBLtgxLfPbv1PGJ55idfoXoNcOsQuFC1CnXBbFpd1f+kcLuQCpuhVT7rI01YoAAR1MlbHOKvGRA==
+"@paris-ias/trees@^2.0.33":
+  version "2.0.33"
+  resolved "https://registry.yarnpkg.com/@paris-ias/trees/-/trees-2.0.33.tgz#4c57fa34519a02e8174016d3849d9ce38122ade3"
+  integrity sha512-LDClkixV4JBPAxlqpZqhT37BPUoDMxKZZlw2OYrWMbLNgOEXCBxl4a+DsgczebaJf3JXjXyQsCZeGqE76cYETA==
   dependencies:
     "@graphql-tools/load-files" "^7"
     "@graphql-tools/merge" "^8"
