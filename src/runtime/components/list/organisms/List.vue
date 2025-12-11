@@ -14,7 +14,7 @@
           params: { slug: JSON.parse(item.slug) },
         })
       "
-      class="text-decoration-none text-black"
+      class="text-decoration-none text-black w-100"
     >
       <component
         :is="itemTemplate"

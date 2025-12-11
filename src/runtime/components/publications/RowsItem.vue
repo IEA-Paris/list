@@ -1,75 +1,77 @@
 <template>
-  <v-col v-ripple cols="12" sm="6" md="4" lg="3" xl="2">
-    <MiscAtomsImageContainer
-      contain
-      :src="item.image.url ? item.image : '/default.png'"
-      :loading="isLoading"
-      :ratio="1 / 1"
-    />
-  </v-col>
-  <v-col
-    v-ripple
-    cols="12"
-    sm="6"
-    md="8"
-    lg="9"
-    xl="10"
-    class="px-6 cursor-pointer"
-  >
-    <div>
-      <v-skeleton-loader
-        v-if="isLoading"
-        type="heading,ossein,text@8,ossein,button,button"
+  <v-row v-ripple no-gutters class="cursor-pointer highlight-on-hover my-2">
+    <v-col v-ripple cols="12" sm="6" md="4" lg="3" xl="2">
+      <MiscAtomsImageContainer
+        contain
+        :src="item.image.url ? item.image : '/default.png'"
+        :loading="isLoading"
+        :ratio="1 / 1"
       />
+    </v-col>
+    <v-col
+      v-ripple
+      cols="12"
+      sm="6"
+      md="8"
+      lg="9"
+      xl="10"
+      class="px-6 cursor-pointer"
+    >
+      <div>
+        <v-skeleton-loader
+          v-if="isLoading"
+          type="heading,ossein,text@8,ossein,button,button"
+        />
 
-      <template v-else>
-        <div v-if="item.type" class="text-overline">{{ $t(item.type) }}</div>
-        <div class="text-h5 text-sm-h3 text-md-h4 text-md-h4 my-6">
-          {{ item.name }}
-        </div>
-        <div
-          v-if="item.summary"
-          class="text-wrap clamped-text"
-          :style="
-            '-webkit-line-clamp:' +
-            [5, 5, 5, 10, 12, 14][
-              ['xs', 'sm', 'md', 'lg', 'xl', 'xxl'].indexOf(name || 'md')
-            ]
-          "
-        >
-          <MDC :value="item.summary" />
-        </div>
-        <v-btn
-          class="mt-4"
-          variant="outlined"
-          tile
-          :size="
-            ['small', 'small', 'small', 'default', 'default', 'large'][
-              ['xs', 'sm', 'md', 'lg', 'xl', 'xxl'].indexOf(name || 'md')
-            ]
-          "
-        >
-          {{ $t("read-more") }}
-        </v-btn>
-        <v-btn
-          v-if="item.url"
-          variant="outlined"
-          tile
-          target="_blank"
-          :href="item.url"
-          class="mt-4 ml-4"
-          prepend-icon="mdi-web"
-          :size="
-            ['small', 'small', 'small', 'default', 'default', 'large'][
-              ['xs', 'sm', 'md', 'lg', 'xl', 'xxl'].indexOf(name || 'md')
-            ]
-          "
-        >
-          {{ $t("visit-the-publications-website") }}
-        </v-btn>
-      </template>
-    </div>
-  </v-col>
+        <template v-else>
+          <div v-if="item.type" class="text-overline">{{ $t(item.type) }}</div>
+          <div class="text-h5 text-sm-h3 text-md-h4 text-md-h4 my-6">
+            {{ item.name }}
+          </div>
+          <div
+            v-if="item.summary"
+            class="text-wrap clamped-text"
+            :style="
+              '-webkit-line-clamp:' +
+              [5, 5, 5, 10, 12, 14][
+                ['xs', 'sm', 'md', 'lg', 'xl', 'xxl'].indexOf(name || 'md')
+              ]
+            "
+          >
+            <MDC :value="item.summary" />
+          </div>
+          <v-btn
+            class="mt-4"
+            variant="outlined"
+            tile
+            :size="
+              ['small', 'small', 'small', 'default', 'default', 'large'][
+                ['xs', 'sm', 'md', 'lg', 'xl', 'xxl'].indexOf(name || 'md')
+              ]
+            "
+          >
+            {{ $t("read-more") }}
+          </v-btn>
+          <v-btn
+            v-if="item.url"
+            variant="outlined"
+            tile
+            target="_blank"
+            :href="item.url"
+            class="mt-4 ml-4"
+            prepend-icon="mdi-web"
+            :size="
+              ['small', 'small', 'small', 'default', 'default', 'large'][
+                ['xs', 'sm', 'md', 'lg', 'xl', 'xxl'].indexOf(name || 'md')
+              ]
+            "
+          >
+            {{ $t("visit-the-publications-website") }}
+          </v-btn>
+        </template>
+      </div>
+    </v-col></v-row
+  >
   <v-divider />
 </template>
 
