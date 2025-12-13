@@ -13,14 +13,7 @@
     </v-col>
     <v-col class="pl-2">
       <div class="inline-flex flex-row flex-wrap">
-        <v-skeleton-loader
-          v-if="isLoading"
-          :type="
-            ['chip', 'chip@2', 'chip@3', 'chip@4', 'chip@4', 'chip@4'][
-              ['xs', 'sm', 'md', 'lg', 'xl', 'xxl'].indexOf(name || 'md')
-            ]
-          "
-        />
+        <v-skeleton-loader v-if="isLoading" :type="heading" />
 
         <template v-else>
           <v-chip
@@ -55,17 +48,20 @@
               ? highlightAndTruncate(
                   300,
                   item.name,
-                  $rootStore.search.split(' ')
+                  $rootStore.search.split(' '),
                 )
               : item.name
           "
         />
+
+        <v-skeleton-loader v-if="isLoading" type="text@3" class="mt-2" />
         <MDC
+          v-else
           class="text-body-1 font-weight-light paragraph"
           :value="`${highlightAndTruncate(
             150,
             item.summary,
-            rootStore.search.split(' ')
+            rootStore.search.split(' '),
           )}`"
         />
       </div> </v-col
@@ -112,5 +108,5 @@ const eventType = computed(() => {
   }
 })
 
-const isLoading = computed(() => props.loading)
+const isLoading = computed(() => rootStore.loading || props.loading)
 </script>

@@ -43,7 +43,7 @@
     </v-btn>
 
     <v-btn
-      v-if="item.type === 'HYBRID'"
+      v-if="item.eventType === 'HYBRID'"
       color="grey-lighten-3"
       flat
       rounded="0"

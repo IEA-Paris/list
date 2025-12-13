@@ -1,41 +1,51 @@
 <template>
   <v-row v-ripple no-gutters class="cursor-pointer highlight-on-hover my-2">
-    <v-col cols="12" class="highlight-on-hover w-100">
+    <v-col cols="12" class="w-100">
       <div v-ripple class="border-thin pa-6">
-        <FellowshipsBadges :item />
-        <div class="d-flex">
-          <v-skeleton-loader v-if="isLoading" type="heading" />
-          <div v-else class="text-h4 text-black text-wrap mt-4 pb-4">
+        <template v-if="isLoading">
+          <v-skeleton-loader type="chip@2" class="mb-2" />
+          <v-skeleton-loader type="heading" width="70%" class="mt-4" />
+          <v-skeleton-loader type="text@4" class="mt-2 w-100" />
+
+          <v-skeleton-loader type="chip" class="mt-4" width="260" />
+        </template>
+
+        <template v-else>
+          <FellowshipsBadges :item />
+
+          <div class="text-h4 text-black text-wrap mt-4 pb-4">
             {{ item.name }}
           </div>
-        </div>
-        <div
-          class="text-wrap clamped-text d-flex"
-          :style="
-            '-webkit-line-clamp:' +
-            [5, 5, 5, 10, 12, 14][
-              ['xs', 'sm', 'md', 'lg', 'xl', 'xxl'].indexOf(name || 'md')
-            ]
-          "
-        >
-          <v-skeleton-loader v-if="isLoading" type="text@4" />
-          <MDC v-else-if="item.description" :value="item.description" />
-        </div>
-        <v-skeleton-loader v-if="isLoading" type="chip@3" class="mt-2" />
-        <MiscMoleculesChipContainer
-          v-else
-          :items="[
-            $t(
-              'list.filters.fellowships.fellowshipType.' + item.fellowshipType,
-            ),
-            ...(props.item && props.item.disciplines
-              ? props.item.disciplines.map((discipline) => discipline.name)
-              : []),
-          ]"
-          class="mt-2"
-        />
-      </div> </v-col
-  ></v-row>
+
+          <div
+            v-if="item.summary"
+            class="text-wrap clamped-text d-flex"
+            :style="
+              '-webkit-line-clamp:' +
+              [5, 5, 4, 8, 10, 11][
+                ['xs', 'sm', 'md', 'lg', 'xl', 'xxl'].indexOf(name || 'md')
+              ]
+            "
+          >
+            <MDC :value="item.summary" />
+          </div>
+
+          <MiscMoleculesChipContainer
+            :items="[
+              $t(
+                'list.filters.fellowships.fellowshipType.' +
+                  item.fellowshipType,
+              ),
+              ...(item?.disciplines?.length
+                ? item.disciplines.map((d) => d.name)
+                : []),
+            ]"
+            class="mt-4"
+          />
+        </template>
+      </div>
+    </v-col>
+  </v-row>
 </template>
 
 <script setup>

@@ -1,7 +1,12 @@
 <template>
   <v-row v-ripple no-gutters class="cursor-pointer highlight-on-hover">
     <v-col align-self="center" cols="8" class="text-h5 dense">
-      <v-skeleton-loader v-if="isLoading" type="heading" />
+      <v-skeleton-loader
+        v-if="isLoading"
+        type="heading"
+        width="75%"
+        class="mb-2"
+      />
       <div
         v-else
         v-html="
@@ -13,7 +18,12 @@
       <FellowshipsBadges :item="item" />
     </v-col>
     <v-col align-self="center" cols="4">
-      <v-skeleton-loader v-if="isLoading" type="chip@3" class="mt-2" />
+      <v-skeleton-loader
+        v-if="isLoading"
+        type="chip"
+        width="260"
+        class="mt-2"
+      />
       <MiscMoleculesChipContainer
         v-else
         :items="[

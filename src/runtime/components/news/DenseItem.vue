@@ -40,7 +40,7 @@
               ? highlightAndTruncate(
                   300,
                   item.name,
-                  $rootStore.search.split(' ')
+                  $rootStore.search.split(' '),
                 )
               : item.name
           "
@@ -84,5 +84,5 @@ const eventCategory = computed(() => {
   }
 })
 
-const isLoading = computed(() => props.loading)
+const isLoading = computed(() => rootStore.loading || props.loading)
 </script>

@@ -22,7 +22,14 @@
     </v-col>
 
     <v-col align-self="start" class="pl-2">
+      <v-skeleton-loader
+        v-if="isLoading"
+        type="chip"
+        class="mr-3"
+        width="120"
+      />
       <v-chip
+        v-else
         class="mr-3"
         color="black"
         size="small"
@@ -32,7 +39,13 @@
       >
         {{ $t("list.filters.events.category." + item.category) }}
       </v-chip>
-      <span v-if="smAndDown" class="text-overline">
+      <v-skeleton-loader
+        v-if="isLoading && smAndDown"
+        type="text"
+        width="90"
+        class="d-inline-block"
+      />
+      <span v-else-if="smAndDown" class="text-overline">
         {{
           new Date(item.start).toLocaleDateString(locale, {
             year: "numeric",
@@ -42,7 +55,15 @@
         }}
       </span>
 
+      <v-skeleton-loader
+        v-if="isLoading"
+        type="heading"
+        width="80%"
+        class="mt-2"
+      />
+
       <div
+        v-else
         class="text-h5 dense paragraph mt-2"
         v-html="
           $rootStore.search.length
@@ -50,7 +71,9 @@
             : item.name
         "
       />
+      <v-skeleton-loader v-if="isLoading" type="text@3" class="mt-2" />
       <MDC
+        v-else
         class="text-body-1 font-weight-light paragraph"
         :value="`${highlightAndTruncate(
           85,
@@ -61,7 +84,10 @@
     </v-col>
 
     <v-col align-self="center" cols="auto">
-      <EventsBadges :item />
+      <v-skeleton-loader v-if="isLoading" type="button" />
+      <div v-else>
+        <EventsBadges :item />
+      </div>
     </v-col>
   </v-row>
 </template>
@@ -92,5 +118,5 @@ const props = defineProps({
   },
 })
 
-const isLoading = computed(() => props.loading)
+const isLoading = computed(() => rootStore.loading || props.loading)
 </script>

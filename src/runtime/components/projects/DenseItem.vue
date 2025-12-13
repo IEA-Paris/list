@@ -12,7 +12,7 @@
       />
     </v-col>
     <v-col align-self="center" class="text-h5 dense pl-2">
-      <v-skeleton-loader v-if="isLoading" type="heading" />
+      <v-skeleton-loader v-if="isLoading" type="heading" width="50%" />
       <span
         v-else
         v-html="
@@ -21,23 +21,29 @@
             : item.name
         "
       />
-      <v-skeleton-loader
+      <!-- <v-skeleton-loader
         v-if="isLoading"
         :type="
           ['chip', 'chip@2', 'chip@3', 'chip@4', 'chip@4', 'chip@4'][
             ['xs', 'sm', 'md', 'lg', 'xl', 'xxl'].indexOf(name || 'md')
           ]
         "
+      /> -->
+      <MiscMoleculesChipContainer
+        v-if="item.tags"
+        :items="item.tags || []"
+        size="small"
       />
-      <MiscMoleculesChipContainer :items="item.tags || []" size="small" />
+
+      <v-skeleton-loader v-if="isLoading" type="text@2" class="mt-3" />
 
       <MDC
-        v-if="item.summary"
+        v-else-if="item.summary"
         class="text-caption font-weight-light paragraph"
         :value="`${highlightAndTruncate(
           150,
           item.summary,
-          rootStore.search.split(' ')
+          rootStore.search.split(' '),
         )}`"
       />
     </v-col>
@@ -70,13 +76,6 @@ const props = defineProps({
     default: false,
   },
 })
-const eventCategory = computed(() => {
-  if (props.item.category) {
-    return "list.filters.news.category." + props.item.category
-  } else {
-    return "list.filters.news.category.others"
-  }
-})
 
-const isLoading = computed(() => props.loading)
+const isLoading = computed(() => rootStore.loading || props.loading)
 </script>
