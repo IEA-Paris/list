@@ -11,7 +11,7 @@
             v-else
             contain
             :loading="loading"
-            :src="item.image.url ? item.image : '/default.png'"
+            :src="item && item.image ? item.image.url : '/default.png'"
             :ratio="1 / 1"
           />
         </v-col>
@@ -31,7 +31,10 @@
       />
 
       <div v-else class="d-flex align-center flex-column mt-12">
-        <div class="d-flex text-center text-wrap text-h3 text-black">
+        <div
+          v-if="item && item.name"
+          class="d-flex text-center text-wrap text-h3 text-black"
+        >
           {{ item.name }}
         </div>
         <v-divider width="154px" class="mb-1 mt-6" />
@@ -40,7 +43,7 @@
           v-if="!loading"
           class="d-flex text-center text-wrap text-h5 text-black mt-6"
         >
-          <MDC v-if="item.subtitle" :value="item.subtitle" />
+          <MDC v-if="item && item.subtitle" :value="item.subtitle" />
         </div>
         <MiscMoleculesChipContainer
           v-if="item && item.tags"
@@ -51,7 +54,7 @@
           <MiscAtomsShareMenu :item class="mt-6" />
         </v-btn-toggle>
         <v-btn
-          v-if="item.url"
+          v-if="item && item.url"
           class="my-6 d-flex"
           variant="outlined"
           :href="item.url"
@@ -77,7 +80,7 @@
           ]
         "
       />
-      <div v-if="item.description" class="mt-md-n2 mx-10 mx-md-0">
+      <div v-if="item && item.description" class="mt-md-n2 mx-10 mx-md-0">
         <MDC :value="item.description" />
       </div>
     </v-col>
@@ -124,8 +127,7 @@ const props = defineProps({
   loading: {
     type: Boolean,
     required: false,
-    default: false,
   },
 })
-$stores.projects.loading = false
+console.log("project view props", props.loading)
 </script>
