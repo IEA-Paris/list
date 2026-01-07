@@ -330,7 +330,9 @@ const panel = ref("presentation")
 
 function redirectToMap(long, lat) {
   router.push(
-    `https://www.openstreetmap.org/?mlat=${lat}&amp;mlon=${long}#map=19/${lat}/${long}`
+    `https://www.openstreetmap.org/?mlat=${lat}&amp;mlon=${long}#map=19/${lat}/${long}`,
   )
 }
+
+console.log("Events", props.item)
 </script>

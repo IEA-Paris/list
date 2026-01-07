@@ -7,11 +7,11 @@
     <div>{{ $t("from-starttime-to-stoptime", [startTime, stopTime]) }}</div>
   </div>
 
-  <div class="text-overline font-weight-bold mt-md-4">
+  <!-- <div class="text-overline font-weight-bold mt-md-4">
     {{ $t("location") }}
   </div>
-  <div>{{ item.location }}</div>
-
+  <div>{{ item.location }}</div> -->
+  <EventsLocation :item="item" />
   <v-btn
     variant="text"
     class="ml-n4"

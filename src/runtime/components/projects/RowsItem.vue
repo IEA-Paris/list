@@ -31,7 +31,7 @@
           class="mt-n3 text-wrap clamped-text"
           :style="
             '-webkit-line-clamp:' +
-            [5, 5, 4, 8, 10][
+            [5, 5, 4, 8, 10, 11][
               ['xs', 'sm', 'md', 'lg', 'xl', 'xxl'].indexOf(name || 'md')
             ]
           "

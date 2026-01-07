@@ -62,11 +62,7 @@
         <v-col cols="12">
           <v-skeleton-loader
             v-if="isLoading"
-            :type="
-              ['article, heading, text, heading, text, button, button'][
-                ['md'].indexOf(name || 'md')
-              ]
-            "
+            :type="['button'][['md'].indexOf(name || 'md')]"
           />
 
           <div v-else>

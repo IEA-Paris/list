@@ -29,7 +29,7 @@
       </v-tooltip>
     </template>
     <v-list density="compact">
-      <template v-for="(item, index) in $stores[props.type].sort">
+      <!-- <template v-for="(item, index) in $stores[props.type].sort">
         <v-list-item
           v-if="item.text !== current.text"
           :key="index"
@@ -41,7 +41,22 @@
           </template>
           <v-list-item-title>{{ $t("list." + item.text) }}</v-list-item-title>
         </v-list-item>
-      </template>
+      </template> -->
+
+      <v-list-item
+        v-for="(item, index) in $stores[props.type].sort"
+        :key="index"
+        :disabled="$stores[type].loading || isActiveSort(item)"
+        :active="isActiveSort(item)"
+        active-class="bg-black text-white"
+        @click="updateSort(item.value)"
+      >
+        <template #prepend>
+          <v-icon>mdi-{{ item.icon }}</v-icon>
+        </template>
+
+        <v-list-item-title>{{ $t("list." + item.text) }}</v-list-item-title>
+      </v-list-item>
     </v-list>
   </v-menu>
 </template>
@@ -92,6 +107,13 @@ const current = computed(() => {
 
 const updateSort = async (value) => {
   rootStore.updateSort({ value, type: props.type, lang: locale.value })
+}
+
+const isActiveSort = (item) => {
+  return (
+    item?.value?.[0] === $stores[props.type].sortBy?.[0] &&
+    item?.value?.[1] === $stores[props.type].sortDesc?.[0]
+  )
 }
 </script>
 
