@@ -24,7 +24,9 @@
       <v-list-item
         v-for="(value, key, index) in items"
         :key="index"
-        :disabled="$stores[type].loading"
+        :disabled="$stores[type].loading || (value.name || key) === currentName"
+        :active="(value.name || key) === currentName"
+        active-class="bg-black text-white"
         @click="updateView(value.name || key)"
       >
         <template #prepend>
