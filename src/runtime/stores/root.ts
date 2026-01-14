@@ -33,7 +33,6 @@ interface ModuleStore {
   filtersCount?: number
   view?: Views & { name: string }
   views?: Record<string, Views>
-
   itemsPerPage?: number
   total?: number
   numberOfPages?: number
