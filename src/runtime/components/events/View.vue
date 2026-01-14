@@ -326,7 +326,7 @@ const props = defineProps({
   },
 })
 
-const panel = ref("presentation")
+const panel = ref(0)
 
 function redirectToMap(long, lat) {
   router.push(

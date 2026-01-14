@@ -65,6 +65,7 @@ const items = computed(() => store.value?.views ?? {})
 
 const current = computed(() => store.value?.view ?? null)
 
+console.log("current", current.value)
 const defaultView = computed(() => {
   const views = store.value?.views ?? {}
   const key = Object.keys(views).find((k) => views[k]?.default === true)

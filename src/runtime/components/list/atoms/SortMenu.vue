@@ -6,6 +6,7 @@
           <template v-if="$stores[type].loading">
             <v-skeleton-loader type="button" :class="{ 'mt-3': isXsDisplay }" />
           </template>
+
           <template v-else>
             <v-btn
               x-large
@@ -16,40 +17,28 @@
               :class="{ 'mt-3': isXsDisplay }"
               v-bind="mergeProps(menu, tooltip)"
             >
-              <v-icon>mdi-{{ current?.icon || defaultSort?.icon }}</v-icon>
+              <v-icon>mdi-{{ currentSort?.icon || defaultSort?.icon }}</v-icon>
             </v-btn>
           </template>
         </template>
+
         <div
           v-html="
             $t('list.sort-mode') +
-            $t('list.' + (current?.text || defaultSort?.text))
+            $t('list.' + (currentSort?.text || defaultSort?.text))
           "
         />
       </v-tooltip>
     </template>
-    <v-list density="compact">
-      <!-- <template v-for="(item, index) in $stores[props.type].sort">
-        <v-list-item
-          v-if="item.text !== current.text"
-          :key="index"
-          :disabled="$stores[type].loading"
-          @click="updateSort(item.value)"
-        >
-          <template #prepend>
-            <v-icon>mdi-{{ item.icon }}</v-icon>
-          </template>
-          <v-list-item-title>{{ $t("list." + item.text) }}</v-list-item-title>
-        </v-list-item>
-      </template> -->
 
+    <v-list density="compact">
       <v-list-item
-        v-for="(item, index) in $stores[props.type].sort"
-        :key="index"
-        :disabled="$stores[type].loading || isActiveSort(item)"
-        :active="isActiveSort(item)"
+        v-for="(item, key) in $stores[type].sort"
+        :key="key"
+        :disabled="$stores[type].loading || isActiveSort(key)"
+        :active="isActiveSort(key)"
         active-class="bg-black text-white"
-        @click="updateSort(item.value)"
+        @click="onSelectSort(key)"
       >
         <template #prepend>
           <v-icon>mdi-{{ item.icon }}</v-icon>
@@ -62,59 +51,60 @@
 </template>
 
 <script setup>
+import { computed } from "vue"
 import { mergeProps } from "vue"
 import { useDisplay } from "vuetify"
 import { useRootStore } from "../../../stores/root"
-import { useNuxtApp, computed, ref, useI18n } from "#imports"
+import { useNuxtApp, useI18n } from "#imports"
+
 const { $stores } = useNuxtApp()
 const { xs: isXsDisplay } = useDisplay()
 const { locale } = useI18n()
 const rootStore = useRootStore()
 
 const props = defineProps({
-  type: {
-    type: String,
-    default: "articles",
-    required: true,
-  },
+  type: { type: String, default: "articles", required: true },
 })
-const items = ref()
-const defaultSort = ref(
-  $stores[props.type].sort[
-    Object.keys($stores[props.type].sort).find(
-      (item) => $stores[props.type].sort[item].default === true,
-    )
-  ],
+
+const sortObj = computed(() => $stores[props.type]?.sort || {})
+
+const defaultSortKey = computed(() => {
+  const keys = Object.keys(sortObj.value)
+  return keys.find((k) => sortObj.value[k]?.default) || keys[0]
+})
+
+const activeSortKey = computed(() => {
+  const keys = Object.keys(sortObj.value)
+  return keys.find((k) => sortObj.value[k]?.active) || defaultSortKey.value
+})
+
+const defaultSort = computed(() =>
+  defaultSortKey.value ? sortObj.value[defaultSortKey.value] : undefined,
 )
 
-const current = computed(() => {
-  try {
-    return $stores[props.type].sort[
-      Object.keys($stores[props.type].sort).find((item) => {
-        return (
-          $stores[props.type].sort[item].value[0] ===
-            $stores[props.type].sortBy[0] &&
-          $stores[props.type].sort[item].value[1] ===
-            $stores[props.type].sortDesc[0]
-        )
-      })
-    ]
-  } catch (error) {
-    console.log("error: ", error)
-    return items[Object.keys(items).find((item) => item.default)]
-  }
-})
+const currentSort = computed(() =>
+  activeSortKey.value ? sortObj.value[activeSortKey.value] : defaultSort.value,
+)
 
-const updateSort = async (value) => {
-  rootStore.updateSort({ value, type: props.type, lang: locale.value })
+const isActiveSort = (key) => activeSortKey.value === key
+
+const onSelectSort = async (key) => {
+  setActiveSort(key)
+
+  const item = sortObj.value[key]
+  if (!item?.value) return
+
+  rootStore.updateSort({
+    value: item.value,
+    type: props.type,
+    lang: locale.value,
+    sortKey: key,
+  })
 }
 
-const isActiveSort = (item) => {
-  return (
-    item?.value?.[0] === $stores[props.type].sortBy?.[0] &&
-    item?.value?.[1] === $stores[props.type].sortDesc?.[0]
-  )
+const setActiveSort = (activeKey) => {
+  for (const k of Object.keys(sortObj.value)) {
+    sortObj.value[k].active = k === activeKey
+  }
 }
 </script>
-
-<style lang="scss"></style>
