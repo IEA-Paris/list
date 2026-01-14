@@ -56,6 +56,7 @@ interface RootStoreState {
   numberOfPages: number
   search: string
   results: SearchResults
+  sort: string
 }
 
 export const useRootStore = defineStore("rootStore", {
@@ -81,6 +82,7 @@ export const useRootStore = defineStore("rootStore", {
       mailing: {},
       tags: {},
     },
+    sort: "",
   }),
 
   actions: {
@@ -181,7 +183,7 @@ export const useRootStore = defineStore("rootStore", {
                 : String(value),
             }
           },
-          {} as Record<string, string>
+          {} as Record<string, string>,
         ),
       }
 
@@ -201,10 +203,13 @@ export const useRootStore = defineStore("rootStore", {
     updateSort({
       value,
       type,
+      lang,
+      sortKey,
     }: {
       value: (number | string)[]
       type: string
       lang?: string
+      sortKey: string
     }): void {
       console.log("Z - updateSort", {
         value,
@@ -215,6 +220,8 @@ export const useRootStore = defineStore("rootStore", {
       }
 
       this.page = 1
+
+      this.sort = sortKey
 
       $stores[type].loading = true
       /* this.updateLocalStorage(type + "_sort", value.join("_")) */
@@ -375,16 +382,7 @@ export const useRootStore = defineStore("rootStore", {
                 ? 0
                 : (+$stores[type]?.page - 1) * itemsPerPage,
             limit: itemsPerPage,
-            // sortBy:
-            //   type === "all"
-            //     ? "searchScore"
-            //     : $stores[type]?.sortBy || ["created"],
-            // sortDesc:
-            //   type === "all"
-            //     ? -1
-            //     : ($stores[type]?.sortDesc?.[0] || 0) > 0
-            //       ? true
-            //       : false,
+            // sortBy: this.sort,
             ...((this.search as string)?.length &&
               type !== "all" && { search: this.search }),
             filters,
@@ -398,7 +396,7 @@ export const useRootStore = defineStore("rootStore", {
             }),
           appId: "iea",
           lang,
-        })
+        }),
       )
       args.options.filters = JSON.stringify(args.options.filters)
       return args
@@ -407,7 +405,7 @@ export const useRootStore = defineStore("rootStore", {
     applyListResult(
       type: string,
       data: Record<string, any>,
-      itemsPerPageOverride?: number
+      itemsPerPageOverride?: number,
     ) {
       const { $stores } = useNuxtApp() as NuxtAppExtended
       const key =
