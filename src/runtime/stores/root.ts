@@ -33,8 +33,7 @@ interface ModuleStore {
   filtersCount?: number
   view?: Views & { name: string }
   views?: Record<string, Views>
-  sortBy?: string[]
-  sortDesc?: number[]
+
   itemsPerPage?: number
   total?: number
   numberOfPages?: number
@@ -59,18 +58,6 @@ interface RootStoreState {
   search: string
   results: SearchResults
 }
-
-// interface GraphQLResult {
-//   data: {
-//     value?: {
-//       [key: string]: {
-//         items?: Array<{ id: string; [key: string]: unknown }>
-//         total?: number
-//       }
-//     }
-//   }
-//   error: { value?: unknown }
-// }
 
 export const useRootStore = defineStore("rootStore", {
   state: (): RootStoreState => ({
@@ -195,7 +182,7 @@ export const useRootStore = defineStore("rootStore", {
                 : String(value),
             }
           },
-          {} as Record<string, string>,
+          {} as Record<string, string>
         ),
       }
 
@@ -227,10 +214,7 @@ export const useRootStore = defineStore("rootStore", {
       const { $stores } = useNuxtApp() as {
         $stores: Record<string, ModuleStore>
       }
-      if ($stores[type]) {
-        $stores[type].sortBy = [String(value[0])]
-        $stores[type].sortDesc = [Number(value[1])]
-      }
+
       this.page = 1
 
       $stores[type].loading = true
@@ -367,11 +351,6 @@ export const useRootStore = defineStore("rootStore", {
       const { $stores } = useNuxtApp() as NuxtAppExtended
       const itemsPerPage =
         type === "all" ? 3 : ($stores[type]?.itemsPerPage as number) || 10
-      // Touch view name and sorts to make this computed depend on it (triggers refetch on view change)
-      const _viewName = $stores[type]?.view && ($stores[type].view as any).name
-      const _sortByName = $stores[type]?.sortBy && ($stores[type].sortBy as any)
-      const _sortDescName =
-        $stores[type]?.sortDesc && ($stores[type].sortDesc as any)
 
       const filters: Record<string, unknown> = {}
       if (type !== "all") {
@@ -397,16 +376,16 @@ export const useRootStore = defineStore("rootStore", {
                 ? 0
                 : (+$stores[type]?.page - 1) * itemsPerPage,
             limit: itemsPerPage,
-            sortBy:
-              type === "all"
-                ? "searchScore"
-                : $stores[type]?.sortBy || ["created"],
-            sortDesc:
-              type === "all"
-                ? -1
-                : ($stores[type]?.sortDesc?.[0] || 0) > 0
-                  ? true
-                  : false,
+            // sortBy:
+            //   type === "all"
+            //     ? "searchScore"
+            //     : $stores[type]?.sortBy || ["created"],
+            // sortDesc:
+            //   type === "all"
+            //     ? -1
+            //     : ($stores[type]?.sortDesc?.[0] || 0) > 0
+            //       ? true
+            //       : false,
             ...((this.search as string)?.length &&
               type !== "all" && { search: this.search }),
             filters,
@@ -420,7 +399,7 @@ export const useRootStore = defineStore("rootStore", {
             }),
           appId: "iea",
           lang,
-        }),
+        })
       )
       args.options.filters = JSON.stringify(args.options.filters)
       return args
@@ -429,7 +408,7 @@ export const useRootStore = defineStore("rootStore", {
     applyListResult(
       type: string,
       data: Record<string, any>,
-      itemsPerPageOverride?: number,
+      itemsPerPageOverride?: number
     ) {
       const { $stores } = useNuxtApp() as NuxtAppExtended
       const key =

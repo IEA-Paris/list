@@ -29,20 +29,6 @@
       </v-tooltip>
     </template>
     <v-list density="compact">
-      <!-- <template v-for="(item, index) in $stores[props.type].sort">
-        <v-list-item
-          v-if="item.text !== current.text"
-          :key="index"
-          :disabled="$stores[type].loading"
-          @click="updateSort(item.value)"
-        >
-          <template #prepend>
-            <v-icon>mdi-{{ item.icon }}</v-icon>
-          </template>
-          <v-list-item-title>{{ $t("list." + item.text) }}</v-list-item-title>
-        </v-list-item>
-      </template> -->
-
       <v-list-item
         v-for="(item, index) in $stores[props.type].sort"
         :key="index"
