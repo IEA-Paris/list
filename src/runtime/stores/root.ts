@@ -183,7 +183,7 @@ export const useRootStore = defineStore("rootStore", {
                 : String(value),
             }
           },
-          {} as Record<string, string>,
+          {} as Record<string, string>
         ),
       }
 
@@ -209,7 +209,7 @@ export const useRootStore = defineStore("rootStore", {
       value: (number | string)[]
       type: string
       lang?: string
-      sortKey: string
+      sort: string
     }): void {
       console.log("Z - updateSort", {
         value,
@@ -221,7 +221,7 @@ export const useRootStore = defineStore("rootStore", {
 
       this.page = 1
 
-      this.sort = sortKey
+      this.sort = sort
 
       $stores[type].loading = true
       /* this.updateLocalStorage(type + "_sort", value.join("_")) */
@@ -396,7 +396,7 @@ export const useRootStore = defineStore("rootStore", {
             }),
           appId: "iea",
           lang,
-        }),
+        })
       )
       args.options.filters = JSON.stringify(args.options.filters)
       return args
@@ -405,7 +405,7 @@ export const useRootStore = defineStore("rootStore", {
     applyListResult(
       type: string,
       data: Record<string, any>,
-      itemsPerPageOverride?: number,
+      itemsPerPageOverride?: number
     ) {
       const { $stores } = useNuxtApp() as NuxtAppExtended
       const key =

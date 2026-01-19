@@ -79,11 +79,11 @@ const activeSortKey = computed(() => {
 })
 
 const defaultSort = computed(() =>
-  defaultSortKey.value ? sortObj.value[defaultSortKey.value] : undefined,
+  defaultSortKey.value ? sortObj.value[defaultSortKey.value] : undefined
 )
 
 const currentSort = computed(() =>
-  activeSortKey.value ? sortObj.value[activeSortKey.value] : defaultSort.value,
+  activeSortKey.value ? sortObj.value[activeSortKey.value] : defaultSort.value
 )
 
 const isActiveSort = (key) => activeSortKey.value === key
@@ -98,7 +98,7 @@ const onSelectSort = async (key) => {
     value: item.value,
     type: props.type,
     lang: locale.value,
-    sortKey: key,
+    sort: key,
   })
 }
 
