@@ -204,7 +204,7 @@ export const useRootStore = defineStore("rootStore", {
       value,
       type,
       lang,
-      sortKey,
+      sort,
     }: {
       value: (number | string)[]
       type: string
