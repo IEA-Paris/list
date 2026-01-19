@@ -10,9 +10,9 @@ export const createDynamicStore = (storeName: string, moduleState: object) => {
       numberOfPages: 0,
       search: "",
       error: null as string | null,
+      currentSort: null as string | null,
       ...moduleState,
     })
-
     return {
       ...toRefs(state),
     }

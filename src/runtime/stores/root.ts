@@ -33,6 +33,7 @@ interface ModuleStore {
   filtersCount?: number
   view?: Views & { name: string }
   views?: Record<string, Views>
+  sort?: Record<string, { label: string; default?: boolean; icon?: string }>
   itemsPerPage?: number
   total?: number
   numberOfPages?: number
@@ -183,10 +184,9 @@ export const useRootStore = defineStore("rootStore", {
                 : String(value),
             }
           },
-          {} as Record<string, string>
+          {} as Record<string, string>,
         ),
       }
-
       router.replace({ query: routeQuery })
     },
 
@@ -200,32 +200,18 @@ export const useRootStore = defineStore("rootStore", {
       $stores[type].search = ""
       $stores[type].page = 1
     },
-    updateSort({
-      value,
-      type,
-      lang,
-      sortKey,
-    }: {
-      value: (number | string)[]
-      type: string
-      lang?: string
-      sort: string
-    }): void {
+    updateSort({ type, sort }: { type: string; sort: string }): void {
       console.log("Z - updateSort", {
-        value,
         type,
+        sort,
       })
       const { $stores } = useNuxtApp() as {
         $stores: Record<string, ModuleStore>
       }
 
       this.page = 1
-
       this.sort = sort
-
       $stores[type].loading = true
-      /* this.updateLocalStorage(type + "_sort", value.join("_")) */
-      this.updateRouteQuery(type)
     },
 
     updateView({
@@ -248,7 +234,6 @@ export const useRootStore = defineStore("rootStore", {
         }
       }
       /* this.updateLocalStorage(type + "_view", value) */
-      this.updateRouteQuery(type)
     },
 
     /*     updateLocalStorage(key: string, value: string): void {
@@ -382,10 +367,16 @@ export const useRootStore = defineStore("rootStore", {
                 ? 0
                 : (+$stores[type]?.page - 1) * itemsPerPage,
             limit: itemsPerPage,
-            // sortBy: this.sort,
             ...((this.search as string)?.length &&
               type !== "all" && { search: this.search }),
             filters,
+            sort:
+              this?.sort ||
+              ($stores[type]?.sort
+                ? Object.keys($stores[type].sort).find(
+                    (key) => $stores[type].sort![key].default,
+                  )
+                : undefined),
           },
           ...(type === "all" &&
             (this.search as string)?.length && { search: this.search }),
@@ -396,7 +387,7 @@ export const useRootStore = defineStore("rootStore", {
             }),
           appId: "iea",
           lang,
-        })
+        }),
       )
       args.options.filters = JSON.stringify(args.options.filters)
       return args
@@ -405,7 +396,7 @@ export const useRootStore = defineStore("rootStore", {
     applyListResult(
       type: string,
       data: Record<string, any>,
-      itemsPerPageOverride?: number
+      itemsPerPageOverride?: number,
     ) {
       const { $stores } = useNuxtApp() as NuxtAppExtended
       const key =
