@@ -11,22 +11,24 @@
               x-large
               tile
               flat
-              :icon="'mdi-' + currentIcon"
+              :icon="'mdi-' + currentView.icon"
               :class="{ 'mt-3': isXsDisplay }"
               v-bind="mergeProps(menu, tooltip)"
             />
           </template>
         </template>
-        <div v-html="$t('list.view-mode') + $t('list.' + currentName)" />
+        <div v-html="$t('list.view-mode') + $t('list.' + currentView.name)" />
       </v-tooltip>
     </template>
     <v-list density="compact">
       <v-list-item
         v-for="(value, key, index) in items"
         :key="index"
-        :disabled="$stores[type].loading || (value.name || key) === currentName"
-        :active="(value.name || key) === currentName"
-        active-class="bg-black text-white"
+        :disabled="
+          $stores[type].loading || (value.name || key) === currentView.name
+        "
+        :active="(value.name || key) === currentView.name"
+        active-class="list-item-active"
         @click="updateView(value.name || key)"
       >
         <template #prepend>
@@ -44,9 +46,12 @@
 import { mergeProps } from "vue"
 import { useDisplay } from "vuetify"
 import { useRootStore } from "../../../stores/root"
-import { useNuxtApp, ref, useI18n, computed } from "#imports"
+import { useNuxtApp, useI18n, computed } from "#imports"
+
 const { locale } = useI18n()
 const { $stores } = useNuxtApp()
+const rootStore = useRootStore()
+const { xs: isXsDisplay } = useDisplay()
 
 const props = defineProps({
   type: {
@@ -55,33 +60,30 @@ const props = defineProps({
     required: true,
   },
 })
-const { xs: isXsDisplay } = useDisplay()
 
-const rootStore = useRootStore()
+const items = computed(() => $stores[props.type]?.views ?? {})
 
-const store = computed(() => $stores[props.type])
+const currentView = computed(() => {
+  const store = $stores[props.type]
+  if (store?.view) return store.view
 
-const items = computed(() => store.value?.views ?? {})
-
-const current = computed(() => store.value?.view ?? null)
-
-console.log("current", current.value)
-const defaultView = computed(() => {
-  const views = store.value?.views ?? {}
-  const key = Object.keys(views).find((k) => views[k]?.default === true)
-  return key ? views[key] : { name: "list", icon: "view-list" }
+  const views = store?.views ?? {}
+  const defaultKey = Object.keys(views).find((k) => views[k]?.default)
+  return defaultKey ? views[defaultKey] : { name: "list", icon: "view-list" }
 })
 
-const currentIcon = computed(
-  () => current.value?.icon ?? defaultView.value.icon,
-)
-const currentName = computed(
-  () => current.value?.name ?? defaultView.value.name,
-)
-
-const updateView = async (value) => {
+const updateView = (value) => {
   rootStore.updateView({ value, type: props.type, lang: locale.value })
 }
 </script>
 
-<style lang="scss"></style>
+<style lang="scss">
+.list-item-active {
+  background-color: black !important;
+  color: white !important;
+}
+
+.list-item-active .v-list-item__overlay {
+  opacity: 0 !important;
+}
+</style>

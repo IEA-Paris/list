@@ -162,7 +162,6 @@ watch(
   async (newVars, oldVars) => {
     if (newVars && JSON.stringify(newVars) !== JSON.stringify(oldVars)) {
       console.log("Variables changed, refreshing query, newVars: ", newVars)
-      console.log("start local loading from computed")
       rootStore.setLoading(true, props.type)
       await refresh()
       if (data.value) {

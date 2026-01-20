@@ -37,7 +37,7 @@
         :key="key"
         :disabled="$stores[type].loading || key === currentSort"
         :active="key === currentSort"
-        active-class="bg-black text-white"
+        active-class="list-item-active"
         @click="
           rootStore.updateSort({
             type: type,
@@ -71,11 +71,22 @@ const props = defineProps({
   type: { type: String, default: "articles", required: true },
 })
 
-const currentSort = computed(() =>
-  $stores[props.type]?.currentSort
-    ? $stores[props.type]?.currentSort
-    : Object.keys($stores[props.type]?.sort).find(
-        (k) => $stores[props.type].sort[k]?.default,
-      ),
+const currentSort = computed(
+  () =>
+    rootStore?.sort ||
+    Object.keys($stores[props.type]?.sort).find(
+      (k) => $stores[props.type].sort[k]?.default,
+    ),
 )
 </script>
+
+<style>
+.list-item-active {
+  background-color: black !important;
+  color: white !important;
+}
+
+.list-item-active .v-list-item__overlay {
+  opacity: 0 !important;
+}
+</style>
