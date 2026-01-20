@@ -57,7 +57,6 @@ interface RootStoreState {
   numberOfPages: number
   search: string
   results: SearchResults
-  sort: string
 }
 
 export const useRootStore = defineStore("rootStore", {
@@ -83,7 +82,6 @@ export const useRootStore = defineStore("rootStore", {
       mailing: {},
       tags: {},
     },
-    sort: "",
   }),
 
   actions: {
@@ -199,18 +197,19 @@ export const useRootStore = defineStore("rootStore", {
       $stores[type].filters = model?.filters
       $stores[type].search = ""
       $stores[type].page = 1
+      ;($stores[type] as any).sortKey = null
     },
-    updateSort({ type, sort }: { type: string; sort: string }): void {
+    updateSort({ type, sortKey }: { type: string; sortKey: string }): void {
       console.log("Z - updateSort", {
         type,
-        sort,
+        sortKey,
       })
       const { $stores } = useNuxtApp() as {
         $stores: Record<string, ModuleStore>
       }
 
-      this.page = 1
-      this.sort = sort
+      $stores[type].page = 1
+      ;($stores[type] as any).sortKey = sortKey
       $stores[type].loading = true
     },
 
@@ -371,7 +370,7 @@ export const useRootStore = defineStore("rootStore", {
               type !== "all" && { search: this.search }),
             filters,
             sort:
-              this?.sort ||
+              ($stores[type] as any)?.sortKey ||
               ($stores[type]?.sort
                 ? Object.keys($stores[type].sort).find(
                     (key) => $stores[type].sort![key].default,

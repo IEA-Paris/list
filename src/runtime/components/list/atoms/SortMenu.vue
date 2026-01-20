@@ -41,7 +41,7 @@
         @click="
           rootStore.updateSort({
             type: type,
-            sort: key,
+            sortKey: key,
           })
         "
       >
@@ -73,7 +73,7 @@ const props = defineProps({
 
 const currentSort = computed(
   () =>
-    rootStore?.sort ||
+    $stores[props.type]?.sortKey ||
     Object.keys($stores[props.type]?.sort).find(
       (k) => $stores[props.type].sort[k]?.default,
     ),
