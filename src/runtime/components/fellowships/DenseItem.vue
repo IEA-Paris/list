@@ -15,7 +15,7 @@
             : item.name
         "
       />
-      <FellowshipsBadges :item="item" />
+      <FellowshipsBadges :item="item" :loading="isLoading" />
     </v-col>
     <v-col align-self="center" cols="4">
       <v-skeleton-loader

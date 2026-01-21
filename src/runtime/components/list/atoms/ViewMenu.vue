@@ -1,25 +1,28 @@
 <template>
-  <v-menu :disabled="$stores[type].loading">
+  <v-menu :disabled="rootStore.loading">
     <template #activator="{ props: menu }">
       <v-tooltip location="top">
         <template #activator="{ props: tooltip }">
-          <template v-if="$stores[type].loading">
-            <v-skeleton-loader type="button" :class="{ 'mt-3': isXsDisplay }" />
-          </template>
-          <template v-else>
-            <v-btn
-              x-large
-              tile
-              flat
-              :icon="'mdi-' + currentView.icon"
-              :class="{ 'mt-3': isXsDisplay }"
-              v-bind="mergeProps(menu, tooltip)"
+          <!-- ✅ Activator stable -->
+          <span
+            class="d-inline-flex align-center"
+            :class="{ 'mt-3': isXsDisplay }"
+            v-bind="mergeProps(menu, tooltip)"
+          >
+            <v-skeleton-loader
+              v-if="rootStore.loading"
+              type="button"
+              width="60"
+              height="60"
             />
-          </template>
+            <v-btn v-else x-large tile flat :icon="'mdi-' + currentView.icon" />
+          </span>
         </template>
+
         <div v-html="$t('list.view-mode') + $t('list.' + currentView.name)" />
       </v-tooltip>
     </template>
+
     <v-list density="compact">
       <v-list-item
         v-for="(value, key, index) in items"
@@ -34,6 +37,7 @@
         <template #prepend>
           <v-icon>mdi-{{ value.icon }}</v-icon>
         </template>
+
         <v-list-item-title>
           {{ $t("list." + (value.name || key)) }}
         </v-list-item-title>
@@ -41,7 +45,6 @@
     </v-list>
   </v-menu>
 </template>
-
 <script setup>
 import { mergeProps } from "vue"
 import { useDisplay } from "vuetify"

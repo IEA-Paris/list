@@ -1,31 +1,29 @@
 <template>
-  <v-menu :disabled="$stores[type].loading">
+  <v-menu :disabled="rootStore.loading">
     <template #activator="{ props: menu }">
       <v-tooltip location="top">
         <template #activator="{ props: tooltip }">
-          <template v-if="$stores[type].loading">
-            <v-skeleton-loader type="button" :class="{ 'mt-3': isXsDisplay }" />
-          </template>
-
-          <template v-else>
-            <v-btn
-              x-large
-              outlined
-              tile
-              flat
-              icon
-              :class="{ 'mt-3': isXsDisplay }"
-              v-bind="mergeProps(menu, tooltip)"
-            >
-              <v-icon>mdi-{{ $stores[type].sort[currentSort]?.icon }}</v-icon>
+          <span
+            class="d-inline-flex align-center"
+            :class="{ 'mt-3': isXsDisplay }"
+            v-bind="mergeProps(menu, tooltip)"
+          >
+            <v-skeleton-loader
+              v-if="rootStore.loading"
+              type="button"
+              width="60"
+              height="60"
+            />
+            <v-btn v-else icon variant="text">
+              <v-icon>mdi-{{ currentSort?.icon || defaultSort?.icon }}</v-icon>
             </v-btn>
-          </template>
+          </span>
         </template>
 
         <div
           v-html="
             $t('list.sort-mode') +
-            $t('list.' + $stores[type].sort[currentSort]?.text)
+            $t('list.' + (currentSort?.text || defaultSort?.text))
           "
         />
       </v-tooltip>
@@ -35,20 +33,14 @@
       <v-list-item
         v-for="(item, key) in $stores[type].sort"
         :key="key"
-        :disabled="$stores[type].loading || key === currentSort"
-        :active="key === currentSort"
-        active-class="list-item-active"
-        @click="
-          rootStore.updateSort({
-            type: type,
-            sortKey: key,
-          })
-        "
+        :disabled="rootStore.loading || isActiveSort(key)"
+        :active="isActiveSort(key)"
+        active-class="bg-black text-white"
+        @click="onSelectSort(key)"
       >
         <template #prepend>
           <v-icon>mdi-{{ item.icon }}</v-icon>
         </template>
-
         <v-list-item-title>{{ $t("list." + item.text) }}</v-list-item-title>
       </v-list-item>
     </v-list>
@@ -71,22 +63,46 @@ const props = defineProps({
   type: { type: String, default: "articles", required: true },
 })
 
-const currentSort = computed(
-  () =>
-    $stores[props.type]?.sortKey ||
-    Object.keys($stores[props.type]?.sort).find(
-      (k) => $stores[props.type].sort[k]?.default,
-    ),
+const sortObj = computed(() => $stores[props.type]?.sort || {})
+
+const defaultSortKey = computed(() => {
+  const keys = Object.keys(sortObj.value)
+  return keys.find((k) => sortObj.value[k]?.default) || keys[0]
+})
+
+const activeSortKey = computed(() => {
+  const keys = Object.keys(sortObj.value)
+  return keys.find((k) => sortObj.value[k]?.active) || defaultSortKey.value
+})
+
+const defaultSort = computed(() =>
+  defaultSortKey.value ? sortObj.value[defaultSortKey.value] : undefined,
 )
+
+const currentSort = computed(() =>
+  activeSortKey.value ? sortObj.value[activeSortKey.value] : defaultSort.value,
+)
+
+const isActiveSort = (key) => activeSortKey.value === key
+
+const onSelectSort = async (key) => {
+  setActiveSort(key)
+  console.log("key", key)
+
+  const item = sortObj.value[key]
+  if (!item?.value) return
+
+  rootStore.updateSort({
+    value: item.value,
+    type: props.type,
+    lang: locale.value,
+    sortKey: key,
+  })
+}
+
+const setActiveSort = (activeKey) => {
+  for (const k of Object.keys(sortObj.value)) {
+    sortObj.value[k].active = k === activeKey
+  }
+}
 </script>
-
-<style>
-.list-item-active {
-  background-color: black !important;
-  color: white !important;
-}
-
-.list-item-active .v-list-item__overlay {
-  opacity: 0 !important;
-}
-</style>

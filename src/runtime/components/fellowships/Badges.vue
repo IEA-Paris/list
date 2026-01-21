@@ -1,5 +1,6 @@
 <template>
-  <div v-if="registrationStatus === 0" class="text-overline">
+  <v-skeleton-loader v-if="loading" type="button" class="my-2" />
+  <div v-else-if="registrationStatus === 0" class="text-overline">
     {{
       $t("opening-applications-on-0", [getLocalizedDate(item.applicationStart)])
     }}
@@ -29,6 +30,7 @@ import { computed } from "#imports"
 const props = defineProps({
   item: { type: Object, required: true },
   view: { type: Boolean, required: false, default: false },
+  loading: { type: Boolean, required: false, default: false },
 })
 
 const registrationStatus = computed(() => {

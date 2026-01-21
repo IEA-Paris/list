@@ -11,7 +11,7 @@
         </template>
 
         <template v-else>
-          <FellowshipsBadges :item />
+          <FellowshipsBadges :item :loading="isLoading" />
 
           <div class="text-h4 text-black text-wrap mt-4 pb-4">
             {{ item.name }}
