@@ -3,7 +3,6 @@
     <template #activator="{ props: menu }">
       <v-tooltip location="top">
         <template #activator="{ props: tooltip }">
-          <!-- ✅ Activator stable -->
           <span
             class="d-inline-flex align-center"
             :class="{ 'mt-3': isXsDisplay }"

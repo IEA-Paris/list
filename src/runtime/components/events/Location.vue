@@ -3,22 +3,23 @@
     <div class="text-overline font-weight-bold mt-md-4">
       {{ $t("location") }}
     </div>
-
     <div>
-      <b>{{ displayLocation.name }}</b>
-      <div v-if="displayLocation.address" class="text-body-2">
-        {{ displayLocation.address }}
+      <b>{{ getDisplayLocation().name }}</b>
+      <div v-if="getDisplayLocation().address" class="text-body-2">
+        {{ getDisplayLocation().address }}
       </div>
     </div>
-
-    <div v-if="displayLocation.details" class="text-caption mt-1">
-      {{ displayLocation.details }}
+    <div v-if="getDisplayLocation().details" class="text-caption mt-1">
+      {{ getDisplayLocation().details }}
     </div>
   </div>
 </template>
 
 <script setup>
-import { computed } from "vue"
+import { useI18n, useAppConfig } from "#imports"
+
+const { locale } = useI18n()
+const appConfig = useAppConfig()
 
 const props = defineProps({
   item: {
@@ -27,47 +28,35 @@ const props = defineProps({
   },
 })
 
-const DEFAULT_LOCATION = {
-  name: "Paris IAS",
-  street: "17 Quai d'Anjou",
-  city: "Paris",
-  zip: "75004",
-  country: "France",
-}
-
-const hasValidLocation = computed(() => {
-  const loc = props.item?.location
-  return loc && Object.keys(loc).length > 0
-})
-
 const formatAddress = (location) => {
   if (!location) return ""
+  if (location.address) return location.address
 
   const parts = [location.street, location.city].filter(Boolean)
   const zipCountry = [location.zip, location.country].filter(Boolean)
-
   if (zipCountry.length) {
     parts.push(`(${zipCountry.join(", ")})`)
   }
-
   return parts.join(", ")
 }
 
-const displayLocation = computed(() => {
-  if (hasValidLocation.value) {
+const getDisplayLocation = () => {
+  const loc = props.item?.location
+  const hasValidLocation = loc && Object.keys(loc).length > 0
+
+  if (hasValidLocation) {
     return {
-      name: props.item.location.name,
-      address: formatAddress(props.item.location),
-      details: props.item.location.details,
+      name: loc.name,
+      address: formatAddress(loc),
+      details: loc.details,
     }
   }
 
+  const isFr = locale.value === "fr"
   return {
-    name: DEFAULT_LOCATION.name,
-    address: formatAddress(DEFAULT_LOCATION),
-    details: null,
+    name: isFr ? appConfig.short_name_french : appConfig.short_name_english,
+    address: appConfig.address,
+    details: appConfig.postcode_country,
   }
-})
+}
 </script>
-
-<style scoped></style>
