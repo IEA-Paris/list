@@ -5,7 +5,7 @@
     <v-col cols="12" md="1">
       <MiscAtomsDateStamp
         v-if="item.start"
-        :loading="isLoading"
+        :loading="loading"
         :date-start="item.start"
         :date-stop="item.stop"
         class="pr-6 mt-md-2"
@@ -15,7 +15,7 @@
       <v-row no-gutters>
         <v-col cols="12" class="pr-lg-6">
           <v-skeleton-loader
-            v-if="isLoading"
+            v-if="loading"
             :type="
               [
                 'heading, subtitle, text@6,subtitle, text,  ossein,  button, button',
@@ -61,7 +61,7 @@
       >
         <v-col cols="12">
           <v-skeleton-loader
-            v-if="isLoading"
+            v-if="loading"
             :type="['button'][['md'].indexOf(name || 'md')]"
           />
 
@@ -74,7 +74,7 @@
     <v-col cols="12" md="4">
       <MiscAtomsImageContainer
         cover
-        :loading="isLoading"
+        :loading="loading"
         :src="item.image && item.image.url ? item.image : '/default.png'"
         :ratio="1 / 1"
       />
@@ -107,6 +107,4 @@ const props = defineProps({
     default: false,
   },
 })
-
-const isLoading = computed(() => rootStore.loading || props.loading)
 </script>

@@ -2,7 +2,7 @@
   <v-row v-ripple no-gutters class="cursor-pointer highlight-on-hover my-2">
     <v-col cols="12" class="w-100">
       <div v-ripple class="border-thin pa-6">
-        <template v-if="isLoading">
+        <template v-if="loading">
           <v-skeleton-loader type="chip@2" class="mb-2" />
           <v-skeleton-loader type="heading" width="70%" class="mt-4" />
           <v-skeleton-loader type="text@4" class="mt-2 w-100" />
@@ -11,7 +11,7 @@
         </template>
 
         <template v-else>
-          <FellowshipsBadges :item :loading="isLoading" />
+          <FellowshipsBadges :item :loading="loading" />
 
           <div class="text-h4 text-black text-wrap mt-4 pb-4">
             {{ item.name }}
@@ -50,8 +50,6 @@
 
 <script setup>
 import { useDisplay } from "vuetify"
-import { computed } from "#imports"
-import { useRootStore } from "../../stores/root"
 
 const { name } = useDisplay()
 
@@ -71,9 +69,6 @@ const props = defineProps({
     default: false,
   },
 })
-
-const rootStore = useRootStore()
-const isLoading = computed(() => rootStore.loading || props.loading)
 </script>
 
 <style lang="scss"></style>

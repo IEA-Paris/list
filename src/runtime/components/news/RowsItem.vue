@@ -6,7 +6,7 @@
         cover
         :src="item.image.url ? item.image : '/default.png'"
         :ratio="1 / 1"
-        :loading="isLoading"
+        :loading="loading"
       >
         <v-chip class="ma-2" style="background-color: white; color: black">
           {{ $t(eventCategory) }}
@@ -15,7 +15,7 @@
     </v-col>
     <v-col cols="12" md="8" lg="4" class="pl-md-6">
       <v-skeleton-loader
-        v-if="isLoading"
+        v-if="loading"
         :type="
           [
             'heading, subtitle, text@5, ossein, button',
@@ -104,9 +104,8 @@
 <script setup>
 import { useDisplay } from "vuetify"
 import { useRootStore } from "../../stores/root"
-import { useNuxtApp, useI18n, computed } from "#imports"
+import { useI18n, computed } from "#imports"
 
-const { $stores } = useNuxtApp()
 const { locale } = useI18n()
 const rootStore = useRootStore()
 const { name, smAndDown, mdAndDown, mdAndUp, lgAndUp } = useDisplay()
@@ -150,8 +149,6 @@ function replaceMarkdownLinksWithSlug(markdownText, slugPath) {
     return `[${text}](${slugPath}?redirect=${encodedUrl})`
   })
 }
-
-const isLoading = computed(() => rootStore.loading || props.loading)
 </script>
 
 <style></style>

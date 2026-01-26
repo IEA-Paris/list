@@ -3,7 +3,7 @@
     <v-col v-if="mdAndUp" cols="1">
       <MiscAtomsDateStamp
         v-if="item.start"
-        :loading="isLoading"
+        :loading
         :date-start="item.start"
         :date-stop="item.stop"
         class="pr-6 mt-md-2"
@@ -12,7 +12,7 @@
     <v-col v-if="mdAndUp" cols="1">
       <MiscAtomsImageContainer
         cover
-        :loading="isLoading"
+        :loading
         :src="
           item && item.image && item.image.url ? item.image.url : '/default.png'
         "
@@ -22,12 +22,7 @@
     </v-col>
 
     <v-col align-self="start" class="pl-2">
-      <v-skeleton-loader
-        v-if="isLoading"
-        type="chip"
-        class="mr-3"
-        width="120"
-      />
+      <v-skeleton-loader v-if="loading" type="chip" class="mr-3" width="120" />
       <v-chip
         v-else
         class="mr-3"
@@ -40,7 +35,7 @@
         {{ $t("list.filters.events.category." + item.category) }}
       </v-chip>
       <v-skeleton-loader
-        v-if="isLoading && smAndDown"
+        v-if="loading && smAndDown"
         type="text"
         width="90"
         class="d-inline-block"
@@ -56,7 +51,7 @@
       </span>
 
       <v-skeleton-loader
-        v-if="isLoading"
+        v-if="loading"
         type="heading"
         width="80%"
         class="mt-2"
@@ -71,7 +66,7 @@
             : item.name
         "
       />
-      <v-skeleton-loader v-if="isLoading" type="text@3" class="mt-2" />
+      <v-skeleton-loader v-if="loading" type="text@3" class="mt-2" />
       <MDC
         v-else
         class="text-body-1 font-weight-light paragraph"
@@ -84,7 +79,7 @@
     </v-col>
 
     <v-col align-self="center" cols="auto">
-      <v-skeleton-loader v-if="isLoading" type="button" />
+      <v-skeleton-loader v-if="loading" type="button" />
       <div v-else>
         <EventsBadges :item />
       </div>
@@ -118,5 +113,5 @@ const props = defineProps({
   },
 })
 
-const isLoading = computed(() => rootStore.loading || props.loading)
+// const loading = computed(() => rootStore.loading || props.loading)
 </script>

@@ -3,7 +3,7 @@
     <v-col v-if="mdAndUp" align-self="center" cols="1">
       <MiscAtomsImageContainer
         cover
-        :loading="isLoading"
+        :loading="loading"
         :src="
           item && item.image && item.image.url ? item.image.url : '/default.png'
         "
@@ -12,7 +12,7 @@
       />
     </v-col>
     <v-col align-self="center" class="text-h5 dense pl-2">
-      <v-skeleton-loader v-if="isLoading" type="heading" width="50%" />
+      <v-skeleton-loader v-if="loading" type="heading" width="50%" />
       <span
         v-else
         v-html="
@@ -21,21 +21,14 @@
             : item.name
         "
       />
-      <!-- <v-skeleton-loader
-        v-if="isLoading"
-        :type="
-          ['chip', 'chip@2', 'chip@3', 'chip@4', 'chip@4', 'chip@4'][
-            ['xs', 'sm', 'md', 'lg', 'xl', 'xxl'].indexOf(name || 'md')
-          ]
-        "
-      /> -->
+
       <MiscMoleculesChipContainer
         v-if="item.tags"
         :items="item.tags || []"
         size="small"
       />
 
-      <v-skeleton-loader v-if="isLoading" type="text@2" class="mt-3" />
+      <v-skeleton-loader v-if="loading" type="text@2" class="mt-3" />
 
       <MDC
         v-else-if="item.summary"
@@ -53,11 +46,8 @@
 <script setup>
 import { useDisplay } from "vuetify"
 import { useRootStore } from "../../stores/root"
-import { computed, useNuxtApp, useI18n } from "#imports"
 
-const { $stores } = useNuxtApp()
-const { name, mdAndUp } = useDisplay()
-const { locale } = useI18n()
+const { mdAndUp } = useDisplay()
 
 const rootStore = useRootStore()
 const props = defineProps({
@@ -76,6 +66,4 @@ const props = defineProps({
     default: false,
   },
 })
-
-const isLoading = computed(() => rootStore.loading || props.loading)
 </script>

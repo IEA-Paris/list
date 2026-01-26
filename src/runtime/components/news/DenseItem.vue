@@ -3,7 +3,7 @@
     <v-col v-if="mdAndUp" align-self="center" cols="1">
       <MiscAtomsImageContainer
         cover
-        :loading="isLoading"
+        :loading="loading"
         :src="
           item && item.image && item.image.url ? item.image.url : '/default.png'
         "
@@ -12,10 +12,10 @@
       />
     </v-col>
     <v-col align-self="start" class="text-h5 dense px-2 paragraph">
-      <v-skeleton-loader v-if="isLoading" type="heading" />
+      <v-skeleton-loader v-if="loading" type="heading" />
       <template v-else>
         <v-skeleton-loader
-          v-if="isLoading"
+          v-if="loading"
           :type="
             ['chip', 'chip@2', 'chip@3', 'chip@4', 'chip@4', 'chip@4'][
               ['xs', 'sm', 'md', 'lg', 'xl', 'xxl'].indexOf(name || 'md')
@@ -52,14 +52,10 @@
 
 <script setup>
 import { useDisplay } from "vuetify"
-import { useRootStore } from "../../stores/root"
-import { computed, useNuxtApp, useI18n } from "#imports"
+import { computed } from "#imports"
 
-const { $stores } = useNuxtApp()
 const { name, mdAndUp } = useDisplay()
-const { locale } = useI18n()
 
-const rootStore = useRootStore()
 const props = defineProps({
   item: {
     type: Object,
@@ -83,6 +79,4 @@ const eventCategory = computed(() => {
     return "list.filters.news.category.others"
   }
 })
-
-const isLoading = computed(() => rootStore.loading || props.loading)
 </script>
