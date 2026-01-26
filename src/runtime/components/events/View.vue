@@ -206,7 +206,7 @@
               eager
               ripple
               variant="accordion"
-              class="py-8"
+              "
             >
               <v-expansion-panel
                 v-if="item.description"

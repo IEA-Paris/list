@@ -3,7 +3,7 @@
     <v-col v-if="mdAndUp" cols="1">
       <MiscAtomsImageContainer
         cover
-        :loading="isLoading"
+        :loading="loading"
         :src="
           item && item.image && item.image.url ? item.image.url : '/default.png'
         "
@@ -12,7 +12,7 @@
       />
     </v-col>
     <v-col align-self="start" class="text-h6 dense px-2">
-      <v-skeleton-loader v-if="isLoading" type="heading" />
+      <v-skeleton-loader v-if="loading" type="heading" />
       <div v-else class="d-flex text-h5 align-center">
         <span
           v-html="
@@ -20,7 +20,7 @@
               ? highlightAndTruncate(
                   300,
                   item.firstname + ' ' + item.lastname,
-                  $rootStore.search.split(' ')
+                  $rootStore.search.split(' '),
                 )
               : item.firstname + ' ' + item.lastname
           "
@@ -36,7 +36,7 @@
             ? highlightAndTruncate(
                 300,
                 item.groups.vintage[0].theme,
-                $rootStore.search.split(' ')
+                $rootStore.search.split(' '),
               )
             : item.groups.vintage[0].theme
         "
@@ -68,8 +68,6 @@ const props = defineProps({
     default: false,
   },
 })
-
-const isLoading = computed(() => props.loading)
 </script>
 <style>
 .paragraph {

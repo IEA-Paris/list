@@ -5,12 +5,12 @@
         cover
         :src="imageSrc"
         :ratio="1 / 1"
-        :loading="isLoading"
+        :loading="loading"
       />
     </v-col>
     <v-col cols="12" :md="mdAndUp ? 9 : 12" class="px-6">
       <v-skeleton-loader
-        v-if="isLoading"
+        v-if="loading"
         :type="
           [
             'heading, ossein, text@6, button',
@@ -36,17 +36,14 @@
 <script setup>
 import { useDisplay } from "vuetify"
 import { computed } from "#imports"
-import { useRootStore } from "../../stores/root"
 
 const { name, mdAndUp } = useDisplay()
-const rootStore = useRootStore()
 const props = defineProps({
   item: { type: Object, required: true },
   index: { type: Number, required: false, default: 0 },
   loading: { type: Boolean, required: false, default: false },
 })
 
-const isLoading = computed(() => rootStore.loading || props.loading)
 const imageSrc = computed(() => {
   const img = props.item && props.item.image
   if (!img) return "/default.png"

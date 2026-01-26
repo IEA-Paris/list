@@ -4,10 +4,8 @@
       v-for="(items, type) in related"
       :key="type"
       cols="12"
-      md="6"
-      lg="4"
-      xl="3"
-      class="d-flex flex-column align-center"
+      md="4"
+      class="d-flex flex-column align-start"
     >
       <MiscMoleculesRelatedItems
         v-if="items && items.length && type !== '__typename'"

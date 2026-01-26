@@ -1,16 +1,11 @@
 <template>
   <v-row class="my-2 highlight-on-hover" no-gutters>
     <v-col v-if="mdAndUp" cols="12" md="2">
-      <MiscAtomsImageContainer
-        :loading="isLoading"
-        :src="imageSrc"
-        :ratio="1 / 1"
-        cover
-      />
+      <MiscAtomsImageContainer :loading :src="imageSrc" :ratio="1 / 1" cover />
     </v-col>
     <v-col cols="12" :md="mdAndUp ? 10 : 12" class="px-4">
       <v-skeleton-loader
-        v-if="isLoading"
+        v-if="loading"
         :type="
           [
             'heading, subtitle, text@6',
@@ -36,17 +31,14 @@
 <script setup>
 import { useDisplay } from "vuetify"
 import { computed } from "#imports"
-import { useRootStore } from "../../stores/root"
 
 const { name, mdAndUp } = useDisplay()
-const rootStore = useRootStore()
 const props = defineProps({
   item: { type: Object, required: true },
   index: { type: Number, required: false, default: 0 },
   loading: { type: Boolean, required: false, default: false },
 })
 
-const isLoading = computed(() => rootStore.loading || props.loading)
 const imageSrc = computed(() => {
   const img = props.item && props.item.image
   if (!img) return "/default.png"

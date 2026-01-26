@@ -20,7 +20,7 @@
         :is="itemTemplate"
         :item
         :index
-        :loading="$stores[type] && $stores[type].loading && pending"
+        :loading="isLoading"
         :path="
           localePath({
             name: pathPrefix,
@@ -209,11 +209,10 @@ async function onPageChange(newPage) {
     }
   }, 0)
 }
-/*
-onUpdated(() => {
-  console.log("STOP local loading from updated")
-  rootStore.setLoading(false, props.type)
-}) */
+
+const isLoading = computed(() => {
+  return rootStore.loading || ($stores[props.type]?.loading && pending.value)
+})
 </script>
 
 <style lang="scss" scoped>
