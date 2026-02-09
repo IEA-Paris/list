@@ -17,18 +17,8 @@
       tile
       type="search"
       :loading="rootStore.loading"
-      @keyup.enter="
-        $router.push({
-          path: localePath('/search'),
-          query: { search: search || undefined },
-        })
-      "
-      @click="
-        $router.push({
-          path: localePath('/search'),
-          query: { search: search || undefined },
-        })
-      "
+      @keyup.enter="navigateToSearch"
+      @click:append="navigateToSearch"
     >
       <!--    :loading="$nuxt.loading || $store.state.loading" :class="{ 'mt-3':
         $store.state.scrolled }" -->
@@ -88,18 +78,8 @@
       variant="outlined"
       size="large"
       height="56"
-      @keyup.enter="
-        $router.push({
-          path: localePath('/search'),
-          query: { search: search || undefined },
-        })
-      "
-      @click="
-        $router.push({
-          path: localePath('/search'),
-          query: { search: search || undefined },
-        })
-      "
+      @keyup.enter="navigateToSearch"
+      @click="navigateToSearch"
     >
       <v-icon size="large">mdi-magnify</v-icon>
       <v-tooltip activator="parent" location="start">{{
@@ -112,11 +92,13 @@
 <script setup>
 import { useDebounceFn } from "@vueuse/core"
 import { useRootStore } from "../../../stores/root"
-import { computed, useI18n, ref, useLocalePath } from "#imports"
+import { computed, useI18n, ref, useLocalePath, useRouter } from "#imports"
 const localePath = useLocalePath()
+const router = useRouter()
 const { locale, t } = useI18n()
 const rootStore = useRootStore()
 
+// Utility function to capitalize first letter
 const capitalize = (str) => str.charAt(0).toUpperCase() + str.slice(1)
 const emit = defineEmits(["filter-change"])
 const props = defineProps({
@@ -138,8 +120,10 @@ const props = defineProps({
   },
 })
 
+// Filter dropdown state
 const filterMenuOpen = ref(false)
 
+// Filter options
 const filterOptions = computed(() => [
   { value: "people", label: capitalize(t("items.people", 2)) },
   { value: "events", label: capitalize(t("items.events", 2)) },
@@ -167,6 +151,13 @@ const toggleFilter = (option) => {
   })
 }
 
+const navigateToSearch = () => {
+  navigateTo({
+    path: localePath("/search"),
+    query: rootStore.search ? { search: rootStore.search } : {},
+  })
+}
+
 const search = computed({
   get() {
     return rootStore.search
@@ -174,43 +165,18 @@ const search = computed({
   set: useDebounceFn(function (v) {
     const value = v || ""
     if (!value && !rootStore.search) return
-    rootStore.updateSearch({
-      type: props.type,
-      search: value,
-      lang: locale.value,
-    })
+
+    if (props.type === "all") {
+      rootStore.search = value
+    } else {
+      rootStore.updateSearch({
+        type: props.type,
+        search: value,
+        lang: locale.value,
+      })
+    }
   }, 300),
 })
-
-// const search = computed({
-//   get() {
-//     return rootStore.search
-//   },
-//   set: useDebounceFn(function (v) {
-//     const value = v || ""
-//     rootStore.updateSearch({
-//       type: props.type,
-//       search: value,
-//       lang: locale.value,
-//     })
-//   }, 300),
-// })
-// const search = computed({
-//   get() {
-//     return rootStore.search
-//   },
-//   set: useDebounceFn(function (v) {
-//     emit("change", {
-//       name: "search",
-//       value: v,
-//     })
-//     rootStore.updateSearch({
-//       type: props.type,
-//       search: v || "",
-//       lang: locale.value,
-//     })
-//   }, 300),
-// })
 </script>
 
 <style lang="scss" scoped></style>

@@ -6,21 +6,24 @@
     :categories="selectedCategories"
     @filter-change="handleFilterChange"
   />
-  <ListMoleculesResultsContainer
-    v-for="type in filteredSortedModules"
-    :key="type"
-    :feminine="type === 'people'"
-    :type
-    :open="$rootStore.results[type]?.total > 0 ?? open[type]"
-    @toggle="open[$event] = !open[$event]"
-  >
-    {{ $rootStore.results[type]?.total }}
-    <v-expand-transition class="results-container">
-      <div v-show="$rootStore.results[type]?.total > 0 || open[type]">
-        <ListAtomsResultsList :type />
-      </div>
-    </v-expand-transition>
-  </ListMoleculesResultsContainer>
+  <v-progress-linear v-if="pending" indeterminate />
+  <template v-else>
+    <ListMoleculesResultsContainer
+      v-for="type in filteredSortedModules"
+      :key="type"
+      :feminine="type === 'people'"
+      :type
+      :open="$rootStore.results[type]?.total > 0 ?? open[type]"
+      @toggle="open[$event] = !open[$event]"
+    >
+      {{ $rootStore.results[type]?.total }}
+      <v-expand-transition class="results-container">
+        <div v-show="$rootStore.results[type]?.total > 0 || open[type]">
+          <ListAtomsResultsList :type />
+        </div>
+      </v-expand-transition>
+    </ListMoleculesResultsContainer>
+  </template>
 </template>
 
 <script setup>
@@ -28,6 +31,7 @@ import {
   useNuxtApp,
   useI18n,
   useAppConfig,
+  useRoute,
   ref,
   useAsyncQuery,
   computed,
@@ -40,9 +44,8 @@ defineOptions({ name: "SearchResults" })
 const { $rootStore } = useNuxtApp()
 const appConfig = useAppConfig()
 const { locale } = useI18n()
-const open = ref({})
-
 const route = useRoute()
+const open = ref({})
 
 if (route.query.search) {
   $rootStore.search = route.query.search
@@ -71,13 +74,16 @@ const filteredSortedModules = computed(() => {
 const searchTerm = computed(() => $rootStore.search || "")
 const currentLocale = computed(() => locale.value)
 
-const { data, pending, error } = await useAsyncQuery(
+const { data, pending, error } = useAsyncQuery(
   SEARCH,
   computed(() => ({
     search: searchTerm.value,
     appId: "iea",
     locale: currentLocale.value,
   })),
+  {
+    enabled: computed(() => searchTerm.value.length > 0),
+  },
 )
 
 watch(
