@@ -4,7 +4,6 @@
     :placeholder="$t('search')"
     variant="outlined"
     :categories="selectedCategories"
-    @change="updateSearch($event)"
     @filter-change="handleFilterChange"
   />
   <ListMoleculesResultsContainer
@@ -27,96 +26,78 @@
 <script setup>
 import {
   useNuxtApp,
-  onBeforeUnmount,
   useI18n,
   useAppConfig,
   ref,
   useAsyncQuery,
   computed,
+  watch,
 } from "#imports"
 import SEARCH from "@paris-ias/trees/dist/graphql/client/misc/query.search.all.gql"
-// Component name for linting
-defineOptions({
-  name: "SearchResults",
-})
+
+defineOptions({ name: "SearchResults" })
 
 const { $rootStore } = useNuxtApp()
-
 const appConfig = useAppConfig()
 const { locale } = useI18n()
 const open = ref({})
 
-// State for selected categories (default to all selected)
+const route = useRoute()
+
+if (route.query.search) {
+  $rootStore.search = route.query.search
+}
+
 const selectedCategories = ref([...appConfig.list.modules])
 
-// Handle filter changes
 const handleFilterChange = (filterData) => {
   selectedCategories.value = filterData.categories
 }
 
-// Computed property to sort modules by total count (highest first)
 const sortedModules = computed(() => {
   return appConfig.list.modules.slice().sort((a, b) => {
-    const aResults = $rootStore.results[a] || { total: 0 }
-    const bResults = $rootStore.results[b] || { total: 0 }
-
-    // Sort by highest total count first
-    return (bResults.total || 0) - (aResults.total || 0)
+    const aTotal = $rootStore.results[a]?.total || 0
+    const bTotal = $rootStore.results[b]?.total || 0
+    return bTotal - aTotal
   })
 })
 
-// Computed property to filter and sort modules based on selected categories
 const filteredSortedModules = computed(() => {
   return sortedModules.value.filter((type) =>
     selectedCategories.value.includes(type),
   )
 })
 
-// Apollo GraphQL query with proper reactivity
-const { data, pending, error, refresh } = await useAsyncQuery(
+const searchTerm = computed(() => $rootStore.search || "")
+const currentLocale = computed(() => locale.value)
+
+const { data, pending, error } = await useAsyncQuery(
   SEARCH,
-  { search: $rootStore.search, appId: "iea", locale: locale.value },
-  {
-    key: `search-${$rootStore.search}`, // Unique key for caching
-    server: true, // Enable SSR
-  },
+  computed(() => ({
+    search: searchTerm.value,
+    appId: "iea",
+    locale: currentLocale.value,
+  })),
 )
-if (error.value) {
-  console.error("GraphQL query error: ", error.value)
-} else {
-  console.log("Query result data: ", data.value.items?.length)
-}
 
-// Apply data to store immediately if available
-if (data.value) {
-  console.log("Applying data to store directly [first load scenario]")
-  $rootStore.applyListResult("all", data.value)
-  // Initialize open state for types with results
-  appConfig.list.modules.forEach((type) => {
-    if ($rootStore.results[type]?.total > 0) {
-      open.value[type] = true
-    }
-  })
-}
-
-const updateSearch = async (newSearch) => {
-  console.log("update search")
-  if (newSearch !== $rootStore.search) {
-    await refresh()
-    if (data.value) {
-      console.log("Applying data to store directly [first load scenario]")
-      $rootStore.applyListResult("all", data.value)
-      // Initialize open state for types with results
+watch(
+  data,
+  (newData) => {
+    if (newData) {
+      console.log("Applying search data to store")
+      $rootStore.applyListResult("all", newData)
       appConfig.list.modules.forEach((type) => {
         if ($rootStore.results[type]?.total > 0) {
           open.value[type] = true
         }
       })
     }
-  }
-}
-onBeforeUnmount(() => {
-  /* rootStore.resetState("all", locale.value) */
+  },
+  { immediate: true },
+)
+
+watch(error, (err) => {
+  if (err) console.error("GraphQL query error:", err)
 })
 </script>
 <style scoped>

@@ -17,8 +17,18 @@
       tile
       type="search"
       :loading="rootStore.loading"
-      @keyup.enter="$router.push(localePath('/search'))"
-      @click:append="$router.push(localePath('/search'))"
+      @keyup.enter="
+        $router.push({
+          path: localePath('/search'),
+          query: { search: search || undefined },
+        })
+      "
+      @click="
+        $router.push({
+          path: localePath('/search'),
+          query: { search: search || undefined },
+        })
+      "
     >
       <!--    :loading="$nuxt.loading || $store.state.loading" :class="{ 'mt-3':
         $store.state.scrolled }" -->
@@ -78,8 +88,18 @@
       variant="outlined"
       size="large"
       height="56"
-      @keyup.enter="$router.push(localePath('/search'))"
-      @click="$router.push(localePath('/search'))"
+      @keyup.enter="
+        $router.push({
+          path: localePath('/search'),
+          query: { search: search || undefined },
+        })
+      "
+      @click="
+        $router.push({
+          path: localePath('/search'),
+          query: { search: search || undefined },
+        })
+      "
     >
       <v-icon size="large">mdi-magnify</v-icon>
       <v-tooltip activator="parent" location="start">{{
@@ -97,7 +117,6 @@ const localePath = useLocalePath()
 const { locale, t } = useI18n()
 const rootStore = useRootStore()
 
-// Utility function to capitalize first letter
 const capitalize = (str) => str.charAt(0).toUpperCase() + str.slice(1)
 const emit = defineEmits(["filter-change"])
 const props = defineProps({
@@ -119,10 +138,8 @@ const props = defineProps({
   },
 })
 
-// Filter dropdown state
 const filterMenuOpen = ref(false)
 
-// Filter options
 const filterOptions = computed(() => [
   { value: "people", label: capitalize(t("items.people", 2)) },
   { value: "events", label: capitalize(t("items.events", 2)) },
@@ -155,17 +172,45 @@ const search = computed({
     return rootStore.search
   },
   set: useDebounceFn(function (v) {
-    emit("change", {
-      name: "search",
-      value: v,
-    })
+    const value = v || ""
+    if (!value && !rootStore.search) return
     rootStore.updateSearch({
       type: props.type,
-      search: v || "",
+      search: value,
       lang: locale.value,
     })
   }, 300),
 })
+
+// const search = computed({
+//   get() {
+//     return rootStore.search
+//   },
+//   set: useDebounceFn(function (v) {
+//     const value = v || ""
+//     rootStore.updateSearch({
+//       type: props.type,
+//       search: value,
+//       lang: locale.value,
+//     })
+//   }, 300),
+// })
+// const search = computed({
+//   get() {
+//     return rootStore.search
+//   },
+//   set: useDebounceFn(function (v) {
+//     emit("change", {
+//       name: "search",
+//       value: v,
+//     })
+//     rootStore.updateSearch({
+//       type: props.type,
+//       search: v || "",
+//       lang: locale.value,
+//     })
+//   }, 300),
+// })
 </script>
 
 <style lang="scss" scoped></style>
