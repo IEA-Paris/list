@@ -3,7 +3,7 @@
     <v-col v-if="mdAndUp" cols="1" class="align-center">
       <MiscAtomsImageContainer
         cover
-        :loading="isLoading"
+        :loading="loading"
         :src="
           item && item.image && item.image.url ? item.image.url : '/default.png'
         "
@@ -13,7 +13,7 @@
     </v-col>
     <v-col class="pl-2">
       <div class="inline-flex flex-row flex-wrap">
-        <v-skeleton-loader v-if="isLoading" :type="heading" />
+        <v-skeleton-loader v-if="loading" :type="heading" />
 
         <template v-else>
           <v-chip
@@ -39,7 +39,7 @@
             size="small"
           />
         </template>
-        <v-skeleton-loader v-if="isLoading" type="heading" />
+        <v-skeleton-loader v-if="loading" type="heading" />
         <span
           v-else
           class="text-h5 dense paragraph"
@@ -54,7 +54,7 @@
           "
         />
 
-        <v-skeleton-loader v-if="isLoading" type="text@3" class="mt-2" />
+        <v-skeleton-loader v-if="loading" type="text@3" class="mt-2" />
         <MDC
           v-else
           class="text-body-1 font-weight-light paragraph"
@@ -71,11 +71,10 @@
 <script setup>
 import { useDisplay } from "vuetify"
 import { useRootStore } from "../../stores/root"
-import { computed, useI18n } from "#imports"
+import { computed } from "#imports"
 const rootStore = useRootStore()
 
-const { name, mdAndUp } = useDisplay()
-const { locale } = useI18n()
+const { mdAndUp } = useDisplay()
 const props = defineProps({
   item: {
     type: Object,
@@ -107,6 +106,4 @@ const eventType = computed(() => {
     return false
   }
 })
-
-const isLoading = computed(() => rootStore.loading || props.loading)
 </script>

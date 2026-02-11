@@ -5,7 +5,7 @@
     @click="$router.push(pathPrefix)"
   >
     <v-col cols="12" class="px-4">
-      <v-skeleton-loader v-if="isLoading" type="heading, text@6" />
+      <v-skeleton-loader v-if="loading" type="heading, text@6" />
       <template v-else>
         <div class="text-h5">{{ item.name }}</div>
         <div v-if="item.summary" class="text-body-1 mt-1">
@@ -18,17 +18,11 @@
 </template>
 
 <script setup>
-import { computed } from "#imports"
-import { useRootStore } from "../../stores/root"
-
-const rootStore = useRootStore()
 const props = defineProps({
   item: { type: Object, required: true },
   pathPrefix: { type: String, required: true },
   loading: { type: Boolean, default: false },
 })
-
-const isLoading = computed(() => rootStore.loading || props.loading)
 </script>
 
 <style></style>

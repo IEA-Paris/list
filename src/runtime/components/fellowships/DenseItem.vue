@@ -2,7 +2,7 @@
   <v-row v-ripple no-gutters class="cursor-pointer highlight-on-hover">
     <v-col align-self="center" cols="8" class="text-h5 dense">
       <v-skeleton-loader
-        v-if="isLoading"
+        v-if="loading"
         type="heading"
         width="75%"
         class="mb-2"
@@ -15,15 +15,10 @@
             : item.name
         "
       />
-      <FellowshipsBadges :item="item" />
+      <FellowshipsBadges :item="item" :loading="loading" />
     </v-col>
     <v-col align-self="center" cols="4">
-      <v-skeleton-loader
-        v-if="isLoading"
-        type="chip"
-        width="260"
-        class="mt-2"
-      />
+      <v-skeleton-loader v-if="loading" type="chip" width="260" class="mt-2" />
       <MiscMoleculesChipContainer
         v-else
         :items="[
@@ -40,8 +35,6 @@
 
 <script setup>
 import { useNuxtApp } from "#imports"
-import { useRootStore } from "../../stores/root"
-import { computed } from "#imports"
 const { $rootStore } = useNuxtApp()
 
 const props = defineProps({
@@ -59,7 +52,4 @@ const props = defineProps({
     default: false,
   },
 })
-
-const rootStore = useRootStore()
-const isLoading = computed(() => rootStore.loading || props.loading)
 </script>

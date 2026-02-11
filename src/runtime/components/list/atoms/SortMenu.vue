@@ -1,25 +1,23 @@
 <template>
-  <v-menu :disabled="$stores[type].loading">
+  <v-menu :disabled="rootStore.loading">
     <template #activator="{ props: menu }">
       <v-tooltip location="top">
         <template #activator="{ props: tooltip }">
-          <template v-if="$stores[type].loading">
-            <v-skeleton-loader type="button" :class="{ 'mt-3': isXsDisplay }" />
-          </template>
-
-          <template v-else>
-            <v-btn
-              x-large
-              outlined
-              tile
-              flat
-              icon
-              :class="{ 'mt-3': isXsDisplay }"
-              v-bind="mergeProps(menu, tooltip)"
-            >
+          <span
+            class="d-inline-flex align-center"
+            :class="{ 'mt-3': isXsDisplay }"
+            v-bind="mergeProps(menu, tooltip)"
+          >
+            <v-skeleton-loader
+              v-if="rootStore.loading"
+              type="button"
+              width="60"
+              height="60"
+            />
+            <v-btn v-else icon variant="text">
               <v-icon>mdi-{{ $stores[type].sort[currentSort]?.icon }}</v-icon>
             </v-btn>
-          </template>
+          </span>
         </template>
 
         <div
@@ -31,7 +29,7 @@
       </v-tooltip>
     </template>
 
-    <v-list density="compact">
+    <<v-list density="compact">
       <v-list-item
         v-for="(item, key) in $stores[type].sort"
         :key="key"
@@ -60,11 +58,10 @@ import { computed } from "vue"
 import { mergeProps } from "vue"
 import { useDisplay } from "vuetify"
 import { useRootStore } from "../../../stores/root"
-import { useNuxtApp, useI18n } from "#imports"
+import { useNuxtApp } from "#imports"
 
 const { $stores } = useNuxtApp()
 const { xs: isXsDisplay } = useDisplay()
-const { locale } = useI18n()
 const rootStore = useRootStore()
 
 const props = defineProps({

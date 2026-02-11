@@ -54,7 +54,7 @@
               class="mt-2"
             />
             <div class="mt-5">
-              <FellowshipsBadges :item="item" :view="view" />
+              <FellowshipsBadges :item="item" :view="view" :loading="loading" />
             </div>
           </div>
           <div class="mx-6">
