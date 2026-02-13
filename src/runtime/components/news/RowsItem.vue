@@ -68,7 +68,7 @@
     </v-col>
 
     <v-col v-if="lgAndUp" cols="12" lg="5">
-      <v-skeleton-loader v-if="isLoading" type="text@8, ossein, button" />
+      <v-skeleton-loader v-if="loading" type="text@8, ossein, button" />
 
       <template v-else>
         <div

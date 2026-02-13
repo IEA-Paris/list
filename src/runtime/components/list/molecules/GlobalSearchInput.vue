@@ -8,7 +8,6 @@
           ? t('search')
           : $t('list.search-type', [$t('items.' + type, 2)])
       "
-      prepend-inner-icon="mdi-magnify"
       single-line
       class="transition-swing flex-grow-1"
       variant="outlined"
@@ -17,11 +16,9 @@
       tile
       type="search"
       :loading="rootStore.loading"
-      @keyup.enter="$router.push(localePath('/search'))"
-      @click:append="$router.push(localePath('/search'))"
+      @keyup.enter="navigateToSearch"
+      @click:append="navigateToSearch"
     >
-      <!--    :loading="$nuxt.loading || $store.state.loading" :class="{ 'mt-3':
-        $store.state.scrolled }" -->
       <template v-if="!search" #label>
         <div class="searchLabel">
           {{ $t("search") }}
@@ -78,8 +75,8 @@
       variant="outlined"
       size="large"
       height="56"
-      @keyup.enter="$router.push(localePath('/search'))"
-      @click="$router.push(localePath('/search'))"
+      @keyup.enter="navigateToSearch"
+      @click="navigateToSearch"
     >
       <v-icon size="large">mdi-magnify</v-icon>
       <v-tooltip activator="parent" location="start">{{
@@ -92,7 +89,7 @@
 <script setup>
 import { useDebounceFn } from "@vueuse/core"
 import { useRootStore } from "../../../stores/root"
-import { computed, useI18n, ref, useLocalePath } from "#imports"
+import { computed, useI18n, ref, useLocalePath, useRouter } from "#imports"
 const localePath = useLocalePath()
 const { locale, t } = useI18n()
 const rootStore = useRootStore()
@@ -150,20 +147,30 @@ const toggleFilter = (option) => {
   })
 }
 
+const navigateToSearch = () => {
+  navigateTo({
+    path: localePath("/search"),
+    query: rootStore.search ? { search: rootStore.search } : {},
+  })
+}
+
 const search = computed({
   get() {
     return rootStore.search
   },
   set: useDebounceFn(function (v) {
-    emit("change", {
-      name: "search",
-      value: v,
-    })
-    rootStore.updateSearch({
-      type: props.type,
-      search: v || "",
-      lang: locale.value,
-    })
+    const value = v || ""
+    if (!value && !rootStore.search) return
+
+    if (props.type === "all") {
+      rootStore.search = value
+    } else {
+      rootStore.updateSearch({
+        type: props.type,
+        search: value,
+        lang: locale.value,
+      })
+    }
   }, 300),
 })
 </script>

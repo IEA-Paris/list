@@ -27,7 +27,9 @@ const itemTemplate = computed(() =>
       capitalize(props.type) +
       capitalize($stores[props.type].view.name) +
       "Item"
-    ).toString()
-  )
+    ).toString(),
+  ),
 )
+console.log("ResultsList props:", itemTemplate, $stores[props.type].view.name)
+console
 </script>
