@@ -16,7 +16,6 @@
       :open="$rootStore.results[type]?.total > 0 ?? open[type]"
       @toggle="open[$event] = !open[$event]"
     >
-      {{ $rootStore.results[type]?.total }}
       <v-expand-transition class="results-container">
         <div v-show="$rootStore.results[type]?.total > 0 || open[type]">
           <ListAtomsResultsList :type />

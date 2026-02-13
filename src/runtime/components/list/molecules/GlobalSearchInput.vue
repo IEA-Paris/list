@@ -8,7 +8,6 @@
           ? t('search')
           : $t('list.search-type', [$t('items.' + type, 2)])
       "
-      prepend-inner-icon="mdi-magnify"
       single-line
       class="transition-swing flex-grow-1"
       variant="outlined"
@@ -20,8 +19,6 @@
       @keyup.enter="navigateToSearch"
       @click:append="navigateToSearch"
     >
-      <!--    :loading="$nuxt.loading || $store.state.loading" :class="{ 'mt-3':
-        $store.state.scrolled }" -->
       <template v-if="!search" #label>
         <div class="searchLabel">
           {{ $t("search") }}
@@ -94,7 +91,6 @@ import { useDebounceFn } from "@vueuse/core"
 import { useRootStore } from "../../../stores/root"
 import { computed, useI18n, ref, useLocalePath, useRouter } from "#imports"
 const localePath = useLocalePath()
-const router = useRouter()
 const { locale, t } = useI18n()
 const rootStore = useRootStore()
 
