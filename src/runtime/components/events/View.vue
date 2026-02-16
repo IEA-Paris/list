@@ -206,7 +206,6 @@
               eager
               ripple
               variant="accordion"
-              "
             >
               <v-expansion-panel
                 v-if="item.description"
