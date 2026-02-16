@@ -86,7 +86,6 @@ export const useRootStore = defineStore("rootStore", {
 
   actions: {
     setLoading(value: boolean, type: string = ""): void {
-      console.log("X - setLoading", { value, type })
       const { $stores } = useNuxtApp() as {
         $stores: Record<string, ModuleStore>
       }
@@ -104,7 +103,7 @@ export const useRootStore = defineStore("rootStore", {
     },
 
     loadRouteQuery(type: string): void {
-      console.log("0 - loadRouteQuery", type)
+      /*    console.log("0 - loadRouteQuery", type) */
       const { currentRoute } = useRouter()
       const { $stores } = useNuxtApp() as {
         $stores: Record<string, ModuleStore>
@@ -144,7 +143,7 @@ export const useRootStore = defineStore("rootStore", {
       }
     },
     setFiltersCount(type: string): void {
-      console.log("6- setFiltersCount", type)
+      /*     console.log("6- setFiltersCount", type) */
       const { $stores } = useNuxtApp() as {
         $stores: Record<string, ModuleStore>
       }
@@ -164,7 +163,7 @@ export const useRootStore = defineStore("rootStore", {
     },
 
     updateRouteQuery(type: string): void {
-      console.log("5- updateRouteQuery", type)
+      /*       console.log("5- updateRouteQuery", type) */
       const router = useRouter()
       const { $stores } = useNuxtApp() as {
         $stores: Record<string, ModuleStore>
@@ -204,7 +203,7 @@ export const useRootStore = defineStore("rootStore", {
       router.replace({ query: routeQuery })
     },
     resetState(type: string, lang: string = "en"): void {
-      console.log("Y - resetState", { type, lang })
+      /*   console.log("Y - resetState", { type, lang }) */
       const { $stores, $models } = useNuxtApp() as NuxtAppExtended
       const model = structuredClone($models[type]) as
         | Partial<ModuleStore>
@@ -215,10 +214,10 @@ export const useRootStore = defineStore("rootStore", {
       ;($stores[type] as any).sortKey = null
     },
     updateSort({ type, sortKey }: { type: string; sortKey: string }): void {
-      console.log("Z - updateSort", {
+      /*       console.log("Z - updateSort", {
         type,
         sortKey,
-      })
+      }) */
       const { $stores } = useNuxtApp() as {
         $stores: Record<string, ModuleStore>
       }
@@ -237,7 +236,7 @@ export const useRootStore = defineStore("rootStore", {
       type: string
       lang?: string
     }): void {
-      console.log("W - updateView", { value, type })
+      /* console.log("W - updateView", { value, type }) */
       const { $stores } = useNuxtApp() as {
         $stores: Record<string, ModuleStore>
       }
@@ -260,7 +259,7 @@ export const useRootStore = defineStore("rootStore", {
       const { $stores } = useNuxtApp() as {
         $stores: Record<string, ModuleStore>
       }
-      console.log("R - update filter: ", { key, val, type })
+      /* console.log("R - update filter: ", { key, val, type }) */
 
       if ($stores[type]?.filters?.[key]) {
         $stores[type].filters![key].value = val
@@ -285,7 +284,7 @@ export const useRootStore = defineStore("rootStore", {
       type: string
       lang?: string
     }): void {
-      console.log("H - updateItemsPerPage", { value, type })
+      /* console.log("H - updateItemsPerPage", { value, type }) */
       const { $stores } = useNuxtApp() as {
         $stores: Record<string, ModuleStore>
       }
@@ -309,7 +308,7 @@ export const useRootStore = defineStore("rootStore", {
       lang?: string
     }): void {
       // update page
-      console.log("update page: ", page)
+      /* console.log("update page: ", page) */
       const router = useRouter()
       const currentQuery = router.currentRoute.value.query
 

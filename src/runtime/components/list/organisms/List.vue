@@ -105,7 +105,7 @@ const props = defineProps({
 })
 
 // Initialize loading state
-console.log("start llocal loading from setup")
+/* console.log("start llocal loading from setup") */
 rootStore.setLoading(true, props.type)
 
 // Initial route -> store (single source-of-truth on first load)
@@ -132,8 +132,8 @@ const itemTemplate = computed(() =>
     ).toString(),
   ),
 )
-console.log("Starting query for type: ", props.type)
-console.log("Using variables: ", variables.value)
+/* console.log("Starting query for type: ", props.type)
+console.log("Using variables: ", variables.value) */
 
 // Apollo GraphQL query with proper reactivity
 const { data, pending, error, refresh } = await useAsyncQuery(
@@ -152,20 +152,32 @@ if (error.value) {
 
 // Apply data to store immediately if available
 if (data.value) {
-  console.log("Applying data to store directly [first load scenario]")
+  /*   console.log("Applying data to store directly [first load scenario]") */
   rootStore.applyListResult(props.type, data.value)
 }
+
+// Watch for route query changes to update filters
+watch(
+  () => route.query,
+  (newQuery, oldQuery) => {
+    if (JSON.stringify(newQuery) !== JSON.stringify(oldQuery)) {
+      /*     console.log("Route query changed, reloading filters from URL") */
+      rootStore.loadRouteQuery(props.type)
+    }
+  },
+  { deep: true },
+)
 
 // Watch for variable changes to refresh and apply new data
 watch(
   variables,
   async (newVars, oldVars) => {
     if (newVars && JSON.stringify(newVars) !== JSON.stringify(oldVars)) {
-      console.log("Variables changed, refreshing query, newVars: ", newVars)
+      /*     console.log("Variables changed, refreshing query, newVars: ", newVars) */
       rootStore.setLoading(true, props.type)
       await refresh()
       if (data.value) {
-        console.log("Applying refreshed data to store")
+        /*         console.log("Applying refreshed data to store") */
         rootStore.applyListResult(props.type, data.value)
       }
       rootStore.setLoading(false, props.type)
@@ -179,7 +191,7 @@ const items = computed(() => $stores[props.type]?.items || [])
 
 onMounted(() => {
   // On initial mount: clear loading state
-  console.log("STOP local loading from mounted")
+  /*  console.log("STOP local loading from mounted") */
   rootStore.setLoading(false, props.type)
 })
 
@@ -187,7 +199,7 @@ onBeforeUnmount(() => {
   rootStore.resetState(props.type, locale.value)
 })
 async function onPageChange(newPage) {
-  console.log("onPageChange: ", newPage)
+  /*  console.log("onPageChange: ", newPage) */
 
   // Set loading state first
   rootStore.setLoading(true, props.type)
