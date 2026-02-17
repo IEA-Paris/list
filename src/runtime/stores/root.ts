@@ -425,6 +425,16 @@ export const useRootStore = defineStore("rootStore", {
 
       if (type === "all") {
         this.results = (data?.[key] as SearchResults) || this.results
+        for (const category of Object.keys(this.results)) {
+          const categoryData = this.results[
+            category as keyof SearchResults
+          ] as any
+          if (categoryData?.items?.length) {
+            categoryData.items.sort(
+              (a: any, b: any) => (b.score ?? 0) - (a.score ?? 0),
+            )
+          }
+        }
         return
       }
 

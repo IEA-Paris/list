@@ -58,12 +58,17 @@ const handleFilterChange = (filterData) => {
 
 const sortedModules = computed(() => {
   return appConfig.list.modules.slice().sort((a, b) => {
-    const aTotal = $rootStore.results[a]?.total || 0
-    const bTotal = $rootStore.results[b]?.total || 0
-    return bTotal - aTotal
+    const aMaxScore = Math.max(
+      ...($rootStore.results[a]?.items || []).map((i) => i.score ?? 0),
+      0,
+    )
+    const bMaxScore = Math.max(
+      ...($rootStore.results[b]?.items || []).map((i) => i.score ?? 0),
+      0,
+    )
+    return bMaxScore - aMaxScore
   })
 })
-
 const filteredSortedModules = computed(() => {
   return sortedModules.value.filter((type) =>
     selectedCategories.value.includes(type),
