@@ -147,7 +147,7 @@ const { data, pending, error, refresh } = await useAsyncQuery(
 if (error.value) {
   console.error("GraphQL query error: ", error.value)
 } else {
-  console.log("Query result data: ", data.value)
+  /*   console.log("Query result data: ", data.value) */
 }
 
 // Apply data to store immediately if available

@@ -91,6 +91,7 @@
 import { useI18n, useNuxtApp, computed } from "#imports"
 import { useDisplay } from "vuetify"
 import { useRootStore } from "../../stores/root"
+import { highlightAndTruncate } from "../../composables/useUtils"
 const { $rootStore } = useNuxtApp()
 const { smAndDown, mdAndUp } = useDisplay()
 

@@ -20,7 +20,7 @@
               ? highlightAndTruncate(
                   300,
                   item.firstname + ' ' + item.lastname,
-                  $rootStore.search.split(' '),
+                  rootStore.search.split(' '),
                 )
               : item.firstname + ' ' + item.lastname
           "
@@ -36,7 +36,7 @@
             ? highlightAndTruncate(
                 300,
                 item.groups.vintage[0].theme,
-                $rootStore.search.split(' '),
+                rootStore.search.split(' '),
               )
             : item.groups.vintage[0].theme
         "
@@ -47,6 +47,7 @@
 
 <script setup>
 import { useRootStore } from "../../stores/root"
+import { highlightAndTruncate } from "../../composables/useUtils"
 import { computed } from "#imports"
 import { useDisplay } from "vuetify"
 

@@ -11,7 +11,7 @@
       <div class="overflow-hidden mw-100">
         <!--  TODO debug why the picture is not displaying/sizing properly -->
         <v-img
-          v-if="src"
+          v-if="src && computedSrc"
           :aspect-ratio="ratio"
           :class="{ 'img-animation': animate }"
           :lazy-src="
@@ -43,7 +43,8 @@ import { computed, useImage } from "#imports"
 const img = useImage()
 
 const computedSrc = computed(() => {
-  return typeof props.src === "string" ? props.src : props.src.url
+  if (!props.src) return null
+  return typeof props.src === "string" ? props.src : props.src?.url || null
 })
 const props = defineProps({
   src: {
@@ -68,17 +69,16 @@ const props = defineProps({
   animate: { type: Boolean, default: true },
 })
 const _srcset = computed(() => {
-  return img.getSizes(
-    typeof props.src === "string" ? props.src : props.src.url,
-    {
-      sizes: "xs:100vw sm:100vw md:100vw lg:100vw xl:100vw",
-      modifiers: {
-        format: "webp",
-        quality: 70,
-        ...(props.width && { width: props.width }),
-      },
+  const srcUrl = typeof props.src === "string" ? props.src : props.src?.url
+  if (!srcUrl) return { srcset: "", sizes: "" }
+  return img.getSizes(srcUrl, {
+    sizes: "xs:100vw sm:100vw md:100vw lg:100vw xl:100vw",
+    modifiers: {
+      format: "webp",
+      quality: 70,
+      ...(props.width && { width: props.width }),
     },
-  )
+  })
 })
 </script>
 

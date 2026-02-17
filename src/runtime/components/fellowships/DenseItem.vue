@@ -35,6 +35,7 @@
 
 <script setup>
 import { useNuxtApp } from "#imports"
+import { highlightAndTruncate } from "../../composables/useUtils"
 const { $rootStore } = useNuxtApp()
 
 const props = defineProps({

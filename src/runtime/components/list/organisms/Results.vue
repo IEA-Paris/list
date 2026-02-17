@@ -84,7 +84,7 @@ const { data, pending, error, refresh } = await useAsyncQuery(
 if (error.value) {
   console.error("GraphQL query error: ", error.value)
 } else {
-  console.log("Query result data: ", data.value.items?.length)
+  /*  console.log("Query result data: ", data.value.items?.length) */
 }
 
 // Apply data to store immediately if available
@@ -118,6 +118,62 @@ const updateSearch = async (newSearch) => {
 onBeforeUnmount(() => {
   /* rootStore.resetState("all", locale.value) */
 })
+
+const socioscope = {
+  appId: ["iea"],
+  url: "https://thesocioscope.org",
+  subtitle: {
+    en: "Seeing How Social Change Takes Shape",
+    fr: "Voir comment le changement social prend forme",
+  },
+  date: {
+    $date: "2023-03-18T00:00:00.000Z",
+  },
+  image: {
+    url: "https://cdn-yggdrasil-dev.s3.eu-west-2.amazonaws.com/iea/project/the_socioscope.svg",
+  },
+  summary: {
+    en: "Through large scale data collection around the world and LLM-driven research, the Socioscope analyses how behaviours, norms, and practices evolve within sustainable food transitions.\nWe're building a systemic way to help make complex social patterns measurable, comparable, and understandable.",
+    fr: "Grâce à la collecte de données à grande échelle dans le monde entier et à la recherche pilotée par LLM, le Socioscope analyse comment les comportements, normes et pratiques évoluent dans les transitions alimentaires durables.\nNous construisons une méthode systématique pour rendre les schémas sociaux complexes mesurables, comparables et compréhensibles.",
+  },
+  description: {
+    en: "The Socioscope is a transformative qualitative research project that maps how behaviours, norms, and communities influence the transition toward sustainable food systems.\nThe Socioscope serves as a comprehensive observatory of these efforts, making knowledge accessible to researchers, policymakers, and practitioners worldwide. Equally important is shining a light on local initiatives that lead change on the ground and drive the shift toward a more sustainable food system.",
+    fr: "Le Socioscope est un projet de recherche qualitative transformatif qui cartographie comment les comportements, normes et communautés influencent la transition vers des systèmes alimentaires durables.\nLe Socioscope sert d'observatoire complet de ces efforts, rendant les connaissances accessibles aux chercheurs, décideurs politiques et praticiens du monde entier. Tout aussi important, il met en lumière les initiatives locales qui mènent le changement sur le terrain et conduisent la transition vers un système alimentaire plus durable.",
+  },
+  name: {
+    en: "The Socioscope",
+    fr: "Le Socioscope",
+  },
+  related: {
+    people: [
+      {
+        firstname: "Antoine",
+        lastname: "Cordelois",
+        image: {
+          url: "https://cdn-yggdrasil-dev.s3.eu-west-2.amazonaws.com/iea/people/antoine_cordelois.jpg",
+        },
+      },
+      {
+        firstname: "Saadi",
+        lastname: "Lahlou",
+        image: {
+          url: "https://cdn-yggdrasil-dev.s3.eu-west-2.amazonaws.com/iea/people/lahlou_saadi.jpg",
+        },
+      },
+      {
+        firstname: "Paulius",
+        lastname: "Yamin",
+        image: {
+          url: "https://cdn-yggdrasil-dev.s3.eu-west-2.amazonaws.com/iea/people/Paulius_Yamin.jpg",
+        },
+      },
+    ],
+  },
+  slug: {
+    fr: "le-socioscope",
+    en: "the-socioscope",
+  },
+}
 </script>
 <style scoped>
 .results-container {

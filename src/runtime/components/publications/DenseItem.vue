@@ -48,7 +48,7 @@
               ? highlightAndTruncate(
                   300,
                   item.name,
-                  $rootStore.search.split(' '),
+                  rootStore.search.split(' '),
                 )
               : item.name
           "
@@ -71,6 +71,7 @@
 <script setup>
 import { useDisplay } from "vuetify"
 import { useRootStore } from "../../stores/root"
+import { highlightAndTruncate } from "../../composables/useUtils"
 import { computed } from "#imports"
 const rootStore = useRootStore()
 
