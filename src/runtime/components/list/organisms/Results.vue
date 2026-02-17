@@ -89,6 +89,11 @@ const { data, pending, error } = useAsyncQuery(
     enabled: computed(() => searchTerm.value.length > 0),
   },
 )
+if (error.value) {
+  console.error("GraphQL query error: ", error.value)
+} else {
+  /*  console.log("Query result data: ", data.value.items?.length) */
+}
 
 watch(
   data,

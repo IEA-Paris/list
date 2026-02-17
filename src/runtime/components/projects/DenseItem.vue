@@ -17,7 +17,7 @@
         v-else
         v-html="
           rootStore.search.length
-            ? highlightAndTruncate(300, item.name, $rootStore.search.split(' '))
+            ? highlightAndTruncate(300, item.name, rootStore.search.split(' '))
             : item.name
         "
       />
@@ -46,6 +46,7 @@
 <script setup>
 import { useDisplay } from "vuetify"
 import { useRootStore } from "../../stores/root"
+import { highlightAndTruncate } from "../../composables/useUtils"
 
 const { mdAndUp } = useDisplay()
 
