@@ -1,7 +1,7 @@
 <template>
   <component
     :is="itemTemplate"
-    v-for="(item, index) in rootStore.results[type].items"
+    v-for="(item, index) in rootStore.results[type]?.items || []"
     :key="index"
     :item="item"
     :index="index"
@@ -27,7 +27,9 @@ const itemTemplate = computed(() =>
       capitalize(props.type) +
       capitalize($stores[props.type].view.name) +
       "Item"
-    ).toString()
-  )
+    ).toString(),
+  ),
 )
+console.log("ResultsList props:", itemTemplate, $stores[props.type].view.name)
+console
 </script>

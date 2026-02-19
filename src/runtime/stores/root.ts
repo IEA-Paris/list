@@ -126,12 +126,22 @@ export const useRootStore = defineStore("rootStore", {
           }
         })
       }
-      // load page from query
-      if (query.page && query.page > 1)
-        $stores[type].page = parseInt(query.page as string, 10) || 1
-      // query loaded
-    },
 
+      if (query.search && typeof query.search === "string") {
+        if (type === "all") {
+          this.search = query.search
+        } else if ($stores[type]) {
+          ;($stores[type] as any).search = query.search
+        }
+      }
+
+      const page = parseInt(query.page as string, 10) || 1
+      if (type === "all") {
+        this.page = page
+      } else if ($stores[type]) {
+        $stores[type].page = page
+      }
+    },
     setFiltersCount(type: string): void {
       /*     console.log("6- setFiltersCount", type) */
       const { $stores } = useNuxtApp() as {
@@ -159,9 +169,15 @@ export const useRootStore = defineStore("rootStore", {
         $stores: Record<string, ModuleStore>
       }
 
+      const isGlobal = type === "all"
+      const searchValue = isGlobal
+        ? this.search
+        : (($stores[type] as any)?.search as string) || ""
+      const pageValue = isGlobal ? this.page : $stores[type]?.page || 1
+
       const routeQuery: Record<string, string> = {
-        ...(this.search ? { search: this.search } : {}),
-        ...(this.page > 1 ? { page: this.page.toString() } : {}),
+        ...(searchValue ? { search: searchValue } : {}),
+        ...(pageValue > 1 ? { page: pageValue.toString() } : {}),
         ...Object.entries($stores[type]?.filters ?? {}).reduce(
           (acc, [key, filter]) => {
             const value = filter?.value
@@ -186,7 +202,6 @@ export const useRootStore = defineStore("rootStore", {
       }
       router.replace({ query: routeQuery })
     },
-
     resetState(type: string, lang: string = "en"): void {
       /*   console.log("Y - resetState", { type, lang }) */
       const { $stores, $models } = useNuxtApp() as NuxtAppExtended
@@ -250,7 +265,11 @@ export const useRootStore = defineStore("rootStore", {
         $stores[type].filters![key].value = val
       }
 
-      this.page = 1
+      if (type === "all") {
+        this.page = 1
+      } else {
+        $stores[type].page = 1
+      }
       $stores[type].loading = true
       this.setFiltersCount(type)
       this.updateRouteQuery(type)
@@ -269,7 +288,11 @@ export const useRootStore = defineStore("rootStore", {
       const { $stores } = useNuxtApp() as {
         $stores: Record<string, ModuleStore>
       }
-      this.page = 1
+      if (type === "all") {
+        this.page = 1
+      } else {
+        $stores[type].page = 1
+      }
       $stores[type].itemsPerPage = value
       $stores[type].loading = true
       this.updateRouteQuery(type)
@@ -320,19 +343,19 @@ export const useRootStore = defineStore("rootStore", {
       search: string
       lang: string
     }): void {
-      // update search
       if (type === "all") {
         this.search = search
+        this.page = 1
       } else {
         const { $stores } = useNuxtApp() as {
           $stores: Record<string, ModuleStore>
         }
         if ($stores[type]) {
           ;($stores[type] as any).search = search
+          $stores[type].page = 1
           $stores[type].loading = true
         }
       }
-      this.page = 1
       this.updateRouteQuery(type)
     },
 
@@ -357,6 +380,8 @@ export const useRootStore = defineStore("rootStore", {
         }
       }
 
+      const localSearch = (($stores[type] as any)?.search as string) || ""
+
       const args = JSON.parse(
         JSON.stringify({
           options: {
@@ -365,8 +390,8 @@ export const useRootStore = defineStore("rootStore", {
                 ? 0
                 : (+$stores[type]?.page - 1) * itemsPerPage,
             limit: itemsPerPage,
-            ...((this.search as string)?.length &&
-              type !== "all" && { search: this.search }),
+            ...(type !== "all" &&
+              localSearch?.length && { search: localSearch }),
             filters,
             sort:
               ($stores[type] as any)?.sortKey ||
@@ -378,11 +403,7 @@ export const useRootStore = defineStore("rootStore", {
           },
           ...(type === "all" &&
             (this.search as string)?.length && { search: this.search }),
-          ...(type !== "all" &&
-            $stores[type] &&
-            ($stores[type].search as string)?.length && {
-              search: $stores[type].search,
-            }),
+          ...(type !== "all" && localSearch?.length && { search: localSearch }),
           appId: "iea",
           lang,
         }),
@@ -403,7 +424,27 @@ export const useRootStore = defineStore("rootStore", {
           : "list" + type.charAt(0).toUpperCase() + type.slice(1)
 
       if (type === "all") {
-        this.results = (data?.[key] as SearchResults) || this.results
+        const searchData = data?.[key]
+        if (searchData) {
+          // Merge search results into existing state instead of replacing,
+          // so module types not returned by the query remain initialised.
+          for (const moduleType of Object.keys(searchData)) {
+            if (moduleType in this.results) {
+              ;(this.results as Record<string, unknown>)[moduleType] =
+                searchData[moduleType]
+            }
+          }
+        }
+        for (const category of Object.keys(this.results)) {
+          const categoryData = this.results[
+            category as keyof SearchResults
+          ] as any
+          if (categoryData?.items?.length) {
+            categoryData.items.sort(
+              (a: any, b: any) => (b.score ?? 0) - (a.score ?? 0),
+            )
+          }
+        }
         return
       }
 

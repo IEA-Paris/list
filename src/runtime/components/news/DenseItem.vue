@@ -1,5 +1,5 @@
 <template>
-  <v-row v-ripple no-gutters class="cursor-pointer highlight-on-hover my-2">
+  <v-row v-ripple no-gutters class="cursor-pointer highlight-on-hover pa-2">
     <v-col v-if="mdAndUp" align-self="center" cols="1">
       <MiscAtomsImageContainer
         cover
@@ -11,7 +11,7 @@
         width="80px"
       />
     </v-col>
-    <v-col align-self="start" class="text-h5 dense px-2 paragraph">
+    <v-col align-self="start" class="text-h5 dense mx-2 paragraph">
       <v-skeleton-loader v-if="loading" type="heading" />
       <template v-else>
         <v-skeleton-loader
@@ -25,7 +25,7 @@
 
         <template v-else>
           <v-chip
-            class="ma-2"
+            class="mb-2"
             style="background-color: white; color: black"
             size="small"
             variant="outlined"

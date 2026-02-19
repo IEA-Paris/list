@@ -1,6 +1,6 @@
 <template>
-  <v-row v-ripple no-gutters class="cursor-pointer highlight-on-hover my-2">
-    <v-col v-if="mdAndUp" cols="1">
+  <v-row v-ripple no-gutters class="cursor-pointer highlight-on-hover py-2">
+    <v-col v-if="mdAndUp" cols="2">
       <MiscAtomsDateStamp
         v-if="item.start"
         :loading

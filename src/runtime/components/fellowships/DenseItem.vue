@@ -1,5 +1,9 @@
 <template>
-  <v-row v-ripple no-gutters class="cursor-pointer highlight-on-hover">
+  <v-row
+    v-ripple
+    no-gutters
+    class="cursor-pointer highlight-on-hover pt-2 pl-2"
+  >
     <v-col align-self="center" cols="8" class="text-h5 dense">
       <v-skeleton-loader
         v-if="loading"
