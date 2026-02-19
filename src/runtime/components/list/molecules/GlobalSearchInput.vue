@@ -1,31 +1,5 @@
 <template>
   <div class="d-flex align-center">
-    <v-text-field
-      :id="`global-search-input-${type}`"
-      v-model.trim="search"
-      :placeholder="
-        type === 'all'
-          ? t('search')
-          : $t('list.search-type', [$t('items.' + type, 2)])
-      "
-      single-line
-      class="transition-swing flex-grow-1"
-      variant="outlined"
-      hide-details
-      clearable
-      tile
-      type="search"
-      :loading="rootStore.loading"
-      @keyup.enter="navigateToSearch"
-      @click:append="navigateToSearch"
-    >
-      <template v-if="!search" #label>
-        <div class="searchLabel">
-          {{ $t("search") }}
-        </div>
-      </template>
-    </v-text-field>
-
     <v-menu
       v-if="filter"
       v-model="filterMenuOpen"
@@ -37,7 +11,7 @@
         <v-btn
           v-bind="menuProps"
           :rounded="0"
-          variant="text"
+          variant="outlined"
           size="large"
           height="56"
         >
@@ -70,6 +44,32 @@
         </v-list>
       </v-card>
     </v-menu>
+    <v-text-field
+      :id="`global-search-input-${type}`"
+      v-model.trim="search"
+      :placeholder="
+        type === 'all'
+          ? t('search')
+          : $t('list.search-type', [$t('items.' + type, 2)])
+      "
+      single-line
+      class="transition-swing flex-grow-1"
+      variant="outlined"
+      hide-details
+      clearable
+      tile
+      type="search"
+      :loading="rootStore.loading"
+      @keyup.enter="navigateToSearch"
+      @click:append="navigateToSearch"
+    >
+      <template v-if="!search" #label>
+        <div class="searchLabel">
+          {{ $t("search") }}
+        </div>
+      </template>
+    </v-text-field>
+
     <v-btn
       :rounded="0"
       variant="outlined"

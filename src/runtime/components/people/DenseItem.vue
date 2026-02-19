@@ -1,5 +1,5 @@
 <template>
-  <v-row v-ripple no-gutters class="cursor-pointer highlight-on-hover my-2">
+  <v-row v-ripple no-gutters class="cursor-pointer highlight-on-hover">
     <v-col v-if="mdAndUp" cols="1">
       <MiscAtomsImageContainer
         cover
@@ -9,6 +9,7 @@
         "
         :ratio="1 / 1"
         :width="80"
+        class="ma-1"
       />
     </v-col>
     <v-col align-self="start" class="text-h6 dense px-2">

@@ -6,7 +6,9 @@
         size="large"
         class=""
         @click="$emit('toggle', type)"
-        :disabled="$rootStore.results[type]?.total === 0"
+        :disabled="
+          $rootStore.results[type] && $rootStore.results[type]?.total === 0
+        "
       >
         <v-icon size="large">{{
           open ? "mdi-chevron-down" : "mdi-chevron-right"
@@ -19,7 +21,9 @@
         <div
           class="text-h5 font-weight-medium"
           :class="
-            $rootStore.results[type].total > 0 ? 'black' : 'text-grey darken-2'
+            $rootStore.results[type] && $rootStore.results[type].total > 0
+              ? 'black'
+              : 'text-grey darken-2'
           "
         >
           {{ capitalize($t("items." + props.type, 2)) }}
@@ -30,18 +34,26 @@
               ? $t(
                   "list.0-items-found-f",
                   [
-                    $rootStore.results[type].total,
-                    $t("items." + props.type, $rootStore.results[type].total),
+                    $rootStore.results[type] && $rootStore.results[type].total,
+                    $t(
+                      "items." + props.type,
+                      $rootStore.results[type] &&
+                        $rootStore.results[type].total,
+                    ),
                   ],
-                  $rootStore.results[type].total,
+                  $rootStore.results[type] && $rootStore.results[type].total,
                 )
               : $t(
                   "list.0-items-found",
                   [
-                    $rootStore.results[type].total,
-                    $t("items." + props.type, $rootStore.results[type].total),
+                    $rootStore.results[type] && $rootStore.results[type].total,
+                    $t(
+                      "items." + props.type,
+                      $rootStore.results[type] &&
+                        $rootStore.results[type].total,
+                    ),
                   ],
-                  $rootStore.results[type].total,
+                  $rootStore.results[type] && $rootStore.results[type].total,
                 )
           }}
         </div>
@@ -54,10 +66,14 @@
       color="default"
       variant="text"
       rounded="0"
-      v-if="$rootStore.results[type]?.total > 0"
+      v-if="$rootStore.results[type] && $rootStore.results[type]?.total > 0"
       :to="localePath(type === 'people' ? '/people' : '/activities/' + type)"
     >
-      {{ $t("list.pls-x-more", [$rootStore.results[type].total]) }}
+      {{
+        $t("list.pls-x-more", [
+          $rootStore.results[type] && $rootStore.results[type].total,
+        ])
+      }}
     </v-btn>
   </div>
   <v-divider></v-divider>

@@ -1,5 +1,5 @@
 <template>
-  <v-row v-ripple no-gutters class="cursor-pointer highlight-on-hover">
+  <v-row v-ripple no-gutters class="cursor-pointer highlight-on-hover px-4">
     <v-col v-if="mdAndUp" align-self="center" cols="1">
       <MiscAtomsImageContainer
         cover
@@ -11,7 +11,7 @@
         :width="50"
       />
     </v-col>
-    <v-col align-self="center" class="text-h5 dense pl-2">
+    <v-col align-self="center" class="text-h5 dense pl-4 pt-2">
       <v-skeleton-loader v-if="loading" type="heading" width="50%" />
       <span
         v-else
@@ -32,7 +32,7 @@
 
       <MDC
         v-else-if="item.summary"
-        class="text-caption font-weight-light paragraph"
+        class="text-caption font-weight-light paragraph mt-n2"
         :value="`${highlightAndTruncate(
           150,
           item.summary,

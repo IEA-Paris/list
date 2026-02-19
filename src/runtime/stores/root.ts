@@ -424,7 +424,17 @@ export const useRootStore = defineStore("rootStore", {
           : "list" + type.charAt(0).toUpperCase() + type.slice(1)
 
       if (type === "all") {
-        this.results = (data?.[key] as SearchResults) || this.results
+        const searchData = data?.[key]
+        if (searchData) {
+          // Merge search results into existing state instead of replacing,
+          // so module types not returned by the query remain initialised.
+          for (const moduleType of Object.keys(searchData)) {
+            if (moduleType in this.results) {
+              ;(this.results as Record<string, unknown>)[moduleType] =
+                searchData[moduleType]
+            }
+          }
+        }
         for (const category of Object.keys(this.results)) {
           const categoryData = this.results[
             category as keyof SearchResults

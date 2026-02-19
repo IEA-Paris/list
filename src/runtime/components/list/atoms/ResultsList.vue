@@ -1,7 +1,7 @@
 <template>
   <component
     :is="itemTemplate"
-    v-for="(item, index) in rootStore.results[type].items"
+    v-for="(item, index) in rootStore.results[type]?.items || []"
     :key="index"
     :item="item"
     :index="index"

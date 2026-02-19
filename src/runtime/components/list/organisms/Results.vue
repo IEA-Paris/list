@@ -2,8 +2,8 @@
   <ListMoleculesGlobalSearchInput
     type="all"
     :placeholder="$t('search')"
-    variant="outlined"
     :categories="selectedCategories"
+    filter
     @filter-change="handleFilterChange"
   />
   <v-progress-linear v-if="pending" indeterminate />
@@ -13,11 +13,19 @@
       :key="type"
       :feminine="type === 'people'"
       :type
-      :open="$rootStore.results[type]?.total > 0 ?? open[type]"
+      :open="
+        ($rootStore.results[type] && $rootStore.results[type]?.total > 0) ??
+        open[type]
+      "
       @toggle="open[$event] = !open[$event]"
     >
       <v-expand-transition class="results-container">
-        <div v-show="$rootStore.results[type]?.total > 0 || open[type]">
+        <div
+          v-show="
+            ($rootStore.results[type] && $rootStore.results[type]?.total > 0) ||
+            open[type]
+          "
+        >
           <ListAtomsResultsList :type />
         </div>
       </v-expand-transition>
@@ -37,8 +45,6 @@ import {
   watch,
 } from "#imports"
 import SEARCH from "@paris-ias/trees/dist/graphql/client/misc/query.search.all.gql"
-
-defineOptions({ name: "SearchResults" })
 
 const { $rootStore } = useNuxtApp()
 const appConfig = useAppConfig()
@@ -102,7 +108,7 @@ watch(
       console.log("Applying search data to store")
       $rootStore.applyListResult("all", newData)
       appConfig.list.modules.forEach((type) => {
-        if ($rootStore.results[type]?.total > 0) {
+        if ($rootStore.results[type] && $rootStore.results[type]?.total > 0) {
           open.value[type] = true
         }
       })

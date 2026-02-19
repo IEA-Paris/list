@@ -1,5 +1,5 @@
 <template>
-  <section class="my-6 ml-2 pb-6">
+  <section class="my-6 pb-6">
     <slot>
       <!-- fallback content -->
     </slot>
