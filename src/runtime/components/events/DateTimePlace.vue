@@ -77,7 +77,6 @@ const startDay = ref(
 const startTime = ref(detailedStart.hours)
 const detailedStop = getDetailedFormatedDate(props.item.stop, locale.value)
 const stopTime = ref(detailedStop.hours)
-console.log("locale", props.item)
 </script>
 
 <style lang="scss" scoped></style>

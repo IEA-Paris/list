@@ -1,12 +1,12 @@
 <template>
   <v-row v-ripple no-gutters class="cursor-pointer highlight-on-hover py-2">
-    <v-col v-if="mdAndUp" cols="2">
+    <v-col v-if="mdAndUp" cols="1">
       <MiscAtomsDateStamp
         v-if="item.start"
         :loading
         :date-start="item.start"
         :date-stop="item.stop"
-        class="pr-6 mt-md-2"
+        class="pr-4 mt-md-2"
       />
     </v-col>
     <v-col v-if="mdAndUp" cols="1">
@@ -17,11 +17,11 @@
           item && item.image && item.image.url ? item.image.url : '/default.png'
         "
         :ratio="1 / 1"
-        :width="80"
+        :width="70"
       />
     </v-col>
 
-    <v-col align-self="start" class="pl-2">
+    <v-col align-self="start" class="px-2">
       <v-skeleton-loader v-if="loading" type="chip" class="mr-3" width="120" />
       <v-chip
         v-else
@@ -69,7 +69,7 @@
       <v-skeleton-loader v-if="loading" type="text@3" class="mt-2" />
       <MDC
         v-else
-        class="text-body-1 font-weight-light paragraph"
+        class="text-body-1 font-weight-light paragraph mt-n2"
         :value="`${highlightAndTruncate(
           85,
           item.summary,
@@ -78,12 +78,12 @@
       />
     </v-col>
 
-    <v-col align-self="center" cols="auto">
+    <!--     <v-col align-self="center" cols="auto">
       <v-skeleton-loader v-if="loading" type="button" />
       <div v-else>
         <EventsBadges :item />
       </div>
-    </v-col>
+    </v-col> -->
   </v-row>
 </template>
 

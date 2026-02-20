@@ -5,31 +5,40 @@
     :categories="selectedCategories"
     filter
     @filter-change="handleFilterChange"
+    class="mb-6"
   />
-  <v-progress-linear v-if="pending" indeterminate />
+  <div v-if="searchTerm.length === 0" class="search-empty">
+    <ListAtomsLogoPlaceholder idle />
+  </div>
   <template v-else>
-    <ListMoleculesResultsContainer
-      v-for="type in filteredSortedModules"
-      :key="type"
-      :feminine="type === 'people'"
-      :type
-      :open="
-        ($rootStore.results[type] && $rootStore.results[type]?.total > 0) ??
-        open[type]
-      "
-      @toggle="open[$event] = !open[$event]"
-    >
-      <v-expand-transition class="results-container">
-        <div
-          v-show="
-            ($rootStore.results[type] && $rootStore.results[type]?.total > 0) ||
-            open[type]
-          "
-        >
-          <ListAtomsResultsList :type />
-        </div>
-      </v-expand-transition>
-    </ListMoleculesResultsContainer>
+    <div v-if="loading" class="search-pending">
+      <ListAtomsLogoPlaceholder />
+    </div>
+    <template v-else-if="!loading">
+      <ListMoleculesResultsContainer
+        v-for="type in filteredSortedModules"
+        :key="type"
+        :feminine="
+          type === 'people' || type === 'news' || type === 'publications'
+        "
+        :type
+        :open="open[type] ?? false"
+        @toggle="(t) => (open[t] = !open[t])"
+      >
+        <v-expand-transition class="results-container">
+          <div v-show="open[type]">
+            <ListAtomsResultsList
+              :type
+              :pathPrefix="
+                type === 'people'
+                  ? 'people-slug'
+                  : 'activities-' + type + '-slug'
+              "
+            />
+          </div>
+        </v-expand-transition>
+      </ListMoleculesResultsContainer>
+    </template>
   </template>
 </template>
 
@@ -40,6 +49,7 @@ import {
   useAppConfig,
   useRoute,
   ref,
+  reactive,
   useAsyncQuery,
   computed,
   watch,
@@ -50,11 +60,18 @@ const { $rootStore } = useNuxtApp()
 const appConfig = useAppConfig()
 const { locale } = useI18n()
 const route = useRoute()
-const open = ref({})
-
 if (route.query.search) {
   $rootStore.search = route.query.search
 }
+
+const loading = ref(true)
+
+const open = reactive(
+  appConfig.list.modules.reduce((acc, type) => {
+    acc[type] = false
+    return acc
+  }, {}),
+)
 
 const selectedCategories = ref([...appConfig.list.modules])
 
@@ -89,9 +106,10 @@ const { data, pending, error } = useAsyncQuery(
   computed(() => ({
     search: searchTerm.value,
     appId: "iea",
-    locale: currentLocale.value,
+    lang: currentLocale.value,
   })),
   {
+    server: false,
     enabled: computed(() => searchTerm.value.length > 0),
   },
 )
@@ -101,24 +119,24 @@ if (error.value) {
   /*  console.log("Query result data: ", data.value.items?.length) */
 }
 
-watch(
-  data,
-  (newData) => {
-    if (newData) {
-      console.log("Applying search data to store")
-      $rootStore.applyListResult("all", newData)
-      appConfig.list.modules.forEach((type) => {
-        if ($rootStore.results[type] && $rootStore.results[type]?.total > 0) {
-          open.value[type] = true
-        }
-      })
+const applyData = (newData) => {
+  if (!newData) return
+  $rootStore.applyListResult("all", newData)
+  appConfig.list.modules.forEach((type) => {
+    if (newData.search?.[type]?.total > 0) {
+      open[type] = true
     }
-  },
-  { immediate: true },
-)
+  })
+  loading.value = false
+}
+
+watch(data, applyData, { immediate: true })
 
 watch(error, (err) => {
-  if (err) console.error("GraphQL query error:", err)
+  if (err) {
+    console.error("GraphQL query error:", err)
+    loading.value = false
+  }
 })
 </script>
 <style scoped>
@@ -127,5 +145,18 @@ watch(error, (err) => {
   display: flex;
   flex-direction: column;
   gap: 8px;
+}
+
+.search-empty {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  opacity: 0.8;
+}
+
+.search-pending {
+  display: flex;
+  justify-content: center;
+  padding: 48px 0;
 }
 </style>

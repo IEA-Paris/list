@@ -384,5 +384,7 @@
   "list.by-vintage-from-old-to-recent": "By Year, from old to recent",
   "no-biography": "No biography available",
   "search": "Search",
-  "items-per-page": "Items per page"
+  "items-per-page": "Items per page",
+  "click-here-to-search": "Click here to search",
+  "filter-by-type": "Filter by type"
 }

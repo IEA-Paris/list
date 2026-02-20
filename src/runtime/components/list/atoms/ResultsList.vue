@@ -1,16 +1,23 @@
 <template>
-  <component
-    :is="itemTemplate"
+  <NuxtLink
     v-for="(item, index) in rootStore.results[type]?.items || []"
-    :key="index"
-    :item="item"
-    :index="index"
-  />
+    :key="(item.name || item.lastname) + type + index"
+    :to="
+      localePath({
+        name: pathPrefix,
+        params: { slug: item.slug },
+      })
+    "
+    class="text-decoration-none text-black w-100"
+  >
+    <component :is="itemTemplate" :item="item" :index="index" />
+  </NuxtLink>
 </template>
 <script setup>
 import { capitalize } from "../../../composables/useUtils"
 import { useRootStore } from "../../../stores/root"
-import { useNuxtApp, resolveComponent, computed } from "#imports"
+import { useNuxtApp, resolveComponent, computed, useLocalePath } from "#imports"
+const localePath = useLocalePath()
 const { $stores } = useNuxtApp()
 const rootStore = useRootStore()
 
@@ -18,6 +25,10 @@ const props = defineProps({
   type: {
     type: String,
     default: "people",
+  },
+  pathPrefix: {
+    type: String,
+    default: "people-slug",
   },
 })
 
@@ -30,6 +41,4 @@ const itemTemplate = computed(() =>
     ).toString(),
   ),
 )
-console.log("ResultsList props:", itemTemplate, $stores[props.type].view.name)
-console
 </script>

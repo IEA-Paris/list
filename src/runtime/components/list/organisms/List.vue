@@ -11,7 +11,7 @@
       :to="
         localePath({
           name: pathPrefix,
-          params: { slug: JSON.parse(item.slug) },
+          params: { slug: item.slug },
         })
       "
       class="text-decoration-none text-black w-100"
@@ -24,7 +24,7 @@
         :path="
           localePath({
             name: pathPrefix,
-            params: { slug: JSON.parse(item.slug) },
+            params: { slug: item.slug },
           })
         "
       />
@@ -113,7 +113,6 @@ rootStore.loadRouteQuery(props.type)
 
 // Apollo: reactive query using variables computed from store
 const variables = computed(() => {
-  console.log("computed variables loop")
   return rootStore.buildListVariables(props.type, locale.value)
 })
 

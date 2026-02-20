@@ -8,7 +8,7 @@
           item && item.image && item.image.url ? item.image.url : '/default.png'
         "
         :ratio="1 / 1"
-        :width="80"
+        :width="70"
         class="ma-1"
       />
     </v-col>

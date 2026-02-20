@@ -440,9 +440,12 @@ export const useRootStore = defineStore("rootStore", {
             category as keyof SearchResults
           ] as any
           if (categoryData?.items?.length) {
-            categoryData.items.sort(
-              (a: any, b: any) => (b.score ?? 0) - (a.score ?? 0),
-            )
+            ;(this.results as Record<string, unknown>)[category] = {
+              ...categoryData,
+              items: [...categoryData.items].sort(
+                (a: any, b: any) => (b.score ?? 0) - (a.score ?? 0),
+              ),
+            }
           }
         }
         return

@@ -292,7 +292,7 @@
     },
     "list": "Liste",
     "page-0-of-1": "Page {0} sur {1}",
-    "pls-x-more": "{0} Plus",
+    "pls-x-more": "+ {0} de plus | + {0} supplémentaires",
     "rows": "Rangées",
     "search-type": "Rechercher parmi les {0}",
     "search-type-f": "Rechercher parmi les {0}",
@@ -385,5 +385,7 @@
   "list.by-vintage-from-recent-to-old": "Par année, du plus récent au plus vieux",
   "list.by-vintage-from-old-to-recent": "Par année, du plus vieux au plus récent",
   "search": "Rechercher",
-  "items-per-page": "Éléments par page"
+  "items-per-page": "Éléments par page",
+  "click-here-to-search": "Cliquez ici pour rechercher",
+  "filter-by-type": "Filtrer par type"
 }

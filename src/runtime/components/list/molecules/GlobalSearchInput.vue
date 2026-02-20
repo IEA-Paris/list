@@ -45,6 +45,7 @@
       </v-card>
     </v-menu>
     <v-text-field
+      ref="textFieldRef"
       :id="`global-search-input-${type}`"
       v-model.trim="search"
       :placeholder="
@@ -147,10 +148,14 @@ const toggleFilter = (option) => {
   })
 }
 
+const textFieldRef = ref(null)
+
 const navigateToSearch = () => {
+  const term = (textFieldRef.value?.$el?.querySelector("input")?.value ?? rootStore.search ?? "").trim()
+  rootStore.search = term
   navigateTo({
     path: localePath("/search"),
-    query: rootStore.search ? { search: rootStore.search } : {},
+    query: term ? { search: term } : {},
   })
 }
 

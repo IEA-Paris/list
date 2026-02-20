@@ -1,4 +1,5 @@
 <template>
+  <!-- TODO: make it after the slider of seed without swiper -->
   <v-row class="mb-9">
     <v-col class="justify-center">
       <slot />
@@ -79,10 +80,10 @@
   - Meaningful behavior when clicking on the arrrows
   - Add a slide-in from right animation when the items are entering viewport
   */
-import { useDisplay } from "vuetify";
-const { locale } = useI18n();
-const { name, mdAndUp } = useDisplay();
-const model = ref(0);
+import { useDisplay } from "vuetify"
+const { locale } = useI18n()
+const { name, mdAndUp } = useDisplay()
+const model = ref(0)
 const swiperBreakpoints = ref({
   320: {
     slidesPerView: "auto",
@@ -108,7 +109,7 @@ const swiperBreakpoints = ref({
     slidesPerView: "auto",
     spaceBetween: 35,
   },
-});
+})
 const props = defineProps({
   type: {
     type: String,
@@ -118,44 +119,39 @@ const props = defineProps({
   loading: { type: Boolean, default: false },
   dark: { type: Boolean, default: false },
   more: { type: Boolean, default: true },
-});
+})
 
 /* const { data, error } = await useAsyncData(props.type, () =>
   )
   console.log("error: ", error) */
-const spaceBetween = 10;
+const spaceBetween = 10
 const onProgress = (e) => {
-  console.log("e: progress ", e);
-  const [swiper, progress] = e.detail;
-  console.log(progress);
-};
+  const [swiper, progress] = e.detail
+}
 
-const onSlideChange = (e) => {
-  console.log("slide changed", e);
-};
 const computedWidth = computed(() => {
-  let modifier = 1;
+  let modifier = 1
   switch (props.type) {
     case "events":
-      modifier = 1.1;
-      break;
+      modifier = 1.1
+      break
     case "people":
-      break;
+      break
     case "image":
-      break;
+      break
     default:
-      break;
+      break
   }
   return (
     [250, 300, 350, 380, 430, 460][
       ["xs", "sm", "md", "lg", "xl", "xxl"].indexOf(name.value || "md")
     ] * modifier
-  );
-});
+  )
+})
 
 onMounted(() => {
-  console.log("Resolved Item", capitalize(props.type) + "SlidingItem");
-});
+  console.log("Resolved Item", capitalize(props.type) + "SlidingItem")
+})
 </script>
 <style scoped>
 .swiper-slide {

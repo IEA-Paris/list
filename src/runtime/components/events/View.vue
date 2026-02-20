@@ -332,6 +332,4 @@ function redirectToMap(long, lat) {
     `https://www.openstreetmap.org/?mlat=${lat}&amp;mlon=${long}#map=19/${lat}/${long}`,
   )
 }
-
-console.log("Events", props.item)
 </script>

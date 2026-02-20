@@ -12,7 +12,6 @@ export const useFetchItem = () => {
     key,
     variables,
   }: FetchItemPayload): Promise<T> => {
-    console.log("useFetchItem2 called with:", { query, key, variables })
     try {
       const { $apollo } = useNuxtApp()
       const route = useRoute()

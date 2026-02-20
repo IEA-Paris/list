@@ -1,18 +1,15 @@
 <template>
   <div>
-    <div class="d-flex align-center justify-space-between my-6">
+    <div class="d-flex align-center justify-space-between my-2">
       <v-btn
         variant="text"
-        size="large"
-        class=""
+        class="mr-2"
         @click="$emit('toggle', type)"
         :disabled="
           $rootStore.results[type] && $rootStore.results[type]?.total === 0
         "
       >
-        <v-icon size="large">{{
-          open ? "mdi-chevron-down" : "mdi-chevron-right"
-        }}</v-icon>
+        <v-icon>{{ open ? "mdi-chevron-down" : "mdi-chevron-right" }}</v-icon>
       </v-btn>
       <div
         class="d-flex flex-column cursor-pointer"
@@ -59,22 +56,29 @@
         </div>
       </div>
       <v-spacer />
+      <v-btn
+        color="default"
+        variant="text"
+        size="small"
+        rounded="0"
+        v-if="$rootStore.results[type] && $rootStore.results[type]?.total > 3"
+        :to="
+          localePath({
+            path: type === 'people' ? '/people' : '/activities/' + type,
+            query: { search: $rootStore.search },
+          })
+        "
+      >
+        {{
+          $t(
+            "list.pls-x-more",
+            [$rootStore.results[type] && $rootStore.results[type].total - 3],
+            $rootStore.results[type] && $rootStore.results[type].total - 3,
+          )
+        }}
+      </v-btn>
     </div>
     <slot />
-    <v-btn
-      class="ma-2 float-right"
-      color="default"
-      variant="text"
-      rounded="0"
-      v-if="$rootStore.results[type] && $rootStore.results[type]?.total > 0"
-      :to="localePath(type === 'people' ? '/people' : '/activities/' + type)"
-    >
-      {{
-        $t("list.pls-x-more", [
-          $rootStore.results[type] && $rootStore.results[type].total,
-        ])
-      }}
-    </v-btn>
   </div>
   <v-divider></v-divider>
 </template>
