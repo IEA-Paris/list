@@ -90,7 +90,7 @@
 <script setup>
 import { useDebounceFn } from "@vueuse/core"
 import { useRootStore } from "../../../stores/root"
-import { computed, useI18n, ref, useLocalePath, useRouter } from "#imports"
+import { computed, useI18n, ref, useLocalePath, useRouter, navigateTo } from "#imports"
 const localePath = useLocalePath()
 const { locale, t } = useI18n()
 const rootStore = useRootStore()
