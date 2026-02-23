@@ -42,10 +42,6 @@ const props = defineProps({
   },
 })
 const visible = computed(() => {
-  /*   console.log(
-    "SHOULD DISPLAY FILTERS:",
-    $stores[props.type]?.filtersCount && $stores[props.type]?.filtersCount > 0,
-  ) */
   return !!(
     $stores[props.type]?.filtersCount && $stores[props.type]?.filtersCount > 0
   )
