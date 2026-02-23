@@ -119,7 +119,6 @@ defineProps<{
 .logo-placeholder {
   width: 200px;
   height: 200px;
-  animation: logo-pulse 1.5s ease-in-out infinite;
 
   [class^="IEA_"] {
     fill: #000;
@@ -129,11 +128,6 @@ defineProps<{
   &--idle {
     animation: logo-idle 1s ease-out 1 forwards;
   }
-}
-
-@keyframes logo-pulse {
-  0%, 100% { opacity: 0.15; }
-  50% { opacity: 0.45; }
 }
 
 @keyframes logo-idle {
