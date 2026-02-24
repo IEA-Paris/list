@@ -9,16 +9,19 @@
         class="pr-4 mt-md-2"
       />
     </v-col>
-    <v-col v-if="mdAndUp" cols="1">
-      <MiscAtomsImageContainer
-        cover
-        :loading
-        :src="
-          item && item.image && item.image.url ? item.image.url : '/default.png'
-        "
-        :ratio="1 / 1"
-        :width="70"
-      />
+    <v-col v-if="mdAndUp" cols="auto">
+      <div style="width: 70px; height: 70px; flex-shrink: 0">
+        <MiscAtomsImageContainer
+          cover
+          :loading
+          :src="
+            item && item.image && item.image.url ? item.image.url : '/default.png'
+          "
+          :ratio="1 / 1"
+          :width="70"
+          style="width: 70px; height: 70px"
+        />
+      </div>
     </v-col>
 
     <v-col align-self="start" class="px-2">
@@ -61,8 +64,8 @@
         v-else
         class="text-h5 dense paragraph mt-2"
         v-html="
-          $rootStore.search.length
-            ? highlightAndTruncate(300, item.name, $rootStore.search.split(' '))
+          searchQuery.length
+            ? highlightAndTruncate(300, item.name, searchQuery.split(' '))
             : item.name
         "
       />
@@ -73,7 +76,7 @@
         :value="`${highlightAndTruncate(
           85,
           item.summary,
-          $rootStore.search.split(' '),
+          searchQuery.split(' '),
         )}`"
       />
     </v-col>
@@ -88,15 +91,19 @@
 </template>
 
 <script setup>
-import { useI18n, useNuxtApp, computed } from "#imports"
+import { useI18n, useNuxtApp, useRoute, computed } from "#imports"
 import { useDisplay } from "vuetify"
 import { useRootStore } from "../../stores/root"
 import { highlightAndTruncate } from "../../composables/useUtils"
-const { $rootStore } = useNuxtApp()
+const { $rootStore, $stores } = useNuxtApp()
 const { smAndDown, mdAndUp } = useDisplay()
 
 const { locale } = useI18n()
 const rootStore = useRootStore()
+const { name: routeName } = useRoute()
+const searchQuery = computed(() =>
+  routeName.startsWith('search') ? $rootStore.search : ($stores['events'].search || '')
+)
 const props = defineProps({
   item: {
     type: Object,

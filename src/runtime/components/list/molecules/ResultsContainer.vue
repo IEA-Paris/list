@@ -15,8 +15,7 @@
         class="d-flex flex-column cursor-pointer"
         @click="$emit('toggle', type)"
       >
-        <div
-          class="text-h5 font-weight-medium"
+        <h3
           :class="
             $rootStore.results[type] && $rootStore.results[type].total > 0
               ? 'black'
@@ -24,7 +23,7 @@
           "
         >
           {{ capitalize($t("items." + props.type, 2)) }}
-        </div>
+        </h3>
         <div class="text-overline">
           {{
             feminine

@@ -13,9 +13,14 @@
         <template v-else>
           <FellowshipsBadges :item :loading="loading" />
 
-          <div class="text-h4 text-black text-wrap mt-4 pb-4">
-            {{ item.name }}
-          </div>
+          <div
+            class="text-h4 text-black text-wrap mt-4 pb-4"
+            v-html="
+              searchQuery.length
+                ? highlightAndTruncate(300, item.name, searchQuery.split(' '))
+                : item.name
+            "
+          />
 
           <div
             v-if="item.summary"
@@ -27,7 +32,7 @@
               ]
             "
           >
-            <MDC :value="item.summary" />
+            <MDC :value="searchQuery.length ? highlightAndTruncate(500, item.summary, searchQuery.split(' ')) : item.summary" />
           </div>
 
           <MiscMoleculesChipContainer
@@ -50,8 +55,17 @@
 
 <script setup>
 import { useDisplay } from "vuetify"
+import { computed, useRoute, useNuxtApp } from "#imports"
+import { useRootStore } from "../../stores/root"
+import { highlightAndTruncate } from "../../composables/useUtils"
 
 const { name } = useDisplay()
+const rootStore = useRootStore()
+const { $stores } = useNuxtApp()
+const { name: routeName } = useRoute()
+const searchQuery = computed(() =>
+  routeName.startsWith('search') ? rootStore.search : ($stores['fellowships'].search || '')
+)
 
 const props = defineProps({
   item: {

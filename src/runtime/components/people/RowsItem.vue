@@ -26,17 +26,22 @@
       />
 
       <div v-else class="ml-md-8">
-        <div class="text-wrap text-h5 text-md-h4 text-black">
-          {{ item.firstname + " " + item.lastname }}
-        </div>
+        <div
+          class="text-wrap text-h5 text-md-h4 text-black"
+          v-html="
+            searchQuery.length
+              ? highlightAndTruncate(300, item.firstname + ' ' + item.lastname, searchQuery.split(' '))
+              : item.firstname + ' ' + item.lastname
+          "
+        />
         <MiscAtomsSocials v-if="item.socials" :socials="item.socials" />
         <PeoplepBadges :item="item" />
         <div
-          v-if="item.biography && item.biography.length > 0"
+          v-if="item.summary && item.summary.length > 0"
           class="text-wrap clamped-text text-black"
           :style="'-webkit-line-clamp:' + lineClamp"
         >
-          <MDC :value="item.biography" />
+          <MDC :value="searchQuery.length ? highlightAndTruncate(500, item.summary, searchQuery.split(' ')) : item.summary" />
         </div>
 
         <div v-else class="text-body-2">
@@ -49,9 +54,17 @@
 
 <script setup>
 import { useDisplay } from "vuetify"
-import { computed } from "#imports"
+import { computed, useRoute, useNuxtApp } from "#imports"
+import { useRootStore } from "../../stores/root"
+import { highlightAndTruncate } from "../../composables/useUtils"
 
 const { name, mdAndUp } = useDisplay()
+const rootStore = useRootStore()
+const { $stores } = useNuxtApp()
+const { name: routeName } = useRoute()
+const searchQuery = computed(() =>
+  routeName.startsWith('search') ? rootStore.search : ($stores['people'].search || '')
+)
 
 const props = defineProps({
   item: {

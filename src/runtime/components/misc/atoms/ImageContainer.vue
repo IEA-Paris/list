@@ -8,7 +8,10 @@
     <v-skeleton-loader v-if="loading" height="100%" type="image" />
 
     <template v-else>
-      <div class="overflow-hidden mw-100">
+      <div
+        class="overflow-hidden"
+        :style="width ? `width: ${width}px; height: ${Math.round(width / ratio)}px; max-width: 100%` : 'max-width: 100%'"
+      >
         <!--  TODO debug why the picture is not displaying/sizing properly -->
         <v-img
           v-if="src && computedSrc"

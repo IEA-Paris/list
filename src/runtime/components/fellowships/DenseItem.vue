@@ -4,7 +4,12 @@
     no-gutters
     class="cursor-pointer highlight-on-hover pt-2 pl-2"
   >
-    <v-col align-self="center" cols="8" class="text-h5 dense">
+    <v-col
+      align-self="center"
+      cols="8"
+      class="text-h5 dense"
+      :offset="name.startsWith('search') ? 1 : 0"
+    >
       <v-skeleton-loader
         v-if="loading"
         type="heading"
@@ -14,14 +19,14 @@
       <div
         v-else
         v-html="
-          $rootStore.search.length
-            ? highlightAndTruncate(300, item.name, $rootStore.search.split(' '))
+          searchQuery.length
+            ? highlightAndTruncate(300, item.name, searchQuery.split(' '))
             : item.name
         "
       />
       <FellowshipsBadges :item="item" :loading="loading" />
     </v-col>
-    <v-col align-self="center" cols="4">
+    <v-col align-self="center" cols="auto">
       <v-skeleton-loader v-if="loading" type="chip" width="260" class="mt-2" />
       <MiscMoleculesChipContainer
         v-else
@@ -38,10 +43,13 @@
 </template>
 
 <script setup>
-import { useNuxtApp } from "#imports"
+import { useNuxtApp, useRoute, computed } from "#imports"
 import { highlightAndTruncate } from "../../composables/useUtils"
-const { $rootStore } = useNuxtApp()
-
+const { $rootStore, $stores } = useNuxtApp()
+const { name } = useRoute()
+const searchQuery = computed(() =>
+  name.startsWith('search') ? $rootStore.search : ($stores['fellowships'].search || '')
+)
 const props = defineProps({
   item: {
     type: Object,

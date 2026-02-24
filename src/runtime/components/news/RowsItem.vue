@@ -36,9 +36,14 @@
           <br />
         </template>
 
-        <div class="text-wrap text-h5 text-md-h4 text-black">
-          {{ item.name }}
-        </div>
+        <div
+          class="text-wrap text-h5 text-md-h4 text-black"
+          v-html="
+            searchQuery.length
+              ? highlightAndTruncate(300, item.name, searchQuery.split(' '))
+              : item.name
+          "
+        />
         <div class="tex-overline mt-3">
           {{ formatDateValue(item.date, locale) }}
         </div>
@@ -104,11 +109,17 @@
 <script setup>
 import { useDisplay } from "vuetify"
 import { useRootStore } from "../../stores/root"
-import { useI18n, computed } from "#imports"
+import { useI18n, computed, useRoute, useNuxtApp } from "#imports"
+import { highlightAndTruncate } from "../../composables/useUtils"
 
 const { locale } = useI18n()
 const rootStore = useRootStore()
 const { name, smAndDown, mdAndDown, mdAndUp, lgAndUp } = useDisplay()
+const { $stores } = useNuxtApp()
+const { name: routeName } = useRoute()
+const searchQuery = computed(() =>
+  routeName.startsWith('search') ? rootStore.search : ($stores['news'].search || '')
+)
 const eventCategory = computed(() => {
   if (props.item.category) {
     return "list.filters.news.category." + props.item.category
@@ -138,8 +149,10 @@ const props = defineProps({
 
 const processedSummary = computed(() => {
   const raw = props.item.summary || ""
-
-  return replaceMarkdownLinksWithSlug(raw, props.path)
+  const linked = replaceMarkdownLinksWithSlug(raw, props.path)
+  return searchQuery.value.length
+    ? highlightAndTruncate(500, linked, searchQuery.value.split(' '))
+    : linked
 })
 
 function replaceMarkdownLinksWithSlug(markdownText, slugPath) {

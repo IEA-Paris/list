@@ -29,9 +29,15 @@
           />
 
           <div v-else>
-            <div v-if="item.name" class="text-h4 text-black text-wrap mt-4">
-              {{ item.name }}
-            </div>
+            <div
+              v-if="item.name"
+              class="text-h4 text-black text-wrap mt-4"
+              v-html="
+                searchQuery.length
+                  ? highlightAndTruncate(300, item.name, searchQuery.split(' '))
+                  : item.name
+              "
+            />
             <div class="mt-2 text-h6 text-overline font-weight-black">
               {{ $t("list.filters.events.category." + item.category) }}
             </div>
@@ -45,7 +51,7 @@
                 ]
               "
             >
-              <MDC v-if="item.summary" :value="item.summary" />
+              <MDC v-if="item.summary" :value="searchQuery.length ? highlightAndTruncate(500, item.summary, searchQuery.split(' ')) : item.summary" />
             </p>
 
             <div v-if="lgAndUp" class="d-flex flex-row align-center flex-wrap">
@@ -85,12 +91,17 @@
 <script setup>
 import { useDisplay } from "vuetify"
 import { useRootStore } from "../../stores/root"
-import { useNuxtApp, computed } from "#imports"
+import { useNuxtApp, useRoute, computed } from "#imports"
+import { highlightAndTruncate } from "../../composables/useUtils"
 
 const { name, mdAndDown, lgAndUp } = useDisplay()
 
 const rootStore = useRootStore()
 const { $stores } = useNuxtApp()
+const { name: routeName } = useRoute()
+const searchQuery = computed(() =>
+  routeName.startsWith('search') ? rootStore.search : ($stores['events'].search || '')
+)
 const props = defineProps({
   item: {
     type: Object,

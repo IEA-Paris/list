@@ -1,6 +1,6 @@
 <template>
   <v-row v-ripple no-gutters class="cursor-pointer highlight-on-hover">
-    <v-col v-if="mdAndUp" cols="1">
+    <v-col v-if="mdAndUp" cols="1" :offset="name.startsWith('search') ? 1 : 0">
       <MiscAtomsImageContainer
         cover
         :loading="loading"
@@ -17,11 +17,11 @@
       <div v-else class="d-flex text-h5 align-center">
         <span
           v-html="
-            rootStore.search.length
+            searchQuery.length
               ? highlightAndTruncate(
                   300,
                   item.firstname + ' ' + item.lastname,
-                  rootStore.search.split(' '),
+                  searchQuery.split(' '),
                 )
               : item.firstname + ' ' + item.lastname
           "
@@ -33,13 +33,32 @@
         v-if="item.group && item.groups.vintage && item.groups.vintage[0].theme"
         class="text-body-1 font-weight-light paragraph"
         v-html="
-          rootStore.search.length
+          searchQuery.length
             ? highlightAndTruncate(
                 300,
                 item.groups.vintage[0].theme,
-                rootStore.search.split(' '),
+                searchQuery.split(' '),
               )
             : item.groups.vintage[0].theme
+        "
+      />
+      <div
+        v-if="item.summary && mdAndUp"
+        class="text-body-1 font-weight-light paragraph"
+        :style="
+          '-webkit-line-clamp:' +
+          [1, 1, 1, 2, 3, 3][
+            ['xs', 'sm', 'md', 'lg', 'xl', 'xxl'].indexOf(displayName || 'md')
+          ]
+        "
+        v-html="
+          searchQuery.length
+            ? highlightAndTruncate(
+                100,
+                item.summary,
+                searchQuery.split(' '),
+              )
+            : item.summary
         "
       />
     </v-col>
@@ -49,11 +68,16 @@
 <script setup>
 import { useRootStore } from "../../stores/root"
 import { highlightAndTruncate } from "../../composables/useUtils"
-import { computed } from "#imports"
+import { computed, useRoute, useNuxtApp } from "#imports"
 import { useDisplay } from "vuetify"
+const { name } = useRoute()
 
-const { mdAndUp } = useDisplay()
+const { mdAndUp, name: displayName } = useDisplay()
 const rootStore = useRootStore()
+const { $stores } = useNuxtApp()
+const searchQuery = computed(() =>
+  name.startsWith('search') ? rootStore.search : ($stores['people'].search || '')
+)
 const props = defineProps({
   item: {
     type: Object,
@@ -74,5 +98,8 @@ const props = defineProps({
 <style>
 .paragraph {
   max-width: 83ch !important;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 </style>

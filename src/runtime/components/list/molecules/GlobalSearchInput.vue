@@ -49,9 +49,13 @@
       :id="`global-search-input-${type}`"
       v-model.trim="search"
       :placeholder="
-        type === 'all'
-          ? t('search')
-          : $t('list.search-type', [$t('items.' + type, 2)])
+        routeName.startsWith('search')
+          ? mdAndUp
+            ? $t('type-a-search-term-to-find-results-across-all-categories')
+            : $t('search')
+          : type === 'all'
+            ? $t('search')
+            : $t('list.search-type', [$t('items.' + type, 2)])
       "
       single-line
       class="transition-swing flex-grow-1"
@@ -66,11 +70,18 @@
     >
       <template v-if="!search" #label>
         <div class="searchLabel">
-          {{ $t("search") }}
+          {{
+            routeName.startsWith("search")
+              ? mdAndUp
+                ? $t("type-a-search-term-to-find-results-across-all-categories")
+                : $t("search")
+              : type === "all"
+                ? $t("search")
+                : $t("list.search-type", [$t("items." + type, 2)])
+          }}
         </div>
       </template>
     </v-text-field>
-
     <v-btn
       :rounded="0"
       variant="outlined"
@@ -90,11 +101,21 @@
 <script setup>
 import { useDebounceFn } from "@vueuse/core"
 import { useRootStore } from "../../../stores/root"
-import { computed, useI18n, ref, useLocalePath, useRouter, navigateTo } from "#imports"
+import { useDisplay } from "vuetify"
+import {
+  computed,
+  useI18n,
+  ref,
+  useLocalePath,
+  useRoute,
+  useRouter,
+  navigateTo,
+} from "#imports"
+const { mdAndUp } = useDisplay()
 const localePath = useLocalePath()
 const { locale, t } = useI18n()
 const rootStore = useRootStore()
-
+const { name: routeName } = useRoute()
 // Utility function to capitalize first letter
 const capitalize = (str) => str.charAt(0).toUpperCase() + str.slice(1)
 const emit = defineEmits(["filter-change"])
@@ -151,7 +172,11 @@ const toggleFilter = (option) => {
 const textFieldRef = ref(null)
 
 const navigateToSearch = () => {
-  const term = (textFieldRef.value?.$el?.querySelector("input")?.value ?? rootStore.search ?? "").trim()
+  const term = (
+    textFieldRef.value?.$el?.querySelector("input")?.value ??
+    rootStore.search ??
+    ""
+  ).trim()
   rootStore.search = term
   navigateTo({
     path: localePath("/search"),

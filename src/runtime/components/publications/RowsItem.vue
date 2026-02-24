@@ -25,9 +25,14 @@
 
         <template v-else>
           <div v-if="item.type" class="text-overline">{{ $t(item.type) }}</div>
-          <div class="text-h5 text-sm-h3 text-md-h4 text-md-h4 my-6">
-            {{ item.name }}
-          </div>
+          <div
+            class="text-h5 text-sm-h3 text-md-h4 text-md-h4 my-6"
+            v-html="
+              searchQuery.length
+                ? highlightAndTruncate(300, item.name, searchQuery.split(' '))
+                : item.name
+            "
+          />
           <div
             v-if="item.summary"
             class="text-wrap clamped-text"
@@ -38,7 +43,7 @@
               ]
             "
           >
-            <MDC :value="item.summary" />
+            <MDC :value="searchQuery.length ? highlightAndTruncate(500, item.summary, searchQuery.split(' ')) : item.summary" />
           </div>
           <v-btn
             class="mt-4"
@@ -77,8 +82,17 @@
 
 <script setup>
 import { useDisplay } from "vuetify"
+import { computed, useRoute, useNuxtApp } from "#imports"
+import { useRootStore } from "../../stores/root"
+import { highlightAndTruncate } from "../../composables/useUtils"
 
 const { name } = useDisplay()
+const rootStore = useRootStore()
+const { $stores } = useNuxtApp()
+const { name: routeName } = useRoute()
+const searchQuery = computed(() =>
+  routeName.startsWith('search') ? rootStore.search : ($stores['publications'].search || '')
+)
 
 const props = defineProps({
   item: {

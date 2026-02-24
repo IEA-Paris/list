@@ -1,6 +1,11 @@
 <template>
   <v-row v-ripple no-gutters class="cursor-pointer highlight-on-hover my-2">
-    <v-col v-if="mdAndUp" cols="1" class="align-center">
+    <v-col
+      v-if="mdAndUp"
+      cols="1"
+      class="align-center"
+      :offset="name.startsWith('search') ? 1 : 0"
+    >
       <MiscAtomsImageContainer
         cover
         :loading="loading"
@@ -44,11 +49,11 @@
           v-else
           class="text-h5 dense paragraph"
           v-html="
-            rootStore.search.length
+            searchQuery.length
               ? highlightAndTruncate(
                   300,
                   item.name,
-                  rootStore.search.split(' '),
+                  searchQuery.split(' '),
                 )
               : item.name
           "
@@ -61,7 +66,7 @@
           :value="`${highlightAndTruncate(
             150,
             item.summary,
-            rootStore.search.split(' '),
+            searchQuery.split(' '),
           )}`"
         />
       </div> </v-col
@@ -72,9 +77,13 @@
 import { useDisplay } from "vuetify"
 import { useRootStore } from "../../stores/root"
 import { highlightAndTruncate } from "../../composables/useUtils"
-import { computed } from "#imports"
+import { computed, useRoute, useNuxtApp } from "#imports"
 const rootStore = useRootStore()
-
+const { name } = useRoute()
+const { $stores } = useNuxtApp()
+const searchQuery = computed(() =>
+  name.startsWith('search') ? rootStore.search : ($stores['publications'].search || '')
+)
 const { mdAndUp } = useDisplay()
 const props = defineProps({
   item: {
