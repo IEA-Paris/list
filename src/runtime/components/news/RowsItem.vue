@@ -118,7 +118,9 @@ const { name, smAndDown, mdAndDown, mdAndUp, lgAndUp } = useDisplay()
 const { $stores } = useNuxtApp()
 const { name: routeName } = useRoute()
 const searchQuery = computed(() =>
-  routeName.startsWith('search') ? rootStore.search : ($stores['news'].search || '')
+  routeName.startsWith("search")
+    ? rootStore.search
+    : $stores["news"].search || "",
 )
 const eventCategory = computed(() => {
   if (props.item.category) {
@@ -151,7 +153,7 @@ const processedSummary = computed(() => {
   const raw = props.item.summary || ""
   const linked = replaceMarkdownLinksWithSlug(raw, props.path)
   return searchQuery.value.length
-    ? highlightAndTruncate(500, linked, searchQuery.value.split(' '))
+    ? highlightAndTruncate(500, linked, searchQuery.value.split(" "))
     : linked
 })
 

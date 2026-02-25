@@ -12,9 +12,12 @@
         class="ma-1"
       />
     </v-col>
-    <v-col align-self="start" class="text-h6 dense px-2">
+    <v-col align-self="start" class="text-sm-h6 dense">
       <v-skeleton-loader v-if="loading" type="heading" />
-      <div v-else class="d-flex text-h5 align-center">
+      <div
+        v-else
+        class="d-flex justify-space-between text-title text-md-h5 align-center"
+      >
         <span
           v-html="
             searchQuery.length
@@ -53,11 +56,7 @@
         "
         v-html="
           searchQuery.length
-            ? highlightAndTruncate(
-                100,
-                item.summary,
-                searchQuery.split(' '),
-              )
+            ? highlightAndTruncate(100, item.summary, searchQuery.split(' '))
             : item.summary
         "
       />
@@ -76,7 +75,7 @@ const { mdAndUp, name: displayName } = useDisplay()
 const rootStore = useRootStore()
 const { $stores } = useNuxtApp()
 const searchQuery = computed(() =>
-  name.startsWith('search') ? rootStore.search : ($stores['people'].search || '')
+  name.startsWith("search") ? rootStore.search : $stores["people"].search || "",
 )
 const props = defineProps({
   item: {

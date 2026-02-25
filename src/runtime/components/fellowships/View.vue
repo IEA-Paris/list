@@ -33,7 +33,9 @@
           />
 
           <div v-else class="d-flex align-center flex-column mt-12">
-            <div class="d-flex text-center text-wrap text-h3 text-black">
+            <div
+              class="d-flex text-center text-wrap text-h4 text-md-h3 text-black"
+            >
               {{ item.name }}
             </div>
             <v-divider width="154px" class="mb-1 mt-6" />
@@ -57,7 +59,7 @@
               <FellowshipsBadges :item="item" :view="view" :loading="loading" />
             </div>
           </div>
-          <div class="mx-6">
+          <div>
             <!-- DIVIDERS -->
             <v-responsive class="mx-auto my-9" width="120">
               <v-divider class="mb-1" />
