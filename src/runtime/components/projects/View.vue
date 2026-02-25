@@ -80,7 +80,7 @@
           ]
         "
       />
-      <div v-if="item && item.description" class="mt-md-n2 mx-10 mx-md-0">
+      <div v-if="item && item.description" class="mt-md-n2">
         <MDC :value="item.description" />
       </div>
     </v-col>

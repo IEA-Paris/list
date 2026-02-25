@@ -41,7 +41,17 @@
             ]
           "
         >
-          <MDC :value="searchQuery.length ? highlightAndTruncate(500, item.summary, searchQuery.split(' ')) : item.summary" />
+          <MDC
+            :value="
+              searchQuery.length
+                ? highlightAndTruncate(
+                    500,
+                    item.summary,
+                    searchQuery.split(' '),
+                  )
+                : item.summary
+            "
+          />
         </div>
 
         <v-btn
@@ -59,7 +69,7 @@
         <v-btn
           variant="outlined"
           tile
-          class="mt-4 ml-4"
+          class="mt-4 ml-0 ml-md-4"
           prepend-icon="mdi-web"
           :size="
             ['small', 'small', 'small', 'default', 'default', 'large'][
@@ -72,7 +82,7 @@
       </template>
     </v-col>
   </v-row>
-  <v-divider />
+  <v-divider class="my-6" />
 </template>
 
 <script setup>
@@ -86,7 +96,9 @@ const rootStore = useRootStore()
 const { $stores } = useNuxtApp()
 const { name: routeName } = useRoute()
 const searchQuery = computed(() =>
-  routeName.startsWith('search') ? rootStore.search : ($stores['projects'].search || '')
+  routeName.startsWith("search")
+    ? rootStore.search
+    : $stores["projects"].search || "",
 )
 
 const props = defineProps({

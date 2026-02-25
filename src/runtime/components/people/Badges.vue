@@ -11,7 +11,7 @@
             v-for="(vintage, index2) in item.groups.vintage"
             :key="index2"
             size="small"
-            class="mt-3 mr-3"
+            class="mt-3 mr-1 mr-md-3"
             variant="outlined"
             tile
             style="background-color: white; color: black"
