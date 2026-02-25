@@ -55,6 +55,7 @@
         </div>
 
         <v-btn
+          tag="button"
           class="mt-4"
           variant="outlined"
           tile
@@ -67,6 +68,7 @@
           {{ $t("read-more") }}
         </v-btn>
         <v-btn
+          tag="button"
           variant="outlined"
           tile
           class="mt-4 ml-0 ml-md-4"

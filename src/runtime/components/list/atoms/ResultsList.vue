@@ -1,7 +1,7 @@
 <template>
   <NuxtLink
     v-for="(item, index) in rootStore.results[type]?.items || []"
-    :key="(item.name || item.lastname) + type + index"
+    :key="item.slug || (item.name || item.lastname) + type + index"
     :to="
       localePath({
         name: pathPrefix,

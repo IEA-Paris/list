@@ -13,7 +13,7 @@
           item && item.image && item.image.url ? item.image.url : '/default.png'
         "
         :ratio="1 / 1"
-        :width="80"
+        :width="100"
       />
     </v-col>
     <v-col class="pl-2">
@@ -23,7 +23,7 @@
         <template v-else>
           <v-chip
             v-if="eventCategory"
-            class="ma-2"
+            class="mr-2"
             variant="outlined"
             size="small"
             style="background-color: white; color: black"
@@ -33,7 +33,7 @@
             v-if="eventType"
             variant="outlined"
             size="small"
-            class="mx-2"
+            class="mr-2"
             style="background-color: white; color: black"
           >
             {{ $t(eventType) }}

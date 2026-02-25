@@ -7,7 +7,7 @@
   >
     <NuxtLink
       v-for="(item, index) in items"
-      :key="(item.name || item.lastname) + type + index"
+      :key="item.slug || (item.name || item.lastname) + type + index"
       :to="
         localePath({
           name: pathPrefix,

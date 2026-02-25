@@ -10,20 +10,15 @@
       />
     </v-col>
     <v-col v-if="mdAndUp" cols="auto">
-      <div style="width: 80px; height: 80px; flex-shrink: 0">
-        <MiscAtomsImageContainer
-          cover
-          :loading
-          :src="
-            item && item.image && item.image.url
-              ? item.image.url
-              : '/default.png'
-          "
-          :ratio="1 / 1"
-          :width="80"
-          style="width: 80px; height: 80px"
-        />
-      </div>
+      <MiscAtomsImageContainer
+        cover
+        :loading
+        :src="
+          item && item.image && item.image.url ? item.image.url : '/default.png'
+        "
+        :ratio="1 / 1"
+        :width="100"
+      />
     </v-col>
 
     <v-col align-self="start" class="px-2">
@@ -74,9 +69,9 @@
       <v-skeleton-loader v-if="loading" type="text@3" class="mt-2" />
       <MDC
         v-else-if="item.name.length < 80"
-        class="text-body-1 font-weight-light paragraph mt-n2"
+        class="text-body-1 font-weight-light paragraph mt-n2 mb-n6"
         :value="`${highlightAndTruncate(
-          85,
+          150,
           item.summary,
           searchQuery.split(' '),
         )}`"

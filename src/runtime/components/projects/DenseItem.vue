@@ -2,8 +2,8 @@
   <v-row v-ripple no-gutters class="cursor-pointer highlight-on-hover">
     <v-col
       v-if="mdAndUp"
-      align-self="center"
-      cols="1"
+      align-self="start"
+      cols="auto"
       :offset="name.startsWith('search') ? 1 : 0"
     >
       <MiscAtomsImageContainer
@@ -13,10 +13,11 @@
           item && item.image && item.image.url ? item.image.url : '/default.png'
         "
         :ratio="1 / 1"
-        :width="80"
+        :width="100"
+        class="pa-2"
       />
     </v-col>
-    <v-col align-self="center" class="text-h5 dense pt-2">
+    <v-col align-self="center" class="text-h5 dense pt-2 pl-4">
       <v-skeleton-loader v-if="loading" type="heading" width="50%" />
       <span
         v-else
@@ -25,6 +26,7 @@
             ? highlightAndTruncate(300, item.name, searchQuery.split(' '))
             : item.name
         "
+        class=""
       />
 
       <MiscMoleculesChipContainer
@@ -32,14 +34,12 @@
         :items="item.tags || []"
         size="small"
       />
-
       <v-skeleton-loader v-if="loading" type="text@2" class="mt-3" />
-
       <MDC
         v-else-if="item.summary"
-        class="text-caption font-weight-light paragraph mt-n2"
+        class="text-caption font-weight-light my-n2"
         :value="`${highlightAndTruncate(
-          150,
+          130,
           item.summary,
           searchQuery.split(' '),
         )}`"

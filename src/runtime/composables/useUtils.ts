@@ -134,12 +134,11 @@ export const highlightAndTruncate = (
         query.forEach((element: string) => {
           const regex = new RegExp(element, "gi")
           text = text.replace(regex, (matchedText: string) => {
-            return `<span style="
+            return `<strong style="
             text-decoration: underline;
-            text-decoration-color: black;   
             text-decoration-thickness: 2px;
             text-underline-offset: 2px;
-          ">${matchedText}</span>`
+          ">${matchedText}</strong>`
           })
         })
       } else {
@@ -148,7 +147,11 @@ export const highlightAndTruncate = (
           const check = new RegExp(element, "gi")
           text = text.replace(check, function (matchedText: string) {
             return (
-              '<strong style="color: white;background-color: black;">' +
+              `<strong style="
+            text-decoration: underline;
+            text-decoration-thickness: 2px;
+            text-underline-offset: 2px;
+          ">` +
               matchedText +
               "</strong>"
             )

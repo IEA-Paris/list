@@ -8,7 +8,7 @@
           item && item.image && item.image.url ? item.image.url : '/default.png'
         "
         :ratio="1 / 1"
-        :width="80"
+        :width="100"
         class="ma-1"
       />
     </v-col>
@@ -45,8 +45,10 @@
             : item.groups.vintage[0].theme
         "
       />
+      <v-skeleton-loader v-if="loading" type="paragraph" />
+
       <div
-        v-if="item.summary && mdAndUp"
+        v-else-if="item.summary && mdAndUp"
         class="text-body-1 font-weight-light paragraph"
         :style="
           '-webkit-line-clamp:' +
