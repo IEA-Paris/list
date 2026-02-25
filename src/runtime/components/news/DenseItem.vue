@@ -5,7 +5,7 @@
         v-if="item.date"
         :loading
         :date-start="item.date"
-        class="pr-4 mt-md-2"
+        class="pr-4"
       />
     </v-col>
     <v-col v-if="mdAndUp" align-self="center" cols="1">
@@ -16,7 +16,7 @@
           item && item.image && item.image.url ? item.image.url : '/default.png'
         "
         :ratio="1 / 1"
-        :width="70"
+        :width="80"
       />
     </v-col>
     <v-col align-self="start" class="text-h5 dense mx-2 paragraph">
@@ -45,11 +45,7 @@
         <div
           v-html="
             searchQuery.length
-              ? highlightAndTruncate(
-                  300,
-                  item.name,
-                  searchQuery.split(' '),
-                )
+              ? highlightAndTruncate(300, item.name, searchQuery.split(' '))
               : item.name
           "
         />
@@ -69,7 +65,9 @@ const rootStore = useRootStore()
 const { name: routeName } = useRoute()
 const { $stores } = useNuxtApp()
 const searchQuery = computed(() =>
-  routeName.startsWith('search') ? rootStore.search : ($stores['news'].search || '')
+  routeName.startsWith("search")
+    ? rootStore.search
+    : $stores["news"].search || "",
 )
 
 const props = defineProps({

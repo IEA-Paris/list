@@ -6,7 +6,7 @@
         :date-stop="item.stop"
         :loading="loading"
         class="mr-4 mb-6 mb-md-0"
-        style="min-width: 70px"
+        style="min-width: 80px"
       />
       <div
         class="d-flex flex-column"

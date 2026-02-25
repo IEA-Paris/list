@@ -6,20 +6,22 @@
         :loading
         :date-start="item.start"
         :date-stop="item.stop"
-        class="pr-4 mt-md-2"
+        class="pr-4"
       />
     </v-col>
     <v-col v-if="mdAndUp" cols="auto">
-      <div style="width: 70px; height: 70px; flex-shrink: 0">
+      <div style="width: 80px; height: 80px; flex-shrink: 0">
         <MiscAtomsImageContainer
           cover
           :loading
           :src="
-            item && item.image && item.image.url ? item.image.url : '/default.png'
+            item && item.image && item.image.url
+              ? item.image.url
+              : '/default.png'
           "
           :ratio="1 / 1"
-          :width="70"
-          style="width: 70px; height: 70px"
+          :width="80"
+          style="width: 80px; height: 80px"
         />
       </div>
     </v-col>
@@ -102,7 +104,9 @@ const { locale } = useI18n()
 const rootStore = useRootStore()
 const { name: routeName } = useRoute()
 const searchQuery = computed(() =>
-  routeName.startsWith('search') ? $rootStore.search : ($stores['events'].search || '')
+  routeName.startsWith("search")
+    ? $rootStore.search
+    : $stores["events"].search || "",
 )
 const props = defineProps({
   item: {

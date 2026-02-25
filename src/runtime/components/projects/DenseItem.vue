@@ -13,7 +13,7 @@
           item && item.image && item.image.url ? item.image.url : '/default.png'
         "
         :ratio="1 / 1"
-        :width="70"
+        :width="80"
       />
     </v-col>
     <v-col align-self="center" class="text-h5 dense pl-4 pt-2">
@@ -59,7 +59,9 @@ const { name } = useRoute()
 const rootStore = useRootStore()
 const { $stores } = useNuxtApp()
 const searchQuery = computed(() =>
-  name.startsWith('search') ? rootStore.search : ($stores['projects'].search || '')
+  name.startsWith("search")
+    ? rootStore.search
+    : $stores["projects"].search || "",
 )
 const props = defineProps({
   item: {

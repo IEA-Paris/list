@@ -13,7 +13,7 @@
           item && item.image && item.image.url ? item.image.url : '/default.png'
         "
         :ratio="1 / 1"
-        :width="70"
+        :width="80"
       />
     </v-col>
     <v-col class="pl-2">
@@ -50,11 +50,7 @@
           class="text-h5 dense paragraph"
           v-html="
             searchQuery.length
-              ? highlightAndTruncate(
-                  300,
-                  item.name,
-                  searchQuery.split(' '),
-                )
+              ? highlightAndTruncate(300, item.name, searchQuery.split(' '))
               : item.name
           "
         />
@@ -82,7 +78,9 @@ const rootStore = useRootStore()
 const { name } = useRoute()
 const { $stores } = useNuxtApp()
 const searchQuery = computed(() =>
-  name.startsWith('search') ? rootStore.search : ($stores['publications'].search || '')
+  name.startsWith("search")
+    ? rootStore.search
+    : $stores["publications"].search || "",
 )
 const { mdAndUp } = useDisplay()
 const props = defineProps({

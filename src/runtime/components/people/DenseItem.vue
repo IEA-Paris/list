@@ -8,7 +8,7 @@
           item && item.image && item.image.url ? item.image.url : '/default.png'
         "
         :ratio="1 / 1"
-        :width="70"
+        :width="80"
         class="ma-1"
       />
     </v-col>
@@ -53,11 +53,7 @@
         "
         v-html="
           searchQuery.length
-            ? highlightAndTruncate(
-                100,
-                item.summary,
-                searchQuery.split(' '),
-              )
+            ? highlightAndTruncate(100, item.summary, searchQuery.split(' '))
             : item.summary
         "
       />
@@ -76,7 +72,7 @@ const { mdAndUp, name: displayName } = useDisplay()
 const rootStore = useRootStore()
 const { $stores } = useNuxtApp()
 const searchQuery = computed(() =>
-  name.startsWith('search') ? rootStore.search : ($stores['people'].search || '')
+  name.startsWith("search") ? rootStore.search : $stores["people"].search || "",
 )
 const props = defineProps({
   item: {
