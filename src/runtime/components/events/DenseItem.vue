@@ -64,7 +64,7 @@
 
       <div
         v-else
-        class="text-h5 dense paragraph mt-2"
+        class="text-h5 dense paragraph mt-1"
         v-html="
           searchQuery.length
             ? highlightAndTruncate(300, item.name, searchQuery.split(' '))
@@ -73,7 +73,7 @@
       />
       <v-skeleton-loader v-if="loading" type="text@3" class="mt-2" />
       <MDC
-        v-else
+        v-else-if="item.name.length < 80"
         class="text-body-1 font-weight-light paragraph mt-n2"
         :value="`${highlightAndTruncate(
           85,
