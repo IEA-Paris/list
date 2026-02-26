@@ -1,11 +1,14 @@
 <template>
   <v-row v-ripple no-gutters class="cursor-pointer highlight-on-hover my-2">
-    <v-col
-      v-if="mdAndUp"
-      cols="1"
-      class="align-center"
-      :offset="name.startsWith('search') ? 1 : 0"
-    >
+    <v-col v-if="mdAndUp" cols="1">
+      <MiscAtomsDateStamp
+        v-if="item.date"
+        :loading
+        :date-start="item.date"
+        class="mr-4"
+      />
+    </v-col>
+    <v-col v-if="mdAndUp" cols="1" class="align-center">
       <MiscAtomsImageContainer
         cover
         :loading="loading"
@@ -16,7 +19,7 @@
         :width="100"
       />
     </v-col>
-    <v-col class="pl-2">
+    <v-col class="pl-4">
       <div class="inline-flex flex-row flex-wrap">
         <v-skeleton-loader v-if="loading" :type="heading" />
 
@@ -57,7 +60,7 @@
 
         <v-skeleton-loader v-if="loading" type="text@3" class="mt-2" />
         <MDC
-          v-else
+          v-else-if="item.summary && item.summary.length"
           class="text-body-1 font-weight-light paragraph"
           :value="`${highlightAndTruncate(
             150,

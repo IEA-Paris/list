@@ -129,5 +129,4 @@ const props = defineProps({
     required: false,
   },
 })
-console.log("project view props", props.loading)
 </script>

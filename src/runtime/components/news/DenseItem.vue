@@ -5,10 +5,10 @@
         v-if="item.date"
         :loading
         :date-start="item.date"
-        class="pr-4"
+        class="mr-4"
       />
     </v-col>
-    <v-col v-if="mdAndUp" align-self="center" cols="1">
+    <v-col v-if="mdAndUp" align-self="start" cols="1">
       <MiscAtomsImageContainer
         cover
         :loading="loading"
@@ -19,7 +19,7 @@
         :width="100"
       />
     </v-col>
-    <v-col align-self="start" class="text-h5 dense mx-2 paragraph">
+    <v-col align-self="start" class="text-h5 dense pl-4 paragraph">
       <v-skeleton-loader v-if="loading" type="heading" />
       <template v-else>
         <v-skeleton-loader
@@ -48,6 +48,22 @@
               ? highlightAndTruncate(300, item.name, searchQuery.split(' '))
               : item.name
           "
+        />
+
+        <v-skeleton-loader v-if="loading" type="text@3" class="mt-2" />
+        <MDC
+          v-else-if="
+            item.name.length < 80 &&
+            item.summary &&
+            item.summary.length &&
+            mdAndUp
+          "
+          class="text-body-1 font-weight-light paragraph line-clamp-1"
+          :value="`${highlightAndTruncate(
+            150,
+            item.summary,
+            searchQuery.split(' '),
+          )}`"
         />
       </template>
     </v-col>

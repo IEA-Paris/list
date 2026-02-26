@@ -192,15 +192,11 @@ const search = computed({
     const value = v || ""
     if (!value && !rootStore.search) return
 
-    if (props.type === "all") {
-      rootStore.search = value
-    } else {
-      rootStore.updateSearch({
-        type: props.type,
-        search: value,
-        lang: locale.value,
-      })
-    }
+    rootStore.updateSearch({
+      type: props.type,
+      search: value,
+      lang: locale.value,
+    })
   }, 300),
 })
 </script>

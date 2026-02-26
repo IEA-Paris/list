@@ -6,7 +6,7 @@
         :loading
         :date-start="item.start"
         :date-stop="item.stop"
-        class="pr-4"
+        class="mr-4"
       />
     </v-col>
     <v-col v-if="mdAndUp" cols="auto">
@@ -21,7 +21,7 @@
       />
     </v-col>
 
-    <v-col align-self="start" class="px-2">
+    <v-col align-self="start" class="pl-4">
       <v-skeleton-loader v-if="loading" type="chip" class="mr-3" width="120" />
       <v-chip
         v-else
@@ -68,7 +68,12 @@
       />
       <v-skeleton-loader v-if="loading" type="text@3" class="mt-2" />
       <MDC
-        v-else-if="item.name.length < 80"
+        v-else-if="
+          item.name.length < 80 &&
+          item.summary &&
+          item.summary.length &&
+          mdAndUp
+        "
         class="text-body-1 font-weight-light paragraph mt-n2 mb-n6"
         :value="`${highlightAndTruncate(
           150,

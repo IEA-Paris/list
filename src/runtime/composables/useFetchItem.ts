@@ -1,4 +1,4 @@
-import { useRoute, useSetI18nParams, useNuxtApp } from "#imports"
+import { useNuxtApp, useRoute, useSetI18nParams } from "#imports"
 
 type FetchItemPayload = {
   query: any
@@ -7,15 +7,17 @@ type FetchItemPayload = {
 }
 
 export const useFetchItem = () => {
+  // Capture composables synchronously during setup, before any await
+  const { $apollo } = useNuxtApp()
+  const route = useRoute()
+  const setI18nParams = useSetI18nParams()
+
   const fetchItem = async <T>({
     query,
     key,
     variables,
   }: FetchItemPayload): Promise<T> => {
     try {
-      const { $apollo } = useNuxtApp()
-      const route = useRoute()
-
       const apolloClient = $apollo?.clients?.default
       if (!apolloClient) throw new Error("Apollo client is not available")
 
@@ -28,7 +30,6 @@ export const useFetchItem = () => {
       const item = data?.[key]
       if (!item) throw new Error("Item not found in response")
 
-      const setI18nParams = useSetI18nParams()
       if (!String(route.name ?? "").includes("people")) {
         setI18nParams({
           en: { slug: item.slug.en },

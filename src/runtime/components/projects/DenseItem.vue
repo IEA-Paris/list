@@ -14,7 +14,6 @@
         "
         :ratio="1 / 1"
         :width="100"
-        class="pa-2"
       />
     </v-col>
     <v-col align-self="center" class="text-h5 dense pt-2 pl-4">
@@ -36,7 +35,7 @@
       />
       <v-skeleton-loader v-if="loading" type="text@2" class="mt-3" />
       <MDC
-        v-else-if="item.summary"
+        v-else-if="item.summary && item.summary.length && mdAndUp"
         class="text-caption font-weight-light my-n2"
         :value="`${highlightAndTruncate(
           130,

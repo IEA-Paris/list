@@ -2,7 +2,12 @@
   <v-row justify="center">
     <v-col cols="12" sm="11" md="8" lg="8" xl="6">
       <v-row no-gutters class="justify-center">
-        <v-col cols="12" sm="10" md="6" class="text-center">
+        <v-col
+          cols="12"
+          sm="10"
+          md="6"
+          class="d-flex align-center justify-center"
+        >
           <!--   PEOPLE IMAGE -->
           <MiscAtomsImageContainer
             v-if="mdAndUp && item && item.image"

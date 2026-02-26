@@ -12,7 +12,7 @@
         class="ma-1"
       />
     </v-col>
-    <v-col align-self="start" class="text-sm-h6 dense">
+    <v-col align-self="start" class="text-sm-h6 dense ml-4">
       <v-skeleton-loader v-if="loading" type="heading" />
       <div
         v-else
@@ -48,7 +48,7 @@
       <v-skeleton-loader v-if="loading" type="paragraph" />
 
       <div
-        v-else-if="item.summary && mdAndUp"
+        v-else-if="item.summary && item.summary.length && mdAndUp"
         class="text-body-1 font-weight-light paragraph"
         :style="
           '-webkit-line-clamp:' +
