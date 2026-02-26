@@ -2,12 +2,28 @@
   <v-row
     v-ripple
     no-gutters
-    class="cursor-pointer highlight-on-hover pt-2 pl-2"
+    class="cursor-pointer highlight-on-hover pt-2 pl-md-2"
   >
     <v-col
-      align-self="center"
+      v-if="mdAndUp"
+      cols="1"
+      class="align-center"
+      :offset="name.startsWith('search') ? 1 : 0"
+    >
+      <MiscAtomsImageContainer
+        cover
+        :loading="loading"
+        :src="
+          item && item.image && item.image.url ? item.image.url : '/default.png'
+        "
+        :ratio="1 / 1"
+        :width="100"
+      />
+    </v-col>
+
+    <v-col
       cols="8"
-      class="text-h5 dense"
+      class="text-h5 dense d-flex flex-column ml-md-2"
       :offset="name.startsWith('search') ? 1 : 0"
     >
       <v-skeleton-loader
@@ -24,9 +40,10 @@
             : item.name
         "
       />
+
       <FellowshipsBadges :item="item" :loading="loading" />
     </v-col>
-    <v-col align-self="center" cols="auto">
+    <v-col class="d-flex flex-column">
       <v-skeleton-loader v-if="loading" type="chip" width="260" class="mt-2" />
       <MiscMoleculesChipContainer
         v-else
@@ -43,12 +60,16 @@
 </template>
 
 <script setup>
+import { useDisplay } from "vuetify"
 import { useNuxtApp, useRoute, computed } from "#imports"
 import { highlightAndTruncate } from "../../composables/useUtils"
 const { $rootStore, $stores } = useNuxtApp()
 const { name } = useRoute()
+const { mdAndUp } = useDisplay()
 const searchQuery = computed(() =>
-  name.startsWith('search') ? $rootStore.search : ($stores['fellowships'].search || '')
+  name.startsWith("search")
+    ? $rootStore.search
+    : $stores["fellowships"].search || "",
 )
 const props = defineProps({
   item: {
@@ -65,4 +86,6 @@ const props = defineProps({
     default: false,
   },
 })
+
+console.log("Item", props.item)
 </script>
