@@ -2,7 +2,7 @@
   <v-row no-gutters>
     <v-col>
       <template v-for="(value, key, index) in socials" :key="key + value">
-        <v-tooltip v-if="value" :location="location">
+        <v-tooltip v-if="value && key !== '__typename'" :location="location">
           <template #activator="{ props }">
             <v-btn
               tile

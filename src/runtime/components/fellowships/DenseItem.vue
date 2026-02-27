@@ -13,16 +13,14 @@
       <MiscAtomsImageContainer
         cover
         :loading="loading"
-        :src="
-          item && item.image && item.image.url ? item.image.url : '/default.png'
-        "
+        :src="item?.image?.url || '/default.png'"
         :ratio="1 / 1"
         :width="100"
       />
     </v-col>
 
     <v-col
-      cols="8"
+      :cols="mdAndUp ? 8 : undefined"
       class="text-h5 dense d-flex flex-column ml-md-2"
       :offset="name.startsWith('search') ? 1 : 0"
     >
@@ -40,18 +38,36 @@
             : item.name
         "
       />
-
       <FellowshipsBadges :item="item" :loading="loading" />
+
+      <template v-if="mdAndDown">
+        <v-skeleton-loader
+          v-if="loading"
+          type="chip"
+          width="260"
+          class="mt-2"
+        />
+        <MiscMoleculesChipContainer
+          v-else
+          :items="[
+            $t(
+              'list.filters.fellowships.fellowshipType.' + item.fellowshipType,
+            ),
+            ...(props.item?.disciplines?.map((discipline) => discipline.name) ??
+              []),
+          ]"
+        />
+      </template>
     </v-col>
-    <v-col class="d-flex flex-column">
+
+    <v-col v-if="mdAndUp" class="d-flex flex-column">
       <v-skeleton-loader v-if="loading" type="chip" width="260" class="mt-2" />
       <MiscMoleculesChipContainer
         v-else
         :items="[
           $t('list.filters.fellowships.fellowshipType.' + item.fellowshipType),
-          ...(props.item && props.item.disciplines
-            ? props.item.disciplines.map((discipline) => discipline.name)
-            : []),
+          ...(props.item?.disciplines?.map((discipline) => discipline.name) ??
+            []),
         ]"
         class="mt-2"
       />
@@ -65,7 +81,7 @@ import { useNuxtApp, useRoute, computed } from "#imports"
 import { highlightAndTruncate } from "../../composables/useUtils"
 const { $rootStore, $stores } = useNuxtApp()
 const { name } = useRoute()
-const { mdAndUp } = useDisplay()
+const { mdAndUp, mdAndDown } = useDisplay()
 const searchQuery = computed(() =>
   name.startsWith("search")
     ? $rootStore.search

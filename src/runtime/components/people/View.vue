@@ -170,4 +170,6 @@ const props = defineProps({
   loading: { type: Boolean, default: false },
 })
 $stores.people.loading = false
+
+console.log("people", props.item)
 </script>
