@@ -3,6 +3,7 @@
     type="all"
     :placeholder="$t('search')"
     :categories="selectedCategories"
+    :filter-order="sortedModules"
     filter
     @filter-change="handleFilterChange"
     class="mb-6"
