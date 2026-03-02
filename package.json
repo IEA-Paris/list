@@ -8,7 +8,7 @@
     "type": "git"
   },
   "dependencies": {
-    "@paris-ias/trees": "^2.0.47"
+    "@paris-ias/trees": "^2.0.48"
   },
   "description": "Paris IAS List Module",
   "peerDependencies": {

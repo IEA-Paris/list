@@ -102,6 +102,4 @@ const props = defineProps({
     default: false,
   },
 })
-
-console.log("Item", props.item)
 </script>
