@@ -33,10 +33,10 @@
 </template>
 
 <script setup>
-import { getLocalizedDate } from "../../composables/useUtils";
+import { getLocalizedDate } from "../../composables/useUtils"
 
 const props = defineProps({
   item: { type: Object, required: true },
   view: { type: Boolean, required: false, default: false },
-});
+})
 </script>

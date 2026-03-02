@@ -13,7 +13,10 @@
     class="mr-2"
   />
 
-  <div v-else-if="registrationStatus === 2" class="my-2 text-overline">
+  <div
+    v-else-if="registrationStatus === 2"
+    class="my-2 text-caption text-md-overline"
+  >
     <v-icon class="text-grey" size="x-large"> mdi-circle-medium </v-icon>
     {{
       $t("applications-closed-since-0", [

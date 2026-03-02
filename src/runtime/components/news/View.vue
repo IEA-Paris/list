@@ -52,7 +52,7 @@
         </v-chip>
         <div
           v-if="item && item.name && mdAndUp"
-          class="d-flex text-wrap text-h4 text-black"
+          class="d-flex text-wrap text-h4 text-md-h3 text-black"
         >
           {{ item.name }}
         </div>

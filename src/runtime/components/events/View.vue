@@ -34,7 +34,9 @@
 
         <template v-else>
           <div class="d-flex align-center flex-column">
-            <div class="d-flex text-center text-wrap text-h3 text-black">
+            <div
+              class="d-flex text-center text-wrap text-h4 text-md-h3 text-black"
+            >
               {{ item.name }}
             </div>
 
@@ -165,7 +167,7 @@
         </v-row>
       </v-col>
 
-      <v-col v-if="xs" class="ml-2" cols="12">
+      <v-col v-if="xs" cols="12">
         <MiscAtomsImageContainer
           cover
           :src="item.image.url ? item.image : '/default.png'"

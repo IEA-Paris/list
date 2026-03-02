@@ -32,7 +32,7 @@
       />
 
       <div v-else class="d-flex align-center flex-column mt-12">
-        <div class="d-flex text-center text-wrap text-h3 text-black">
+        <div class="d-flex text-center text-wrap text-h4 text-md-h3 text-black">
           {{ item.name }}
         </div>
         <v-divider width="154px" class="mb-1 mt-6" />
@@ -75,7 +75,7 @@
           ]
         "
       />
-      <div v-if="item.description" class="mt-md-n2 mx-10 mx-md-0">
+      <div v-if="item.description" class="mt-md-n2">
         <MDC :value="item.description" />
       </div>
     </v-col>

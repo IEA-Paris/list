@@ -33,7 +33,7 @@
       <div v-else class="d-flex align-center flex-column mt-12">
         <div
           v-if="item && item.name"
-          class="d-flex text-center text-wrap text-h3 text-black"
+          class="d-flex text-center text-wrap text-h4 text-md-h3 text-black"
         >
           {{ item.name }}
         </div>
