@@ -61,14 +61,16 @@ import {
   computed,
   watch,
 } from "#imports"
+import { useRootStore } from "../../../stores/root"
 import SEARCH from "@paris-ias/trees/dist/graphql/client/misc/query.search.all.gql"
 
 const { $rootStore } = useNuxtApp()
+const rootStore = useRootStore()
 const appConfig = useAppConfig()
 const { locale } = useI18n()
 const route = useRoute()
 if (route.query.search) {
-  $rootStore.search = route.query.search
+  rootStore.search = String(route.query.search)
 }
 
 const open = reactive(
@@ -109,16 +111,15 @@ const searchTerm = computed(() => $rootStore.search || "")
 const currentLocale = computed(() => locale.value)
 
 const { data, pending, error } = useAsyncQuery(
-  SEARCH,
-  computed(() => ({
-    search: searchTerm.value,
-    appId: "iea",
-    lang: currentLocale.value,
-  })),
   {
-    server: false,
-    enabled: computed(() => searchTerm.value.length > 0),
+    query: SEARCH,
+    variables: computed(() => ({
+      search: searchTerm.value,
+      appId: "iea",
+      lang: currentLocale.value,
+    })),
   },
+  { server: false },
 )
 
 watch(data, (newData) => {

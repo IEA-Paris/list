@@ -1,8 +1,8 @@
 <template>
-  <v-row v-ripple no-gutters class="cursor-pointer highlight-on-hover pa-2">
+  <ListMoleculesDenseItemContainer>
     <v-col
       v-if="mdAndUp"
-      cols="1"
+      cols="auto"
       class="align-center"
       :offset="name.startsWith('search') ? 1 : 0"
     >
@@ -19,8 +19,7 @@
 
     <v-col
       :cols="mdAndUp ? 8 : undefined"
-      class="text-h5 dense d-flex flex-column pl-md-4"
-      :offset="name.startsWith('search') && mdAndUp ? 1 : 0"
+      class="text-h5 dense d-flex flex-column"
     >
       <v-skeleton-loader
         v-if="loading"
@@ -35,6 +34,7 @@
             ? highlightAndTruncate(300, item.name, searchQuery.split(' '))
             : item.name
         "
+        class="pl-md-4"
       />
       <FellowshipsBadges :item="item" :loading="loading" />
 
@@ -58,7 +58,7 @@
       </template>
     </v-col>
 
-    <v-col v-if="mdAndUp" class="d-flex flex-column">
+    <v-col v-if="mdAndUp" class="d-flex flex-column" cols="1">
       <v-skeleton-loader v-if="loading" type="chip" width="260" class="mt-2" />
       <MiscMoleculesChipContainer
         v-else
@@ -70,7 +70,7 @@
         class="mt-2"
       />
     </v-col>
-  </v-row>
+  </ListMoleculesDenseItemContainer>
 </template>
 
 <script setup>
@@ -79,7 +79,7 @@ import { useNuxtApp, useRoute, computed } from "#imports"
 import { highlightAndTruncate } from "../../composables/useUtils"
 const { $rootStore, $stores } = useNuxtApp()
 const { name } = useRoute()
-const { mdAndUp, mdAndDown } = useDisplay()
+const { mdAndUp, mdAndDown, smAndDown } = useDisplay()
 const searchQuery = computed(() =>
   name.startsWith("search")
     ? $rootStore.search

@@ -1,5 +1,5 @@
 <template>
-  <v-row v-ripple no-gutters class="cursor-pointer highlight-on-hover pa-2">
+  <ListMoleculesDenseItemContainer>
     <v-col
       v-if="mdAndUp"
       align-self="start"
@@ -44,7 +44,7 @@
         )}`"
       />
     </v-col>
-  </v-row>
+  </ListMoleculesDenseItemContainer>
 </template>
 
 <script setup>

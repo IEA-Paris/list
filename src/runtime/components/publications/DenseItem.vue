@@ -1,5 +1,5 @@
 <template>
-  <v-row v-ripple no-gutters class="cursor-pointer highlight-on-hover pa-2">
+  <ListMoleculesDenseItemContainer>
     <v-col v-if="mdAndUp" cols="1">
       <MiscAtomsDateStamp
         v-if="item.date"
@@ -8,7 +8,7 @@
         class="mr-4"
       />
     </v-col>
-    <v-col v-if="mdAndUp" cols="1" class="align-center">
+    <v-col v-if="mdAndUp" cols="auto" class="align-center">
       <MiscAtomsImageContainer
         cover
         :loading="loading"
@@ -19,8 +19,8 @@
         :width="100"
       />
     </v-col>
-    <v-col class="pl-md-4">
-      <div class="inline-flex flex-row flex-wrap">
+    <v-col class="" cols="8">
+      <div class="inline-flex flex-row flex-wrap pl-md-4">
         <v-skeleton-loader v-if="loading" :type="heading" />
 
         <template v-else>
@@ -69,7 +69,7 @@
           )}`"
         />
       </div> </v-col
-  ></v-row>
+  ></ListMoleculesDenseItemContainer>
 </template>
 
 <script setup>

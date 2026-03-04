@@ -1,5 +1,5 @@
 <template>
-  <v-row v-ripple no-gutters class="cursor-pointer highlight-on-hover pa-2">
+  <ListMoleculesDenseItemContainer>
     <v-col v-if="mdAndUp" cols="1">
       <MiscAtomsDateStamp
         v-if="item.start"
@@ -82,14 +82,7 @@
         )}`"
       />
     </v-col>
-
-    <!--     <v-col align-self="center" cols="auto">
-      <v-skeleton-loader v-if="loading" type="button" />
-      <div v-else>
-        <EventsBadges :item />
-      </div>
-    </v-col> -->
-  </v-row>
+  </ListMoleculesDenseItemContainer>
 </template>
 
 <script setup>
@@ -124,6 +117,4 @@ const props = defineProps({
     default: false,
   },
 })
-
-// const loading = computed(() => rootStore.loading || props.loading)
 </script>
