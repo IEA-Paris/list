@@ -19,7 +19,7 @@
         :width="100"
       />
     </v-col>
-    <v-col align-self="start" class="text-h5 dense pl-4 paragraph">
+    <v-col align-self="start" class="text-h5 dense pl-md-4 paragraph">
       <v-skeleton-loader v-if="loading" type="heading" />
       <template v-else>
         <v-skeleton-loader

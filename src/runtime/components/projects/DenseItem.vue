@@ -1,5 +1,5 @@
 <template>
-  <v-row v-ripple no-gutters class="cursor-pointer highlight-on-hover">
+  <v-row v-ripple no-gutters class="cursor-pointer highlight-on-hover pa-2">
     <v-col
       v-if="mdAndUp"
       align-self="start"
@@ -16,7 +16,7 @@
         :width="100"
       />
     </v-col>
-    <v-col align-self="center" class="text-h5 dense pt-2 pl-4">
+    <v-col align-self="center" class="text-h5 dense pl-md-4">
       <v-skeleton-loader v-if="loading" type="heading" width="50%" />
       <span
         v-else

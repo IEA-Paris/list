@@ -1,5 +1,5 @@
 <template>
-  <v-row v-ripple no-gutters class="cursor-pointer highlight-on-hover">
+  <v-row v-ripple no-gutters class="cursor-pointer highlight-on-hover pa-2">
     <v-col v-if="mdAndUp" cols="1" :offset="name.startsWith('search') ? 1 : 0">
       <MiscAtomsImageContainer
         cover
@@ -12,7 +12,7 @@
         class="ma-1"
       />
     </v-col>
-    <v-col align-self="start" class="text-sm-h6 dense ml-4">
+    <v-col align-self="start" class="text-sm-h6 dense ml-md-4">
       <v-skeleton-loader v-if="loading" type="heading" />
       <div
         v-else

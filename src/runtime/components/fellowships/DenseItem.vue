@@ -1,9 +1,5 @@
 <template>
-  <v-row
-    v-ripple
-    no-gutters
-    class="cursor-pointer highlight-on-hover pt-2 pl-md-2"
-  >
+  <v-row v-ripple no-gutters class="cursor-pointer highlight-on-hover pa-2">
     <v-col
       v-if="mdAndUp"
       cols="1"
@@ -13,7 +9,9 @@
       <MiscAtomsImageContainer
         cover
         :loading="loading"
-        :src="item?.image?.url || '/default.png'"
+        :src="
+          item && item.image && item.image.url ? item.image.url : '/default.png'
+        "
         :ratio="1 / 1"
         :width="100"
       />
@@ -21,8 +19,8 @@
 
     <v-col
       :cols="mdAndUp ? 8 : undefined"
-      class="text-h5 dense d-flex flex-column ml-md-2"
-      :offset="name.startsWith('search') ? 1 : 0"
+      class="text-h5 dense d-flex flex-column pl-md-4"
+      :offset="name.startsWith('search') && mdAndUp ? 1 : 0"
     >
       <v-skeleton-loader
         v-if="loading"

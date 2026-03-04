@@ -1,5 +1,5 @@
 <template>
-  <v-row v-ripple no-gutters class="cursor-pointer highlight-on-hover py-2">
+  <v-row v-ripple no-gutters class="cursor-pointer highlight-on-hover pa-2">
     <v-col v-if="mdAndUp" cols="1">
       <MiscAtomsDateStamp
         v-if="item.start"
@@ -21,7 +21,7 @@
       />
     </v-col>
 
-    <v-col align-self="start" class="pl-4">
+    <v-col align-self="start" class="pl-md-4">
       <v-skeleton-loader v-if="loading" type="chip" class="mr-3" width="120" />
       <v-chip
         v-else

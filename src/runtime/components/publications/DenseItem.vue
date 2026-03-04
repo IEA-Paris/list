@@ -1,5 +1,5 @@
 <template>
-  <v-row v-ripple no-gutters class="cursor-pointer highlight-on-hover my-2">
+  <v-row v-ripple no-gutters class="cursor-pointer highlight-on-hover pa-2">
     <v-col v-if="mdAndUp" cols="1">
       <MiscAtomsDateStamp
         v-if="item.date"
@@ -19,7 +19,7 @@
         :width="100"
       />
     </v-col>
-    <v-col class="pl-4">
+    <v-col class="pl-md-4">
       <div class="inline-flex flex-row flex-wrap">
         <v-skeleton-loader v-if="loading" :type="heading" />
 
