@@ -16,7 +16,7 @@
         :width="100"
       />
     </v-col>
-    <v-col align-self="center" class="text-h5 dense pl-md-4">
+    <v-col align-self="start" class="text-h5 dense pl-md-4">
       <v-skeleton-loader v-if="loading" type="heading" width="50%" />
       <span
         v-else

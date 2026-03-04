@@ -20,7 +20,7 @@
       <v-skeleton-loader v-if="loading" type="heading" />
       <div
         v-else
-        class="d-flex justify-space-between text-title text-h5 align-center"
+        class="d-flex justify-space-between text-title text-h5 align-center pt-md-2"
       >
         <span
           v-html="
