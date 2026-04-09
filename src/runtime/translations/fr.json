@@ -33,6 +33,7 @@
     "disciplines": "discipline | discipline | disciplines",
     "file": "document | document | documents",
     "mailing": "mailing | mailing | mailings",
+    "videos": "vidéo | vidéo | vidéos",
     "tags": "tag | tag | tags",
     "user": "utilisateur | utilisateur | utilisateurs"
   },
@@ -387,5 +388,6 @@
   "search": "Rechercher",
   "items-per-page": "Éléments par page",
   "click-here-to-search": "Cliquez ici pour rechercher",
-  "filter-by-type": "Filtrer par type"
+  "filter-by-type": "Filtrer par type",
+  "see-details": "Voir les détails"
 }

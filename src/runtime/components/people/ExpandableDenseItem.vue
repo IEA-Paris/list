@@ -1,0 +1,158 @@
+<template>
+  <v-row v-ripple no-gutters class="cursor-pointer highlight-on-hover">
+    <v-col v-if="mdAndUp" cols="1" :offset="name.startsWith('search') ? 1 : 0">
+      <MiscAtomsImageContainer
+        cover
+        :loading="loading"
+        :src="
+          item && item.image && item.image.url ? item.image.url : '/default.png'
+        "
+        :ratio="1 / 1"
+        :width="100"
+        class="ma-1"
+      />
+    </v-col>
+    <v-col align-self="start" class="text-sm-h6 dense ml-4">
+      <v-skeleton-loader v-if="loading" type="heading" />
+      <div
+        v-else
+        class="d-flex justify-space-between text-title text-md-h5 align-center"
+      >
+        <span
+          v-html="
+            searchQuery.length
+              ? highlightAndTruncate(
+                  300,
+                  item.firstname + ' ' + item.lastname,
+                  searchQuery.split(' '),
+                )
+              : item.firstname + ' ' + item.lastname
+          "
+        />
+        <v-spacer />
+        <PeopleBadges :item="item" />
+      </div>
+      <div
+        v-if="item.group && item.groups.vintage && item.groups.vintage[0].theme"
+        class="text-body-1 font-weight-light paragraph"
+        v-html="
+          searchQuery.length
+            ? highlightAndTruncate(
+                300,
+                item.groups.vintage[0].theme,
+                searchQuery.split(' '),
+              )
+            : item.groups.vintage[0].theme
+        "
+      />
+      <v-skeleton-loader v-if="loading" type="paragraph" />
+
+      <template v-else-if="mdAndUp">
+        <div
+          v-if="!expanded && item.summary && item.summary.length"
+          class="text-body-1 font-weight-light paragraph"
+          :style="
+            '-webkit-line-clamp:' +
+            [1, 1, 1, 2, 3, 3][
+              ['xs', 'sm', 'md', 'lg', 'xl', 'xxl'].indexOf(displayName || 'md')
+            ]
+          "
+          v-html="
+            searchQuery.length
+              ? highlightAndTruncate(100, item.summary, searchQuery.split(' '))
+              : item.summary
+          "
+        />
+        <div
+          v-else-if="expanded && item.description && item.description.length"
+          class="text-body-1 font-weight-light"
+          v-html="
+            searchQuery.length
+              ? highlightAndTruncate(
+                  600,
+                  item.description,
+                  searchQuery.split(' '),
+                )
+              : item.description.slice(0, 600)
+          "
+        />
+        <div
+          v-if="
+            (item.summary && item.summary.length) ||
+            (item.description && item.description.length)
+          "
+          class="d-flex align-center mt-1 gap-2"
+          @click.stop
+        >
+          <v-btn
+            variant="text"
+            size="small"
+            density="compact"
+            @click="expanded = !expanded"
+          >
+            {{ expanded ? "Show less" : "Show more" }}
+            <v-icon end>{{
+              expanded ? "mdi-chevron-up" : "mdi-chevron-down"
+            }}</v-icon>
+          </v-btn>
+          <v-btn
+            v-if="link && expanded"
+            variant="text"
+            size="small"
+            density="compact"
+            :href="link"
+            @click.stop
+          >
+            {{ $t("see-details") }}
+            <v-icon end>mdi-open-in-new</v-icon>
+          </v-btn>
+        </div>
+      </template>
+    </v-col>
+  </v-row>
+</template>
+
+<script setup>
+import { useRootStore } from "../../stores/root"
+import { highlightAndTruncate } from "../../composables/useUtils"
+import { computed, ref, useRoute, useNuxtApp } from "#imports"
+import { useDisplay } from "vuetify"
+const { name } = useRoute()
+
+const { mdAndUp, name: displayName } = useDisplay()
+const rootStore = useRootStore()
+const { $stores } = useNuxtApp()
+const searchQuery = computed(() =>
+  name.startsWith("search") ? rootStore.search : $stores["people"].search || "",
+)
+const props = defineProps({
+  item: {
+    type: Object,
+    required: true,
+  },
+  index: {
+    type: Number,
+    required: true,
+  },
+  loading: {
+    type: Boolean,
+    required: false,
+    default: false,
+  },
+  link: {
+    type: [String, Boolean],
+    required: false,
+    default: false,
+  },
+})
+
+const expanded = ref(false)
+</script>
+<style>
+.paragraph {
+  max-width: 83ch !important;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+</style>
