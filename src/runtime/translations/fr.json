@@ -389,5 +389,7 @@
   "items-per-page": "Éléments par page",
   "click-here-to-search": "Cliquez ici pour rechercher",
   "filter-by-type": "Filtrer par type",
-  "see-details": "Voir les détails"
+  "see-details": "Voir les détails",
+  "show-less": "Voir moins",
+  "show-more": "Voir plus"
 }
