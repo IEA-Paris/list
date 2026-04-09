@@ -388,5 +388,7 @@
   "items-per-page": "Items per page",
   "click-here-to-search": "Click here to search",
   "filter-by-type": "Filter by type",
-  "see-details": "See details"
+  "see-details": "See details",
+  "show-less": "Show less",
+  "show-more": "Show more"
 }

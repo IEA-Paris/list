@@ -24,7 +24,7 @@
             density="compact"
             @click="expanded = !expanded"
           >
-            {{ expanded ? "Show less" : "Show more" }}
+            {{ expanded ? $t("show-less") : $t("show-more") }}
             <v-icon end>{{
               expanded ? "mdi-chevron-up" : "mdi-chevron-down"
             }}</v-icon>
@@ -37,7 +37,7 @@
             :href="link"
             @click.stop
           >
-            View more
+            {{ $t("see-details") }}
             <v-icon end>mdi-open-in-new</v-icon>
           </v-btn>
         </div>
