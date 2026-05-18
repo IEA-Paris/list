@@ -1,5 +1,5 @@
 <template>
-  <v-row v-ripple no-gutters class="cursor-pointer highlight-on-hover pa-2">
+  <ListMoleculesDenseItemContainer>
     <v-col v-if="mdAndUp" cols="1">
       <MiscAtomsDateStamp
         v-if="item.date"
@@ -8,7 +8,7 @@
         class="mr-4"
       />
     </v-col>
-    <v-col v-if="mdAndUp" align-self="start" cols="1">
+    <v-col v-if="mdAndUp" align-self="start" cols="auto">
       <MiscAtomsImageContainer
         cover
         :loading="loading"
@@ -19,7 +19,7 @@
         :width="100"
       />
     </v-col>
-    <v-col align-self="start" class="text-h5 dense pl-4 paragraph">
+    <v-col align-self="start" class="text-h5 dense pl-md-4 paragraph">
       <v-skeleton-loader v-if="loading" type="heading" />
       <template v-else>
         <v-skeleton-loader
@@ -67,7 +67,7 @@
         />
       </template>
     </v-col>
-  </v-row>
+  </ListMoleculesDenseItemContainer>
 </template>
 
 <script setup>

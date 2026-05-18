@@ -1,6 +1,10 @@
 <template>
-  <v-row v-ripple no-gutters class="cursor-pointer highlight-on-hover">
-    <v-col v-if="mdAndUp" cols="1" :offset="name.startsWith('search') ? 1 : 0">
+  <ListMoleculesDenseItemContainer>
+    <v-col
+      v-if="mdAndUp"
+      cols="auto"
+      :offset="name.startsWith('search') ? 1 : 0"
+    >
       <MiscAtomsImageContainer
         cover
         :loading="loading"
@@ -12,11 +16,11 @@
         class="ma-1"
       />
     </v-col>
-    <v-col align-self="start" class="text-sm-h6 dense ml-4">
+    <v-col align-self="start" class="dense ml-md-4">
       <v-skeleton-loader v-if="loading" type="heading" />
       <div
         v-else
-        class="d-flex justify-space-between text-title text-md-h5 align-center"
+        class="d-flex justify-space-between text-title text-h5 align-center pt-md-2"
       >
         <span
           v-html="
@@ -63,7 +67,7 @@
         "
       />
     </v-col>
-  </v-row>
+  </ListMoleculesDenseItemContainer>
 </template>
 
 <script setup>

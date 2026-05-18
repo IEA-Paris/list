@@ -2,6 +2,7 @@
   <div>
     <div class="d-flex align-center justify-space-between my-2">
       <v-btn
+        v-if="mdAndUp"
         variant="text"
         class="mr-2"
         @click="$emit('toggle', type)"
@@ -16,6 +17,7 @@
         @click="$emit('toggle', type)"
       >
         <h3
+          class="mt-4 mb-0"
           :class="
             $rootStore.results[type] && $rootStore.results[type].total > 0
               ? 'black'
@@ -24,7 +26,7 @@
         >
           {{ capitalize($t("items." + props.type, 2)) }}
         </h3>
-        <div class="text-overline">
+        <div class="text-overline mb-3">
           {{
             feminine
               ? $t(
@@ -83,7 +85,10 @@
 </template>
 <script setup>
 import { useNuxtApp, useLocalePath } from "#imports"
+import { useDisplay } from "vuetify"
 const localePath = useLocalePath()
+
+const { mdAndUp } = useDisplay()
 
 // Utility function to capitalize first letter
 const capitalize = (str) => str.charAt(0).toUpperCase() + str.slice(1)

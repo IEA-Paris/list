@@ -1,7 +1,7 @@
 <template>
   <div class="d-flex align-center">
     <v-menu
-      v-if="filter"
+      v-if="filter && mdAndUp"
       v-model="filterMenuOpen"
       :close-on-content-click="false"
       location="bottom end"
@@ -150,8 +150,14 @@ const allFilterOptions = computed(() => ({
   people: { value: "people", label: capitalize(t("items.people", 2)) },
   events: { value: "events", label: capitalize(t("items.events", 2)) },
   news: { value: "news", label: capitalize(t("items.news", 2)) },
-  publications: { value: "publications", label: capitalize(t("items.publications", 2)) },
-  fellowships: { value: "fellowships", label: capitalize(t("items.fellowships", 2)) },
+  publications: {
+    value: "publications",
+    label: capitalize(t("items.publications", 2)),
+  },
+  fellowships: {
+    value: "fellowships",
+    label: capitalize(t("items.fellowships", 2)),
+  },
   projects: { value: "projects", label: capitalize(t("items.projects", 2)) },
 }))
 
@@ -159,7 +165,9 @@ const filterOptions = computed(() => {
   const map = allFilterOptions.value
   if (props.filterOrder.length > 0) {
     const ordered = props.filterOrder.filter((k) => map[k]).map((k) => map[k])
-    const rest = Object.values(map).filter((o) => !props.filterOrder.includes(o.value))
+    const rest = Object.values(map).filter(
+      (o) => !props.filterOrder.includes(o.value),
+    )
     return [...ordered, ...rest]
   }
   return Object.values(map)
