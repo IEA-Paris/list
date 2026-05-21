@@ -30,12 +30,14 @@
     "file": "document | document | documents",
     "mailing": "mailing | mailing | mailings",
     "news": "news | news | news",
-    "people": "one | person | people",
+    "people": "fellow | fellow | fellows",
     "projects": "project | project | projects",
     "videos": "video | video | videos",
     "publications": "publication | publication | publications",
     "tags": "tag | tag | tags",
-    "user": "user | user | users"
+    "user": "user | user | users",
+    "initiatives": "initiative | initiative | initiatives",
+    "platforms": "platform | platform | platforms"
   },
   "learn-more": "read more",
   "list": {

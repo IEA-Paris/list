@@ -18,7 +18,7 @@
         <ListAtomsSortMenu :type />
       </div>
       <v-expand-transition>
-        <div v-show="filtersOpen" class="mb-7">
+        <div v-show="filtersOpen" class="mb-6">
           <ListMoleculesFilters :type />
         </div>
       </v-expand-transition>

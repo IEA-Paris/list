@@ -13,7 +13,7 @@
         <div class="text-body-1">{{ item.name }}</div>
         <div>
           <span class="text-primary text-body-2"> {{ item.name }}</span> &mdash;
-          <span class="text-body-2"> {{ item.subtitle }}</span>
+          <span class="text-body-2"> {{ item.summary }}</span>
         </div>
       </v-col>
     </v-row>

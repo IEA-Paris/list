@@ -24,7 +24,7 @@
     "fellow": "résident | résident | résidents",
     "fellowships": "programme d'accueil | programme d'accueil | programmes d'accueil",
     "news": "actualité | actualités | actualités",
-    "people": "personne | personne | personnes",
+    "people": "résident | résident | résidents",
     "projects": "projet | projet | projets",
     "publications": "publication | publications | publications",
     "activities": "activité | activité | activités",
@@ -35,7 +35,9 @@
     "mailing": "mailing | mailing | mailings",
     "videos": "vidéo | vidéo | vidéos",
     "tags": "tag | tag | tags",
-    "user": "utilisateur | utilisateur | utilisateurs"
+    "user": "utilisateur | utilisateur | utilisateurs",
+    "initiatives": "initiative | initiative | initiatives",
+    "platforms": "plateforme | plateforme | plateformes"
   },
   "learn-more": "En savoir plus",
   "list": {

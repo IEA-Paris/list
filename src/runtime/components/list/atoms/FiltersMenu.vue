@@ -16,8 +16,7 @@
         :disabled="$stores[type] && $stores[type].loading"
         @click="$emit('open', !open)"
       >
-        <!--     <v-icon>mdi-tune-variant</v-icon> -->
-        {{ $t("filters") }}
+        {{ $t("filters", 2) }}
       </v-btn>
     </template>
     <div

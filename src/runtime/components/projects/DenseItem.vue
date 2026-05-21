@@ -38,7 +38,7 @@
         v-else-if="item.summary && item.summary.length && mdAndUp"
         class="text-caption font-weight-light my-n2"
         :value="`${highlightAndTruncate(
-          130,
+          180,
           item.summary,
           searchQuery.split(' '),
         )}`"
