@@ -16,6 +16,11 @@
           height="56"
         >
           <v-icon>mdi-filter</v-icon>
+          <span
+            v-if="hasActiveFilter"
+            class="ml-1 global-search__filter-count"
+            >{{ categories.length }}</span
+          >
           <v-icon class="ml-1" size="small">
             {{ filterMenuOpen ? "mdi-chevron-up" : "mdi-chevron-down" }}
           </v-icon>
@@ -25,7 +30,26 @@
         </v-btn>
       </template>
 
-      <v-card min-width="200">
+      <v-card min-width="220">
+        <div class="d-flex justify-space-between align-center px-3 py-1">
+          <v-btn
+            size="x-small"
+            variant="text"
+            :disabled="allSelected"
+            @click="selectAllFilters"
+          >
+            {{ $t("filter.select-all") }}
+          </v-btn>
+          <v-btn
+            size="x-small"
+            variant="text"
+            :disabled="noneSelected"
+            @click="clearFilters"
+          >
+            {{ $t("filter.select-none") }}
+          </v-btn>
+        </div>
+        <v-divider />
         <v-list density="compact">
           <v-list-item
             v-for="option in filterOptions"
@@ -48,15 +72,7 @@
       ref="textFieldRef"
       :id="`global-search-input-${type}`"
       v-model.trim="search"
-      :placeholder="
-        routeName.startsWith('search')
-          ? mdAndUp
-            ? $t('type-a-search-term-to-find-results-across-all-categories')
-            : $t('search')
-          : type === 'all'
-            ? $t('search')
-            : $t('list.search-type', [$t('items.' + type, 2)])
-      "
+      :placeholder="placeholderText"
       single-line
       class="transition-swing flex-grow-1"
       variant="outlined"
@@ -70,15 +86,7 @@
     >
       <template v-if="!search" #label>
         <div class="searchLabel">
-          {{
-            routeName.startsWith("search")
-              ? mdAndUp
-                ? $t("type-a-search-term-to-find-results-across-all-categories")
-                : $t("search")
-              : type === "all"
-                ? $t("search")
-                : $t("list.search-type", [$t("items." + type, 2)])
-          }}
+          {{ placeholderText }}
         </div>
       </template>
     </v-text-field>
@@ -110,15 +118,71 @@ import {
   useRoute,
   useRouter,
   navigateTo,
+  onMounted,
+  onBeforeUnmount,
+  nextTick,
 } from "#imports"
 const { mdAndUp } = useDisplay()
 const localePath = useLocalePath()
 const { locale, t } = useI18n()
 const rootStore = useRootStore()
-const { name: routeName } = useRoute()
+const route = useRoute()
+const routeName = computed(() => route.name?.toString() ?? "")
 // Utility function to capitalize first letter
 const capitalize = (str) => str.charAt(0).toUpperCase() + str.slice(1)
 const emit = defineEmits(["filter-change"])
+
+// Rotating placeholder examples (only used for the global "all" search).
+// Examples live in i18n; keys may be absent in some locales — we filter those.
+const EXAMPLE_COUNT = 4
+const ROTATE_MS = 3000
+const exampleIndex = ref(0)
+const exampleKeys = computed(() => {
+  const keys = []
+  for (let i = 1; i <= EXAMPLE_COUNT; i++) keys.push(`search.example.${i}`)
+  return keys
+})
+const exampleTexts = computed(() =>
+  exampleKeys.value
+    .map((k) => t(k))
+    .filter((s) => s && !s.startsWith("search.example.")),
+)
+
+let rotateTimer = null
+const startRotation = () => {
+  if (rotateTimer || exampleTexts.value.length <= 1) return
+  if (
+    typeof window !== "undefined" &&
+    window.matchMedia?.("(prefers-reduced-motion: reduce)").matches
+  )
+    return
+  rotateTimer = setInterval(() => {
+    exampleIndex.value = (exampleIndex.value + 1) % exampleTexts.value.length
+  }, ROTATE_MS)
+}
+const stopRotation = () => {
+  if (rotateTimer) clearInterval(rotateTimer)
+  rotateTimer = null
+}
+onMounted(startRotation)
+onBeforeUnmount(stopRotation)
+
+const placeholderText = computed(() => {
+  // On the dedicated /search page we want a more explicit instruction.
+  if (routeName.value.startsWith("search")) {
+    return mdAndUp.value
+      ? t("type-a-search-term-to-find-results-across-all-categories")
+      : t("search")
+  }
+  // Per-type search inputs keep their existing scoped placeholder.
+  if (props.type !== "all") {
+    return t("list.search-type", [t("items." + props.type, 2)])
+  }
+  // Global search: rotate through example queries to teach what's searchable.
+  const examples = exampleTexts.value
+  if (examples.length === 0) return t("search")
+  return t("search.try", [examples[exampleIndex.value % examples.length]])
+})
 const props = defineProps({
   type: {
     type: String,
@@ -140,6 +204,19 @@ const props = defineProps({
     type: Array,
     default: () => [],
   },
+  autofocus: {
+    type: Boolean,
+    default: false,
+  },
+})
+
+onMounted(() => {
+  if (!props.autofocus) return
+  // Wait one tick so the v-text-field has rendered before reaching into it.
+  nextTick(() => {
+    const input = textFieldRef.value?.$el?.querySelector?.("input")
+    input?.focus()
+  })
 })
 
 // Filter dropdown state
@@ -172,6 +249,35 @@ const filterOptions = computed(() => {
   }
   return Object.values(map)
 })
+
+const allValues = computed(() => filterOptions.value.map((o) => o.value))
+
+const allSelected = computed(
+  () =>
+    props.categories.length === allValues.value.length &&
+    allValues.value.every((v) => props.categories.includes(v)),
+)
+const noneSelected = computed(() => props.categories.length === 0)
+// Show the count badge only when the user has narrowed the selection.
+const hasActiveFilter = computed(
+  () => !allSelected.value && !noneSelected.value,
+)
+
+const selectAllFilters = () => {
+  emit("filter-change", {
+    name: "__all__",
+    value: true,
+    categories: [...allValues.value],
+  })
+}
+
+const clearFilters = () => {
+  emit("filter-change", {
+    name: "__none__",
+    value: false,
+    categories: [],
+  })
+}
 
 // Toggle filter selection
 const toggleFilter = (option) => {
@@ -210,6 +316,10 @@ const search = computed({
   get() {
     return rootStore.search
   },
+  // 600ms matches a comfortable typing rhythm and is long enough that the
+  // GraphQL query doesn't fire mid-word. Passing writeUrl:false keeps the
+  // URL stable during typing — the URL is committed by navigateToSearch on
+  // submit (Enter / magnifier).
   set: useDebounceFn(function (v) {
     const value = v || ""
     if (!value && !rootStore.search) return
@@ -218,9 +328,25 @@ const search = computed({
       type: props.type,
       search: value,
       lang: locale.value,
+      writeUrl: false,
     })
-  }, 300),
+  }, 600),
 })
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.global-search__filter-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  border-radius: 9px;
+  background: #000;
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 600;
+  line-height: 1;
+}
+</style>

@@ -85,8 +85,12 @@
           "pop": "Program Oxford-Paris",
           "label": "Fellowship"
         },
-        "online": {
-          "label": "Online"
+        "location": {
+          "label": "Location",
+          "ONLINE": "Online",
+          "ONSITE": "Onsite",
+          "HYBRID": "Hybrid",
+          "OUTSITE": "Outsite"
         },
         "organiserCategory": {
           "IAS": "PARIS IAS",
@@ -456,5 +460,12 @@
   "filter-by-type": "Filter by type",
   "see-details": "See details",
   "show-less": "Show less",
-  "show-more": "Show more"
+  "show-more": "Show more",
+  "filter.select-all": "Select all",
+  "filter.select-none": "Clear",
+  "search.try": "Try \"{0}\"",
+  "search.example.1": "Hannah Arendt",
+  "search.example.2": "climate policy",
+  "search.example.3": "fellowships 2024",
+  "search.example.4": "social science"
 }

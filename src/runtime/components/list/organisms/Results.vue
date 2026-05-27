@@ -5,6 +5,7 @@
     :categories="selectedCategories"
     :filter-order="sortedModules"
     filter
+    autofocus
     @filter-change="handleFilterChange"
     class="mb-6"
   />
@@ -56,6 +57,7 @@ import {
   useI18n,
   useAppConfig,
   useRoute,
+  useRouter,
   reactive,
   useAsyncQuery,
   computed,
@@ -69,6 +71,7 @@ const rootStore = useRootStore()
 const appConfig = useAppConfig()
 const { locale } = useI18n()
 const route = useRoute()
+const router = useRouter()
 if (route.query.search) {
   rootStore.search = String(route.query.search)
 }
@@ -80,7 +83,39 @@ const open = reactive(
   }, {}),
 )
 
-const selectedCategories = reactive([...appConfig.list.modules])
+// Hydrate selected categories from the URL (?type=people,events).
+// Unknown / removed module names are ignored. An empty or absent param means
+// "all modules selected" (the default).
+const parseTypeQuery = (raw) => {
+  if (!raw) return null
+  const value = Array.isArray(raw) ? raw[0] : raw
+  if (typeof value !== "string" || value.trim() === "") return null
+  const known = new Set(appConfig.list.modules)
+  const parsed = value
+    .split(",")
+    .map((s) => s.trim())
+    .filter((s) => known.has(s))
+  return parsed.length ? parsed : null
+}
+
+const initialCategories =
+  parseTypeQuery(route.query.type) ?? [...appConfig.list.modules]
+const selectedCategories = reactive(initialCategories)
+
+const syncCategoriesToUrl = () => {
+  const allSelected =
+    selectedCategories.length === appConfig.list.modules.length &&
+    appConfig.list.modules.every((t) => selectedCategories.includes(t))
+  const nextQuery = { ...route.query }
+  if (allSelected) {
+    delete nextQuery.type
+  } else {
+    // Preserve URL-defined order (alphabetical) so the param is stable
+    // regardless of click order in the dropdown.
+    nextQuery.type = [...selectedCategories].sort().join(",")
+  }
+  router.replace({ query: nextQuery })
+}
 
 const handleFilterChange = (filterData) => {
   selectedCategories.splice(
@@ -88,6 +123,7 @@ const handleFilterChange = (filterData) => {
     selectedCategories.length,
     ...filterData.categories,
   )
+  syncCategoriesToUrl()
 }
 
 const sortedModules = computed(() => {

@@ -85,8 +85,12 @@
           "paris-ias-ideas": "Idées de Paris IAS",
           "pop": "Programme Oxford-Paris"
         },
-        "online": {
-          "label": "En ligne"
+        "location": {
+          "label": "Lieu",
+          "ONLINE": "En ligne",
+          "ONSITE": "Sur site",
+          "HYBRID": "Hybride",
+          "OUTSITE": "Hors site"
         },
         "tags": {
           "label": "Tags",
@@ -100,15 +104,6 @@
           "MEMBER": "Membres",
           "FELLOW": "Résidents",
           "EXTERNAL": "Externe"
-        },
-        "outside": {
-          "label": "Hors les murs"
-        },
-        "past": {
-          "label": "Passé"
-        },
-        "disciplines": {
-          "label": "Disciplines"
         },
         "status": {
           "label": "Statut",
@@ -455,5 +450,12 @@
   "filter-by-type": "Filtrer par type",
   "see-details": "Voir les détails",
   "show-less": "Voir moins",
-  "show-more": "Voir plus"
+  "show-more": "Voir plus",
+  "filter.select-all": "Tout cocher",
+  "filter.select-none": "Tout décocher",
+  "search.try": "Essayez « {0} »",
+  "search.example.1": "Hannah Arendt",
+  "search.example.2": "politique climatique",
+  "search.example.3": "résidences 2024",
+  "search.example.4": "sciences sociales"
 }

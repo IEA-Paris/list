@@ -338,10 +338,16 @@ export const useRootStore = defineStore("rootStore", {
       type = "all",
       search = "",
       lang = "en",
+      writeUrl = true,
     }: {
       type: string
       search: string
       lang: string
+      // When false, only update the store (drives the live query) but skip
+      // the router.replace call. Use this for incremental typing so the URL
+      // doesn't thrash on every debounced keystroke; the URL is then written
+      // on submit (Enter / magnifier click) via the calling component.
+      writeUrl?: boolean
     }): void {
       if (type === "all") {
         this.search = search
@@ -356,7 +362,7 @@ export const useRootStore = defineStore("rootStore", {
           $stores[type].loading = true
         }
       }
-      this.updateRouteQuery(type)
+      if (writeUrl) this.updateRouteQuery(type)
     },
 
     buildListVariables(type: string, lang: string = "en") {
