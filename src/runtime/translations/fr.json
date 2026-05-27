@@ -133,9 +133,9 @@
         "status": {
           "label": "Statut",
           "CANCELLED": "Annulé",
-          "FINISHED": "Terminé",
-          "ONGOING": "En cours",
-          "PLANNED": "À venir"
+          "PAST": "Terminé",
+          "IN_PROGRESS": "En cours",
+          "UPCOMING": "À venir"
         },
         "disciplines": {
           "label": "Discipline"
@@ -198,6 +198,11 @@
         },
         "disciplines": {
           "label": "Disciplines"
+        },
+        "status": {
+          "label": "Statut",
+          "ACTIVE": "Actif",
+          "INACTIVE": "Inactif"
         }
       },
       "projects": {
@@ -282,7 +287,7 @@
         "DIGITAL_HUMANITIES": "Humanités numériques",
         "ECONOMICS": "Économie",
         "EDUCATION_SCIENCES": "Sciences de l'éducation",
-        "ENVIRONMENTAL_SCIENCES": "Sciences de l'environnement",
+        "ENVIRONMENTAL_SCIENCES": "Sciences environnementales",
         "GEOGRAPHY": "Géographie",
         "HISTORY": "Histoire",
         "INFORMATION_AND_COMMUNICATION_SCIENCES": "Sciences de l'information et de la communication",
@@ -296,7 +301,7 @@
         "POLITICAL_SCIENCE": "Science politique",
         "PSYCHOLOGY": "Psychologie",
         "SOCIOLOGY": "Sociologie",
-        "STUDIES_IN_SCIENCE_AND_TECHNOLOGY": "Études des sciences et des techniques",
+        "STUDIES_IN_SCIENCE_AND_TECHNOLOGY": "Études en sciences et technologies",
         "THEOLOGY": "Théologie",
         "BIOLOGY": "Biologie",
         "CHEMISTRY": "Chimie",
@@ -306,29 +311,29 @@
       },
       "thematics": {
         "label": "Thématiques",
-        "AGRICULTURE_AND_FOOD": "Agriculture et alimentation",
+        "AGRICULTURE_AND_FOOD": "Agriculture/alimentation",
         "ARTIFICIAL_INTELLIGENCE": "Intelligence artificielle",
         "COMMUNICATION_AND_DIGITAL_ECONOMY": "Communication et économie numérique",
-        "BEHAVIOUR_PERCEPTION_EMOTIONS": "Comportement, perception, émotions",
+        "BEHAVIOUR_PERCEPTION_EMOTIONS": "Comportements, perception, émotions",
         "CITIES_AND_REGIONS": "Villes et territoires",
-        "CULTURAL_HERITAGE": "Patrimoine culturel",
+        "CULTURAL_HERITAGE": "Héritage culturel",
         "DEMOCRACY_CITIZENSHIP_AND_GOVERNANCE": "Démocratie, citoyenneté et gouvernance",
         "EDUCATION_AND_RESEARCH": "Éducation et recherche",
-        "ENERGY_NATURAL_RESOURCES": "Énergie et ressources naturelles",
+        "ENERGY_NATURAL_RESOURCES": "Energie, ressources naturelles",
         "ENVIRONMENT_AND_CLIMATE": "Environnement et climat",
         "IDENTITIES_GENDER_AND_SEXUALITIES": "Identités, genre et sexualités",
-        "INEQUALITIES_INCLUSION_SOCIAL_INNOVATION": "Inégalités, inclusion et innovation sociale",
+        "INEQUALITIES_INCLUSION_SOCIAL_INNOVATION": "Inégalités, inclusion, innovation sociale",
         "MIGRATIONS": "Migrations",
         "OCEANS": "Océans",
         "PUBLIC_POLICIES": "Politiques publiques",
-        "RADICALISATION_VIOLENCE_EXTREMISM": "Radicalisation, violence et extrémisme",
-        "REGULATION_AND_GLOBALISATION": "Régulation et mondialisation",
-        "RELIGION_SECULARISM_SOCIETIES": "Religion, laïcité et sociétés",
+        "RADICALISATION_VIOLENCE_EXTREMISM": "Radicalisations, violences, extrémismes",
+        "REGULATION_AND_GLOBALISATION": "Régulations et mondialisation",
+        "RELIGION_SECULARISM_SOCIETIES": "Religion, sécularisme, sociétés",
         "HEALTH_AND_AGEING": "Santé et vieillissement",
         "SECURITY_WAR_AND_PEACE": "Sécurité, guerre et paix",
         "SPACE": "Espace",
-        "TRANSPORT_MOBILITY_TOURISM": "Transport, mobilité et tourisme",
-        "WORK_INNOVATION_TECHNOLOGY": "Travail, innovation et technologie"
+        "TRANSPORT_MOBILITY_TOURISM": "Transport, mobilité, tourisme",
+        "WORK_INNOVATION_TECHNOLOGY": "Travail, innovation, technologie"
       },
       "tags": {
         "label": "Tags"

@@ -18,7 +18,16 @@
           :dense="smAndDown"
           :items="getItems(filterItem)"
           clearable
-          :label="$t('list.filters.' + type + '.' + filterItem + '.label')"
+          :label="
+            $t(
+              'list.filters.' +
+                (['disciplines', 'thematics'].includes(filterItem)
+                  ? ''
+                  : type + '.') +
+                filterItem +
+                '.label',
+            )
+          "
           min-height="56"
           variant="outlined"
           :loading="$stores[type].loading"
@@ -45,7 +54,7 @@ const props = defineProps(["type", "expanded"])
 
 const ComponentName = (name) => {
   return resolveComponent(
-    "ListInputs" + capitalize($stores[props.type].filters[name].type)
+    "ListInputs" + capitalize($stores[props.type].filters[name].type),
   )
 }
 const getItems = (name) => {
@@ -60,7 +69,7 @@ const getItems = (name) => {
         title: i18n.t(
           props.type === "people" && name === "vintage"
             ? item
-            : `list.filters.${props.type}.${name}.${item}`
+            : `list.filters.${props.type}.${name}.${item}`,
         ),
         value: item,
       }))
@@ -68,13 +77,13 @@ const getItems = (name) => {
 
   if (!messages.value[locale.value].list.filters[props.type]?.[name]) {
     console.log(
-      `translations missing for the filter ${name} of the type ${props.type}`
+      `translations missing for the filter ${name} of the type ${props.type}`,
     )
     return []
   }
   // TODO replace with package based values
   return Object.keys(
-    messages.value[locale.value].list.filters[props.type][name]
+    messages.value[locale.value].list.filters[props.type][name],
   )
     .filter((key) => key !== "label")
     .map((item) => ({
