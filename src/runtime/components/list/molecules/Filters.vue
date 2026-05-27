@@ -63,16 +63,25 @@ const getItems = (name) => {
   }
 
   if ($filters?.[props.type]?.[name]) {
-    return $filters[props.type][name]
-      .filter((key) => key !== "label")
-      .map((item) => ({
-        title: i18n.t(
-          props.type === "people" && name === "vintage"
-            ? item
-            : `list.filters.${props.type}.${name}.${item}`,
-        ),
-        value: item,
-      }))
+    if (["disciplines", "thematics"].includes(name)) {
+      return $filters[props.type][name]
+        .filter((key) => key !== "label")
+        .map((item) => ({
+          title: i18n.t(`list.filters.${name}.${item}`),
+          value: item,
+        }))
+    } else {
+      return $filters[props.type][name]
+        .filter((key) => key !== "label")
+        .map((item) => ({
+          title: i18n.t(
+            props.type === "people" && name === "vintage"
+              ? item
+              : `list.filters.${props.type}.${name}.${item}`,
+          ),
+          value: item,
+        }))
+    }
   }
 
   if (!messages.value[locale.value].list.filters[props.type]?.[name]) {
