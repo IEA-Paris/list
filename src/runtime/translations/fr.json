@@ -126,16 +126,16 @@
         },
         "fellowshipType": {
           "label": "Type de programme",
-          "IN_GROUP": "En groupe",
+          "IN_GROUP": "Collectif",
           "LONG_STAY": "Séjour long",
           "SHORT_STAY": "Séjour court"
         },
         "status": {
           "label": "Statut",
           "CANCELLED": "Annulé",
-          "FINISHED": "Fini",
+          "FINISHED": "Terminé",
           "ONGOING": "En cours",
-          "PLANNED": "Prévu"
+          "PLANNED": "À venir"
         },
         "disciplines": {
           "label": "Discipline"
@@ -272,7 +272,63 @@
         }
       },
       "disciplines": {
-        "label": "Discipline"
+        "label": "Discipline",
+        "ANTHROPOLOGY_AND_ETHNOLOGY": "Anthropologie et ethnologie",
+        "ARCHITECTURE_AND_URBAN_PLANNING": "Architecture et urbanisme",
+        "ARCHAEOLOGY": "Archéologie",
+        "ART_AND_HISTORY_OF_ART": "Art et histoire de l'art",
+        "CLASSICAL_STUDIES": "Études classiques",
+        "DEMOGRAPHY": "Démographie",
+        "DIGITAL_HUMANITIES": "Humanités numériques",
+        "ECONOMICS": "Économie",
+        "EDUCATION_SCIENCES": "Sciences de l'éducation",
+        "ENVIRONMENTAL_SCIENCES": "Sciences de l'environnement",
+        "GEOGRAPHY": "Géographie",
+        "HISTORY": "Histoire",
+        "INFORMATION_AND_COMMUNICATION_SCIENCES": "Sciences de l'information et de la communication",
+        "INTERNATIONAL_RELATIONS": "Relations internationales",
+        "LAW": "Droit",
+        "LINGUISTICS": "Linguistique",
+        "LITERATURE": "Littérature",
+        "MANAGEMENT_AND_PUBLIC_ADMINISTRATION": "Gestion et administration publique",
+        "NEUROSCIENCES_AND_COGNITIVE_SCIENCES": "Neurosciences et sciences cognitives",
+        "PHILOSOPHY": "Philosophie",
+        "POLITICAL_SCIENCE": "Science politique",
+        "PSYCHOLOGY": "Psychologie",
+        "SOCIOLOGY": "Sociologie",
+        "STUDIES_IN_SCIENCE_AND_TECHNOLOGY": "Études des sciences et des techniques",
+        "THEOLOGY": "Théologie",
+        "BIOLOGY": "Biologie",
+        "CHEMISTRY": "Chimie",
+        "COMPUTER_SCIENCE": "Informatique",
+        "MEDICINE": "Médecine",
+        "PHYSICS_MATHEMATICS_AND_ENGINEERING": "Physique, mathématiques et ingénierie"
+      },
+      "thematics": {
+        "label": "Thématiques",
+        "AGRICULTURE_AND_FOOD": "Agriculture et alimentation",
+        "ARTIFICIAL_INTELLIGENCE": "Intelligence artificielle",
+        "COMMUNICATION_AND_DIGITAL_ECONOMY": "Communication et économie numérique",
+        "BEHAVIOUR_PERCEPTION_EMOTIONS": "Comportement, perception, émotions",
+        "CITIES_AND_REGIONS": "Villes et territoires",
+        "CULTURAL_HERITAGE": "Patrimoine culturel",
+        "DEMOCRACY_CITIZENSHIP_AND_GOVERNANCE": "Démocratie, citoyenneté et gouvernance",
+        "EDUCATION_AND_RESEARCH": "Éducation et recherche",
+        "ENERGY_NATURAL_RESOURCES": "Énergie et ressources naturelles",
+        "ENVIRONMENT_AND_CLIMATE": "Environnement et climat",
+        "IDENTITIES_GENDER_AND_SEXUALITIES": "Identités, genre et sexualités",
+        "INEQUALITIES_INCLUSION_SOCIAL_INNOVATION": "Inégalités, inclusion et innovation sociale",
+        "MIGRATIONS": "Migrations",
+        "OCEANS": "Océans",
+        "PUBLIC_POLICIES": "Politiques publiques",
+        "RADICALISATION_VIOLENCE_EXTREMISM": "Radicalisation, violence et extrémisme",
+        "REGULATION_AND_GLOBALISATION": "Régulation et mondialisation",
+        "RELIGION_SECULARISM_SOCIETIES": "Religion, laïcité et sociétés",
+        "HEALTH_AND_AGEING": "Santé et vieillissement",
+        "SECURITY_WAR_AND_PEACE": "Sécurité, guerre et paix",
+        "SPACE": "Espace",
+        "TRANSPORT_MOBILITY_TOURISM": "Transport, mobilité et tourisme",
+        "WORK_INNOVATION_TECHNOLOGY": "Travail, innovation et technologie"
       },
       "tags": {
         "label": "Tags"
@@ -308,7 +364,7 @@
     "view-tiles": "Tuiles"
   },
   "live-stream-available": "Flux vidéo disponible",
-  "location": "Emplacement",
+  "location": "Lieux",
   "no-result": "Aucun résultat trouvé",
   "online": "En ligne",
   "open-the-filter-panel": "Ouvrez le panneau de filtre",

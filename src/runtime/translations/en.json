@@ -125,7 +125,7 @@
         },
         "fellowshipType": {
           "label": "Type of fellowship",
-          "IN_GROUP": "In group",
+          "IN_GROUP": "Collective",
           "LONG_STAY": "Long stay",
           "SHORT_STAY": "Short stay"
         },
@@ -134,7 +134,7 @@
           "CANCELLED": "Cancelled",
           "FINISHED": "Finished",
           "ONGOING": "Ongoing",
-          "PLANNED": "Planned"
+          "PLANNED": "Upcoming"
         },
         "disciplines": {
           "label": "Disciplines"
