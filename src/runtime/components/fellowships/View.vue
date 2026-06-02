@@ -32,7 +32,7 @@
             "
           />
 
-          <div v-else class="d-flex align-center flex-column mt-12">
+          <div v-else-if="item" class="d-flex align-center flex-column mt-12">
             <div
               class="d-flex text-center text-wrap text-h4 text-md-h3 text-black"
             >
@@ -80,7 +80,7 @@
                 ][['xs', 'sm', 'md', 'lg', 'xl', 'xxl'].indexOf(name || 'md')]
               "
             />
-            <MDC v-if="item.description" :value="item.description" />
+            <MDC v-if="item && item.description" :value="item.description" />
 
             <v-responsive class="mx-auto my-9" width="120">
               <v-divider class="mb-1" />

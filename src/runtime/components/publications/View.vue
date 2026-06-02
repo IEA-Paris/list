@@ -9,7 +9,7 @@
           <v-skeleton-loader v-if="loading" height="100%" type="image" />
 
           <MiscAtomsImageContainer
-            v-else
+            v-else-if="item && item.image"
             contain
             :loading="$stores.publications.loading"
             :src="item.image.url ? item.image : '/default.png'"
@@ -31,7 +31,7 @@
         "
       />
 
-      <div v-else class="d-flex align-center flex-column mt-12">
+      <div v-else-if="item" class="d-flex align-center flex-column mt-12">
         <div class="d-flex text-center text-wrap text-h4 text-md-h3 text-black">
           {{ item.name }}
         </div>
@@ -75,7 +75,7 @@
           ]
         "
       />
-      <div v-if="item.description" class="mt-md-n2">
+      <div v-if="item && item.description" class="mt-md-n2">
         <MDC :value="item.description" />
       </div>
     </v-col>

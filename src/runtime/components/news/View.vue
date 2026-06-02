@@ -10,11 +10,13 @@
         :type="['heading', 'heading'][['xs', 'sm'].indexOf(name || 'sm')]"
       />
       <template v-else>
-        <v-chip v-if="item && item.category && item.name" class="mb-4">
-          {{ $t("list.filters.news.category." + item.category) }}
-        </v-chip>
-        <br />
-        {{ item.name }}
+        <template v-if="item">
+          <v-chip v-if="item.category && item.name" class="mb-4">
+            {{ $t("list.filters.news.category." + item.category) }}
+          </v-chip>
+          <br />
+          {{ item.name }}
+        </template>
       </template>
     </v-col>
     <v-col cols="12" md="4" class="pb-0">
@@ -58,7 +60,7 @@
         </div>
 
         <div
-          v-if="item.description && mdAndUp"
+          v-if="item && item.description && mdAndUp"
           class="mt-md-n2 mx-4 mx-sm-8 mx-md-0 d-flex text-wrap text-h6 text-black mt-3"
         >
           <MDC v-if="item.description" :value="item.description" class="" />
@@ -120,7 +122,7 @@
           ]
         "
       />
-      <div v-if="item.description" class="mt-md-n2 mx-4 mx-sm-8 mx-md-0">
+      <div v-if="item && item.description" class="mt-md-n2 mx-4 mx-sm-8 mx-md-0">
         <MDC :value="item.description" />
       </div>
     </v-col>
