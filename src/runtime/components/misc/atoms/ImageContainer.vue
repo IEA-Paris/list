@@ -18,19 +18,23 @@
           :aspect-ratio="ratio"
           :class="{ 'img-animation': animate }"
           :lazy-src="
-            img(computedSrc, {
-              width,
-              quality: 70,
-            })
+            isLocalAsset
+              ? computedSrc
+              : img(computedSrc, {
+                  width,
+                  quality: 70,
+                })
           "
           :src="
-            img(computedSrc, {
-              width,
-              quality: 70,
-            })
+            isLocalAsset
+              ? computedSrc
+              : img(computedSrc, {
+                  width,
+                  quality: 70,
+                })
           "
-          :srcset="_srcset.srcset"
-          :sizes="_srcset.sizes"
+          :srcset="isLocalAsset ? undefined : _srcset.srcset"
+          :sizes="isLocalAsset ? undefined : _srcset.sizes"
           :title="caption"
           v-bind="$attrs"
         >
@@ -49,6 +53,12 @@ const computedSrc = computed(() => {
   if (!props.src) return null
   return typeof props.src === "string" ? props.src : props.src?.url || null
 })
+
+// Root-relative paths (e.g. /default.png) are static public assets shipped
+// with the site. The static deploy (nuxt generate → S3) has no live IPX server
+// and only pre-generates /_ipx/ variants for images crawled during prerender,
+// which the conditional fallback isn't — so route those raw and skip IPX.
+const isLocalAsset = computed(() => computedSrc.value?.startsWith("/") ?? false)
 const props = defineProps({
   src: {
     type: [Object, String],
