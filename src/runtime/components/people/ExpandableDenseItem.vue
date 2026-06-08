@@ -143,7 +143,6 @@ import { computed, ref, useRoute, useNuxtApp, useLocalePath } from "#imports"
 import { useDisplay } from "vuetify"
 const { name } = useRoute()
 const localePath = useLocalePath()
-const { locale } = useI18n()
 
 const { mdAndUp, name: displayName } = useDisplay()
 const rootStore = useRootStore()
