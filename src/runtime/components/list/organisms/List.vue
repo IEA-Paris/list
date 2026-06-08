@@ -97,6 +97,15 @@ const props = defineProps({
     required: true,
   },
 
+  // Logical view selector (e.g. "fellows", "media", "tools"). Fixed per page,
+  // resolved server-side into additional filters. Not persisted to the URL or
+  // exposed in the filter UI.
+  modifier: {
+    type: String,
+    required: false,
+    default: undefined,
+  },
+
   addButton: {
     type: Boolean,
     required: false,
@@ -113,7 +122,7 @@ rootStore.loadRouteQuery(props.type)
 
 // Apollo: reactive query using variables computed from store
 const variables = computed(() => {
-  return rootStore.buildListVariables(props.type, locale.value)
+  return rootStore.buildListVariables(props.type, locale.value, props.modifier)
 })
 
 // Computed properties for dynamic components

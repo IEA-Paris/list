@@ -365,7 +365,11 @@ export const useRootStore = defineStore("rootStore", {
       if (writeUrl) this.updateRouteQuery(type)
     },
 
-    buildListVariables(type: string, lang: string = "en") {
+    buildListVariables(
+      type: string,
+      lang: string = "en",
+      modifier?: string,
+    ) {
       const { $stores } = useNuxtApp() as NuxtAppExtended
       const itemsPerPage =
         type === "all" ? 3 : ($stores[type]?.itemsPerPage as number) || 10
@@ -398,6 +402,9 @@ export const useRootStore = defineStore("rootStore", {
             limit: itemsPerPage,
             ...(type !== "all" &&
               localSearch?.length && { search: localSearch }),
+            // Logical view selector resolved server-side into additional
+            // filters. Travels inside `options` alongside filters/sort.
+            ...(modifier ? { modifier } : {}),
             filters,
             sort:
               ($stores[type] as any)?.sortKey ||

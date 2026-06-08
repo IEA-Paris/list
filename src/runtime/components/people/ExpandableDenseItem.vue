@@ -28,7 +28,11 @@
       class="dense"
       :class="expanded ? 'ml-md-8' : 'ml-md-2'"
     >
+      <div class="text-overline" v-if="item.groups && item.groups.team">
+        {{ item.latest.role[locale] }}
+      </div>
       <v-skeleton-loader v-if="loading" type="heading" />
+
       <div
         v-else
         class="d-flex justify-space-between text-title align-center pt-md-2"
@@ -130,6 +134,7 @@ import { computed, ref, useRoute, useNuxtApp, useLocalePath } from "#imports"
 import { useDisplay } from "vuetify"
 const { name } = useRoute()
 const localePath = useLocalePath()
+const { locale } = useI18n()
 
 const { mdAndUp, name: displayName } = useDisplay()
 const rootStore = useRootStore()
