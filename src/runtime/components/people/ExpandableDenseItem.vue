@@ -28,27 +28,36 @@
       class="dense"
       :class="expanded ? 'ml-md-8' : 'ml-md-2'"
     >
-      <div class="text-overline" v-if="item.groups && item.groups.team">
-        {{ item.latest.role[locale] }}
-      </div>
       <v-skeleton-loader v-if="loading" type="heading" />
 
       <div
         v-else
-        class="d-flex justify-space-between text-title align-center pt-md-2"
+        class="d-flex justify-space-between text-title align-center"
         :class="expanded ? 'text-h5 text-md-h4' : 'text-h5'"
       >
-        <span
-          v-html="
-            searchQuery.length
-              ? highlightAndTruncate(
-                  300,
-                  item.firstname + ' ' + item.lastname,
-                  searchQuery.split(' '),
-                )
-              : item.firstname + ' ' + item.lastname
-          "
-        />
+        <div class="d-flex flex-column">
+          <span
+            v-html="
+              searchQuery.length
+                ? highlightAndTruncate(
+                    300,
+                    item.firstname + ' ' + item.lastname,
+                    searchQuery.split(' '),
+                  )
+                : item.firstname + ' ' + item.lastname
+            "
+          />
+          <div
+            class="role-label"
+            v-if="
+              item.groups &&
+              (item.groups.team || item.groups.board) &&
+              item.latest
+            "
+          >
+            {{ item.latest.role }}
+          </div>
+        </div>
         <v-spacer />
         <PeopleBadges :item="item" />
       </div>
@@ -212,7 +221,13 @@ const fellowSlug = computed(() => props.item?.slug || props.item?.id)
     transform: scale(1.05);
   }
 }
-
+.role-label {
+  font-size: 0.8125rem;
+  line-height: 1.4;
+  opacity: 0.7;
+  padding-bottom: 6px;
+  text-transform: uppercase;
+}
 .paragraph {
   max-width: 83ch !important;
   display: -webkit-box;
