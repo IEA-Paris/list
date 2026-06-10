@@ -14,9 +14,13 @@
               width="60"
               height="60"
             />
-            <v-btn v-else icon variant="text">
-              <v-icon>mdi-{{ $stores[type].sort[currentSort]?.icon }}</v-icon>
-            </v-btn>
+            <v-btn
+              v-else
+              x-large
+              tile
+              flat
+              :icon="'mdi-' + $stores[type].sort[currentSort]?.icon"
+            />
           </span>
         </template>
 
@@ -29,7 +33,7 @@
       </v-tooltip>
     </template>
 
-    <<v-list density="compact">
+    <v-list density="compact">
       <v-list-item
         v-for="(item, key) in $stores[type].sort"
         :key="key"

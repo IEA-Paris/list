@@ -10,10 +10,10 @@
         >
           <!--   PEOPLE IMAGE -->
           <MiscAtomsImageContainer
-            v-if="mdAndUp && item && item.image"
+            v-if="mdAndUp"
             cover
             :loading="loading"
-            :src="item.image"
+            :src="item && item.image && item.image.url ? item.image : '/default.png'"
             :ratio="1 / 1"
             :width="
               [200, 250, 250, 300][
@@ -47,11 +47,19 @@
           <template v-else>
             <div
               v-if="item && item.firstname && item.lastname"
-              class="my-8 text-h3 align-self-center text-wrap"
+              class="mt-8 mb-2 text-h3 align-self-center text-wrap"
             >
               {{ item.firstname + " " + item.lastname
               }}<!--  TODO : call a composable to format people names (multiple, initials, capped & al. ) -->
             </div>
+            <!-- PRESENT -->
+            <div v-if="isPresent" class="mb-6 d-flex justify-center">
+              <span class="present-pill">
+                <span class="present-dot" />
+                {{ $t("present") }}
+              </span>
+            </div>
+            <div v-else class="mb-6" />
             <!-- SOCIALS -->
             <div class="text-center">
               <MiscAtomsSocials
@@ -62,6 +70,40 @@
             <!-- GROUPS -->
             <div class="mt-6 align-self-center">
               <PeopleBadges v-if="item && item.groups" :item="item" />
+            </div>
+
+            <!-- DISCIPLINES -->
+            <div
+              v-if="disciplines.length"
+              class="mt-4 d-flex flex-wrap justify-center"
+              style="gap: 6px"
+            >
+              <v-chip
+                v-for="(d, i) in disciplines"
+                :key="d + i"
+                size="small"
+                variant="flat"
+                color="grey-lighten-3"
+                class="discipline-chip"
+              >
+                {{ disciplineLabel(d) }}
+              </v-chip>
+            </div>
+
+            <!-- FELLOWSHIP -->
+            <div v-if="fellowName || fellowTheme || fellowDates" class="mt-6">
+              <div v-if="fellowName" class="text-h6 font-weight-regular">
+                {{ fellowName }}
+              </div>
+              <div v-if="fellowTheme" class="text-body-1 mt-1">
+                {{ fellowTheme }}
+              </div>
+              <div
+                v-if="fellowDates"
+                class="text-body-2 mt-1 text-medium-emphasis"
+              >
+                {{ fellowDates }}
+              </div>
             </div>
           </template>
         </v-col>
@@ -165,9 +207,10 @@
 
 <script setup>
 import { useDisplay } from "vuetify"
-import { useNuxtApp, useI18n } from "#imports"
+import { computed, useNuxtApp, useI18n } from "#imports"
+import { formatDate } from "../../composables/useUtils"
 
-const { locale } = useI18n()
+const { t, locale } = useI18n()
 const { $stores } = useNuxtApp()
 const { name, mdAndUp } = useDisplay()
 const props = defineProps({
@@ -176,5 +219,70 @@ const props = defineProps({
 })
 $stores.people.loading = false
 
-console.log("people", props.item)
+// disciplines: scalar enum array → translated labels
+const disciplines = computed(() =>
+  Array.isArray(props.item?.disciplines) ? props.item.disciplines : [],
+)
+const disciplineLabel = (d) => t("list.filters.disciplines." + d)
+
+// latest is a union Vintage | Position; the fellowship program lives on the
+// Vintage branch (name = program name, theme = fellowship theme) and carries the
+// arrival/departure dates (start/stop). Guard by field presence.
+const latest = computed(() => props.item?.latest ?? null)
+const fellowName = computed(() => latest.value?.name ?? null)
+const fellowTheme = computed(() => latest.value?.theme ?? null)
+
+// "present" = currently in residence/post: started on or before today and not
+// yet ended. Works for both Vintage and Position; degrades to false if start/stop
+// are absent (e.g. before the trees query change is published).
+const isPresent = computed(() => {
+  const l = latest.value
+  if (!l?.start) return false
+  const now = Date.now()
+  if (new Date(l.start).getTime() > now) return false
+  if (!l.stop) return true
+  return new Date(l.stop).getTime() >= now
+})
+
+// Arrival/departure dates straight from latest.start/latest.stop.
+const fellowDates = computed(() => {
+  const l = latest.value
+  if (!l?.start) return null
+  return t("from {0} to {1}", [
+    formatDate(l.start, locale.value),
+    (l.stop && formatDate(l.stop, locale.value)) || t("present"),
+  ])
+})
 </script>
+
+<style scoped>
+/* Disciplines: filled, rounded, soft grey — consistent with the people list
+   (DenseItem.vue) so the chip language matches across views. */
+.discipline-chip {
+  color: rgba(0, 0, 0, 0.78);
+  font-weight: 500;
+  border-radius: 6px;
+}
+
+/* "Present" indicator — same discrete grey pill + green dot as DenseItem.vue. */
+.present-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  line-height: 1;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background-color: rgba(0, 0, 0, 0.06);
+  color: rgba(0, 0, 0, 0.7);
+}
+.present-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #4caf50;
+}
+</style>

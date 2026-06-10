@@ -122,7 +122,10 @@
           ]
         "
       />
-      <div v-if="item && item.description" class="mt-md-n2 mx-4 mx-sm-8 mx-md-0">
+      <div
+        v-if="item && item.description"
+        class="mt-md-n2 mx-4 mx-sm-8 mx-md-0"
+      >
         <MDC :value="item.description" />
       </div>
     </v-col>
@@ -181,5 +184,5 @@ const today = new Date()
 )
 
 ) */
-$stores.news.loading = false
+$stores.publications.loading = false
 </script>
