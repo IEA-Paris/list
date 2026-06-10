@@ -51,7 +51,6 @@ const i18n = useI18n()
 const { locale, messages } = useI18n()
 const { $stores, $filters } = useNuxtApp()
 const props = defineProps(["type", "expanded"])
-console.log("$filters: ", $filters)
 
 const ComponentName = (name) => {
   return resolveComponent(
@@ -64,7 +63,6 @@ const getItems = (name) => {
   }
 
   if ($filters?.[props.type]?.[name]) {
-    console.log("name: ", name)
     // Disciplines and thematics have their own namespace for translations
     if (["disciplines", "thematics"].includes(name)) {
       return Object.keys(messages.value[locale.value].list.filters?.[name])
