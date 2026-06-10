@@ -43,21 +43,31 @@
 
         <v-spacer />
 
-        <!-- year badge bound to latest.year -->
-        <v-chip
-          v-if="latestYear"
-          size="small"
-          variant="outlined"
-          tile
-          style="background-color: white; color: black"
-        >
-          {{ $t("vintage", [latestYear]) }}
-        </v-chip>
+        <!-- year badges: one pill per calendar year the fellowship spans, so a
+             cross-year vintage (start→stop over a boundary) shows e.g. 2025 and
+             2026. Falls back to the single `year` when dates are absent. -->
+        <div class="d-flex flex-wrap justify-end" style="gap: 4px">
+          <v-chip
+            v-for="year in vintageYears"
+            :key="year"
+            size="small"
+            variant="outlined"
+            tile
+            style="background-color: white; color: black"
+          >
+            {{ $t("vintage", [year]) }}
+          </v-chip>
+        </div>
       </div>
 
       <!-- DISCIPLINES (translated, capped at 3 + overflow) -->
+      <v-skeleton-loader
+        v-if="loading"
+        type="chip@3"
+        class="discipline-skeleton mt-2"
+      />
       <div
-        v-if="disciplines.length"
+        v-else-if="disciplines.length"
         class="d-flex flex-wrap mt-2"
         style="gap: 6px"
       >
@@ -133,8 +143,41 @@ const props = defineProps({
 
 // latest union (field-presence based; __typename not selected in the query)
 const latest = computed(() => props.item?.latest ?? null)
-const latestYear = computed(() => latest.value?.year ?? null) // Vintage only
 const latestTheme = computed(() => latest.value?.theme ?? null) // Vintage only
+
+// Expand a start→stop span into the calendar years it covers, e.g.
+// 2024-09-01 → 2025-07-30 yields [2024, 2025]. [] if a bound is missing/invalid.
+const spanYears = (start, stop) => {
+  if (!start || !stop) return []
+  const from = new Date(start).getFullYear()
+  const to = new Date(stop).getFullYear()
+  if (Number.isNaN(from) || Number.isNaN(to) || to < from) return []
+  const years = []
+  for (let y = from; y <= to; y++) years.push(y)
+  return years
+}
+
+// Vintage year pills (deduped, ascending). Mirrors PeopleBadges: `latest`
+// carries start/stop so its span expands to one year per calendar year (a
+// cross-year fellowship → two pills); `groups.vintage[]` is queried without
+// dates so each only contributes its single `year`. Falls back to `year` when
+// no span is available.
+const vintageYears = computed(() => {
+  const years = new Set()
+
+  const l = latest.value
+  if (l?.year != null) {
+    const span = spanYears(l.start, l.stop)
+    if (span.length) span.forEach((y) => years.add(y))
+    else years.add(l.year)
+  }
+
+  for (const v of props.item?.groups?.vintage ?? []) {
+    if (v?.year != null) years.add(v.year)
+  }
+
+  return [...years].sort((a, b) => a - b)
+})
 
 // "present" = currently in residence/post: started on or before today and not
 // yet ended. Works for both Vintage (fellowship period) and Position (staff role)
@@ -173,6 +216,7 @@ const themeLineClamp = computed(() => [1, 1, 2, 2, 3, 3][breakpointIndex.value])
   font-size: 0.875rem;
   line-height: 1.4;
   opacity: 0.7;
+  font-style: italic;
   max-width: 83ch;
   display: -webkit-box;
   -webkit-box-orient: vertical;
@@ -185,6 +229,12 @@ const themeLineClamp = computed(() => [1, 1, 2, 2, 3, 3][breakpointIndex.value])
   color: rgba(0, 0, 0, 0.78);
   font-weight: 500;
   border-radius: 6px;
+}
+
+/* The skeleton root is already flex-wrap, so chip@3 bones sit in a row; only
+   override the loader's default 16px chip margin to match the real 6px gap. */
+.discipline-skeleton :deep(.v-skeleton-loader__chip) {
+  margin: 0 6px 0 0;
 }
 
 .present-pill {

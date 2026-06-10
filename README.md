@@ -17,12 +17,13 @@ Find and replace all on all files (CMD+SHIFT+F):
 My new Nuxt module for doing amazing things.
 
 - [✨ &nbsp;Release Notes](/CHANGELOG.md)
-<!-- - [🏀 Online playground](https://stackblitz.com/github/your-org/my-module?file=playground%2Fapp.vue) -->
-<!-- - [📖 &nbsp;Documentation](https://example.com) -->
+  <!-- - [🏀 Online playground](https://stackblitz.com/github/your-org/my-module?file=playground%2Fapp.vue) -->
+  <!-- - [📖 &nbsp;Documentation](https://example.com) -->
 
 ## Features
 
 <!-- Highlight some of the features your module provide here -->
+
 - ⛰ &nbsp;Foo
 - 🚠 &nbsp;Bar
 - 🌲 &nbsp;Baz
@@ -36,7 +37,6 @@ npx nuxi module add my-module
 ```
 
 That's it! You can now use My Module in your Nuxt app ✨
-
 
 ## Contribution
 
@@ -69,16 +69,50 @@ That's it! You can now use My Module in your Nuxt app ✨
 
 </details>
 
-
 <!-- Badges -->
+
 [npm-version-src]: https://img.shields.io/npm/v/my-module/latest.svg?style=flat&colorA=020420&colorB=00DC82
 [npm-version-href]: https://npmjs.com/package/my-module
-
 [npm-downloads-src]: https://img.shields.io/npm/dm/my-module.svg?style=flat&colorA=020420&colorB=00DC82
 [npm-downloads-href]: https://npm.chart.dev/my-module
-
 [license-src]: https://img.shields.io/npm/l/my-module.svg?style=flat&colorA=020420&colorB=00DC82
 [license-href]: https://npmjs.com/package/my-module
-
 [nuxt-src]: https://img.shields.io/badge/Nuxt-020420?logo=nuxt.js
 [nuxt-href]: https://nuxt.com
+
+| archeology                                  | ARCHAEOLOGY                            |
+| ------------------------------------------- | -------------------------------------- |
+| architecture-and-spatial-planning           | ARCHITECTURE_AND_URBAN_PLANNING        |
+| art-and-art-history                         | ART_AND_HISTORY_OF_ART                 |
+|                                             | BIOLOGY                                |
+|                                             | CHEMISTRY                              |
+| classical-studies                           | CLASSICAL_STUDIES                      |
+|                                             | COMPUTER_SCIENCE                       |
+|                                             | DEMOGRAPHY                             |
+| digital-humanities                          | DIGITAL_HUMANITIES                     |
+| economics-and-finance                       | ECONOMICS                              |
+| education                                   | EDUCATION_SCIENCES                     |
+| environment                                 | ENVIRONMENTAL_SCIENCES                 |
+| gender-studies                              | SOCIOLOGY                              |
+| geography                                   | GEOGRAPHY                              |
+| history-philosophy-and-sociology-of-science | STUDIES_IN_SCIENCE_AND_TECHNOLOGY      |
+| history                                     | HISTORY                                |
+| information-and-communication-studies       | INFORMATION_AND_COMMUNICATION_SCIENCES |
+|                                             | INTERNATIONAL_RELATIONS                |
+| law                                         | LAW                                    |
+| linguistics                                 | LINGUISTICS                            |
+| literature                                  | LITERATURE                             |
+|                                             | MANAGEMENT_AND_PUBLIC_ADMINISTRATION   |
+| medicine-pharmacy                           | MEDICINE                               |
+| music-musicology-and-performance-arts       | ART_AND_HISTORY_OF_ART                 |
+| neuroscience                                | NEUROSCIENCES_AND_COGNITIVE_SCIENCES   |
+| others                                      | OTHERS                                 |
+| philosophy                                  | PHILOSOPHY                             |
+| physics-and-mathematics                     | PHYSICS_MATHEMATICS_AND_ENGINEERING    |
+| political-science                           | POLITICAL_SCIENCE                      |
+| psychology                                  | PSYCHOLOGY                             |
+|                                             | STUDIES_IN_SCIENCE_AND_TECHNOLOGY      |
+|                                             | THEOLOGY                               |
+| sciences-of-the-universe                    | PHYSICS_MATHEMATICS_AND_ENGINEERING    |
+| social-anthropology-and-ethnology           | ANTHROPOLOGY_AND_ETHNOLOGY             |
+| sociology                                   | SOCIOLOGY                              |

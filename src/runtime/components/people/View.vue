@@ -13,7 +13,9 @@
             v-if="mdAndUp"
             cover
             :loading="loading"
-            :src="item && item.image && item.image.url ? item.image : '/default.png'"
+            :src="
+              item && item.image && item.image.url ? item.image : '/default.png'
+            "
             :ratio="1 / 1"
             :width="
               [200, 250, 250, 300][
@@ -72,30 +74,31 @@
               <PeopleBadges v-if="item && item.groups" :item="item" />
             </div>
 
-            <!-- DISCIPLINES -->
-            <div
-              v-if="disciplines.length"
-              class="mt-4 d-flex flex-wrap justify-center"
-              style="gap: 6px"
-            >
-              <v-chip
-                v-for="(d, i) in disciplines"
-                :key="d + i"
-                size="small"
-                variant="flat"
-                color="grey-lighten-3"
-                class="discipline-chip"
-              >
-                {{ disciplineLabel(d) }}
-              </v-chip>
-            </div>
-
             <!-- FELLOWSHIP -->
             <div v-if="fellowName || fellowTheme || fellowDates" class="mt-6">
               <div v-if="fellowName" class="text-h6 font-weight-regular">
                 {{ fellowName }}
               </div>
-              <div v-if="fellowTheme" class="text-body-1 mt-1">
+
+              <!-- DISCIPLINES -->
+              <div
+                v-if="disciplines.length"
+                class="mt-4 d-flex flex-wrap justify-center"
+                style="gap: 6px"
+              >
+                <v-chip
+                  v-for="(d, i) in disciplines"
+                  :key="d + i"
+                  size="small"
+                  variant="flat"
+                  tile
+                  color="grey-lighten-3"
+                  class="discipline-chip"
+                >
+                  {{ disciplineLabel(d) }}
+                </v-chip>
+              </div>
+              <div v-if="fellowTheme" class="text-body-1 mt-1 font-italic">
                 {{ fellowTheme }}
               </div>
               <div

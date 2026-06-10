@@ -286,6 +286,7 @@
       },
       "disciplines": {
         "label": "Discipline",
+        "ALL": "All disciplines",
         "ANTHROPOLOGY_AND_ETHNOLOGY": "Anthropology and Ethnology",
         "ARCHITECTURE_AND_URBAN_PLANNING": "Architecture and Urban Planning",
         "ARCHAEOLOGY": "Archaeology",
@@ -311,6 +312,7 @@
         "SOCIOLOGY": "Sociology",
         "STUDIES_IN_SCIENCE_AND_TECHNOLOGY": "Studies in science and technology",
         "THEOLOGY": "Theology",
+        "OTHERS": "Others",
         "BIOLOGY": "Biology",
         "CHEMISTRY": "Chemistry",
         "COMPUTER_SCIENCE": "Computer science",

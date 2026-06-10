@@ -127,9 +127,13 @@ const computeVisibility = (filterKey) => {
   const filters = $stores[props.type].filters
   const show = filters?.[filterKey]?.show
 
+  // No show config -> always visible.
   if (!show) return true
-  if (show.default) return true
-  if (!Array.isArray(show.switchIf)) return false
+
+  const def = show.default === true
+
+  // Without switch rules, visibility is simply the default.
+  if (!Array.isArray(show.switchIf) || show.switchIf.length === 0) return def
 
   const checkRule = (rule) =>
     Object.entries(rule).every(([depKey, expected]) => {
@@ -146,9 +150,14 @@ const computeVisibility = (filterKey) => {
       return Array.isArray(expected) ? expected.includes(cur) : cur === expected
     })
 
-  return show.disjonctive !== false
-    ? show.switchIf.some(checkRule)
-    : show.switchIf.every(checkRule)
+  // disjonctive (default true) -> any rule matches; otherwise all rules match.
+  const matched =
+    show.disjonctive !== false
+      ? show.switchIf.some(checkRule)
+      : show.switchIf.every(checkRule)
+
+  // A matched switch flips the default; otherwise keep the default.
+  return matched ? !def : def
 }
 </script>
 

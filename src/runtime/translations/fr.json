@@ -13,7 +13,7 @@
     "see-more": "Voir plus d'événements"
   },
   "filters": "filtre | filtre | Filtres",
-  "from {0} to {1}": "Du {0} à {1}",
+  "from {0} to {1}": "Du {0} au {1}",
   "gallery": "Galerie",
   "hybrid-event": "Évènement hybride",
   "inscription-gratuite-et-obligatoire": "Enregistrement gratuit et obligatoire",
@@ -275,6 +275,7 @@
         }
       },
       "disciplines": {
+        "ALL": "Toutes les disciplines",
         "label": "Discipline",
         "ANTHROPOLOGY_AND_ETHNOLOGY": "Anthropologie et ethnologie",
         "ARCHITECTURE_AND_URBAN_PLANNING": "Architecture et urbanisme",
@@ -301,6 +302,7 @@
         "SOCIOLOGY": "Sociologie",
         "STUDIES_IN_SCIENCE_AND_TECHNOLOGY": "Études en sciences et technologies",
         "THEOLOGY": "Théologie",
+        "OTHERS": "Autres",
         "BIOLOGY": "Biologie",
         "CHEMISTRY": "Chimie",
         "COMPUTER_SCIENCE": "Informatique",
@@ -322,6 +324,7 @@
         "IDENTITIES_GENDER_AND_SEXUALITIES": "Identités, genre et sexualités",
         "INEQUALITIES_INCLUSION_SOCIAL_INNOVATION": "Inégalités, inclusion, innovation sociale",
         "MIGRATIONS": "Migrations",
+        "OTHERS": "Autres",
         "OCEANS": "Océans",
         "PUBLIC_POLICIES": "Politiques publiques",
         "RADICALISATION_VIOLENCE_EXTREMISM": "Radicalisations, violences, extrémismes",
@@ -439,7 +442,7 @@
   "visit": "Nous rendre visite",
   "visit-the-project-website": "Visiter le site web",
   "groups": "Catégorie",
-  "present": "aujourd'hui",
+  "present": "Présent",
   "visit-this-project-website": "Visitez le site Web du projet",
   "visit-this-publications-website": "Visitez la page Web de cette publication",
   "no-biography": "Aucune biographie disponible",
