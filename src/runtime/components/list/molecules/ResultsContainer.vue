@@ -6,53 +6,28 @@
         variant="text"
         class="mr-2"
         @click="$emit('toggle', type)"
-        :disabled="
-          $rootStore.results[type] && $rootStore.results[type]?.total === 0
-        "
+        :disabled="total === 0"
+        :aria-expanded="open ? 'true' : 'false'"
+        :aria-label="$t(open ? 'show-less' : 'show-more')"
       >
         <v-icon>{{ open ? "mdi-chevron-down" : "mdi-chevron-right" }}</v-icon>
       </v-btn>
       <div
         class="d-flex flex-column cursor-pointer"
+        role="button"
+        :aria-expanded="open ? 'true' : 'false'"
         @click="$emit('toggle', type)"
       >
-        <h3
-          class="mt-4 mb-0"
-          :class="
-            $rootStore.results[type] && $rootStore.results[type].total > 0
-              ? 'black'
-              : 'text-grey darken-2'
-          "
-        >
-          {{ capitalize($t("items." + props.type, 2)) }}
-        </h3>
-        <div class="text-overline mb-3">
+        <h4 class="mt-2 mb-0" :class="total > 0 ? 'black' : 'text-grey darken-2'">
+          {{ label }}
+        </h4>
+        <div class="text-overline mb-2">
           {{
-            feminine
-              ? $t(
-                  "list.0-items-found-f",
-                  [
-                    $rootStore.results[type] && $rootStore.results[type].total,
-                    $t(
-                      "items." + props.type,
-                      $rootStore.results[type] &&
-                        $rootStore.results[type].total,
-                    ),
-                  ],
-                  $rootStore.results[type] && $rootStore.results[type].total,
-                )
-              : $t(
-                  "list.0-items-found",
-                  [
-                    $rootStore.results[type] && $rootStore.results[type].total,
-                    $t(
-                      "items." + props.type,
-                      $rootStore.results[type] &&
-                        $rootStore.results[type].total,
-                    ),
-                  ],
-                  $rootStore.results[type] && $rootStore.results[type].total,
-                )
+            $t(
+              feminine ? "list.0-items-found-f" : "list.0-items-found",
+              [total, $t("items." + props.type, total)],
+              total,
+            )
           }}
         </div>
       </div>
@@ -62,21 +37,15 @@
         variant="text"
         size="small"
         rounded="0"
-        v-if="$rootStore.results[type] && $rootStore.results[type]?.total > 3"
+        v-if="total > 3"
         :to="
           localePath({
-            path: type === 'people' ? '/people' : '/activities/' + type,
+            path: viewMore,
             query: { search: $rootStore.search },
           })
         "
       >
-        {{
-          $t(
-            "list.pls-x-more",
-            [$rootStore.results[type] && $rootStore.results[type].total - 3],
-            $rootStore.results[type] && $rootStore.results[type].total - 3,
-          )
-        }}
+        {{ $t('list.pls-x-more', [total - 3], total - 3) }}
       </v-btn>
     </div>
     <slot />
@@ -84,9 +53,10 @@
   <v-divider></v-divider>
 </template>
 <script setup>
-import { useNuxtApp, useLocalePath } from "#imports"
+import { useNuxtApp, useLocalePath, useI18n, computed } from "#imports"
 import { useDisplay } from "vuetify"
 const localePath = useLocalePath()
+const { t } = useI18n()
 
 const { mdAndUp } = useDisplay()
 
@@ -112,5 +82,26 @@ const props = defineProps({
     required: false,
     default: true,
   },
+  // Optional i18n key override for the heading (people groups live outside the
+  // `items.*` namespace). Falls back to `items.<type>` (pluralised).
+  labelKey: {
+    type: String,
+    required: false,
+    default: "",
+  },
+  // Path the "view more" link routes to (the sub-category landing page).
+  viewMore: {
+    type: String,
+    required: false,
+    default: "",
+  },
 })
+
+const total = computed(() => $rootStore.results[props.type]?.total ?? 0)
+
+const label = computed(() =>
+  props.labelKey
+    ? t(props.labelKey)
+    : capitalize(t("items." + props.type, 2)),
+)
 </script>

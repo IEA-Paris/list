@@ -2,18 +2,17 @@
   <ListMoleculesGlobalSearchInput
     type="all"
     :placeholder="$t('search')"
-    :categories="selectedCategories"
-    :filter-order="sortedModules"
-    filter
+    :disciplines="selectedDisciplines"
+    :discipline-options="disciplineOptions"
     autofocus
-    @filter-change="handleFilterChange"
+    @disciplines-change="handleDisciplinesChange"
     class="mb-6"
   />
   <div v-if="searchTerm.length === 0" class="search-empty">
     <ListAtomsLogoPlaceholder idle />
   </div>
   <template v-else>
-    <div v-if="pending" class="search-pending">
+    <div v-if="pending" class="search-pending" aria-busy="true">
       <div class="search-pending__inner">
         <ListAtomsLogoPlaceholder class="loader-logo loader-logo--active" />
         <div class="search-pending__dots">
@@ -24,29 +23,39 @@
       </div>
     </div>
     <template v-else>
-      <ListMoleculesResultsContainer
-        v-for="type in filteredSortedModules"
-        :key="type"
-        :feminine="
-          type === 'people' || type === 'news' || type === 'publications'
-        "
-        :type
-        :open="open[type] ?? false"
-        @toggle="(t) => (open[t] = !open[t])"
+      <p class="visually-hidden" aria-live="polite">
+        {{ resultsAnnouncement }}
+      </p>
+      <div v-if="!hasAnyResult" class="search-no-results">
+        {{ $t("search.no-results", [searchTerm]) }}
+      </div>
+      <section
+        v-for="group in visibleGroups"
+        :key="group.key"
+        class="search-group"
       >
-        <v-expand-transition class="results-container">
-          <div v-show="open[type]">
-            <ListAtomsResultsList
-              :type
-              :pathPrefix="
-                type === 'people'
-                  ? 'people-slug'
-                  : 'activities-' + type + '-slug'
-              "
-            />
-          </div>
-        </v-expand-transition>
-      </ListMoleculesResultsContainer>
+        <h3 class="search-group__title">{{ $t(group.labelKey) }}</h3>
+        <ListMoleculesResultsContainer
+          v-for="sub in group.visibleSubCategories"
+          :key="sub.type"
+          :type="sub.type"
+          :label-key="sub.labelKey"
+          :view-more="sub.viewMore"
+          :feminine="isFeminine(sub.type)"
+          :open="open[sub.type] ?? false"
+          @toggle="(t) => (open[t] = !open[t])"
+        >
+          <v-expand-transition class="results-container">
+            <div v-show="open[sub.type]">
+              <ListAtomsResultsList
+                :type="sub.type"
+                :parent-type="sub.parentType"
+                :path-prefix="sub.pathPrefix"
+              />
+            </div>
+          </v-expand-transition>
+        </ListMoleculesResultsContainer>
+      </section>
     </template>
   </template>
 </template>
@@ -55,7 +64,6 @@
 import {
   useNuxtApp,
   useI18n,
-  useAppConfig,
   useRoute,
   useRouter,
   reactive,
@@ -64,85 +72,67 @@ import {
   watch,
 } from "#imports"
 import { useRootStore } from "../../../stores/root"
+import {
+  SEARCH_GROUPS,
+  SEARCH_SUBCATEGORY_TYPES,
+  FEMININE_SUBCATEGORIES,
+} from "../../../composables/useSearchGroups"
 import SEARCH from "@paris-ias/trees/dist/graphql/client/misc/query.search.all.gql"
 
 const { $rootStore } = useNuxtApp()
 const rootStore = useRootStore()
-const appConfig = useAppConfig()
-const { locale } = useI18n()
+const { locale, t, messages } = useI18n()
 const route = useRoute()
 const router = useRouter()
 if (route.query.search) {
   rootStore.search = String(route.query.search)
 }
 
+// Per-sub-category expanded state.
 const open = reactive(
-  appConfig.list.modules.reduce((acc, type) => {
+  SEARCH_SUBCATEGORY_TYPES.reduce((acc, type) => {
     acc[type] = false
     return acc
   }, {}),
 )
 
-// Hydrate selected categories from the URL (?type=people,events).
-// Unknown / removed module names are ignored. An empty or absent param means
-// "all modules selected" (the default).
-const parseTypeQuery = (raw) => {
-  if (!raw) return null
+// --- Disciplines filter ----------------------------------------------------
+// Options reuse the same source the per-module filters use: the global
+// `list.filters.disciplines` i18n namespace (keys minus the `label` entry).
+const disciplineOptions = computed(() => {
+  const dict = messages.value?.[locale.value]?.list?.filters?.disciplines || {}
+  return Object.keys(dict)
+    .filter((key) => key !== "label")
+    .map((key) => ({ value: key, title: t("list.filters.disciplines." + key) }))
+    .sort((a, b) => a.title.localeCompare(b.title))
+})
+
+const parseDisciplinesQuery = (raw) => {
+  if (!raw) return []
   const value = Array.isArray(raw) ? raw[0] : raw
-  if (typeof value !== "string" || value.trim() === "") return null
-  const known = new Set(appConfig.list.modules)
-  const parsed = value
+  if (typeof value !== "string" || value.trim() === "") return []
+  const known = new Set(disciplineOptions.value.map((o) => o.value))
+  return value
     .split(",")
     .map((s) => s.trim())
     .filter((s) => known.has(s))
-  return parsed.length ? parsed : null
 }
 
-const initialCategories =
-  parseTypeQuery(route.query.type) ?? [...appConfig.list.modules]
-const selectedCategories = reactive(initialCategories)
+rootStore.searchDisciplines = parseDisciplinesQuery(route.query.disciplines)
+const selectedDisciplines = computed(() => rootStore.searchDisciplines)
 
-const syncCategoriesToUrl = () => {
-  const allSelected =
-    selectedCategories.length === appConfig.list.modules.length &&
-    appConfig.list.modules.every((t) => selectedCategories.includes(t))
+const handleDisciplinesChange = (next) => {
+  rootStore.searchDisciplines = [...next]
   const nextQuery = { ...route.query }
-  if (allSelected) {
-    delete nextQuery.type
+  if (next.length) {
+    nextQuery.disciplines = [...next].sort().join(",")
   } else {
-    // Preserve URL-defined order (alphabetical) so the param is stable
-    // regardless of click order in the dropdown.
-    nextQuery.type = [...selectedCategories].sort().join(",")
+    delete nextQuery.disciplines
   }
   router.replace({ query: nextQuery })
 }
 
-const handleFilterChange = (filterData) => {
-  selectedCategories.splice(
-    0,
-    selectedCategories.length,
-    ...filterData.categories,
-  )
-  syncCategoriesToUrl()
-}
-
-const sortedModules = computed(() => {
-  return appConfig.list.modules.slice().sort((a, b) => {
-    const aMaxScore = Math.max(
-      ...($rootStore.results[a]?.items || []).map((i) => i.score ?? 0),
-      0,
-    )
-    const bMaxScore = Math.max(
-      ...($rootStore.results[b]?.items || []).map((i) => i.score ?? 0),
-      0,
-    )
-    return bMaxScore - aMaxScore
-  })
-})
-const filteredSortedModules = computed(() => {
-  return sortedModules.value.filter((type) => selectedCategories.includes(type))
-})
-
+// --- Search query ----------------------------------------------------------
 const searchTerm = computed(() => $rootStore.search || "")
 const currentLocale = computed(() => locale.value)
 
@@ -153,6 +143,7 @@ const { data, pending, error } = useAsyncQuery(
       search: searchTerm.value,
       appId: "iea",
       lang: currentLocale.value,
+      disciplines: selectedDisciplines.value,
     })),
   },
   { server: false },
@@ -161,7 +152,7 @@ const { data, pending, error } = useAsyncQuery(
 watch(data, (newData) => {
   if (!newData) return
   $rootStore.applyListResult("all", newData)
-  appConfig.list.modules.forEach((type) => {
+  SEARCH_SUBCATEGORY_TYPES.forEach((type) => {
     if (newData.search?.[type]?.total > 0) {
       open[type] = true
     }
@@ -170,6 +161,44 @@ watch(data, (newData) => {
 
 watch(error, (err) => {
   if (err) console.error("GraphQL query error:", err)
+})
+
+// --- Result dispatch -------------------------------------------------------
+const totalFor = (type) => $rootStore.results[type]?.total ?? 0
+const maxScoreFor = (type) =>
+  Math.max(...($rootStore.results[type]?.items || []).map((i) => i.score ?? 0), 0)
+
+const isFeminine = (type) => FEMININE_SUBCATEGORIES.has(type)
+
+// Groups, with empty sub-categories hidden and groups ordered by their best
+// matching score so the most relevant group surfaces first.
+const visibleGroups = computed(() => {
+  return SEARCH_GROUPS.map((group) => {
+    const visibleSubCategories = group.subCategories.filter(
+      (sub) => totalFor(sub.type) > 0,
+    )
+    const groupScore = Math.max(
+      ...group.subCategories.map((sub) => maxScoreFor(sub.type)),
+      0,
+    )
+    return { ...group, visibleSubCategories, groupScore }
+  })
+    .filter((group) => group.visibleSubCategories.length > 0)
+    .sort((a, b) => b.groupScore - a.groupScore)
+})
+
+const hasAnyResult = computed(() =>
+  SEARCH_SUBCATEGORY_TYPES.some((type) => totalFor(type) > 0),
+)
+
+const resultsAnnouncement = computed(() => {
+  const total = SEARCH_SUBCATEGORY_TYPES.reduce(
+    (sum, type) => sum + totalFor(type),
+    0,
+  )
+  return hasAnyResult.value
+    ? t("list.0-items-found", [total, t("search")], total)
+    : t("search.no-results-plain")
 })
 </script>
 
@@ -182,6 +211,51 @@ $animation-easing: ease;
   display: flex;
   flex-direction: column;
   gap: 8px;
+}
+
+.search-group {
+  margin-bottom: 24px;
+}
+
+.search-group__title {
+  margin: 0 0 4px;
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+/* Indent the sub-category containers under their group heading. Tightened on
+   mobile so nested content does not crowd narrow screens. */
+.search-group :deep(.results-container) {
+  margin-left: 16px;
+}
+
+@media (max-width: 600px) {
+  .search-group__title {
+    font-size: 1.15rem;
+  }
+  .search-group :deep(.results-container) {
+    margin-left: 8px;
+  }
+}
+
+.search-no-results {
+  padding: 32px 0;
+  text-align: center;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+/* Screen-reader-only live region for result-count announcements. */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 .search-empty {

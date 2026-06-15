@@ -1,108 +1,65 @@
 <template>
-  <div class="d-flex align-center">
-    <v-menu
-      v-if="filter && mdAndUp"
-      v-model="filterMenuOpen"
-      :close-on-content-click="false"
-      location="bottom end"
-      offset="4"
-    >
-      <template #activator="{ props: menuProps }">
-        <v-btn
-          v-bind="menuProps"
-          :rounded="0"
-          variant="outlined"
-          size="large"
-          height="56"
-        >
-          <v-icon>mdi-filter</v-icon>
-          <span
-            v-if="hasActiveFilter"
-            class="ml-1 global-search__filter-count"
-            >{{ categories.length }}</span
-          >
-          <v-icon class="ml-1" size="small">
-            {{ filterMenuOpen ? "mdi-chevron-up" : "mdi-chevron-down" }}
-          </v-icon>
-          <v-tooltip activator="parent" location="start">
-            {{ $t("filter-by-type") }}
-          </v-tooltip>
-        </v-btn>
-      </template>
+  <div>
+    <div class="d-flex align-center">
+      <v-text-field
+        ref="textFieldRef"
+        :id="`global-search-input-${type}`"
+        v-model.trim="search"
+        :placeholder="placeholderText"
+        single-line
+        class="transition-swing flex-grow-1"
+        variant="outlined"
+        hide-details
+        clearable
+        tile
+        type="search"
+        :loading="rootStore.loading"
+        @keyup.enter="navigateToSearch"
+        @click:append="navigateToSearch"
+      >
+        <template v-if="!search" #label>
+          <div class="searchLabel">
+            {{ placeholderText }}
+          </div>
+        </template>
+      </v-text-field>
+      <v-btn
+        :rounded="0"
+        variant="outlined"
+        size="large"
+        height="56"
+        :aria-label="$t('click-here-to-search')"
+        @keyup.enter="navigateToSearch"
+        @click="navigateToSearch"
+      >
+        <v-icon size="large">mdi-magnify</v-icon>
+        <v-tooltip activator="parent" location="start">{{
+          $t("click-here-to-search")
+        }}</v-tooltip>
+      </v-btn>
+    </div>
 
-      <v-card min-width="220">
-        <div class="d-flex justify-space-between align-center px-3 py-1">
-          <v-btn
-            size="x-small"
-            variant="text"
-            :disabled="allSelected"
-            @click="selectAllFilters"
-          >
-            {{ $t("filter.select-all") }}
-          </v-btn>
-          <v-btn
-            size="x-small"
-            variant="text"
-            :disabled="noneSelected"
-            @click="clearFilters"
-          >
-            {{ $t("filter.select-none") }}
-          </v-btn>
-        </div>
-        <v-divider />
-        <v-list density="compact">
-          <v-list-item
-            v-for="option in filterOptions"
-            :key="option.value"
-            @click="toggleFilter(option)"
-          >
-            <template #prepend>
-              <v-checkbox
-                hide-details
-                :model-value="categories.includes(option.value)"
-                @update:model-value="toggleFilter(option)"
-              />
-            </template>
-            <v-list-item-title>{{ option.label }}</v-list-item-title>
-          </v-list-item>
-        </v-list>
-      </v-card>
-    </v-menu>
-    <v-text-field
-      ref="textFieldRef"
-      :id="`global-search-input-${type}`"
-      v-model.trim="search"
-      :placeholder="placeholderText"
-      single-line
-      class="transition-swing flex-grow-1"
+    <!-- Disciplines filter: full-width, available on every breakpoint. -->
+    <v-autocomplete
+      v-if="disciplineOptions.length"
+      :model-value="disciplines"
+      :items="disciplineOptions"
+      item-title="title"
+      item-value="value"
+      :label="$t('search.filter-by-discipline')"
+      :placeholder="$t('search.disciplines')"
       variant="outlined"
-      hide-details
-      clearable
+      density="comfortable"
       tile
-      type="search"
-      :loading="rootStore.loading"
-      @keyup.enter="navigateToSearch"
-      @click:append="navigateToSearch"
-    >
-      <template v-if="!search" #label>
-        <div class="searchLabel">
-          {{ placeholderText }}
-        </div>
-      </template>
-    </v-text-field>
-    <v-btn
-      :rounded="0"
-      variant="outlined"
-      size="large"
-      height="56"
-      @keyup.enter="navigateToSearch"
-      @click="navigateToSearch"
-    >
-      <v-icon size="large">mdi-magnify</v-icon>
-      <v-tooltip activator="parent" location="start">{{
-        $t("click-here-to-search")
-      }}</v-tooltip>
-    </v-btn>
+      multiple
+      chips
+      closable-chips
+      clearable
+      hide-details
+      class="mt-3"
+      prepend-inner-icon="mdi-filter-variant"
+      @update:model-value="onDisciplinesChange"
+    />
   </div>
 </template>
 
@@ -128,9 +85,7 @@ const { locale, t } = useI18n()
 const rootStore = useRootStore()
 const route = useRoute()
 const routeName = computed(() => route.name?.toString() ?? "")
-// Utility function to capitalize first letter
-const capitalize = (str) => str.charAt(0).toUpperCase() + str.slice(1)
-const emit = defineEmits(["filter-change"])
+const emit = defineEmits(["disciplines-change"])
 
 // Rotating placeholder examples (only used for the global "all" search).
 // Examples live in i18n; keys may be absent in some locales — we filter those.
@@ -192,15 +147,13 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
-  categories: {
+  // Selected discipline slugs (global search only).
+  disciplines: {
     type: Array,
     default: () => [],
   },
-  filter: {
-    type: Boolean,
-    default: false,
-  },
-  filterOrder: {
+  // Available discipline options: [{ value, title }].
+  disciplineOptions: {
     type: Array,
     default: () => [],
   },
@@ -219,82 +172,8 @@ onMounted(() => {
   })
 })
 
-// Filter dropdown state
-const filterMenuOpen = ref(false)
-
-// Filter options
-const allFilterOptions = computed(() => ({
-  people: { value: "people", label: capitalize(t("items.people", 2)) },
-  events: { value: "events", label: capitalize(t("items.events", 2)) },
-  news: { value: "news", label: capitalize(t("items.news", 2)) },
-  publications: {
-    value: "publications",
-    label: capitalize(t("items.publications", 2)),
-  },
-  fellowships: {
-    value: "fellowships",
-    label: capitalize(t("items.fellowships", 2)),
-  },
-  projects: { value: "projects", label: capitalize(t("items.projects", 2)) },
-}))
-
-const filterOptions = computed(() => {
-  const map = allFilterOptions.value
-  if (props.filterOrder.length > 0) {
-    const ordered = props.filterOrder.filter((k) => map[k]).map((k) => map[k])
-    const rest = Object.values(map).filter(
-      (o) => !props.filterOrder.includes(o.value),
-    )
-    return [...ordered, ...rest]
-  }
-  return Object.values(map)
-})
-
-const allValues = computed(() => filterOptions.value.map((o) => o.value))
-
-const allSelected = computed(
-  () =>
-    props.categories.length === allValues.value.length &&
-    allValues.value.every((v) => props.categories.includes(v)),
-)
-const noneSelected = computed(() => props.categories.length === 0)
-// Show the count badge only when the user has narrowed the selection.
-const hasActiveFilter = computed(
-  () => !allSelected.value && !noneSelected.value,
-)
-
-const selectAllFilters = () => {
-  emit("filter-change", {
-    name: "__all__",
-    value: true,
-    categories: [...allValues.value],
-  })
-}
-
-const clearFilters = () => {
-  emit("filter-change", {
-    name: "__none__",
-    value: false,
-    categories: [],
-  })
-}
-
-// Toggle filter selection
-const toggleFilter = (option) => {
-  const currentCategories = [...props.categories]
-  const index = currentCategories.indexOf(option.value)
-
-  if (index > -1) {
-    currentCategories.splice(index, 1)
-  } else {
-    currentCategories.push(option.value)
-  }
-
-  emit("filter-change", {
-    name: option.value,
-    value: currentCategories.includes(option.value),
-    categories: currentCategories,
-  })
+const onDisciplinesChange = (next) => {
+  emit("disciplines-change", Array.isArray(next) ? next : [])
 }
 
 const textFieldRef = ref(null)
@@ -334,19 +213,4 @@ const search = computed({
 })
 </script>
 
-<style lang="scss" scoped>
-.global-search__filter-count {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 18px;
-  height: 18px;
-  padding: 0 5px;
-  border-radius: 9px;
-  background: #000;
-  color: #fff;
-  font-size: 0.7rem;
-  font-weight: 600;
-  line-height: 1;
-}
-</style>
+<style lang="scss" scoped></style>

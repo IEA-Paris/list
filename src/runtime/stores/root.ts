@@ -16,6 +16,18 @@ interface SearchResults {
   files: Record<string, unknown>
   mailing: Record<string, unknown>
   tags: Record<string, unknown>
+  // Modifier-based global-search sub-categories (see query.search.all.gql).
+  // People groups:
+  team: Record<string, unknown>
+  sab: Record<string, unknown>
+  board: Record<string, unknown>
+  ethics: Record<string, unknown>
+  fellows: Record<string, unknown>
+  // Collective Intelligence (projects):
+  initiatives: Record<string, unknown>
+  tools: Record<string, unknown>
+  // Resources (publications): `media`, `news` (above) + `publications` (above)
+  media: Record<string, unknown>
 }
 
 interface Filter {
@@ -56,6 +68,7 @@ interface RootStoreState {
   page: number
   numberOfPages: number
   search: string
+  searchDisciplines: string[]
   results: SearchResults
 }
 
@@ -68,6 +81,7 @@ export const useRootStore = defineStore("rootStore", {
     page: 1,
     numberOfPages: 0,
     search: "",
+    searchDisciplines: [],
     results: {
       events: {},
       news: {},
@@ -81,6 +95,15 @@ export const useRootStore = defineStore("rootStore", {
       files: {},
       mailing: {},
       tags: {},
+      // Global-search sub-categories
+      team: {},
+      sab: {},
+      board: {},
+      ethics: {},
+      fellows: {},
+      initiatives: {},
+      tools: {},
+      media: {},
     },
   }),
 
