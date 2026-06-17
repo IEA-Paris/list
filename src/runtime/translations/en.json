@@ -230,6 +230,12 @@
           "Socioscope": "Socioscope",
           "WPRN": "WPRN",
           "WPRN-2021": "WPRN 2021"
+        },
+        "type": {
+          "label": "Type",
+          "INITIATIVE": "Initiative",
+          "PROJECTS": "Project",
+          "TOOL": "Tool"
         }
       },
       "publications": {
