@@ -113,7 +113,7 @@
         "status": {
           "label": "Statut",
           "CANCELLED": "Annulé",
-          "DONE": "terminé",
+          "DONE": "Terminé",
           "POSTPONED": "Reporté",
           "PUBLISHED": "Publié",
           "RESCHEDULED": "Reprogrammé"
@@ -133,10 +133,9 @@
         },
         "status": {
           "label": "Statut",
-          "CANCELLED": "Annulé",
-          "PAST": "Terminé",
-          "IN_PROGRESS": "En cours",
-          "UPCOMING": "À venir"
+          "PLANNED": "À venir",
+          "ONGOING": "En cours",
+          "FINISHED": "Terminé"
         },
         "disciplines": {
           "label": "Discipline"

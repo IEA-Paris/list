@@ -133,18 +133,17 @@
           "paris-1": "Paris 1",
           "paris-2": "Paris 2"
         },
+        "status": {
+          "label": "Status",
+          "PLANNED": "Upcoming",
+          "ONGOING": "Ongoing",
+          "FINISHED": "Finished"
+        },
         "fellowshipType": {
           "label": "Type of fellowship",
           "IN_GROUP": "Collective",
           "LONG_STAY": "Long stay",
           "SHORT_STAY": "Short stay"
-        },
-        "status": {
-          "label": "Status",
-          "CANCELLED": "Cancelled",
-          "FINISHED": "Finished",
-          "ONGOING": "Ongoing",
-          "PLANNED": "Upcoming"
         },
         "disciplines": {
           "label": "Disciplines"

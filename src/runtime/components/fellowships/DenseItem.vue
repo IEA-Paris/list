@@ -51,8 +51,9 @@
             $t(
               'list.filters.fellowships.fellowshipType.' + item.fellowshipType,
             ),
-            ...(props.item?.disciplines?.map((discipline) => discipline.name) ??
-              []),
+            ...(props.item?.disciplines?.map((discipline) =>
+              $t('list.filters.disciplines.' + discipline),
+            ) ?? []),
           ]"
         />
       </template>
