@@ -117,6 +117,10 @@ const props = defineProps({
 /* console.log("start llocal loading from setup") */
 rootStore.setLoading(true, props.type)
 
+// Mirror the route's fixed modifier into the store so the filter UI can branch
+// its conditional visibility on it (the query still reads props.modifier directly).
+rootStore.setModifier(props.type, props.modifier)
+
 // Initial route -> store (single source-of-truth on first load)
 rootStore.loadRouteQuery(props.type)
 

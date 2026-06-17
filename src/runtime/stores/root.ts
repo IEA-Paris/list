@@ -43,6 +43,10 @@ interface ModuleStore {
   loading?: boolean
   filters?: StoreFilters
   filtersCount?: number
+  // Active view modifier for this type (e.g. "media", "news"). Fixed per route
+  // and applied server-side; mirrored here purely as a read channel so the
+  // filter UI can branch its conditional visibility on the modifier.
+  modifier?: string
   view?: Views & { name: string }
   views?: Record<string, Views>
   sort?: Record<string, { label: string; default?: boolean; icon?: string }>
@@ -225,6 +229,14 @@ export const useRootStore = defineStore("rootStore", {
       }
       router.replace({ query: routeQuery })
     },
+    setModifier(type: string, modifier?: string): void {
+      const { $stores } = useNuxtApp() as {
+        $stores: Record<string, ModuleStore>
+      }
+      if ($stores[type]) {
+        $stores[type].modifier = modifier
+      }
+    },
     resetState(type: string, lang: string = "en"): void {
       /*   console.log("Y - resetState", { type, lang }) */
       const { $stores, $models } = useNuxtApp() as NuxtAppExtended
@@ -234,6 +246,7 @@ export const useRootStore = defineStore("rootStore", {
       $stores[type].filters = model?.filters
       $stores[type].search = ""
       $stores[type].page = 1
+      $stores[type].modifier = undefined
       ;($stores[type] as any).sortKey = null
     },
     updateSort({ type, sortKey }: { type: string; sortKey: string }): void {

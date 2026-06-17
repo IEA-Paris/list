@@ -2,7 +2,7 @@
   <v-row>
     <template v-for="(filterItem, index) in Object.keys($stores[type].filters)">
       <v-col
-        v-if="computeVisibility(filterItem)"
+        v-if="appAllowed(filterItem) && computeVisibility(filterItem)"
         :key="type + index + filterItem"
         cols="12"
         sm="6"
@@ -44,13 +44,25 @@
 <script setup>
 import { useDisplay } from "vuetify"
 import { capitalize } from "../../../composables/useUtils"
-import { useNuxtApp, resolveComponent, useI18n } from "#imports"
+import { useNuxtApp, resolveComponent, useI18n, useAppConfig } from "#imports"
 
 const { smAndDown } = useDisplay()
 const i18n = useI18n()
 const { locale, messages } = useI18n()
 const { $stores, $filters } = useNuxtApp()
 const props = defineProps(["type", "expanded"])
+
+// Consuming app id. Filters may declare an `appId` array of the consumers
+// allowed to render them; this is the id we match against. "all" is a wildcard.
+const appId = useAppConfig().list?.appId ?? "iea"
+
+// A filter is shown only on the consumers it opts into. No appId -> shown
+// everywhere (backward compatible). "all" in the list matches any consumer.
+const appAllowed = (filterKey) => {
+  const allowed = $stores[props.type].filters[filterKey].appId
+  if (!Array.isArray(allowed) || allowed.length === 0) return true
+  return allowed.includes("all") || allowed.includes(appId)
+}
 
 const ComponentName = (name) => {
   return resolveComponent(
@@ -153,6 +165,16 @@ const computeVisibility = (filterKey) => {
 
   const checkRule = (rule) =>
     Object.entries(rule).every(([depKey, expected]) => {
+      // Reserved key: match against the active view modifier rather than a
+      // sibling filter's value. On routes like /resources/media the `type` is
+      // narrowed server-side via the modifier, so the modifier is what changes.
+      if (depKey === "modifier") {
+        const cur = $stores[props.type].modifier
+        return Array.isArray(expected)
+          ? expected.includes(cur)
+          : cur === expected
+      }
+
       const dep = filters?.[depKey]
       if (!dep) return false
       const cur = dep.value
