@@ -155,7 +155,6 @@
 <script setup>
 import { useNuxtApp, ref, computed } from "#imports"
 import { useDisplay } from "vuetify"
-import { useRootStore } from "../../../stores/root"
 
 const { $stores } = useNuxtApp()
 const props = defineProps({
@@ -166,33 +165,15 @@ const props = defineProps({
 })
 const feminine = ref(["news", "publications", "people"].includes(props.type))
 const { smAndDown: isSmAndDown } = useDisplay()
-const rootStore = useRootStore()
 
-const isLoading = computed(() =>
+// The skeleton must track the loading state ONLY. A previous extra clause
+// (`isZeroTotal && (isAnySearchActive || itemsCount > 0)`) was permanently true
+// after any search that returned zero results — so a completed empty search
+// (e.g. "posten") stayed pinned in skeleton mode instead of showing the
+// "0 items found searching for X" message, which is exactly the v-else branch
+// below and the correct thing to render in that case.
+const showSkeleton = computed(() =>
   Boolean($stores[props.type] && $stores[props.type].loading),
-)
-const isTypeSearchActive = computed(() => {
-  const s = $stores[props.type]?.search
-  return Boolean(s && s.length)
-})
-const isGlobalSearchActive = computed(
-  () => typeof rootStore.search === "string" && rootStore.search.length > 0,
-)
-const isAnySearchActive = computed(
-  () => isTypeSearchActive.value || isGlobalSearchActive.value,
-)
-const isZeroTotal = computed(
-  () => Number($stores[props.type]?.total || 0) === 0,
-)
-const itemsCount = computed(() =>
-  Array.isArray($stores[props.type]?.items)
-    ? $stores[props.type]?.items?.length || 0
-    : 0,
-)
-const showSkeleton = computed(
-  () =>
-    isLoading.value ||
-    (isZeroTotal.value && (isAnySearchActive.value || itemsCount.value > 0)),
 )
 </script>
 

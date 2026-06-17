@@ -54,8 +54,6 @@ import {
   useNuxtApp,
   resolveComponent,
   computed,
-  onUpdated,
-  onMounted,
   watch,
   onBeforeUnmount,
   nextTick,
@@ -168,6 +166,22 @@ if (data.value) {
   rootStore.applyListResult(props.type, data.value)
 }
 
+// Keep the store `loading` flag in lockstep with the query's real `pending`
+// state. This is the single source of truth for every skeleton (the items view
+// and SearchString both read `$stores[type].loading`). Deriving it from
+// `pending` avoids the SSR/hydration race that previously left a search-on-load
+// (e.g. ?search=posten) pinned in skeleton mode: on a hard load the manual
+// `onMounted` reset and the `variables` watcher could fire in an order that
+// re-set `loading: true` and never cleared it. `pending` flips to false exactly
+// once, when the query resolves, regardless of that ordering.
+watch(
+  pending,
+  (isPending) => {
+    rootStore.setLoading(Boolean(isPending), props.type)
+  },
+  { immediate: true },
+)
+
 // Watch for route query changes to update filters
 watch(
   () => route.query,
@@ -186,13 +200,17 @@ watch(
   async (newVars, oldVars) => {
     if (newVars && JSON.stringify(newVars) !== JSON.stringify(oldVars)) {
       /*     console.log("Variables changed, refreshing query, newVars: ", newVars) */
-      rootStore.setLoading(true, props.type)
-      await refresh()
-      if (data.value) {
-        /*         console.log("Applying refreshed data to store") */
-        rootStore.applyListResult(props.type, data.value)
+      // `loading` is driven by the `pending` watch above — `refresh()` toggles
+      // `pending` for us, so we only own the refetch + applying the result here.
+      try {
+        await refresh()
+        if (data.value) {
+          /*         console.log("Applying refreshed data to store") */
+          rootStore.applyListResult(props.type, data.value)
+        }
+      } catch (e) {
+        console.error("List refresh failed: ", e)
       }
-      rootStore.setLoading(false, props.type)
     }
   },
   { deep: true },
@@ -201,20 +219,11 @@ watch(
 // Reactive items computed from the store (single source of truth)
 const items = computed(() => $stores[props.type]?.items || [])
 
-onMounted(() => {
-  // On initial mount: clear loading state
-  /*  console.log("STOP local loading from mounted") */
-  rootStore.setLoading(false, props.type)
-})
-
 onBeforeUnmount(() => {
   rootStore.resetState(props.type, locale.value)
 })
 async function onPageChange(newPage) {
   /*  console.log("onPageChange: ", newPage) */
-
-  // Set loading state first
-  rootStore.setLoading(true, props.type)
 
   // Update the page in the store
   rootStore.updatePage({
