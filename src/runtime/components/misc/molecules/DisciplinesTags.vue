@@ -6,8 +6,11 @@
   />
   <div
     v-else-if="disciplines.length"
-    class="d-flex flex-wrap"
-    :class="justify === 'center' ? 'justify-center' : ''"
+    class="flex-wrap"
+    :class="[
+      inline ? 'd-inline-flex align-center' : 'd-flex',
+      justify === 'center' ? 'justify-center' : '',
+    ]"
     style="gap: 6px"
   >
     <v-chip
@@ -58,6 +61,13 @@ const props = defineProps({
   justify: {
     type: String,
     default: "start",
+  },
+  // render as inline-flex so the chips flow on the same line as preceding
+  // content (e.g. the category chip in the events dense item) instead of
+  // forcing a block-level line break
+  inline: {
+    type: Boolean,
+    default: false,
   },
 })
 

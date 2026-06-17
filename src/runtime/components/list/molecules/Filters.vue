@@ -76,6 +76,19 @@ const getItems = (name) => {
       .sort((a, b) => a.title.localeCompare(b.title))
   }
 
+  // Prefer the enum declared on the model filter (filters[name].items) over the
+  // values baked into filters.json. The model is the source of truth for enum
+  // options (e.g. publicationType), so filters.json never has to stay in sync.
+  const modelItems = $stores[props.type].filters[name].items
+  if (modelItems && typeof modelItems === "object") {
+    return Object.values(modelItems)
+      .filter((item) => item !== "label")
+      .map((item) => ({
+        title: i18n.t(`list.filters.${props.type}.${name}.${item}`),
+        value: item,
+      }))
+  }
+
   if ($filters?.[props.type]?.[name]) {
     return $filters[props.type][name]
       .filter((key) => key !== "label")

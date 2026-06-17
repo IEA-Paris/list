@@ -23,17 +23,20 @@
 
     <v-col align-self="start" class="pl-md-4">
       <v-skeleton-loader v-if="loading" type="chip" class="mr-3" width="120" />
-      <v-chip
-        v-else
-        class="mr-3"
-        color="black"
-        size="small"
-        style="background-color: white; color: black"
-        tile
-        variant="outlined"
-      >
-        {{ $t("list.filters.events.category." + item.category) }}
-      </v-chip>
+      <span v-else>
+        <v-chip
+          class="mr-3"
+          color="black"
+          size="small"
+          style="background-color: white; color: black"
+          tile
+          variant="outlined"
+        >
+          {{ $t("list.filters.events.category." + item.category) }}
+        </v-chip>
+        <!-- DISCIPLINES -->
+        <MiscMoleculesDisciplinesTags :disciplines="item.disciplines" inline />
+      </span>
       <v-skeleton-loader
         v-if="loading && smAndDown"
         type="text"

@@ -41,6 +41,12 @@
             {{ $t(eventCategory) }}
           </v-chip>
           <MiscMoleculesChipContainer :items="item.tags || []" size="small" />
+          <MiscMoleculesDisciplinesTags
+            v-if="item.disciplines && item.disciplines.length"
+            :disciplines="item.disciplines"
+            inline
+            class="mt-2"
+          />
         </template>
         <div
           v-html="

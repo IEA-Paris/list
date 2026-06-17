@@ -46,11 +46,17 @@
             :items="item.tags || []"
             size="small"
           />
+          <MiscMoleculesDisciplinesTags
+            v-if="item.disciplines && item.disciplines.length"
+            :disciplines="item.disciplines"
+            inline
+            class="mt-2"
+          />
         </template>
         <v-skeleton-loader v-if="loading" type="heading" />
-        <span
+        <div
           v-else
-          class="text-h5 dense paragraph"
+          class="text-h5 dense paragraph mt-2"
           v-html="
             searchQuery.length
               ? highlightAndTruncate(300, item.name, searchQuery.split(' '))
