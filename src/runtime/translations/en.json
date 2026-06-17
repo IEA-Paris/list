@@ -234,7 +234,7 @@
         "type": {
           "label": "Type",
           "INITIATIVE": "Initiative",
-          "PROJECTS": "Project",
+          "PROJECT": "Project",
           "TOOL": "Tool"
         }
       },

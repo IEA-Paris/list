@@ -73,37 +73,35 @@
             <div class="mt-6 align-self-center">
               <PeopleBadges v-if="item && item.groups" :item="item" />
             </div>
-
+            <!-- DIVIDERS -->
+            <v-responsive class="mx-auto my-6" width="120">
+              <v-divider class="mb-1" />
+              <v-divider />
+            </v-responsive>
             <!-- FELLOWSHIP -->
-            <div v-if="fellowName || fellowTheme || fellowDates" class="mt-6">
-              <div v-if="fellowName" class="text-h6 font-weight-regular">
-                {{ fellowName }}
+            <div
+              v-if="fellowshipProjectName || fellowTheme || fellowDates"
+              class=""
+            >
+              <div
+                v-if="fellowshipProjectName"
+                class="text-h6 font-weight-regular"
+              >
+                {{ fellowshipProjectName }}
               </div>
 
               <!-- DISCIPLINES -->
-              <div
-                v-if="disciplines.length"
-                class="mt-4 d-flex flex-wrap justify-center"
-                style="gap: 6px"
-              >
-                <v-chip
-                  v-for="(d, i) in disciplines"
-                  :key="d + i"
-                  size="small"
-                  variant="flat"
-                  tile
-                  color="grey-lighten-3"
-                  class="discipline-chip"
-                >
-                  {{ disciplineLabel(d) }}
-                </v-chip>
-              </div>
-              <div v-if="fellowTheme" class="text-body-1 mt-1 font-italic">
+              <MiscMoleculesDisciplinesTags
+                :disciplines="item.disciplines"
+                justify="center"
+                class="mt-4"
+              />
+              <div v-if="fellowTheme" class="text-body-1 my-3 font-italic">
                 {{ fellowTheme }}
               </div>
               <div
                 v-if="fellowDates"
-                class="text-body-2 mt-1 text-medium-emphasis"
+                class="text-body-2 my-3 text-medium-emphasis"
               >
                 {{ fellowDates }}
               </div>
@@ -217,22 +215,17 @@ const { t, locale } = useI18n()
 const { $stores } = useNuxtApp()
 const { name, mdAndUp } = useDisplay()
 const props = defineProps({
-  item: { type: Object, required: true },
+  // null while the resource item is loading (see useI18nResourceItem)
+  item: { type: Object, default: null },
   loading: { type: Boolean, default: false },
 })
 $stores.people.loading = false
-
-// disciplines: scalar enum array → translated labels
-const disciplines = computed(() =>
-  Array.isArray(props.item?.disciplines) ? props.item.disciplines : [],
-)
-const disciplineLabel = (d) => t("list.filters.disciplines." + d)
 
 // latest is a union Vintage | Position; the fellowship program lives on the
 // Vintage branch (name = program name, theme = fellowship theme) and carries the
 // arrival/departure dates (start/stop). Guard by field presence.
 const latest = computed(() => props.item?.latest ?? null)
-const fellowName = computed(() => latest.value?.name ?? null)
+const fellowshipProjectName = computed(() => latest.value?.name ?? null)
 const fellowTheme = computed(() => latest.value?.theme ?? null)
 
 // "present" = currently in residence/post: started on or before today and not
@@ -259,14 +252,6 @@ const fellowDates = computed(() => {
 </script>
 
 <style scoped>
-/* Disciplines: filled, rounded, soft grey — consistent with the people list
-   (DenseItem.vue) so the chip language matches across views. */
-.discipline-chip {
-  color: rgba(0, 0, 0, 0.78);
-  font-weight: 500;
-  border-radius: 6px;
-}
-
 /* "Present" indicator — same discrete grey pill + green dot as DenseItem.vue. */
 .present-pill {
   display: inline-flex;

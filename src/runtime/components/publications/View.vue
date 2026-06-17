@@ -40,6 +40,12 @@
         <div class="overline my-2">
           {{ formatDateValue(item.date, locale) }}
         </div>
+        <!-- DISCIPLINES -->
+        <MiscMoleculesDisciplinesTags
+          :disciplines="item.disciplines"
+          justify="center"
+          class="mt-4"
+        />
         <MiscMoleculesChipContainer
           v-if="item.tags && item.tags.length"
           :items="item.tags"
@@ -119,13 +125,13 @@ const { $stores } = useNuxtApp()
 const { name } = useDisplay()
 const { locale } = useI18n()
 const props = defineProps({
+  // null while the resource item is loading (see useI18nResourceItem)
   item: {
     type: Object,
-    required: true,
+    default: null,
   },
   loading: {
     type: Boolean,
-    required: false,
     default: false,
   },
 })

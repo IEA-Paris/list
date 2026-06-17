@@ -49,11 +49,14 @@
                   'list.filters.fellowships.fellowshipType.' +
                     item.fellowshipType,
                 ),
-                ...(props.item && props.item.disciplines
-                  ? props.item.disciplines.map((discipline) => discipline.name)
-                  : []),
               ]"
               class="mt-2"
+            />
+            <!-- DISCIPLINES -->
+            <MiscMoleculesDisciplinesTags
+              :disciplines="item.disciplines"
+              justify="center"
+              class="mt-4"
             />
             <div class="mt-5">
               <FellowshipsBadges :item="item" :view="view" :loading="loading" />
@@ -152,58 +155,43 @@
 
 <script setup>
 import { useDisplay } from "vuetify"
-import { ref } from "#imports"
+import { computed, ref } from "#imports"
 const { name } = useDisplay()
 const accordeon = ref(-1)
 const props = defineProps({
+  // null while the resource item is loading (see useI18nResourceItem)
   item: {
     type: Object,
-    required: true,
+    default: null,
   },
   loading: {
     type: Boolean,
     default: false,
-    required: true,
   },
 })
 
 const view = ref(true)
 
-const renderedDetails = {
-  ...(props.item?.fellowshipDetails?.type && {
-    type: props.item?.fellowshipDetails?.type,
-  }),
-  ...(props.item?.fellowshipDetails?.fundingPeriod && {
-    fundingPeriod: props.item?.fellowshipDetails?.fundingPeriod,
-  }),
-  ...(props.item?.fellowshipDetails?.profile && {
-    profile: props.item?.fellowshipDetails?.profile,
-  }),
-  ...(props.item?.fellowshipDetails?.tasks && {
-    tasks: props.item?.fellowshipDetails?.tasks,
-  }),
-  ...(props.item?.fellowshipDetails?.location && {
-    location: props.item?.fellowshipDetails?.location,
-  }),
-  ...(props.item?.fellowshipDetails?.funding && {
-    funding: props.item?.fellowshipDetails?.funding,
-  }),
-  ...(props.item?.fellowshipDetails?.housing && {
-    housing: props.item?.fellowshipDetails?.housing,
-  }),
-  ...(props.item?.fellowshipDetails?.meals && {
-    meals: props.item?.fellowshipDetails?.meals,
-  }),
-  ...(props.item?.fellowshipDetails?.applicationMaterials && {
-    applicationMaterials: props.item?.fellowshipDetails?.applicationMaterials,
-  }),
-  ...(props.item?.fellowshipDetails?.selectionProcess && {
-    selectionProcess: props.item?.fellowshipDetails?.selectionProcess,
-  }),
-  ...(props.item?.fellowshipDetails?.researchProcess && {
-    researchProcess: props.item?.fellowshipDetails?.researchProcess,
-  }),
-}
+// computed (not a one-shot setup value) so it picks up `item` once it loads in
+const renderedDetails = computed(() => {
+  const d = props.item?.fellowshipDetails
+  if (!d) return {}
+  return {
+    ...(d.type && { type: d.type }),
+    ...(d.fundingPeriod && { fundingPeriod: d.fundingPeriod }),
+    ...(d.profile && { profile: d.profile }),
+    ...(d.tasks && { tasks: d.tasks }),
+    ...(d.location && { location: d.location }),
+    ...(d.funding && { funding: d.funding }),
+    ...(d.housing && { housing: d.housing }),
+    ...(d.meals && { meals: d.meals }),
+    ...(d.applicationMaterials && {
+      applicationMaterials: d.applicationMaterials,
+    }),
+    ...(d.selectionProcess && { selectionProcess: d.selectionProcess }),
+    ...(d.researchProcess && { researchProcess: d.researchProcess }),
+  }
+})
 </script>
 
 <style lang="scss" scoped></style>

@@ -45,6 +45,13 @@
         >
           <MDC v-if="item && item.subtitle" :value="item.subtitle" />
         </div>
+        <!-- DISCIPLINES -->
+        <MiscMoleculesDisciplinesTags
+          v-if="item"
+          :disciplines="item.disciplines"
+          justify="center"
+          class="mt-4"
+        />
         <MiscMoleculesChipContainer
           v-if="item && item.tags"
           :items="item.tags"
@@ -120,13 +127,14 @@ import { useNuxtApp } from "#imports"
 const { $stores } = useNuxtApp()
 const { name } = useDisplay()
 const props = defineProps({
+  // null while the resource item is loading (see useI18nResourceItem)
   item: {
     type: Object,
-    required: true,
+    default: null,
   },
   loading: {
     type: Boolean,
-    required: false,
+    default: false,
   },
 })
 </script>

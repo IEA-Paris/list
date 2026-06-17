@@ -62,28 +62,31 @@ const getItems = (name) => {
     return []
   }
 
+  // Disciplines and thematics are shared enums used across most list types.
+  // They live in their own top-level i18n namespace (list.filters.disciplines
+  // / list.filters.thematics) and are resolved from there for every type,
+  // independently of filters.json, to avoid duplicating them per type.
+  if (["disciplines", "thematics"].includes(name)) {
+    return Object.keys(messages.value[locale.value].list.filters?.[name])
+      .filter((key) => key !== "label")
+      .map((item) => ({
+        title: i18n.t(`list.filters.${name}.${item}`),
+        value: item,
+      }))
+      .sort((a, b) => a.title.localeCompare(b.title))
+  }
+
   if ($filters?.[props.type]?.[name]) {
-    // Disciplines and thematics have their own namespace for translations
-    if (["disciplines", "thematics"].includes(name)) {
-      return Object.keys(messages.value[locale.value].list.filters?.[name])
-        .filter((key) => key !== "label")
-        .map((item) => ({
-          title: i18n.t(`list.filters.${name}.${item}`),
-          value: item,
-        }))
-        .sort((a, b) => a.title.localeCompare(b.title))
-    } else {
-      return $filters[props.type][name]
-        .filter((key) => key !== "label")
-        .map((item) => ({
-          title: i18n.t(
-            props.type === "people" && name === "vintage"
-              ? item
-              : `list.filters.${props.type}.${name}.${item}`,
-          ),
-          value: item,
-        }))
-    }
+    return $filters[props.type][name]
+      .filter((key) => key !== "label")
+      .map((item) => ({
+        title: i18n.t(
+          props.type === "people" && name === "vintage"
+            ? item
+            : `list.filters.${props.type}.${name}.${item}`,
+        ),
+        value: item,
+      }))
   }
 
   if (!messages.value[locale.value].list.filters[props.type]?.[name]) {
