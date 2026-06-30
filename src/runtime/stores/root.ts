@@ -1,6 +1,18 @@
 import { defineStore } from "pinia"
-import type { Views } from "@paris-ias/trees"
 import { useNuxtApp, useRouter } from "#imports"
+
+// Mirror of the `Views` interface from @paris-ias/trees (src/list.ts).
+// Inlined deliberately: importing the bare `@paris-ias/trees` specifier pulls
+// in its `index.js`, whose extensionless internal imports (e.g.
+// `./dist/form/events`) fail Vite's commonjs resolver at build time
+// (`Missing "./dist/form/events.js" specifier`). All other usages go through
+// resolvable subpaths; this was the only bare-index import.
+interface Views {
+  icon: string
+  default?: boolean
+  name?: string
+  perPage?: { options: number[]; default: number }
+}
 
 // Improved TypeScript interfaces
 interface SearchResults {
