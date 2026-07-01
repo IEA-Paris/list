@@ -33,6 +33,14 @@
         :items="item.tags || []"
         size="small"
       />
+      <!-- DISCIPLINES -->
+      <MiscMoleculesDisciplinesTags
+        v-if="loading || (item.disciplines && item.disciplines.length)"
+        :disciplines="item.disciplines"
+        :loading="loading"
+        inline
+        class="mt-2"
+      />
       <v-skeleton-loader v-if="loading" type="text@2" class="mt-3" />
       <MDC
         v-else-if="item.summary && item.summary.length && mdAndUp"

@@ -294,6 +294,31 @@
           "THESIS": "Thesis",
           "VIDEO": "Video",
           "OTHERS": "Others"
+        },
+        "publicationType": {
+          "label": "Type",
+          "ARTICLE": "Article",
+          "BOOK": "Book",
+          "BOOK_CHAPTER": "Book chapter",
+          "CONFERENCE_PAPER": "Conference paper",
+          "DATA": "Data",
+          "REPORT": "Report",
+          "SOFTWARE": "Software",
+          "THESIS": "Thesis"
+        },
+        "mediaPublicType": {
+          "label": "Type",
+          "AUDIO": "Audio",
+          "PODCAST": "Podcast",
+          "VIDEO": "Video"
+        },
+        "mediaCategory": {
+          "label": "Category",
+          "FELLOWS": "Fellows",
+          "EVENTS": "Event",
+          "IDEAS": "Ideas",
+          "CONFERENCE_CYCLE": "Conference cycle",
+          "OTHER": "Other"
         }
       },
       "affiliations": {

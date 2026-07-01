@@ -103,13 +103,6 @@
           "WPRN": "WPRN",
           "WPRN-2021": "WPRN 2021"
         },
-        "status": {
-          "label": "Statut",
-          "CANCELLED": "Annulé",
-          "PAST": "Terminé",
-          "IN_PROGRESS": "En cours",
-          "UPCOMING": "À venir"
-        },
         "organiserCategory": {
           "label": "Type d'organisateur",
           "IAS": "IEA de Paris",
@@ -189,7 +182,10 @@
         "status": {
           "label": "Statut",
           "ACTIVE": "Actif",
-          "INACTIVE": "Inactif"
+          "INACTIVE": "Inactif",
+          "PAST": "Ancien",
+          "IN_PROGRESS": "En cours",
+          "PLANNED": "Prévu"
         }
       },
       "projects": {
@@ -291,6 +287,31 @@
           "THESIS": "Thèse",
           "VIDEO": "Vidéo",
           "OTHERS": "Autres"
+        },
+        "publicationType": {
+          "label": "Type",
+          "ARTICLE": "Article",
+          "BOOK": "Livre",
+          "BOOK_CHAPTER": "Chapitre de livre",
+          "CONFERENCE_PAPER": "Actes de conférence",
+          "DATA": "Données",
+          "REPORT": "Rapport",
+          "SOFTWARE": "Logiciel",
+          "THESIS": "Thèse"
+        },
+        "mediaPublicType": {
+          "label": "Type",
+          "AUDIO": "Audio",
+          "PODCAST": "Podcast",
+          "VIDEO": "Vidéo"
+        },
+        "mediaCategory": {
+          "label": "Catégorie",
+          "FELLOWS": "Résidents",
+          "EVENTS": "Événements",
+          "IDEAS": "Idées",
+          "CONFERENCE_CYCLE": "Cycle de conférences",
+          "OTHER": "Autres"
         }
       },
       "affiliations": {

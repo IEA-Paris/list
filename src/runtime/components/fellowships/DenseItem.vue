@@ -46,41 +46,48 @@
           class="mt-2"
         />
         <MiscMoleculesChipContainer
-          v-else
-          :items="[
-            $t(
-              'list.filters.fellowships.fellowshipType.' + item.fellowshipType,
-            ),
-            ...(props.item?.disciplines?.map((discipline) =>
-              $t('list.filters.disciplines.' + discipline),
-            ) ?? []),
-          ]"
+          v-else-if="fellowshipTypeLabels.length"
+          :items="fellowshipTypeLabels"
+          class="mt-2"
+        />
+        <!-- DISCIPLINES -->
+        <MiscMoleculesDisciplinesTags
+          v-if="loading || (item.disciplines && item.disciplines.length)"
+          :disciplines="item.disciplines"
+          :loading="loading"
+          inline
+          class="mt-2"
         />
       </template>
     </v-col>
 
     <v-col v-if="mdAndUp" class="d-flex flex-column" cols="1">
       <v-skeleton-loader v-if="loading" type="chip" width="260" class="mt-2" />
-      <MiscMoleculesChipContainer
-        v-else
-        :items="[
-          $t('list.filters.fellowships.fellowshipType.' + item.fellowshipType),
-          ...(props.item?.disciplines.map((discipline) =>
-            $t('list.filters.disciplines.' + discipline),
-          ) ?? []),
-        ]"
-        class="mt-2"
-      />
+      <template v-else>
+        <MiscMoleculesChipContainer
+          v-if="fellowshipTypeLabels.length"
+          :items="fellowshipTypeLabels"
+          class="mt-2"
+        />
+        <!-- DISCIPLINES -->
+        <MiscMoleculesDisciplinesTags
+          v-if="item.disciplines && item.disciplines.length"
+          :disciplines="item.disciplines"
+          inline
+          class="mt-2"
+        />
+      </template>
     </v-col>
   </ListMoleculesDenseItemContainer>
 </template>
 
 <script setup>
 import { useDisplay } from "vuetify"
-import { useNuxtApp, useRoute, computed } from "#imports"
+import { useNuxtApp, useRoute, useI18n, computed } from "#imports"
 import { highlightAndTruncate } from "../../composables/useUtils"
 const { $rootStore, $stores } = useNuxtApp()
 const { name } = useRoute()
+const { t } = useI18n()
 const { mdAndUp, mdAndDown, smAndDown } = useDisplay()
 const searchQuery = computed(() =>
   name.startsWith("search")
@@ -101,5 +108,13 @@ const props = defineProps({
     required: false,
     default: false,
   },
+})
+
+// fellowshipType is an array in the DB (e.g. ["LONG_STAY"]); translate each
+// value. Tolerates a scalar too. Disciplines are rendered separately as pills.
+const fellowshipTypeLabels = computed(() => {
+  const ft = props.item?.fellowshipType
+  const values = Array.isArray(ft) ? ft : ft ? [ft] : []
+  return values.map((v) => t("list.filters.fellowships.fellowshipType." + v))
 })
 </script>
