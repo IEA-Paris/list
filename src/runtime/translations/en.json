@@ -121,6 +121,9 @@
         },
         "status": {
           "label": "Status",
+          "OPEN": "Open for registration",
+          "FULL": "Full",
+          "CLOSED": "Registrations closed",
           "CANCELLED": "Cancelled",
           "POSTPONED": "Postponed to {0}",
           "PUBLISHED": "Published",
@@ -150,30 +153,6 @@
         }
       },
       "news": {
-        "category": {
-          "label": "Category",
-          "ANNOUNCEMENT": "Announcement",
-          "ARTICLE": "Article",
-          "AUDIO": "Audio",
-          "AWARD": "Award",
-          "BLOG": "Blog",
-          "DATA": "Data",
-          "EVENT": "Event",
-          "FELLOWSHIP": "Fellowship",
-          "GRANT": "Grant",
-          "INTERVIEW": "Interview",
-          "JOB": "Job",
-          "LIFE_AT_THE_INSTITUTE": "Life at the institute",
-          "OPINION": "Opinion",
-          "PRESS_RELEASE": "Press release",
-          "PROJECT": "Project",
-          "PUBLICATION": "Publication",
-          "REPORT": "Report",
-          "SOFTWARE": "Software",
-          "TOOL": "Tool",
-          "VIDEO": "Video",
-          "OTHER": "Other"
-        },
         "tags": {
           "label": "Tags",
           "Socioscope": "Socioscope",
@@ -250,6 +229,38 @@
         },
         "disciplines": {
           "label": "Disciplines"
+        },
+        "mediaType": {
+          "label": "Type",
+          "FELLOWS": "Fellows",
+          "EVENTS": "Event",
+          "IDEAS": "Ideas",
+          "CONFERENCE_CYCLE": "Conference cycle",
+          "OTHER": "Other"
+        },
+        "newsCategories": {
+          "label": "Category",
+          "ANNOUNCEMENT": "Announcement",
+          "ARTICLE": "Article",
+          "AUDIO": "Audio",
+          "AWARD": "Award",
+          "BLOG": "Blog",
+          "DATA": "Data",
+          "EVENT": "Event",
+          "FELLOWSHIP": "Fellowship",
+          "GRANT": "Grant",
+          "INTERVIEW": "Interview",
+          "JOB": "Job",
+          "LIFE_AT_THE_INSTITUTE": "Life at the institute",
+          "OPINION": "Opinion",
+          "PRESS_RELEASE": "Press release",
+          "PROJECT": "Project",
+          "PUBLICATION": "Publication",
+          "REPORT": "Report",
+          "SOFTWARE": "Software",
+          "TOOL": "Tool",
+          "VIDEO": "Video",
+          "OTHER": "Other"
         },
         "category": {
           "label": "Event category",

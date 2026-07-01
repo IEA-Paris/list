@@ -103,6 +103,13 @@
           "WPRN": "WPRN",
           "WPRN-2021": "WPRN 2021"
         },
+        "status": {
+          "label": "Statut",
+          "CANCELLED": "Annulé",
+          "PAST": "Terminé",
+          "IN_PROGRESS": "En cours",
+          "UPCOMING": "À venir"
+        },
         "organiserCategory": {
           "label": "Type d'organisateur",
           "IAS": "IEA de Paris",
@@ -112,6 +119,9 @@
         },
         "status": {
           "label": "Statut",
+          "OPEN": "Inscriptions ouvertes",
+          "FULL": "Complet",
+          "CLOSED": "Inscriptions fermées",
           "CANCELLED": "Annulé",
           "DONE": "Terminé",
           "POSTPONED": "Reporté",
@@ -142,30 +152,6 @@
         }
       },
       "news": {
-        "category": {
-          "label": "Catégorie",
-          "ANNOUNCEMENT": "Annonce",
-          "ARTICLE": "Article",
-          "AUDIO": "Audio",
-          "AWARD": "Prix",
-          "BLOG": "Blog",
-          "DATA": "Données",
-          "EVENT": "Événement",
-          "FELLOWSHIP": "Programme d'accueil chercheur",
-          "GRANT": "Financement",
-          "INTERVIEW": "Entretien",
-          "JOB": "Emploi",
-          "LIFE_AT_THE_INSTITUTE": "La vie à l'institut",
-          "OPINION": "Opinion",
-          "PRESS_RELEASE": "Communiqué de presse",
-          "PROJECT": "Projet",
-          "PUBLICATION": "Publication",
-          "REPORT": "Rapport",
-          "SOFTWARE": "Logiciel",
-          "TOOL": "Outil",
-          "VIDEO": "Vidéo",
-          "OTHER": "Autres"
-        },
         "tags": {
           "label": "Tags",
           "Socioscope": "Socioscope",
@@ -240,6 +226,38 @@
         },
         "disciplines": {
           "label": "Disciplines"
+        },
+        "mediaType": {
+          "label": "Type",
+          "FELLOWS": "Résidents",
+          "EVENTS": "Événements",
+          "IDEAS": "Idées",
+          "CONFERENCE_CYCLE": "Cycle de conférences",
+          "OTHER": "Autres"
+        },
+        "newsCategories": {
+          "label": "Catégorie",
+          "ANNOUNCEMENT": "Annonce",
+          "ARTICLE": "Article",
+          "AUDIO": "Audio",
+          "AWARD": "Prix",
+          "BLOG": "Blog",
+          "DATA": "Données",
+          "EVENT": "Événement",
+          "FELLOWSHIP": "Programme d'accueil chercheur",
+          "GRANT": "Financement",
+          "INTERVIEW": "Entretien",
+          "JOB": "Emploi",
+          "LIFE_AT_THE_INSTITUTE": "La vie à l'institut",
+          "OPINION": "Opinion",
+          "PRESS_RELEASE": "Communiqué de presse",
+          "PROJECT": "Projet",
+          "PUBLICATION": "Publication",
+          "REPORT": "Rapport",
+          "SOFTWARE": "Logiciel",
+          "TOOL": "Outil",
+          "VIDEO": "Vidéo",
+          "OTHER": "Autres"
         },
         "eventCategories": {
           "label": "Catégorie d'évènement",
