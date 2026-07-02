@@ -28,18 +28,18 @@
         class=""
       />
 
-      <MiscMoleculesChipContainer
-        v-if="item.tags"
-        :items="item.tags || []"
-        size="small"
-      />
-      <!-- DISCIPLINES -->
+      <!-- DISCIPLINES: own row directly below the title (block, not inline) -->
       <MiscMoleculesDisciplinesTags
         v-if="loading || (item.disciplines && item.disciplines.length)"
         :disciplines="item.disciplines"
         :loading="loading"
-        inline
         class="mt-2"
+      />
+
+      <MiscMoleculesChipContainer
+        v-if="item.tags"
+        :items="item.tags || []"
+        size="small"
       />
       <v-skeleton-loader v-if="loading" type="text@2" class="mt-3" />
       <MDC
